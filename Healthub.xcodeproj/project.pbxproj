@@ -11,6 +11,10 @@
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
 		857A54F82922D34400413841 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F72922D34400413841 /* Preview Assets.xcassets */; };
 		857A55032922D3D200413841 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55022922D3D200413841 /* MainView.swift */; };
+		857A550A2922D6D800413841 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55092922D6D800413841 /* ScheduleView.swift */; };
+		857A550C2922D70000413841 /* TherapiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550B2922D70000413841 /* TherapiesView.swift */; };
+		857A550E2922D72300413841 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550D2922D72300413841 /* ContactsView.swift */; };
+		857A55102922D75000413841 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550F2922D75000413841 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		857A54F42922D34400413841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		857A54F72922D34400413841 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		857A55022922D3D200413841 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		857A55092922D6D800413841 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		857A550B2922D70000413841 /* TherapiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapiesView.swift; sourceTree = "<group>"; };
+		857A550D2922D72300413841 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		857A550F2922D75000413841 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				857A55022922D3D200413841 /* MainView.swift */,
+				857A55042922D57200413841 /* App */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +106,49 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		857A55042922D57200413841 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				857A55052922D57D00413841 /* Schedule */,
+				857A55062922D58A00413841 /* Therapies */,
+				857A55082922D5A300413841 /* Contacts */,
+				857A55072922D59D00413841 /* Settings */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		857A55052922D57D00413841 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				857A55092922D6D800413841 /* ScheduleView.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		857A55062922D58A00413841 /* Therapies */ = {
+			isa = PBXGroup;
+			children = (
+				857A550B2922D70000413841 /* TherapiesView.swift */,
+			);
+			path = Therapies;
+			sourceTree = "<group>";
+		};
+		857A55072922D59D00413841 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				857A550F2922D75000413841 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		857A55082922D5A300413841 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				857A550D2922D72300413841 /* ContactsView.swift */,
+			);
+			path = Contacts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +223,10 @@
 			files = (
 				857A54F12922D34300413841 /* HealthubApp.swift in Sources */,
 				857A55032922D3D200413841 /* MainView.swift in Sources */,
+				857A550C2922D70000413841 /* TherapiesView.swift in Sources */,
+				857A55102922D75000413841 /* SettingsView.swift in Sources */,
+				857A550E2922D72300413841 /* ContactsView.swift in Sources */,
+				857A550A2922D6D800413841 /* ScheduleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
