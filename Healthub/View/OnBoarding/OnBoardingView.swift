@@ -63,8 +63,12 @@ struct OnBoardingView: View {
             Spacer()
             Button(
                 action: {
-                    /* Request notifications permissions */
                     
+                    /* Request notifications permissions */
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                        if (error != nil) { print(error!.localizedDescription) }
+                    }
+                        
                     // Disable OnBoarding TabView and dismisses it
                     UserDefaults.standard.set(false, forKey: "firstAppLaunch")
                     
