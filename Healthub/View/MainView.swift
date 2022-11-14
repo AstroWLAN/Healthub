@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = true
+    
     var body: some View {
+        // Tab Bar
         TabView{
             ScheduleView()
                 .tabItem{ Label("Schedule", systemImage: "clipboard.fill") }
@@ -12,8 +16,11 @@ struct MainView: View {
             SettingsView()
                 .tabItem{ Label("Settings", systemImage: "gear") }
         }
-        // Changes the color of the selected item
+        // Changes the color of the selected item in the Tab Bar
         .tint(Color("HealthGray3"))
+        .sheet(isPresented: $firstAppLaunch) {
+            OnBoardingView()
+        }
     }
 }
 

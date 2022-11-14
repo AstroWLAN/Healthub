@@ -15,6 +15,9 @@
 		857A550C2922D70000413841 /* TherapiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550B2922D70000413841 /* TherapiesView.swift */; };
 		857A550E2922D72300413841 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550D2922D72300413841 /* ContactsView.swift */; };
 		857A55102922D75000413841 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550F2922D75000413841 /* SettingsView.swift */; };
+		857A55152922DC8500413841 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55142922DC8500413841 /* OnBoardingView.swift */; };
+		857A55192922DCBB00413841 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55182922DCBB00413841 /* FeatureView.swift */; };
+		857A551B2922DDDA00413841 /* OnBoarding.json in Resources */ = {isa = PBXBuildFile; fileRef = 857A551A2922DDDA00413841 /* OnBoarding.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		857A550B2922D70000413841 /* TherapiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapiesView.swift; sourceTree = "<group>"; };
 		857A550D2922D72300413841 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		857A550F2922D75000413841 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		857A55142922DC8500413841 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		857A55182922DCBB00413841 /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
+		857A551A2922DDDA00413841 /* OnBoarding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OnBoarding.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 		857A54FE2922D38300413841 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				857A551A2922DDDA00413841 /* OnBoarding.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -96,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				857A55022922D3D200413841 /* MainView.swift */,
+				857A55132922DC7500413841 /* OnBoarding */,
 				857A55042922D57200413841 /* App */,
 			);
 			path = View;
@@ -149,6 +157,15 @@
 				857A550D2922D72300413841 /* ContactsView.swift */,
 			);
 			path = Contacts;
+			sourceTree = "<group>";
+		};
+		857A55132922DC7500413841 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				857A55142922DC8500413841 /* OnBoardingView.swift */,
+				857A55182922DCBB00413841 /* FeatureView.swift */,
+			);
+			path = OnBoarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +228,7 @@
 			files = (
 				857A54F82922D34400413841 /* Preview Assets.xcassets in Resources */,
 				857A54F52922D34400413841 /* Assets.xcassets in Resources */,
+				857A551B2922DDDA00413841 /* OnBoarding.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +241,8 @@
 			files = (
 				857A54F12922D34300413841 /* HealthubApp.swift in Sources */,
 				857A55032922D3D200413841 /* MainView.swift in Sources */,
+				857A55152922DC8500413841 /* OnBoardingView.swift in Sources */,
+				857A55192922DCBB00413841 /* FeatureView.swift in Sources */,
 				857A550C2922D70000413841 /* TherapiesView.swift in Sources */,
 				857A55102922D75000413841 /* SettingsView.swift in Sources */,
 				857A550E2922D72300413841 /* ContactsView.swift in Sources */,

@@ -1,0 +1,22 @@
+[
+    {
+        "image" : "ScheduleDraw",
+        "title" : "Schedule",
+        "subtitle" : "Book medical examinations"
+    },
+    {
+        "image" : "DrugsDraw",
+        "title" : "Drugs Interaction",
+        "subtitle" : "Take your drugs safely"
+    },
+    {
+        "image" : "TherapiesDraw",
+        "title" : "Therapies",
+        "subtitle" : "Receive instructions from your doc"
+    },
+    {
+        "image" : "NotificationsDraw",
+        "title" : "Notifications",
+        "subtitle" : "Don't miss a thing"
+    }
+]
