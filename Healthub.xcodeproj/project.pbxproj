@@ -18,6 +18,8 @@
 		857A55152922DC8500413841 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55142922DC8500413841 /* OnBoardingView.swift */; };
 		857A55192922DCBB00413841 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55182922DCBB00413841 /* FeatureView.swift */; };
 		857A551B2922DDDA00413841 /* OnBoarding.json in Resources */ = {isa = PBXBuildFile; fileRef = 857A551A2922DDDA00413841 /* OnBoarding.json */; };
+		857A551D2923120800413841 /* AppInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551C2923120800413841 /* AppInformationView.swift */; };
+		857A551F2923130A00413841 /* PathologiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551E2923130A00413841 /* PathologiesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		857A55142922DC8500413841 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		857A55182922DCBB00413841 /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
 		857A551A2922DDDA00413841 /* OnBoarding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OnBoarding.json; sourceTree = "<group>"; };
+		857A551C2923120800413841 /* AppInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInformationView.swift; sourceTree = "<group>"; };
+		857A551E2923130A00413841 /* PathologiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				857A550F2922D75000413841 /* SettingsView.swift */,
+				857A551C2923120800413841 /* AppInformationView.swift */,
+				857A551E2923130A00413841 /* PathologiesView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -240,6 +246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				857A54F12922D34300413841 /* HealthubApp.swift in Sources */,
+				857A551D2923120800413841 /* AppInformationView.swift in Sources */,
+				857A551F2923130A00413841 /* PathologiesView.swift in Sources */,
 				857A55032922D3D200413841 /* MainView.swift in Sources */,
 				857A55152922DC8500413841 /* OnBoardingView.swift in Sources */,
 				857A55192922DCBB00413841 /* FeatureView.swift in Sources */,
