@@ -20,6 +20,7 @@
 		857A551B2922DDDA00413841 /* OnBoarding.json in Resources */ = {isa = PBXBuildFile; fileRef = 857A551A2922DDDA00413841 /* OnBoarding.json */; };
 		857A551D2923120800413841 /* AppInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551C2923120800413841 /* AppInformationView.swift */; };
 		857A551F2923130A00413841 /* PathologiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551E2923130A00413841 /* PathologiesView.swift */; };
+		857A55212923CDDA00413841 /* DoctorSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55202923CDDA00413841 /* DoctorSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		857A551A2922DDDA00413841 /* OnBoarding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OnBoarding.json; sourceTree = "<group>"; };
 		857A551C2923120800413841 /* AppInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInformationView.swift; sourceTree = "<group>"; };
 		857A551E2923130A00413841 /* PathologiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesView.swift; sourceTree = "<group>"; };
+		857A55202923CDDA00413841 /* DoctorSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				857A550F2922D75000413841 /* SettingsView.swift */,
 				857A551C2923120800413841 /* AppInformationView.swift */,
 				857A551E2923130A00413841 /* PathologiesView.swift */,
+				857A55202923CDDA00413841 /* DoctorSettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				857A55192922DCBB00413841 /* FeatureView.swift in Sources */,
 				857A550C2922D70000413841 /* TherapiesView.swift in Sources */,
 				857A55102922D75000413841 /* SettingsView.swift in Sources */,
+				857A55212923CDDA00413841 /* DoctorSettingsView.swift in Sources */,
 				857A550E2922D72300413841 /* ContactsView.swift in Sources */,
 				857A550A2922D6D800413841 /* ScheduleView.swift in Sources */,
 			);

@@ -17,11 +17,12 @@ extension UINavigationController {
     }
 }
 
-/// **Healthub Label Style**
-// Custom label inspired by the iOS settings app
-struct HealthubLabel : LabelStyle {
+/// **Rainbow Label Style**
+// Colorized custom label inspired by the iOS settings app
+struct RainbowLabelStyle : LabelStyle {
     
-    var labelColor : Color
+    let glyphBackground : Color
+    let glyphColor : Color
     
     func makeBody(configuration: Configuration) -> some View {
         Label {
@@ -29,10 +30,30 @@ struct HealthubLabel : LabelStyle {
         } icon: {
             configuration.icon
                 .font(.system(size: 17))
-                .foregroundColor(.white)
+                .foregroundColor(glyphColor)
                 .background(
                     RoundedRectangle(cornerRadius: 7)
-                        .foregroundColor(labelColor)
+                        .foregroundColor(glyphBackground)
+                        .frame(width: 30,height: 30)
+                )
+        }
+    }
+}
+
+/// **Settings Label Style**
+// Custom label inspired by the iOS settings app
+struct SettingLabelStyle : LabelStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        Label {
+            configuration.title
+        } icon: {
+            configuration.icon
+                .font(.system(size: 17))
+                .foregroundColor(Color(.white))
+                .background(
+                    RoundedRectangle(cornerRadius: 7)
+                        .foregroundColor(Color(.systemGray))
                         .frame(width: 30,height: 30)
                 )
         }
@@ -46,30 +67,30 @@ struct UnitMeasureView : View {
     let unitMeasure : String
     
     var body : some View {
-        Text(unitMeasure)
-            .font(.system(size: 13,weight: .semibold))
-            .foregroundColor(Color(.systemGray))
-            .padding([.leading,.trailing],14)
-            .padding([.top,.bottom],4)
-            .background(
-                Capsule().foregroundColor(Color(.systemGray5))
-            )
+        ZStack{
+            Capsule()
+                .foregroundColor(Color(.systemGray5))
+                .frame(width: 30,height: 16)
+            Text(unitMeasure)
+                .font(.system(size: 10,weight: .semibold))
+                .foregroundColor(Color("HealthGray3"))
+        }
     }
 }
-
 
 /// **RecordTextfield**
 // A truly fancy custom textfield used to collect medical records and user data
 struct RecordTextfield : View {
     
     enum TextfieldType {
-        case personName
+        case name, phone, address
     }
     
     @Binding var textVariable : String
     
     let glyph : String
     let glyphColor : Color
+    let glyphBackground : Color
     let placeholder : String
     let textfieldType : TextfieldType
     let badInput : Bool
@@ -77,7 +98,7 @@ struct RecordTextfield : View {
     
     var body : some View {
         HStack{
-            Label(String(), systemImage: glyph).labelStyle(HealthubLabel(labelColor: glyphColor))
+            Label(String(), systemImage: glyph).labelStyle(RainbowLabelStyle(glyphBackground: glyphBackground, glyphColor: glyphColor))
             TextField(placeholder, text: $textVariable)
                 .offset(x: -8)
             Spacer()

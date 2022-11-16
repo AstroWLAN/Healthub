@@ -3,6 +3,7 @@ import SwiftUI
 struct MainView: View {
     
     @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = true
+    @AppStorage("userDoctor") var userDoctor : Bool = true
     
     var body: some View {
         // Tab Bar
@@ -15,7 +16,7 @@ struct MainView: View {
                 .tabItem{ Label("Contacts", systemImage: "person.crop.rectangle.stack.fill") }
             SettingsView()
                 .tabItem{ Label("Settings", systemImage: "gear") }
-        }
+            }
         // Changes the color of the selected item in the Tab Bar
         .tint(Color("HealthGray3"))
         .sheet(isPresented: $firstAppLaunch) {
