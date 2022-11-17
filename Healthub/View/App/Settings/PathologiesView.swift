@@ -1,9 +1,73 @@
 import SwiftUI
 
+struct Pathology : Identifiable {
+    let id = UUID()
+    let name : String
+}
+
 struct PathologiesView: View {
+    
+    @State private var isCreatingPathology : Bool = false
+    
+    /// **TEMPORARY VARIABLES**
+    // Replace them with the therapy object from the data model
+    @State private var newPathology : String = ""
+    @State private var userPathologies : [Pathology] = []
+    @State private var badPathology : Bool = false
+    
+    func addPathology() {
+        // Checks that the inserted pathology name has :
+        /// - At least one letter
+        /// - No duplicates
+        guard newPathology.count > 0, !userPathologies.contains(where: { $0.name == newPathology })
+        else {
+            withAnimation{ badPathology = true }
+            return
+        }
+        withAnimation{ userPathologies.insert(Pathology(name: newPathology), at: 0) }
+        newPathology = String()
+        withAnimation {
+            badPathology = false
+            isCreatingPathology = false
+        }
+    }
+    
     var body: some View {
-        Text("Hello, Pathologies! 🦠")
-            .bold()
+        
+        List{
+            /// ** Pathology Creation Field **
+            // Adds a new element to the pathologies array
+            Section{
+                RecordTextfield(textVariable: $newPathology,
+                                glyph: "microbe.fill",
+                                glyphColor: Color(.white),
+                                glyphBackground: Color(.systemPink),
+                                placeholder: "Pathology",
+                                textfieldType: .pathology,
+                                badInput: badPathology,
+                                measure: "")
+                .onSubmit { addPathology() }
+            }
+            .isVisible(isCreatingPathology)
+            .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+            
+            // Displays the user pathologies
+            Section{
+                ForEach(userPathologies) { pathology in
+                    Label(pathology.name, systemImage: "microbe.fill").labelStyle(SettingLabelStyle())
+                }
+            }
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+        
+        }
+        .navigationBarTitle("Pathologies", displayMode: .inline)
+        .toolbar{
+            Button( action: { withAnimation{ isCreatingPathology=true }},
+                    label:  { Image(systemName: "plus")
+                                .font(.system(size: 17, weight: .medium)) })
+            .disabled(isCreatingPathology)
+        }
     }
 }
 

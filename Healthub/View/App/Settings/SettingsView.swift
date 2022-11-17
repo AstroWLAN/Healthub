@@ -86,7 +86,7 @@ struct SettingsView: View {
                     }
                     .disabled(!isFormEditable)
                     
-                    NavigationLink(destination: AppInformationView()){
+                    NavigationLink(destination: PathologiesView()){
                         Label("Pathologies", systemImage: "allergens.fill")
                             .labelStyle(SettingLabelStyle())
                     }

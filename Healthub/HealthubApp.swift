@@ -2,10 +2,9 @@ import SwiftUI
 
 // Adds the capability of removing the view from a view stack
 extension View {
-    
     @ViewBuilder func isVisible(_ remove: Bool = false) -> some View {
-        if remove { }
-        else { self }
+        if remove { self }
+        else { }
     }
 }
 
@@ -83,7 +82,7 @@ struct UnitMeasureView : View {
 struct RecordTextfield : View {
     
     enum TextfieldType {
-        case name, phone, address
+        case name, phone, address, pathology
     }
     
     @Binding var textVariable : String
@@ -107,7 +106,7 @@ struct RecordTextfield : View {
                 .foregroundColor(Color(.systemRed))
                 .opacity(badInput ? 1 : 0)
             UnitMeasureView(unitMeasure: measure)
-                .isVisible(measure.isEmpty ? true : false)
+                .isVisible(measure.isEmpty ? false : false)
         }
     }
 }
