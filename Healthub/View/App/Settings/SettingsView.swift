@@ -7,6 +7,8 @@ enum Genders : String, RawRepresentable, CaseIterable {
 
 struct SettingsView: View {
     
+    @EnvironmentObject private var loginViewModel: LoginViewModel
+    
     @State private var isFormEditable : Bool = false
     @State private var editButtonAnimates : Bool = false
     
@@ -94,7 +96,15 @@ struct SettingsView: View {
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 
                 Section {
-                    Button(action: { /* Sign Out action here! */ },
+                    Button(action: {
+                        let result = loginViewModel.doLogout()
+                        if(result == true){
+                            UserDefaults.standard.set(loginViewModel.isSigned, forKey: "isLogged")
+                            print("Session deleted")
+                            //Now we need to go to the login
+                        }
+                                
+                    },
                            label:  {
                                 Label("Sign Out", systemImage: "xmark.circle.fill")
                                     .labelStyle(RainbowLabelStyle(glyphBackground: Color(.systemPink),glyphColor: Color(.white)))

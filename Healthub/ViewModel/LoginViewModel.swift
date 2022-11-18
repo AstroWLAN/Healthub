@@ -23,6 +23,12 @@ class LoginViewModel: ObservableObject {
     }
     
     
+     func doLogout() -> Bool{
+        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "access_token")
+        
+        return removeSuccessful
+    }
+    
     func doLogin(email: String, password: String){
         guard !email.isEmpty && !password.isEmpty else {
                 return
