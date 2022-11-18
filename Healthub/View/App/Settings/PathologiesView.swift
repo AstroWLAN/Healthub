@@ -19,7 +19,7 @@ struct PathologiesView: View {
             withAnimation{ badPathology = true }
             return
         }
-        withAnimation{ pathologiesViewModel.addPathology()}
+        withAnimation{ pathologiesViewModel.addPathology(pathology: newPathology) }
         newPathology = String()
         withAnimation {
             badPathology = false
@@ -41,7 +41,10 @@ struct PathologiesView: View {
                                 textfieldType: .pathology,
                                 badInput: badPathology,
                                 measure: "")
-                .onSubmit { addPathology() }
+                .onSubmit {
+                    addPathology()
+                    pathologiesViewModel.fetchPatologies()
+                }
             }
             .isVisible(isCreatingPathology)
             .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
@@ -50,12 +53,13 @@ struct PathologiesView: View {
             Section{
                 ForEach(pathologiesViewModel.pathologies, id: \.id) { pathology in
                     Label(pathology.name, systemImage: "microbe.fill").labelStyle(SettingLabelStyle())
-                }
+                }.onDelete(perform: pathologiesViewModel.removePathology)
             }
             .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
         
-        }.onAppear(perform: pathologiesViewModel.fetchPatologies)
+        }
+        .onAppear(perform:pathologiesViewModel.fetchPatologies)
         .navigationBarTitle("Pathologies", displayMode: .inline)
         .toolbar{
             Button( action: { withAnimation{ isCreatingPathology=true }},

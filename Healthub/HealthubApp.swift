@@ -99,6 +99,7 @@ struct RecordTextfield : View {
     enum TextfieldType {
         case name, phone, address, pathology
     }
+    // Inserire una regex per ogni categoria di input 
     
     @Binding var textVariable : String
     
