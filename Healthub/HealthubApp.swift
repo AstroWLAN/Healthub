@@ -1,5 +1,7 @@
 import SwiftUI
 
+/// ** EXTENSIONS **
+
 // Adds the capability of removing the view from a view stack
 extension View {
     @ViewBuilder func isVisible(_ remove: Bool = false) -> some View {
@@ -8,15 +10,15 @@ extension View {
     }
 }
 
-// Removes the back button text
+// Removes the back button text in the Navigation Stack
 extension UINavigationController {
-    
     open override func viewWillLayoutSubviews() {
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
 
-/// **Rainbow Label Style**
+/// ** CUSTOM STYLES **
+
 // Colorized custom label inspired by the iOS settings app
 struct RainbowLabelStyle : LabelStyle {
     
@@ -39,7 +41,6 @@ struct RainbowLabelStyle : LabelStyle {
     }
 }
 
-/// **Settings Label Style**
 // Custom label inspired by the iOS settings app
 struct SettingLabelStyle : LabelStyle {
     
@@ -59,8 +60,23 @@ struct SettingLabelStyle : LabelStyle {
     }
 }
 
-/// **Unit Measure View**
-// A view that represents a unit of measure
+// Custom label inspired by the iOS settings app
+struct PlainLabelStyle : LabelStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        Label {
+            configuration.title
+        } icon: {
+            configuration.icon
+                .font(.system(size: 17))
+                .foregroundColor(Color(.systemGray))
+        }
+    }
+}
+
+/// ** CUSTOM VIEWS **
+
+// A view that represents unit of measure
 struct UnitMeasureView : View {
     
     let unitMeasure : String
@@ -77,8 +93,7 @@ struct UnitMeasureView : View {
     }
 }
 
-/// **RecordTextfield**
-// A truly fancy custom textfield used to collect medical records and user data
+// A truly fancy custom textfield to collect medical records and user data
 struct RecordTextfield : View {
     
     enum TextfieldType {
@@ -106,7 +121,7 @@ struct RecordTextfield : View {
                 .foregroundColor(Color(.systemRed))
                 .opacity(badInput ? 1 : 0)
             UnitMeasureView(unitMeasure: measure)
-                .isVisible(measure.isEmpty ? false : false)
+                .isVisible(measure.isEmpty ? false : true)
         }
     }
 }

@@ -1,17 +1,17 @@
 import SwiftUI
 
-// User gender types
 enum Genders : String, RawRepresentable, CaseIterable {
+    // User gender types
     case Male, Female, Other
 }
 
 struct SettingsView: View {
     
     @State private var isFormEditable : Bool = false
-    @State private var isEditButtonAnimating : Bool = false
+    @State private var editButtonAnimates : Bool = false
     
     /// **TEMPORARY VARIABLES**
-    // Replace them with the patient object from the data model
+    /// Replace them with the patient object from the data model
     @State private var name : String = ""
     @State private var gender : Genders = .Male
     @State private var height : String = ""
@@ -23,16 +23,16 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack{
             Form{
-                /// ** GENERAL SECTION **
+                
                 Section(header: Text("General")){
                     
-                    /// ** User Name Field **
+                    // User name textfield
                     RecordTextfield(textVariable: $name, glyph: "face.smiling.inverse",
                                     glyphColor: Color(.white), glyphBackground: Color(.systemGray),
                                     placeholder: "Name", textfieldType: .name, badInput: false, measure: "")
                     .disabled(!isFormEditable)
                     
-                    // Goes to app Information View
+                    // Navigates to the AppInformationView
                     NavigationLink(destination: AppInformationView()){
                         Label("Information", systemImage: "info.circle.fill")
                             .labelStyle(SettingLabelStyle())
@@ -41,12 +41,10 @@ struct SettingsView: View {
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 
-                /// ** MEDICAL RECORDS SECTION **
                 Section(header: Text("Medical Records")){
                     
-                    /// **User Gender Picker**
+                    // User gender picker
                     Picker("Gender", selection: $gender) {
-                        
                         ForEach(Genders.allCases, id:\.self) { item in
                             Text("\(item.rawValue)")
                         }
@@ -55,37 +53,38 @@ struct SettingsView: View {
                     .disabled(!isFormEditable)
                     .padding(.top,5)
                     
-                    /// **User Height Field**
+                    // User height textfield
                     RecordTextfield(textVariable: $height, glyph: "ruler.fill",
                                     glyphColor: Color(.white), glyphBackground: Color(.systemGray),
                                     placeholder: "Height", textfieldType: .name, badInput: false, measure: "Cm")
                     .disabled(!isFormEditable)
                     
-                    /// **User Weight Field**
+                    // User weight textfield
                     RecordTextfield(textVariable: $weight, glyph: "scalemass.fill",
                                     glyphColor: Color(.white), glyphBackground: Color(.systemGray),
-                                    placeholder: "Height", textfieldType: .name, badInput: false, measure: "Kg")
+                                    placeholder: "Weight", textfieldType: .name, badInput: false, measure: "Kg")
                     .disabled(!isFormEditable)
                     
-                    /// **User Fiscal Code Field**
+                    // User fiscal code textfield
                     RecordTextfield(textVariable: $fiscalCode, glyph: "123.rectangle.fill",
                                     glyphColor: Color(.white), glyphBackground: Color(.systemGray),
                                     placeholder: "Fiscal Code", textfieldType: .name, badInput: false, measure: "")
                     .disabled(!isFormEditable)
                     
-                    /// **User Phone Number Field**
+                    // User phone number textfield
                     RecordTextfield(textVariable: $phone, glyph: "phone.fill",
                                     glyphColor: Color(.white), glyphBackground: Color(.systemGray),
                                     placeholder: "Phone Number", textfieldType: .name, badInput: false, measure: "")
                     .disabled(!isFormEditable)
                     
-                    /// **User Birthday Picker**
+                    // User phone number textfield
                     DatePicker(selection: $birthday, in: ...Date(), displayedComponents: .date) {
                         Label("Birthday",
                               systemImage: "calendar").labelStyle(SettingLabelStyle())
                     }
                     .disabled(!isFormEditable)
                     
+                    // Navigates to the PathologiesView
                     NavigationLink(destination: PathologiesView()){
                         Label("Pathologies", systemImage: "allergens.fill")
                             .labelStyle(SettingLabelStyle())
@@ -94,32 +93,30 @@ struct SettingsView: View {
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 
-                /// ** SIGN OUT **
-                Section{
-                    Button(action: { /* Sign Out action */ },
-                           label: {
+                Section {
+                    Button(action: { /* Sign Out action here! */ },
+                           label:  {
                                 Label("Sign Out", systemImage: "xmark.circle.fill")
                                     .labelStyle(RainbowLabelStyle(glyphBackground: Color(.systemPink),glyphColor: Color(.white)))
                                     .foregroundColor(Color(.systemPink))
-                    })
+})
                 }
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                                         
                 
             }
+            .scrollContentBackground(.hidden)
             .navigationTitle("Settings")
             .toolbar{
                 Button( action: {
                             // Enables form editing and its animation
-                            isEditButtonAnimating.toggle()
-                            withAnimation(isEditButtonAnimating ? Animation.easeInOut(duration: 0.15).repeatForever(autoreverses: true) : .default) {
-                                isFormEditable.toggle() }
-                        },
-                        label: {
+                            editButtonAnimates.toggle()
+                            withAnimation(editButtonAnimates ? Animation.easeInOut(duration: 0.15).repeatForever(autoreverses: true) : .default) {
+                                isFormEditable.toggle() }},
+                        label:  {
                             Image(systemName: "loupe")
                                 .font(.system(size: 17, weight: .medium))
-                                .rotationEffect(.degrees(isFormEditable ? 15 : 0))
-                        })
+                                .rotationEffect(.degrees(isFormEditable ? 15 : 0)) })
                 .foregroundColor(.black)
                 .buttonStyle(.plain)
             }
