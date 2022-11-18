@@ -128,9 +128,11 @@ struct RecordTextfield : View {
 
 @main
 struct HealthubApp: App {
+    @StateObject var loginViewModel = LoginViewModel()
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(loginViewModel)
         }
     }
 }

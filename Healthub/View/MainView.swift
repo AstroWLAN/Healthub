@@ -3,24 +3,40 @@ import SwiftUI
 struct MainView: View {
     
     @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = true
-    @AppStorage("userDoctor") var userDoctor : Bool = true
+    @EnvironmentObject private var loginViewModel: LoginViewModel
+    @AppStorage("isLogged") var isLogged : Bool = false
     
     var body: some View {
-        // Tab Bar
-        TabView{
-            ScheduleView()
-                .tabItem{ Label("Schedule", systemImage: "clipboard.fill") }
-            TherapiesView()
-                .tabItem{ Label("Therapies", systemImage: "pills.fill") }
-            ContactsView()
-                .tabItem{ Label("Contacts", systemImage: "person.crop.rectangle.stack.fill") }
-            SettingsView()
-                .tabItem{ Label("Settings", systemImage: "gear") }
+        if(isLogged == false){
+            LoginView()
+        }else{
+            VStack{
+                TabView{
+                    ScheduleView()
+                        .tabItem{
+                            Label("Schedule", systemImage: "clipboard.fill")
+                        }
+                    TherapiesView()
+                        .tabItem{
+                            Label("Therapies", systemImage: "pills.fill")
+                        }
+                    ContactsView()
+                        .tabItem{
+                            Label("Contacts", systemImage: "person.crop.rectangle.stack.fill")
+                        }
+                    SettingsView()
+                        .tabItem{
+                            Label("Settings", systemImage: "gear")
+                        }
+                }
+                // Changes the color of the selected item
+                .tint(Color("HealthGray3"))
+            }.sheet(isPresented: $firstAppLaunch) {
+                OnBoardingView()
             }
-        // Changes the color of the selected item in the Tab Bar
-        .tint(Color("HealthGray3"))
-        .sheet(isPresented: $firstAppLaunch) {
-            OnBoardingView()
+            /// **FIRST APP USAGE**
+            // Displays an OnBoarding sheet where the user can see the main features of the app
+            
         }
     }
 }

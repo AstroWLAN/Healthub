@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417594C2927A5000051BE0B /* LoginViewModel.swift */; };
+		241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2417594F2927A5290051BE0B /* SwiftKeychainWrapper */; };
+		241759522927A5420051BE0B /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759512927A5420051BE0B /* UserLogin.swift */; };
+		241759552927A5E70051BE0B /* DoctorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759542927A5E70051BE0B /* DoctorView.swift */; };
+		241759572927A5F00051BE0B /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759562927A5F00051BE0B /* EmailView.swift */; };
+		241759592927A5FA0051BE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759582927A5FA0051BE0B /* LoginView.swift */; };
+		2417595B2927A60C0051BE0B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595A2927A60C0051BE0B /* SignupView.swift */; };
+		2417595D2927A6150051BE0B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595C2927A6150051BE0B /* WelcomeView.swift */; };
 		852944D12925ABFA006FC0C5 /* AppInformation.json in Resources */ = {isa = PBXBuildFile; fileRef = 852944D02925ABFA006FC0C5 /* AppInformation.json */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
@@ -25,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2417594C2927A5000051BE0B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		241759512927A5420051BE0B /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserLogin.swift; path = Healthub/ViewModel/UserLogin.swift; sourceTree = SOURCE_ROOT; };
+		241759542927A5E70051BE0B /* DoctorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorView.swift; sourceTree = "<group>"; };
+		241759562927A5F00051BE0B /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		241759582927A5FA0051BE0B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2417595A2927A60C0051BE0B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		2417595C2927A6150051BE0B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		852944D02925ABFA006FC0C5 /* AppInformation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppInformation.json; sourceTree = "<group>"; };
 		857A54ED2922D34300413841 /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A54F02922D34300413841 /* HealthubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubApp.swift; sourceTree = "<group>"; };
@@ -48,12 +63,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		241759532927A5B20051BE0B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				241759542927A5E70051BE0B /* DoctorView.swift */,
+				241759562927A5F00051BE0B /* EmailView.swift */,
+				241759582927A5FA0051BE0B /* LoginView.swift */,
+				2417595A2927A60C0051BE0B /* SignupView.swift */,
+				2417595C2927A6150051BE0B /* WelcomeView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		857A54E42922D34300413841 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +132,7 @@
 		857A54FF2922D38C00413841 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				241759512927A5420051BE0B /* UserLogin.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +140,7 @@
 		857A55002922D39500413841 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				241759532927A5B20051BE0B /* Login */,
 				857A55022922D3D200413841 /* MainView.swift */,
 				857A55132922DC7500413841 /* OnBoarding */,
 				857A55042922D57200413841 /* App */,
@@ -121,6 +151,7 @@
 		857A55012922D3AA00413841 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2417594C2927A5000051BE0B /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -196,6 +227,9 @@
 			dependencies = (
 			);
 			name = Healthub;
+			packageProductDependencies = (
+				2417594F2927A5290051BE0B /* SwiftKeychainWrapper */,
+			);
 			productName = Healthub;
 			productReference = 857A54ED2922D34300413841 /* Healthub.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +258,9 @@
 				Base,
 			);
 			mainGroup = 857A54E42922D34300413841;
+			packageReferences = (
+				2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+			);
 			productRefGroup = 857A54EE2922D34300413841 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,12 +294,19 @@
 				857A551F2923130A00413841 /* PathologiesView.swift in Sources */,
 				857A55032922D3D200413841 /* MainView.swift in Sources */,
 				857A55152922DC8500413841 /* OnBoardingView.swift in Sources */,
+				2417595B2927A60C0051BE0B /* SignupView.swift in Sources */,
 				857A55192922DCBB00413841 /* FeatureView.swift in Sources */,
 				857A550C2922D70000413841 /* TherapiesView.swift in Sources */,
+				241759522927A5420051BE0B /* UserLogin.swift in Sources */,
 				857A55102922D75000413841 /* SettingsView.swift in Sources */,
+				2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */,
 				857A550E2922D72300413841 /* ContactsView.swift in Sources */,
 				85BCA8682927907D00A6C856 /* BookingView.swift in Sources */,
+				2417595D2927A6150051BE0B /* WelcomeView.swift in Sources */,
 				857A550A2922D6D800413841 /* ScheduleView.swift in Sources */,
+				241759552927A5E70051BE0B /* DoctorView.swift in Sources */,
+				241759592927A5FA0051BE0B /* LoginView.swift in Sources */,
+				241759572927A5F00051BE0B /* EmailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +519,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2417594F2927A5290051BE0B /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 857A54E52922D34300413841 /* Project object */;
 }
