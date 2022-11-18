@@ -1,16 +1,11 @@
 import SwiftUI
-
-struct Pathology : Identifiable {
-    let id = UUID()
-    let name : String
-}
-
 struct PathologiesView: View {
     
     @State private var isCreatingPathology : Bool = false
     
     /// **TEMPORARY VARIABLES**
     // Replace them with the therapy object from the data model
+    @EnvironmentObject private var pathologiesViewModel: PathologiesViewModel
     @State private var newPathology : String = ""
     @State private var userPathologies : [Pathology] = []
     @State private var badPathology : Bool = false
@@ -24,7 +19,7 @@ struct PathologiesView: View {
             withAnimation{ badPathology = true }
             return
         }
-        withAnimation{ userPathologies.insert(Pathology(name: newPathology), at: 0) }
+        withAnimation{ pathologiesViewModel.addPathology()}
         newPathology = String()
         withAnimation {
             badPathology = false
@@ -53,14 +48,14 @@ struct PathologiesView: View {
             
             // Displays the user pathologies
             Section{
-                ForEach(userPathologies) { pathology in
+                ForEach(pathologiesViewModel.pathologies, id: \.id) { pathology in
                     Label(pathology.name, systemImage: "microbe.fill").labelStyle(SettingLabelStyle())
                 }
             }
             .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
         
-        }
+        }.onAppear(perform: pathologiesViewModel.fetchPatologies)
         .navigationBarTitle("Pathologies", displayMode: .inline)
         .toolbar{
             Button( action: { withAnimation{ isCreatingPathology=true }},
