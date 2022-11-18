@@ -24,6 +24,7 @@ class LoginViewModel: ObservableObject {
     
     
      func doLogout() -> Bool{
+        //Handle the deletion of the session on the backend and then delete the token here
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "access_token")
         
         return removeSuccessful
@@ -64,9 +65,6 @@ class LoginViewModel: ObservableObject {
         }.resume()
         
     }
-    
-    
-    
     
     
 }
