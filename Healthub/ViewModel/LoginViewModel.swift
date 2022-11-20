@@ -16,7 +16,6 @@ class LoginViewModel: ObservableObject {
     
     
      func doLogout(){
-        //Handle the deletion of the session on the backend and then delete the token here
          UserService.shared.doLogout(){(success, error) in
              if let error = error{
                  print(error)
