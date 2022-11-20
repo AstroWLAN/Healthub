@@ -48,7 +48,6 @@ struct LoginView: View {
                 Spacer()
                 Button(action: { /* login action */
                     loginViewModel.doLogin(email: email, password: password)
-                    UserDefaults.standard.set(loginViewModel.isSigned, forKey: "isLogged")
                 },
                        label: {
                     Text("Login")

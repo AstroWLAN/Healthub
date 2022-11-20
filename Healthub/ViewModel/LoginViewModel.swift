@@ -10,8 +10,10 @@ import SwiftKeychainWrapper
 
 class LoginViewModel: ObservableObject {
     
+    @Published
     private var hasError: Bool = false
-    private var isSigningIn: Bool = false
+    private var loginCompleted: Bool = false
+    
     var isSigned : Bool {
         let retrievedString: String? = KeychainWrapper.standard.string(forKey: "access_token")
         
@@ -38,18 +40,19 @@ class LoginViewModel: ObservableObject {
         var request = URLRequest(url: URL(string: "https://localhost/auth?email=\(email)&password=\(password)")!)
         request.httpMethod = "POST"
 
-        isSigningIn = true
+        self.loginCompleted = false
 
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {
                 if error != nil || (response as! HTTPURLResponse).statusCode != 200 {
                     self?.hasError = true
-                    print("Authentication failed")
                 } else if let data = data {
                     do {
                             let signInResponse = try JSONDecoder().decode(UserLogin.self, from: data)
                             let saveSuccessful: Bool = KeychainWrapper.standard.set(signInResponse.access_token, forKey: "access_token")
-                            
+                            self?.loginCompleted = true
+                            UserDefaults.standard.set(true, forKey: "isLogged")
+                        
                         if saveSuccessful == false {
                             print("Unable to Save Token")
                         }
@@ -60,7 +63,6 @@ class LoginViewModel: ObservableObject {
                             }
                 }
 
-                self?.isSigningIn = false
             }
         }.resume()
         

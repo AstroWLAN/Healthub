@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Pathology: Decodable{
+struct Pathology{
     
     private(set) var id: Int
     private(set) var name:String

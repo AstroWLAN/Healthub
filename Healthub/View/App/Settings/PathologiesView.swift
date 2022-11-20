@@ -43,7 +43,7 @@ struct PathologiesView: View {
                                 measure: "")
                 .onSubmit {
                     addPathology()
-                    pathologiesViewModel.fetchPatologies()
+                    pathologiesViewModel.fetchPathologies()
                 }
             }
             .isVisible(isCreatingPathology)
@@ -59,7 +59,7 @@ struct PathologiesView: View {
             .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
         
         }
-        .onAppear(perform:pathologiesViewModel.fetchPatologies)
+        .onAppear(perform:pathologiesViewModel.fetchPathologies)
         .navigationBarTitle("Pathologies", displayMode: .inline)
         .toolbar{
             Button( action: { withAnimation{ isCreatingPathology=true }},
