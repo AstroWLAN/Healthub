@@ -39,14 +39,33 @@ class UserService{
     func doLogout(completionHandler: @escaping (Bool?, Error?) -> Void){
         //perform logout
         //TODO: Add logout also on server by destroying the token
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "access_token")
-        if removeSuccessful == true{
-            UserDefaults.standard.set(false, forKey: "isLogged")
-            completionHandler(true, nil)
-        }
-        else{
-            completionHandler(nil, API.Types.Error.generic(reason: "Unable to perform logout"))
-        }
+        let token = KeychainWrapper.standard.string(forKey: "access_token")
+        
+        let body = API.Types.Request.Empty()
+        API.Client.shared
+            .fetch(.logout(token: token!), method:.post, body: body ){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        if(success.status == "OK"){
+                            let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "access_token")
+                            if removeSuccessful == true{
+                                UserDefaults.standard.set(false, forKey: "isLogged")
+                                completionHandler(true, nil)
+                            }
+                            else{
+                                completionHandler(nil, API.Types.Error.generic(reason: "Unable to perform logout"))
+                            }
+                        }else{
+                            completionHandler(nil, API.Types.Error.generic(reason: "Unable to perform logout"))
+                        }
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+            }
+        
+        
             
     }
     

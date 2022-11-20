@@ -69,9 +69,11 @@ extension API {
         
         enum Endpoint{
             case login(email:String, password: String)
+            case logout(token: String)
             case getPathologies(token: String)
             case deletePathology(token: String, id: Int)
             case addPathology(token: String)
+            
             
             var url: URL{
                 var components = URLComponents()
@@ -85,6 +87,12 @@ extension API {
                         URLQueryItem(name: "email", value : email),
                         URLQueryItem(name: "password", value: password)
                     ]
+                case .logout(let token):
+                    components.path="/logout"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token)
+                    ]
+                    
                 case .getPathologies(let token):
                     components.path = "/patients/me/pathologies"
                     components.queryItems = [
