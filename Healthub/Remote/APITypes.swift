@@ -16,6 +16,7 @@ extension API {
                 var email: String
                 var password: String
             }
+            
             struct Empty: Encodable {}
             
             struct PathologyDelete : Encodable{

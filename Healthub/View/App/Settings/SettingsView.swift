@@ -98,11 +98,6 @@ struct SettingsView: View {
                 Section {
                     Button(action: {
                         let result = loginViewModel.doLogout()
-                        if(result == true){
-                            UserDefaults.standard.set(loginViewModel.isSigned, forKey: "isLogged")
-                            print("Session deleted")
-                            //Now we need to go to the login
-                        }
                                 
                     },
                            label:  {

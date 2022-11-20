@@ -14,57 +14,32 @@ class LoginViewModel: ObservableObject {
     private var hasError: Bool = false
     private var loginCompleted: Bool = false
     
-    var isSigned : Bool {
-        let retrievedString: String? = KeychainWrapper.standard.string(forKey: "access_token")
-        
-        if let t = retrievedString{
-            return true
-        }
-        
-        return false
-    }
     
-    
-     func doLogout() -> Bool{
+     func doLogout(){
         //Handle the deletion of the session on the backend and then delete the token here
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "access_token")
-        
-        return removeSuccessful
+         UserService.shared.doLogout(){(success, error) in
+             if let error = error{
+                 print(error)
+             }
+             
+         }
     }
     
     func doLogin(email: String, password: String){
         guard !email.isEmpty && !password.isEmpty else {
                 return
             }
-        
-        var request = URLRequest(url: URL(string: "https://localhost/auth?email=\(email)&password=\(password)")!)
-        request.httpMethod = "POST"
 
-        self.loginCompleted = false
-
-        URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
-            DispatchQueue.main.async {
-                if error != nil || (response as! HTTPURLResponse).statusCode != 200 {
-                    self?.hasError = true
-                } else if let data = data {
-                    do {
-                            let signInResponse = try JSONDecoder().decode(UserLogin.self, from: data)
-                            let saveSuccessful: Bool = KeychainWrapper.standard.set(signInResponse.access_token, forKey: "access_token")
-                            self?.loginCompleted = true
-                            UserDefaults.standard.set(true, forKey: "isLogged")
-                        
-                        if saveSuccessful == false {
-                            print("Unable to Save Token")
-                        }
-
-                            // TODO: Cache Access Token in Keychain
-                        } catch {
-                            print("Unable to Decode Response \(error)")
-                            }
-                }
-
+        UserService.shared.doLogin(email: email, password: password){(success, error) in
+            
+            if(success == true){
+                UserDefaults.standard.set(true, forKey: "isLogged")
+            }else{
+                print("Error during login phase")
             }
-        }.resume()
+            
+        }
+        
         
     }
     
