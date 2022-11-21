@@ -8,6 +8,12 @@
 import Foundation
 
 extension API {
+    
+    struct GenderTranslation{
+        public static let gender = [0: "Male", 1:"Female", 2: "Other"]
+        public static let gender_r = ["male": 0, "female": 1, "other": 2]
+    }
+    
     enum Types {
         
         enum Request {
@@ -27,12 +33,38 @@ extension API {
                 var name: String
             }
             
+            
+            struct UpdatePatient: Encodable{
+                var name: String
+                var sex: Int
+                var dateOfBirth: String
+                var fiscalCode: String
+                var height: Int
+                var weight: Float
+                var phone: String
+                
+            }
+            
+            
         }
         
         enum Response{
             
             struct UserLogin: Decodable{
                 var access_token: String
+            }
+            
+            struct GetPatient: Decodable{
+                var email: String
+                var name: String
+                var sex: Int
+                var dateOfBirth: String
+                var fiscalCode: String
+                var height: Int
+                var weight: Float
+                var phone: String
+                var pathologies: [String]
+                
             }
             
             
@@ -73,6 +105,8 @@ extension API {
             case getPathologies(token: String)
             case deletePathology(token: String, id: Int)
             case addPathology(token: String)
+            case getPatient(token: String)
+            case updatePatient(token: String)
             
             
             var url: URL{
@@ -92,7 +126,16 @@ extension API {
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token)
                     ]
-                    
+                case .getPatient(let token):
+                    components.path="/patients/me"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token)
+                    ]
+                case .updatePatient(let token):
+                    components.path="/patients/me"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token)
+                    ]
                 case .getPathologies(let token):
                     components.path = "/patients/me/pathologies"
                     components.queryItems = [

@@ -14,6 +14,56 @@ class UserService{
     
     private init(){}
     
+    func updateInformation(user: Patient, completionHandler: @escaping (Bool?, Error?) -> Void){
+        
+        let token = KeychainWrapper.standard.string(forKey: "access_token")
+        let df = DateFormatter()
+        df.dateFormat = "YYYY-MM-dd"
+        df.calendar = Calendar(identifier: .iso8601)
+        df.timeZone = TimeZone(secondsFromGMT: 0)
+        df.locale = Locale(identifier: "en_US_POSIX")
+        
+        let sex = API.GenderTranslation.gender_r["\(user.sex)".lowercased()]
+        
+        let body = API.Types.Request.UpdatePatient(name: user.name, sex: sex!, dateOfBirth: df.string(from:user.dateOfBirth), fiscalCode: user.fiscalCode, height: user.height, weight: user.weight, phone: user.phone)
+        
+        API.Client.shared
+            .fetch(.updatePatient(token: token!), method:.put, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(success.status == "OK", nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+            }
+    }
+    
+    func getUser(completionHandler: @escaping (Patient?, Error?) -> Void){
+        let df = DateFormatter()
+        df.dateFormat = "YYYY-MM-dd"
+        df.calendar = Calendar(identifier: .iso8601)
+        df.timeZone = TimeZone(secondsFromGMT: 0)
+        df.locale = Locale(identifier: "en_US_POSIX")
+        let token = KeychainWrapper.standard.string(forKey: "access_token")
+        API.Client.shared
+            .get(.getPatient(token: token!)){ (result: Result<API.Types.Response.GetPatient, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        let sex = Genders(rawValue: API.GenderTranslation.gender[success.sex]! )
+                        let patient = Patient(email: success.email,
+                                              name: success.name, sex: sex! , dateOfBirth: df.date(from: success.dateOfBirth)!, fiscalCode: success.fiscalCode, height: success.height, weight: success.weight, phone: success.phone)
+                         completionHandler(patient, nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+            
+        }
+    }
+    
     func registerUser(){
         //register user
     }
