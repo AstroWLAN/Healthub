@@ -1,6 +1,14 @@
 import SwiftUI
 import AlertToast
 
+extension String {
+    var isNumber: Bool {
+        return self.range(
+            of: "^[0-9]*$", // 1
+            options: .regularExpression) != nil
+    }
+}
+
 struct SettingsView: View {
     
     @EnvironmentObject private var loginViewModel: LoginViewModel
@@ -9,10 +17,20 @@ struct SettingsView: View {
     @State private var isFormEditable : Bool = false
     @State private var editButtonAnimates : Bool = false
     
-    /// **TEMPORARY VARIABLES**
-    /// Replace them with the patient object from the data model
+    @State private var nameBadInput : Bool = false
+    @FocusState private var isNameFocused: Bool
     
-
+    @State private var heightBadInput : Bool = false
+    @FocusState private var isHeightFocused: Bool
+    
+    @State private var weightBadInput : Bool = false
+    @FocusState private var isWeightFocused: Bool
+    
+    @State private var fiscalCodeBadInput : Bool = false
+    @FocusState private var isFiscalCodeFocused: Bool
+    
+    @State private var phoneBadInput : Bool = false
+    @FocusState private var isPhoneFocused: Bool
     
     var body: some View {
         NavigationStack{
@@ -23,8 +41,17 @@ struct SettingsView: View {
                     Section(header: Text("General")){
                         RecordTextfield(textVariable: $settingsViewModel.name, glyph: "face.smiling.inverse",
                                         glyphColor: Color(.white), glyphBackground: Color(.systemGray),
-                                        placeholder: "Name", textfieldType: .name, badInput: false, measure: "")
-                        .disabled(!isFormEditable)
+                                        placeholder: "Name", textfieldType: .name, badInput: nameBadInput, measure: "")
+                            .onSubmit {
+                                self.nameBadInput = RecordTextfield.checkInput(type: .name, str: $settingsViewModel.name.wrappedValue )
+                            }
+                            .focused($isNameFocused)
+                            .onChange(of: isNameFocused, perform:{ focus in
+                                if(!focus){
+                                    self.nameBadInput = RecordTextfield.checkInput(type: .name, str: $settingsViewModel.name.wrappedValue )
+                                }
+                            })
+                            .disabled(!isFormEditable)
                         
                         // Navigates to the AppInformationView
                         NavigationLink(destination: AppInformationView()){
@@ -50,25 +77,61 @@ struct SettingsView: View {
                         // User height textfield
                         RecordTextfield(textVariable: $settingsViewModel.height, glyph: "ruler.fill",
                                         glyphColor: Color(.white), glyphBackground: Color(.systemGray),
-                                        placeholder: "Height", textfieldType: .name, badInput: false, measure: "Cm")
+                                        placeholder: "Height", textfieldType: .intNumber, badInput: heightBadInput, measure: "Cm")
+                        .onSubmit {
+                            self.heightBadInput = RecordTextfield.checkInput(type: .intNumber, str: $settingsViewModel.height.wrappedValue )
+                        }
+                        .focused($isHeightFocused)
+                        .onChange(of: isHeightFocused, perform:{ focus in
+                            if(!focus){
+                                self.heightBadInput = RecordTextfield.checkInput(type: .intNumber, str: $settingsViewModel.height.wrappedValue )
+                            }
+                        })
                         .disabled(!isFormEditable)
                         
                         // User weight textfield
                         RecordTextfield(textVariable: $settingsViewModel.weight, glyph: "scalemass.fill",
                                         glyphColor: Color(.white), glyphBackground: Color(.systemGray),
-                                        placeholder: "Weight", textfieldType: .name, badInput: false, measure: "Kg")
+                                        placeholder: "Weight", textfieldType: .floatNumber, badInput: weightBadInput, measure: "Kg")
+                        .focused($isWeightFocused)
+                        .onSubmit {
+                            self.weightBadInput = RecordTextfield.checkInput(type: .floatNumber, str: $settingsViewModel.weight.wrappedValue )
+                        }
+                        .onChange(of: isWeightFocused, perform:{ focus in
+                            if(!focus){
+                                self.weightBadInput = RecordTextfield.checkInput(type: .floatNumber, str: $settingsViewModel.weight.wrappedValue )
+                            }
+                        })
                         .disabled(!isFormEditable)
                         
                         // User fiscal code textfield
                         RecordTextfield(textVariable: $settingsViewModel.fiscalCode, glyph: "123.rectangle.fill",
                                         glyphColor: Color(.white), glyphBackground: Color(.systemGray),
-                                        placeholder: "Fiscal Code", textfieldType: .name, badInput: false, measure: "")
+                                        placeholder: "Fiscal Code", textfieldType: .name, badInput: fiscalCodeBadInput, measure: "")
+                        .focused($isFiscalCodeFocused)
+                        .onSubmit {
+                            self.fiscalCodeBadInput = RecordTextfield.checkInput(type: .name, str: $settingsViewModel.fiscalCode.wrappedValue )
+                        }
+                        .onChange(of: isFiscalCodeFocused, perform:{ focus in
+                            if(!focus){
+                                self.fiscalCodeBadInput = RecordTextfield.checkInput(type: .name, str: $settingsViewModel.fiscalCode.wrappedValue )
+                            }
+                        })
                         .disabled(!isFormEditable)
                         
                         // User phone number textfield
                         RecordTextfield(textVariable: $settingsViewModel.phone, glyph: "phone.fill",
                                         glyphColor: Color(.white), glyphBackground: Color(.systemGray),
-                                        placeholder: "Phone Number", textfieldType: .name, badInput: false, measure: "")
+                                        placeholder: "Phone Number", textfieldType: .phone, badInput: phoneBadInput, measure: "")
+                        .focused($isPhoneFocused)
+                        .onSubmit {
+                            self.phoneBadInput = RecordTextfield.checkInput(type: .phone, str: $settingsViewModel.phone.wrappedValue )
+                        }
+                        .onChange(of: isPhoneFocused, perform:{ focus in
+                            if(!focus){
+                                self.phoneBadInput = RecordTextfield.checkInput(type: .phone, str: $settingsViewModel.phone.wrappedValue )
+                            }
+                        })
                         .disabled(!isFormEditable)
                         
                         // User phone number textfield
@@ -108,7 +171,9 @@ struct SettingsView: View {
                         // Enables form editing and its animation
                         editButtonAnimates.toggle()
                         if(editButtonAnimates == false){
-                            settingsViewModel.updatePatient()
+                            if(!self.nameBadInput && !self.weightBadInput && !self.heightBadInput && !self.fiscalCodeBadInput && !self.phoneBadInput){
+                                settingsViewModel.updatePatient()
+                            }
                         }
                         withAnimation(editButtonAnimates ? Animation.easeInOut(duration: 0.15).repeatForever(autoreverses: true) : .default) {
                             isFormEditable.toggle() }},
@@ -118,6 +183,7 @@ struct SettingsView: View {
                         .rotationEffect(.degrees(isFormEditable ? 15 : 0)) })
                     .foregroundColor(.black)
                     .buttonStyle(.plain)
+                    .disabled(self.nameBadInput || self.weightBadInput || self.heightBadInput || self.fiscalCodeBadInput || self.phoneBadInput)
                 }
             }
         }.onAppear(perform: {

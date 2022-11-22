@@ -93,13 +93,22 @@ struct UnitMeasureView : View {
     }
 }
 
+extension NSRegularExpression {
+    func matches(_ string: String) -> Bool {
+        let range = NSRange(location: 0, length: string.utf16.count)
+        return firstMatch(in: string, options: [], range: range) != nil
+    }
+}
+
 // A truly fancy custom textfield to collect medical records and user data
 struct RecordTextfield : View {
     
     enum TextfieldType {
-        case name, phone, address, pathology
+        case name, phone, address, pathology, intNumber, floatNumber
     }
-    // Inserire una regex per ogni categoria di input 
+    
+    static let regexArray = [TextfieldType.name: "^[A-Za-z,-_.\\s]+$", TextfieldType.phone: "^[0-9+]{0,1}+[0-9]{5,16}$"]
+    // Inserire una regex per ogni categoria di input
     
     @Binding var textVariable : String
     
@@ -108,8 +117,33 @@ struct RecordTextfield : View {
     let glyphBackground : Color
     let placeholder : String
     let textfieldType : TextfieldType
-    let badInput : Bool
+    var badInput : Bool
     let measure : String
+    
+    
+    static func checkInput(type: TextfieldType, str: String) -> Bool{
+        switch type{
+        case .name:
+            let regex = try! NSRegularExpression(pattern: regexArray[TextfieldType.name]!)
+            return !regex.matches(str)
+        case .phone:
+            let regex = try! NSRegularExpression(pattern: regexArray[TextfieldType.phone]!)
+            return !regex.matches(str)
+        case .address:
+            let regex = try! NSRegularExpression(pattern: regexArray[TextfieldType.name]!)
+            return !regex.matches(str)
+        case .intNumber:
+            return Int(str) == nil
+        case .floatNumber:
+            return Float(str) == nil
+        case .pathology:
+            let regex = try! NSRegularExpression(pattern: regexArray[TextfieldType.name]!)
+            return !regex.matches(str)
+            
+        }
+        
+        
+    }
     
     var body : some View {
         HStack{
@@ -126,19 +160,19 @@ struct RecordTextfield : View {
         }
     }
 }
-
-@main
-struct HealthubApp: App {
-    @StateObject var loginViewModel = LoginViewModel()
-    @StateObject var pathologiesViewModel = PathologiesViewModel()
-    @StateObject var settingsViewModel = SettingsViewModel()
-    var body: some Scene {
-        WindowGroup {
-            MainView()
-                .environmentObject(loginViewModel)
-                .environmentObject(pathologiesViewModel)
-                .environmentObject(settingsViewModel)
-            
+    
+    @main
+    struct HealthubApp: App {
+        @StateObject var loginViewModel = LoginViewModel()
+        @StateObject var pathologiesViewModel = PathologiesViewModel()
+        @StateObject var settingsViewModel = SettingsViewModel()
+        var body: some Scene {
+            WindowGroup {
+                MainView()
+                    .environmentObject(loginViewModel)
+                    .environmentObject(pathologiesViewModel)
+                    .environmentObject(settingsViewModel)
+                
+            }
         }
     }
-}
