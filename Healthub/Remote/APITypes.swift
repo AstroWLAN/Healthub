@@ -125,13 +125,13 @@ extension API {
                 switch self{
                     
                 case .login(let email, let password):
-                    components.path="/auth"
+                    components.path="/patients/auth"
                     components.queryItems = [
                         URLQueryItem(name: "email", value : email),
                         URLQueryItem(name: "password", value: password)
                     ]
                 case .logout(let token):
-                    components.path="/logout"
+                    components.path="/patients/logout"
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token)
                     ]

@@ -63,6 +63,7 @@ struct LoginView: View {
                         .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.systemPink)))
                 })
                 .padding(.bottom,20)
+                .disabled(self.email == "" || self.password == "")
                 
                 
             }
