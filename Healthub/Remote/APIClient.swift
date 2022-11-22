@@ -42,22 +42,30 @@ extension API {
             
             let dataTask = URLSession.shared
                 .dataTask(with: urlRequest){ data, response, error in
+                    
+                    
                     if let error = error {
                         print("Fetch error: \(error)")
                         callback?(.failure(.generic(reason: "Could not fetch data: \(error.localizedDescription)")))
                     }else{
-                        if let data = data {
-                            do{
-                                self.dateFormatter.dateFormat = "yyyy-MM-dd"
-                                self.dateFormatter.calendar = Calendar(identifier: .iso8601)
-                                self.dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                                self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                                self.encoder.dateEncodingStrategy = .formatted(self.dateFormatter)
-                                let result = try self.decoder.decode(Response.self, from: data)
-                                callback?(.success(result))
-                            }catch{
-                                print("Error: \(error)")
-                                callback?(.failure(.generic(reason: "Could not decode data: \(error.localizedDescription)")))
+                        if let httpResponse = response as? HTTPURLResponse {
+                            if httpResponse.statusCode == 401{
+                                callback?(.failure(.unauthorized(reason: "\(httpResponse.statusCode)")))
+                            }else{
+                                if let data = data {
+                                    do{
+                                        self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                                        self.dateFormatter.calendar = Calendar(identifier: .iso8601)
+                                        self.dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+                                        self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                                        self.encoder.dateEncodingStrategy = .formatted(self.dateFormatter)
+                                        let result = try self.decoder.decode(Response.self, from: data)
+                                        callback?(.success(result))
+                                    }catch{
+                                        print("Error: \(error)")
+                                        callback?(.failure(.generic(reason: "Could not decode data: \(error.localizedDescription)")))
+                                    }
+                                }
                             }
                         }
                     }

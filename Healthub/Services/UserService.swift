@@ -68,7 +68,7 @@ class UserService{
         //register user
     }
     
-    func doLogin(email: String, password: String, completionHandler: @escaping (Bool?, Error?) -> Void){
+    func doLogin(email: String, password: String, completionHandler: @escaping (Bool?, API.Types.Error?) -> Void){
         //perform login
         let body = API.Types.Request.Empty()
         API.Client.shared

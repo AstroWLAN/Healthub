@@ -10,8 +10,7 @@ import SwiftKeychainWrapper
 
 class LoginViewModel: ObservableObject {
     
-    @Published
-    private var hasError: Bool = false
+    @Published var hasError: Bool = false
     private var loginCompleted: Bool = false
     
     
@@ -28,13 +27,28 @@ class LoginViewModel: ObservableObject {
         guard !email.isEmpty && !password.isEmpty else {
                 return
             }
+        hasError = false
 
         UserService.shared.doLogin(email: email, password: password){(success, error) in
             
             if(success == true){
                 UserDefaults.standard.set(true, forKey: "isLogged")
             }else{
-                print("Error during login phase")
+                if let error = error{
+                    switch error{
+                    case .generic(reason: _):
+                        print(error)
+                    case .server(reason: _):
+                        print(error)
+                    case .unauthorized(reason: _):
+                        self.hasError = true
+                    case .inter(reason: _):
+                        print(error)
+                    case .loginError(reason: _):
+                        print(error)
+                    }
+                    
+                }
             }
             
         }

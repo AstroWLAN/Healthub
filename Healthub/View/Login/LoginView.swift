@@ -45,6 +45,10 @@ struct LoginView: View {
                 .multilineTextAlignment(.center)
                 .padding(.bottom,80)
                 
+                Text("Invalid email and/or password")
+                    .foregroundColor(Color(.red))
+                    .isVisible(loginViewModel.hasError)
+                
                 Spacer()
                 Button(action: { /* login action */
                     loginViewModel.doLogin(email: email, password: password)
@@ -59,6 +63,7 @@ struct LoginView: View {
                         .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.systemPink)))
                 })
                 .padding(.bottom,20)
+                
                 
             }
         }

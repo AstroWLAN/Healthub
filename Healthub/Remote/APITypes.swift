@@ -86,7 +86,10 @@ extension API {
         enum Error: LocalizedError {
             
             case generic(reason: String)
-            case inter(reason: String)
+            case server(reason: String)
+            case unauthorized(reason:String)
+            case inter(reason:String)
+            case loginError(reason: String)
             
             var errorDescription: String? {
                 switch self {
@@ -94,6 +97,12 @@ extension API {
                     return reason
                 case .inter(let reason) :
                     return "Internal Error: \(reason) "
+                case .loginError(let reason):
+                    return "Login Error: \(reason)"
+                case .server(let reason):
+                    return "Server Error: \(reason)"
+                case .unauthorized(let reason):
+                    return "Unautorized: \(reason)"
                 }
             }
             
