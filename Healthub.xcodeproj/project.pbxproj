@@ -19,7 +19,6 @@
 		241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologiesViewModel.swift */; };
 		241759632927DE220051BE0B /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
 		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
-		246AC22929351951004FAE20 /* HealthubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC22829351951004FAE20 /* HealthubTests.swift */; };
 		246AC230293519D6004FAE20 /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC22F293519D6004FAE20 /* UserServiceTests.swift */; };
 		246AC23329351B05004FAE20 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC23229351B05004FAE20 /* MockClient.swift */; };
 		2480CD642934CA08004701F6 /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserServiceProtocol.swift */; };
@@ -77,7 +76,6 @@
 		241759602927DC330051BE0B /* PathologiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesViewModel.swift; sourceTree = "<group>"; };
 		241759622927DE220051BE0B /* Pathology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pathology.swift; path = Healthub/Model/Pathology.swift; sourceTree = SOURCE_ROOT; };
 		246AC22629351951004FAE20 /* HealthubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		246AC22829351951004FAE20 /* HealthubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubTests.swift; sourceTree = "<group>"; };
 		246AC22F293519D6004FAE20 /* UserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
 		246AC23229351B05004FAE20 /* MockClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
 		2480CD632934CA08004701F6 /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				246AC23129351AEE004FAE20 /* Stubs */,
-				246AC22829351951004FAE20 /* HealthubTests.swift */,
 				246AC22F293519D6004FAE20 /* UserServiceTests.swift */,
 			);
 			path = HealthubTests;
@@ -458,7 +455,6 @@
 			files = (
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
 				246AC230293519D6004FAE20 /* UserServiceTests.swift in Sources */,
-				246AC22929351951004FAE20 /* HealthubTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
