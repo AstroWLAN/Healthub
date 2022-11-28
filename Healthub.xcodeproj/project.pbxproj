@@ -32,6 +32,7 @@
 		249FF532292A7801007C802F /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF531292A7801007C802F /* Patient.swift */; };
 		249FF534292A7877007C802F /* Genders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF533292A7877007C802F /* Genders.swift */; };
 		249FF536292A79B0007C802F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF535292A79B0007C802F /* SettingsViewModel.swift */; };
+		24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */; };
 		24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFD2928F93C0089F9A0 /* API.swift */; };
 		24C1CD002928FA010089F9A0 /* APITypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFF2928FA010089F9A0 /* APITypes.swift */; };
 		24C1CD022928FBAA0089F9A0 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CD012928FBAA0089F9A0 /* APIClient.swift */; };
@@ -89,6 +90,7 @@
 		249FF531292A7801007C802F /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		249FF533292A7877007C802F /* Genders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genders.swift; sourceTree = "<group>"; };
 		249FF535292A79B0007C802F /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepositoryTests.swift; sourceTree = "<group>"; };
 		24C1CCFD2928F93C0089F9A0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		24C1CCFF2928FA010089F9A0 /* APITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITypes.swift; sourceTree = "<group>"; };
 		24C1CD012928FBAA0089F9A0 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				246AC23129351AEE004FAE20 /* Stubs */,
 				246AC22F293519D6004FAE20 /* UserServiceTests.swift */,
+				24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */,
 			);
 			path = HealthubTests;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
 				246AC230293519D6004FAE20 /* UserServiceTests.swift in Sources */,
 			);
