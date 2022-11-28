@@ -194,14 +194,14 @@
 		857A54EF2922D34300413841 /* Healthub */ = {
 			isa = PBXGroup;
 			children = (
+				857A54F02922D34300413841 /* HealthubApp.swift */,
+				857A54FE2922D38300413841 /* Resources */,
 				249FF52D292A4787007C802F /* Services */,
 				249FF51F292A284B007C802F /* Repositories */,
 				24C1CCFC2928F9190089F9A0 /* Remote */,
-				857A54F02922D34300413841 /* HealthubApp.swift */,
-				857A54FE2922D38300413841 /* Resources */,
 				249FF530292A721F007C802F /* Model */,
-				857A55002922D39500413841 /* View */,
 				857A55012922D3AA00413841 /* ViewModel */,
+				857A55002922D39500413841 /* View */,
 				857A54F42922D34400413841 /* Assets.xcassets */,
 				857A54F62922D34400413841 /* Preview Content */,
 			);
@@ -228,8 +228,8 @@
 		857A55002922D39500413841 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				241759532927A5B20051BE0B /* Login */,
 				857A55022922D3D200413841 /* MainView.swift */,
+				241759532927A5B20051BE0B /* Login */,
 				857A55132922DC7500413841 /* OnBoarding */,
 				857A55042922D57200413841 /* App */,
 			);
