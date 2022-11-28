@@ -8,10 +8,16 @@
 import Foundation
 import SwiftKeychainWrapper
 
-struct PathologiesRepository : RepositoryAddable, RepositoryDeletable, RepositoryListGettable{
+struct PathologiesRepository : PathologyRepositoryProcotol{
     
     
     typealias T = Pathology
+    private var client: any ClientProtocol
+    
+    init(client: any ClientProtocol) {
+        self.client = client
+    }
+    
     
     func add(_ item: Pathology, completionHandler: @escaping (Bool?, Error?) -> Void) {
         //code
@@ -22,7 +28,7 @@ struct PathologiesRepository : RepositoryAddable, RepositoryDeletable, Repositor
         
         let body = API.Types.Request.AddPathology(name: item.name)
         
-        API.Client.shared
+       client
             .fetch(.addPathology(token: token!), method: .post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{
@@ -46,7 +52,7 @@ struct PathologiesRepository : RepositoryAddable, RepositoryDeletable, Repositor
         
         let body = API.Types.Request.Empty() //API.Types.Request.PathologyDelete(id: item.id)
         
-        API.Client.shared
+       client
             .fetch(.deletePathology(token: token!, id: item.id), method: .delete, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{
@@ -65,7 +71,7 @@ struct PathologiesRepository : RepositoryAddable, RepositoryDeletable, Repositor
             fatalError("Token not present")
         }
         
-        API.Client.shared
+        client
             .get(.getPathologies(token: token!)){ (result: Result<API.Types.Response.GetPathologies, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{

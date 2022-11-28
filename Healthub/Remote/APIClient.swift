@@ -9,19 +9,19 @@ import Foundation
 
 extension API {
     
-    class Client{
+    class Client: ClientProtocol{
         
-        static let shared = Client()
+        
         private let encoder = JSONEncoder()
         private let dateFormatter = DateFormatter()
         private let decoder = JSONDecoder()
         
         
         
-        func fetch<Request, Response>(_ endpoint: Types.Endpoint,
-                                      method: Types.Method = .get,
+        func fetch<Request, Response>(_ endpoint: API.Types.Endpoint,
+                                      method: API.Types.Method = .get,
                                       body: Request? = nil,
-                                      then callback:((Result<Response, Types.Error>) -> Void)? = nil
+                                      then callback:((Result<Response, API.Types.Error>) -> Void)? = nil
         ) where Request: Encodable, Response: Decodable{
             var urlRequest = URLRequest(url: endpoint.url)
             urlRequest.httpMethod = method.rawValue
@@ -76,8 +76,8 @@ extension API {
         }
         
         
-        func get<Response>(_ endpoint: Types.Endpoint,
-                          then callback:((Result<Response, Types.Error>) -> Void)? = nil
+        func get<Response>(_ endpoint: API.Types.Endpoint,
+                           then callback:((Result<Response, API.Types.Error>) -> Void)? = nil
         ) where Response: Decodable{
             let body: Types.Request.Empty? = nil
             

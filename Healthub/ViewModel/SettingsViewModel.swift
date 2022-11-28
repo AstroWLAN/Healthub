@@ -12,6 +12,7 @@ class SettingsViewModel: ObservableObject {
     @Published private var hasError: Bool = false
   
     private var patient: Patient?
+    private var userService: any UserServiceProtocol
     @Published var isLoading = false
     @Published var name : String = ""
     @Published var gender : Genders = .Male
@@ -21,10 +22,13 @@ class SettingsViewModel: ObservableObject {
     @Published var fiscalCode : String = ""
     @Published var phone : String = ""
     
+    init(userService: any UserServiceProtocol){
+        self.userService = userService
+    }
     
     func getPatient(){
         self.isLoading = true
-        UserService.shared.getUser(){(patient, error) in
+        userService.getUser(){(patient, error) in
             if let error = error{
                 print(error)
                 self.hasError = true
@@ -52,7 +56,7 @@ class SettingsViewModel: ObservableObject {
         self.patient?.fiscalCode = self.fiscalCode
         self.patient?.phone = self.phone
         
-        UserService.shared.updateInformation(user: self.patient!){ (success, error) in
+        userService.updateInformation(user: self.patient!){ (success, error) in
             
         }
     }

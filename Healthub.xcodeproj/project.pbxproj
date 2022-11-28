@@ -19,6 +19,7 @@
 		241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologiesViewModel.swift */; };
 		241759632927DE220051BE0B /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
 		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
+		2480CD642934CA08004701F6 /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserServiceProtocol.swift */; };
 		249FF521292A285C007C802F /* RepositoryAddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF520292A285C007C802F /* RepositoryAddable.swift */; };
 		249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF522292A2873007C802F /* PathologiesRepository.swift */; };
 		249FF525292A2A81007C802F /* RepositorySingleGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF524292A2A81007C802F /* RepositorySingleGettable.swift */; };
@@ -32,6 +33,8 @@
 		24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFD2928F93C0089F9A0 /* API.swift */; };
 		24C1CD002928FA010089F9A0 /* APITypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFF2928FA010089F9A0 /* APITypes.swift */; };
 		24C1CD022928FBAA0089F9A0 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CD012928FBAA0089F9A0 /* APIClient.swift */; };
+		24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */; };
+		24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDD29327E9C0021C783 /* ClientProtocol.swift */; };
 		852944D12925ABFA006FC0C5 /* AppInformation.json in Resources */ = {isa = PBXBuildFile; fileRef = 852944D02925ABFA006FC0C5 /* AppInformation.json */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
@@ -60,6 +63,7 @@
 		2417595E2927D8F40051BE0B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		241759602927DC330051BE0B /* PathologiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesViewModel.swift; sourceTree = "<group>"; };
 		241759622927DE220051BE0B /* Pathology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pathology.swift; path = Healthub/Model/Pathology.swift; sourceTree = SOURCE_ROOT; };
+		2480CD632934CA08004701F6 /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		249FF520292A285C007C802F /* RepositoryAddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryAddable.swift; sourceTree = "<group>"; };
 		249FF522292A2873007C802F /* PathologiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepository.swift; sourceTree = "<group>"; };
 		249FF524292A2A81007C802F /* RepositorySingleGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySingleGettable.swift; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 		24C1CCFD2928F93C0089F9A0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		24C1CCFF2928FA010089F9A0 /* APITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITypes.swift; sourceTree = "<group>"; };
 		24C1CD012928FBAA0089F9A0 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologyRepositoryProtocol.swift; sourceTree = "<group>"; };
+		24C54EDD29327E9C0021C783 /* ClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProtocol.swift; sourceTree = "<group>"; };
 		852944D02925ABFA006FC0C5 /* AppInformation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppInformation.json; sourceTree = "<group>"; };
 		857A54ED2922D34300413841 /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A54F02922D34300413841 /* HealthubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubApp.swift; sourceTree = "<group>"; };
@@ -133,6 +139,7 @@
 				249FF52A292A2B15007C802F /* RepositoryDeletable.swift */,
 				249FF526292A2ABF007C802F /* RepositoryListGettable.swift */,
 				249FF524292A2A81007C802F /* RepositorySingleGettable.swift */,
+				24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */,
 			);
 			path = RepositoriesProtocol;
 			sourceTree = "<group>";
@@ -141,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				249FF52E292A4797007C802F /* UserService.swift */,
+				2480CD632934CA08004701F6 /* UserServiceProtocol.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -161,6 +169,7 @@
 			children = (
 				24C1CCFD2928F93C0089F9A0 /* API.swift */,
 				24C1CCFF2928FA010089F9A0 /* APITypes.swift */,
+				24C54EDD29327E9C0021C783 /* ClientProtocol.swift */,
 				24C1CD012928FBAA0089F9A0 /* APIClient.swift */,
 			);
 			path = Remote;
@@ -397,13 +406,16 @@
 				85BCA8682927907D00A6C856 /* BookingView.swift in Sources */,
 				249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */,
 				249FF529292A2AF0007C802F /* RepositoryEditable.swift in Sources */,
+				24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */,
 				249FF525292A2A81007C802F /* RepositorySingleGettable.swift in Sources */,
 				249FF536292A79B0007C802F /* SettingsViewModel.swift in Sources */,
 				24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */,
 				2417595D2927A6150051BE0B /* WelcomeView.swift in Sources */,
+				2480CD642934CA08004701F6 /* UserServiceProtocol.swift in Sources */,
 				857A550A2922D6D800413841 /* ScheduleView.swift in Sources */,
 				249FF527292A2ABF007C802F /* RepositoryListGettable.swift in Sources */,
 				241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */,
+				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
 				241759552927A5E70051BE0B /* DoctorView.swift in Sources */,
 				241759592927A5FA0051BE0B /* LoginView.swift in Sources */,
 				241759572927A5F00051BE0B /* EmailView.swift in Sources */,

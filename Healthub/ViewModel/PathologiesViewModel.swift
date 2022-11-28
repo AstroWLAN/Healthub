@@ -13,9 +13,13 @@ class PathologiesViewModel : ObservableObject {
     @Published
     private(set) var pathologies: [Pathology] = []
     private var hasError: Bool = false
-    private let pathologiesRepository = PathologiesRepository()
+    private let pathologiesRepository: any PathologyRepositoryProcotol
     
     var onError: ((String) -> Void)?
+    
+    init(pathologiesRepository: any PathologyRepositoryProcotol){
+        self.pathologiesRepository = pathologiesRepository
+    }
     
     
     func fetchPathologies(){

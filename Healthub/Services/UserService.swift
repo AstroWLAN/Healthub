@@ -8,11 +8,15 @@
 import Foundation
 import SwiftKeychainWrapper
 
-class UserService{
+class UserService: UserServiceProtocol{
     
-    public static let shared = UserService()
     
-    private init(){}
+    private var client: any ClientProtocol
+    
+    init(client: any ClientProtocol) {
+        self.client = client
+    }
+    
     
     func updateInformation(user: Patient, completionHandler: @escaping (Bool?, Error?) -> Void){
         
@@ -27,8 +31,7 @@ class UserService{
         
         let body = API.Types.Request.UpdatePatient(name: user.name, sex: sex!, dateOfBirth: df.string(from:user.dateOfBirth), fiscalCode: user.fiscalCode, height: user.height, weight: user.weight, phone: user.phone)
         
-        API.Client.shared
-            .fetch(.updatePatient(token: token!), method:.put, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+        client.fetch(.updatePatient(token: token!), method:.put, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{
                     case .success(let success):
@@ -47,7 +50,7 @@ class UserService{
         df.timeZone = TimeZone(secondsFromGMT: 0)
         df.locale = Locale(identifier: "en_US_POSIX")
         let token = KeychainWrapper.standard.string(forKey: "access_token")
-        API.Client.shared
+        client
             .get(.getPatient(token: token!)){ (result: Result<API.Types.Response.GetPatient, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{
@@ -71,7 +74,7 @@ class UserService{
     func doLogin(email: String, password: String, completionHandler: @escaping (Bool?, API.Types.Error?) -> Void){
         //perform login
         let body = API.Types.Request.Empty()
-        API.Client.shared
+        client
             .fetch(.login(email: email, password: password), method:.post, body: body ){(result: Result<API.Types.Response.UserLogin, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{
@@ -92,7 +95,7 @@ class UserService{
         let token = KeychainWrapper.standard.string(forKey: "access_token")
         
         let body = API.Types.Request.Empty()
-        API.Client.shared
+        client
             .fetch(.logout(token: token!), method:.post, body: body ){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{

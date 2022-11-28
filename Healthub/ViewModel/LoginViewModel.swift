@@ -12,10 +12,14 @@ class LoginViewModel: ObservableObject {
     
     @Published var hasError: Bool = false
     private var loginCompleted: Bool = false
+    private var userService: UserService
     
+    init(userService: UserService) {
+        self.userService = userService
+    }
     
      func doLogout(){
-         UserService.shared.doLogout(){(success, error) in
+         userService.doLogout(){(success, error) in
              if let error = error{
                  print(error)
              }
@@ -29,7 +33,7 @@ class LoginViewModel: ObservableObject {
             }
         hasError = false
 
-        UserService.shared.doLogin(email: email, password: password){(success, error) in
+        userService.doLogin(email: email, password: password){(success, error) in
             
             if(success == true){
                 UserDefaults.standard.set(true, forKey: "isLogged")
