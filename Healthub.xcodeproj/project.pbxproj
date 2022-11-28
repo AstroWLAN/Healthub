@@ -19,6 +19,9 @@
 		241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologiesViewModel.swift */; };
 		241759632927DE220051BE0B /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
 		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
+		246AC22929351951004FAE20 /* HealthubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC22829351951004FAE20 /* HealthubTests.swift */; };
+		246AC230293519D6004FAE20 /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC22F293519D6004FAE20 /* UserServiceTests.swift */; };
+		246AC23329351B05004FAE20 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC23229351B05004FAE20 /* MockClient.swift */; };
 		2480CD642934CA08004701F6 /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserServiceProtocol.swift */; };
 		249FF521292A285C007C802F /* RepositoryAddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF520292A285C007C802F /* RepositoryAddable.swift */; };
 		249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF522292A2873007C802F /* PathologiesRepository.swift */; };
@@ -52,6 +55,16 @@
 		85BCA8682927907D00A6C856 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCA8672927907D00A6C856 /* BookingView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		246AC22A29351951004FAE20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 857A54E52922D34300413841 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 857A54EC2922D34300413841;
+			remoteInfo = Healthub;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2417594C2927A5000051BE0B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		241759512927A5420051BE0B /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserLogin.swift; path = Healthub/Model/UserLogin.swift; sourceTree = SOURCE_ROOT; };
@@ -63,6 +76,10 @@
 		2417595E2927D8F40051BE0B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		241759602927DC330051BE0B /* PathologiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesViewModel.swift; sourceTree = "<group>"; };
 		241759622927DE220051BE0B /* Pathology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pathology.swift; path = Healthub/Model/Pathology.swift; sourceTree = SOURCE_ROOT; };
+		246AC22629351951004FAE20 /* HealthubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		246AC22829351951004FAE20 /* HealthubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubTests.swift; sourceTree = "<group>"; };
+		246AC22F293519D6004FAE20 /* UserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
+		246AC23229351B05004FAE20 /* MockClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
 		2480CD632934CA08004701F6 /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		249FF520292A285C007C802F /* RepositoryAddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryAddable.swift; sourceTree = "<group>"; };
 		249FF522292A2873007C802F /* PathologiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepository.swift; sourceTree = "<group>"; };
@@ -98,6 +115,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		246AC22329351951004FAE20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		857A54EA2922D34300413841 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,6 +144,24 @@
 				2417595C2927A6150051BE0B /* WelcomeView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		246AC22729351951004FAE20 /* HealthubTests */ = {
+			isa = PBXGroup;
+			children = (
+				246AC23129351AEE004FAE20 /* Stubs */,
+				246AC22829351951004FAE20 /* HealthubTests.swift */,
+				246AC22F293519D6004FAE20 /* UserServiceTests.swift */,
+			);
+			path = HealthubTests;
+			sourceTree = "<group>";
+		};
+		246AC23129351AEE004FAE20 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				246AC23229351B05004FAE20 /* MockClient.swift */,
+			);
+			path = Stubs;
 			sourceTree = "<group>";
 		};
 		249FF51F292A284B007C802F /* Repositories */ = {
@@ -179,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				857A54EF2922D34300413841 /* Healthub */,
+				246AC22729351951004FAE20 /* HealthubTests */,
 				857A54EE2922D34300413841 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -187,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				857A54ED2922D34300413841 /* Healthub.app */,
+				246AC22629351951004FAE20 /* HealthubTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,6 +349,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		246AC22529351951004FAE20 /* HealthubTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 246AC22E29351951004FAE20 /* Build configuration list for PBXNativeTarget "HealthubTests" */;
+			buildPhases = (
+				246AC22229351951004FAE20 /* Sources */,
+				246AC22329351951004FAE20 /* Frameworks */,
+				246AC22429351951004FAE20 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				246AC22B29351951004FAE20 /* PBXTargetDependency */,
+			);
+			name = HealthubTests;
+			productName = HealthubTests;
+			productReference = 246AC22629351951004FAE20 /* HealthubTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		857A54EC2922D34300413841 /* Healthub */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 857A54FB2922D34400413841 /* Build configuration list for PBXNativeTarget "Healthub" */;
@@ -336,6 +398,10 @@
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					246AC22529351951004FAE20 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 857A54EC2922D34300413841;
+					};
 					857A54EC2922D34300413841 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -359,11 +425,19 @@
 			projectRoot = "";
 			targets = (
 				857A54EC2922D34300413841 /* Healthub */,
+				246AC22529351951004FAE20 /* HealthubTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		246AC22429351951004FAE20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		857A54EB2922D34300413841 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -378,6 +452,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		246AC22229351951004FAE20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
+				246AC230293519D6004FAE20 /* UserServiceTests.swift in Sources */,
+				246AC22929351951004FAE20 /* HealthubTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		857A54E92922D34300413841 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,7 +508,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		246AC22B29351951004FAE20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 857A54EC2922D34300413841 /* Healthub */;
+			targetProxy = 246AC22A29351951004FAE20 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		246AC22C29351951004FAE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MLNK3T9JX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.sample-code.HealthubTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Healthub.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Healthub";
+			};
+			name = Debug;
+		};
+		246AC22D29351951004FAE20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MLNK3T9JX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.sample-code.HealthubTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Healthub.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Healthub";
+			};
+			name = Release;
+		};
 		857A54F92922D34400413841 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -612,6 +748,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		246AC22E29351951004FAE20 /* Build configuration list for PBXNativeTarget "HealthubTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				246AC22C29351951004FAE20 /* Debug */,
+				246AC22D29351951004FAE20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		857A54E82922D34300413841 /* Build configuration list for PBXProject "Healthub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
