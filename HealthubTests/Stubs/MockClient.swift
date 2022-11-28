@@ -1,5 +1,5 @@
 //
-//  ClientStub.swift
+//  MockClient.swift
 //  HealthubTests
 //
 //  Created by Giovanni Dispoto on 28/11/22.
@@ -13,19 +13,19 @@ class MockClient: ClientProtocol{
         
         switch(endpoint){
             
-        case .login(let email, let password):
+        case .login(_, _):
             callback?(.success(API.Types.Response.UserLogin(access_token: "1234") as! Response))
-        case .logout(let token):
+        case .logout(_):
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response ))
-        case .getPathologies( let token):
+        case .getPathologies(_):
             print("getPathologies")
-        case .deletePathology(let token, let id):
+        case .deletePathology( _,  _):
             print("deletePahologies")
-        case .addPathology( let token):
+        case .addPathology(_):
             print("addPathology")
-        case .getPatient(let token):
+        case .getPatient(_):
             callback?(.success(API.Types.Response.GetPatient(email: "dispoto97@gmail.com", name: "Giovanni Dispoto", sex: 0, dateOfBirth: "1997-09-18", fiscalCode: "DSPGNN97P18L113H", height: 173, weight: 78, phone: "+393318669067", pathologies: []) as! Response))
-        case .updatePatient(let token):
+        case .updatePatient(_):
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
         }
     }
