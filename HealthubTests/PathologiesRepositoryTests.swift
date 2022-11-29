@@ -36,6 +36,8 @@ final class PathologiesRepositoryTests: XCTestCase {
         let exp = expectation(description: "Add Pathology")
         let pathology = Pathology(id: 0, name: "Pathology1")
         
+        XCTAssertEqual(self.mockClient.pathologies.count, 0)
+        
         pathologiesRepository.add(pathology){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
@@ -48,6 +50,7 @@ final class PathologiesRepositoryTests: XCTestCase {
             }else{
                 XCTAssertEqual(self.mockClient.numberAddPathology, 1)
                 XCTAssertEqual(self.mockClient.addPathology.name, "Pathology1")
+                XCTAssertEqual(self.mockClient.pathologies.count, 1)
             }
         }
         
@@ -56,6 +59,8 @@ final class PathologiesRepositoryTests: XCTestCase {
     func testAddTwoElements(){
         let exp = expectation(description: "Add Pathology")
         let pathology = Pathology(id: 0, name: "Pathology1")
+        
+        XCTAssertEqual(self.mockClient.pathologies.count, 0)
         
         pathologiesRepository.add(pathology){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
@@ -69,6 +74,7 @@ final class PathologiesRepositoryTests: XCTestCase {
             }else{
                 XCTAssertEqual(self.mockClient.numberAddPathology, 1)
                 XCTAssertEqual(self.mockClient.addPathology.name, "Pathology1")
+                XCTAssertEqual(self.mockClient.pathologies.count, 1)
             }
         }
         
@@ -87,6 +93,7 @@ final class PathologiesRepositoryTests: XCTestCase {
             }else{
                 XCTAssertEqual(self.mockClient.numberAddPathology, 2)
                 XCTAssertEqual(self.mockClient.addPathology.name, "Pathology2")
+                XCTAssertEqual(self.mockClient.pathologies.count, 2)
             }
         }
     }
@@ -94,6 +101,8 @@ final class PathologiesRepositoryTests: XCTestCase {
     func testDelete(){
         //test
         let exp = expectation(description: "Test Delete: Add One Element")
+        
+        XCTAssertEqual(self.mockClient.pathologies.count, 0)
         
         let pathology = Pathology(id: 1, name: "Pathology")
         
@@ -110,11 +119,15 @@ final class PathologiesRepositoryTests: XCTestCase {
             }else{
                 XCTAssertEqual(self.mockClient.numberAddPathology, 1)
                 XCTAssertEqual(self.mockClient.addPathology.name, "Pathology")
+                XCTAssertEqual(self.mockClient.pathologies.count, 1)
+                
             }
         }
         
         let exp1 = expectation(description: "Test delete")
-        pathologiesRepository.delete(pathology){(success, error) in
+        let pathologyToDelete = Pathology(id: 1, name: "Pathology")
+
+        pathologiesRepository.delete(pathologyToDelete){(success, error) in
             XCTAssertTrue(success!, "it was not possible to delete pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp1.fulfill()
@@ -127,9 +140,73 @@ final class PathologiesRepositoryTests: XCTestCase {
             }else{
                 XCTAssertEqual(self.mockClient.numberAddPathology, 1)
                 XCTAssertEqual(self.mockClient.addPathology.name, "Pathology")
+                XCTAssertEqual(self.mockClient.pathologies.count, 0)
             }
         }
         
+        
+        
+    }
+    
+    func testDeleteOneElementFromArrayOfTwo(){
+        let exp = expectation(description: "Add Pathology")
+        let pathology = Pathology(id: 0, name: "Pathology1")
+        
+        XCTAssertEqual(self.mockClient.pathologies.count, 0)
+        
+        pathologiesRepository.add(pathology){ (success, error) in
+            XCTAssertTrue(success!, "it was not possible to add pathology")
+            XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 0.5) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberAddPathology, 1)
+                XCTAssertEqual(self.mockClient.addPathology.name, "Pathology1")
+                XCTAssertEqual(self.mockClient.pathologies.count, 1)
+            }
+        }
+        
+        let exp1 = expectation(description: "Add Pathology")
+        let pathology1 = Pathology(id: 0, name: "Pathology2")
+        
+        pathologiesRepository.add(pathology1){ (success, error) in
+            XCTAssertTrue(success!, "it was not possible to add pathology")
+            XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
+            exp1.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberAddPathology, 2)
+                XCTAssertEqual(self.mockClient.addPathology.name, "Pathology2")
+                XCTAssertEqual(self.mockClient.pathologies.count, 2)
+            }
+        }
+        
+        let exp2 = expectation(description: "Test delete")
+        let pathologyToDelete = Pathology(id: 2, name: "Pathology2")
+        pathologiesRepository.delete(pathologyToDelete){(success, error) in
+            XCTAssertTrue(success!, "it was not possible to delete pathology")
+            XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
+            exp2.fulfill()
+            
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberAddPathology, 2)
+                XCTAssertEqual(self.mockClient.pathologies.count, 1)
+                XCTAssertEqual(self.mockClient.numberDeletePathology, 1)
+            }
+        }
         
         
     }
