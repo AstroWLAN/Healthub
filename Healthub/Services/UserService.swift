@@ -23,9 +23,6 @@ class UserService: UserServiceProtocol{
         let token = KeychainWrapper.standard.string(forKey: "access_token")
         let df = DateFormatter()
         df.dateFormat = "YYYY-MM-dd"
-        df.calendar = Calendar(identifier: .iso8601)
-        df.timeZone = TimeZone(secondsFromGMT: 0)
-        df.locale = Locale(identifier: "en_US_POSIX")
         
         let sex = API.GenderTranslation.gender_r["\(user.sex)".lowercased()]
         
@@ -46,9 +43,7 @@ class UserService: UserServiceProtocol{
     func getUser(completionHandler: @escaping (Patient?, Error?) -> Void){
         let df = DateFormatter()
         df.dateFormat = "YYYY-MM-dd"
-        df.calendar = Calendar(identifier: .iso8601)
-        df.timeZone = TimeZone(secondsFromGMT: 0)
-        df.locale = Locale(identifier: "en_US_POSIX")
+
         let token = KeychainWrapper.standard.string(forKey: "access_token")
         client
             .get(.getPatient(token: token!)){ (result: Result<API.Types.Response.GetPatient, API.Types.Error>) in
