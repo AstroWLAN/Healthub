@@ -152,19 +152,19 @@
 		246AC22729351951004FAE20 /* HealthubTests */ = {
 			isa = PBXGroup;
 			children = (
-				246AC23129351AEE004FAE20 /* Stubs */,
+				246AC23129351AEE004FAE20 /* Mocks */,
 				246AC22F293519D6004FAE20 /* UserServiceTests.swift */,
 				24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */,
 			);
 			path = HealthubTests;
 			sourceTree = "<group>";
 		};
-		246AC23129351AEE004FAE20 /* Stubs */ = {
+		246AC23129351AEE004FAE20 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
 				246AC23229351B05004FAE20 /* MockClient.swift */,
 			);
-			path = Stubs;
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		249FF51F292A284B007C802F /* Repositories */ = {

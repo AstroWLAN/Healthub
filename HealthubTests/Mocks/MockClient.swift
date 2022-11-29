@@ -13,7 +13,12 @@ class MockClient: ClientProtocol{
     private(set) var numberLogin = 0
     private(set) var numberLogout = 0
     private(set) var numberGetUser = 0
+    private(set) var numberDeletePathology = 0
     private(set) var updatePatient: API.Types.Request.UpdatePatient!
+    private(set) var numberAddPathology = 0
+    private(set) var addPathology : API.Types.Request.AddPathology!
+    private(set) var numberGetPathologies = 0
+    private(set) var pathologies:[API.Types.Response.GetPathologies.PathologyElement] = []
     
     private (set) var patient = API.Types.Response.GetPatient(email: "dispoto97@gmail.com", name: "Giovanni Dispoto", sex: 0, dateOfBirth: "1997-09-18", fiscalCode: "DSPGNN97P18L113H", height: 173, weight: 78, phone: "+393318669067", pathologies: [])
     
@@ -28,11 +33,29 @@ class MockClient: ClientProtocol{
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response ))
             self.numberLogout = self.numberLogout + 1
         case .getPathologies(_):
-            print("getPathologies")
-        case .deletePathology( _,  _):
-            print("deletePahologies")
+            if let p = addPathology{
+                let buildPathology = API.Types.Response.GetPathologies.PathologyElement(id: 1, name: p.name)
+                self.pathologies.append(buildPathology)
+            }
+            callback?(.success(API.Types.Response.GetPathologies(pathologies: pathologies) as! Response ))
+        case .deletePathology( _, let id):
+            self.numberDeletePathology = self.numberDeletePathology + 1
+            if pathologies.count > 0{
+                
+                if let element = pathologies.enumerated().first(where: {$0.element.id == id }){
+                    pathologies.remove(at: element.offset)
+                }else{
+                    assertionFailure("Try to remove element that is not present")
+                }
+            }
+            callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response ))
         case .addPathology(_):
-            print("addPathology")
+                self.numberAddPathology = self.numberAddPathology + 1
+                self.addPathology = body as! API.Types.Request.AddPathology
+                
+                self.pathologies.append(API.Types.Response.GetPathologies.PathologyElement(id: pathologies.count + 1, name: addPathology.name))
+                
+            callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response ))
         case .getPatient(_):
             self.numberGetUser = self.numberGetUser + 1
             callback?(.success(patient as! Response))
@@ -52,7 +75,14 @@ class MockClient: ClientProtocol{
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response ))
             self.numberLogout = self.numberLogout + 1
         case .getPathologies(_):
-            print("getPathologies")
+            var pathologies:[API.Types.Response.GetPathologies.PathologyElement] = []
+            
+            if let p = addPathology{
+                let buildPathology = API.Types.Response.GetPathologies.PathologyElement(id: 1, name: p.name)
+                pathologies.append(buildPathology)
+            }
+            callback?(.success(API.Types.Response.GetPathologies(pathologies: pathologies) as! Response ))
+            self.numberGetPathologies = self.numberGetPathologies + 1
         case .deletePathology( _,  _):
             print("deletePahologies")
         case .addPathology(_):
