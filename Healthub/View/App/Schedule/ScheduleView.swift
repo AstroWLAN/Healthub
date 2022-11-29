@@ -1,29 +1,36 @@
 import SwiftUI
 import MapKit
 
-// Navigation bar inspired by the Apple App Store
+// Custom navigation bar
 struct AppNavigationBar : View {
     
-    @State private var currentDate : Date = Date()
+    @State var currentDate : Date?
+    let viewTitle : String
+    let actionGlyph : String
+    let destinationView : AnyView
     
     var body : some View {
         VStack{
             HStack{
-                Text("\(currentDate.formatted(.dateTime.weekday(.wide)).capitalized)" +
-                     " \(currentDate.formatted(.dateTime.day()))" +
-                     " \(currentDate.formatted(.dateTime.month(.wide)).capitalized)")
-                .font(.system(size: 17,weight: .medium))
-                .foregroundColor(Color(.systemGray2))
+                if currentDate != nil{
+                    Text("\(currentDate!.formatted(.dateTime.weekday(.wide)).capitalized)" +
+                         " \(currentDate!.formatted(.dateTime.day()))" +
+                         " \(currentDate!.formatted(.dateTime.month(.wide)).capitalized)")
+                }
+                else {
+                    Text(" ")
+                }
                 Spacer()
-                
             }
-            HStack{
-                Text("Schedule")
-                    .bold()
+            .font(.system(size: 17,weight: .medium))
+            .foregroundColor(Color(.systemGray2))
+            HStack(alignment: .lastTextBaseline){
+                Text(viewTitle)
                     .font(.largeTitle.bold())
                 Spacer()
-                NavigationLink(destination: BookingView()) {
-                    Image(systemName: "plus").font(.title2)
+                NavigationLink(destination: destinationView) {
+                    Image(systemName: actionGlyph)
+                        .font(.title2)
                 }
             }
         }
@@ -31,180 +38,61 @@ struct AppNavigationBar : View {
     }
 }
 
-// Creates a custom card shape
-struct CardShape : View {
-    
-    var body: some View {
-        ZStack(alignment: .center){
-            RoundedRectangle(cornerRadius: 14)
-                .frame(width: 280,height: 380)
-                .foregroundColor(.white)
-            Circle().frame(width: 60)
-                .offset(y: -195)
-                .blendMode(.destinationOut)
-        }
-        .compositingGroup()
-        .shadow(color: Color(.systemGray5), radius: 8)
-    }
-    
-}
-
-// Creates a map snapshot
-struct MapSnapshotView: View {
-    
-    let location: CLLocationCoordinate2D
-    var span: CLLocationDegrees = 0.01
-    
-    @State private var mapSnapshotImage: UIImage? = nil
-    
-    var body: some View {
-        Group {
-
-            if let mapImage = mapSnapshotImage {
-                Image(uiImage: mapImage)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-            }
-            else {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(Color(UIColor.secondarySystemBackground))
-                        .frame(width: 230, height: 120)
-                    HStack {
-                        Spacer()
-                        ProgressView().progressViewStyle(CircularProgressViewStyle())
-                        Spacer()
-                    }
-                }
-            }
-        }
-        .onAppear {
-            generateMapSnapshot()
-        }
-    }
-    
-    func generateMapSnapshot() {
-        
-        /// ** Map Options **
-        let mapOptions = MKMapSnapshotter.Options()
-        // Describes the displayed region
-        mapOptions.region = MKCoordinateRegion( center: self.location, span: MKCoordinateSpan( latitudeDelta: self.span, longitudeDelta: self.span ))
-        // Describes the size of the map
-        mapOptions.size = CGSize(width: 230, height: 120)
-        mapOptions.mapType = .standard
-        mapOptions.showsBuildings = true
-        
-        /// ** Generates the Map Snapshot **
-        MKMapSnapshotter(options: mapOptions).start { (snapshotOrNil, errorOrNil) in
-            if let error = errorOrNil {
-                print(error)
-                return
-            }
-            if let snapshot = snapshotOrNil {
-                self.mapSnapshotImage = snapshot.image
-            }
-        }
-    }
-}
-
-struct TicketView : View {
-    
-    @Binding var ticketCounter : Int
-    @State var ticketTitle : String
-    @State var ticketDoctor : String
-    @State var ticketDate : Date
-    @State var ticketTime : Date
-    @State var ticketAddress : CLLocationCoordinate2D
-    
-    var body : some View {
-        
-        ZStack(alignment: .center){
-            CardShape()
-            VStack(alignment: .leading){
-                Text(ticketTitle)
-                    .font(.title.bold())
-                    .padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
-                Text(ticketDoctor)
-                    .font(.system(size: 17,weight: .medium))
-                    .foregroundColor(Color(.systemGray))
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                Text(ticketDate.formatted(.dateTime.day().month(.wide).year()))
-                    .font(.system(size: 17,weight: .medium))
-                    .foregroundColor(Color(.systemGray))
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                Text(ticketTime.formatted(.dateTime.hour().minute()))
-                    .font(.system(size: 17,weight: .medium))
-                    .foregroundColor(Color(.systemGray))
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                MapSnapshotView(location: ticketAddress)
-                HStack(alignment: .firstTextBaseline){
-                    Spacer()
-                    Circle().frame(width: 8).foregroundColor(Color(.systemGray6))
-                    Circle().frame(width: 8).foregroundColor(Color(.systemGray6))
-                    Circle().frame(width: 8).foregroundColor(Color(.systemGray6))
-                    Text("Ticket N° : \(ticketCounter)")
-                        .font(.system(size: 15, weight: .bold))
-                        .foregroundColor(Color(.systemGray4))
-                        .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
-                    Circle().frame(width: 8).foregroundColor(Color(.systemGray6))
-                    Circle().frame(width: 8).foregroundColor(Color(.systemGray6))
-                    Circle().frame(width: 8).foregroundColor(Color(.systemGray6))
-                    Spacer()
-                }
-                
-            }
-            .frame(width: 230,height: 370)
-            .scaledToFill()
-            .minimumScaleFactor(0.5)
-            .lineLimit(1)
-        }
-    }
-}
-
-struct Ticket : Identifiable {
+// Data Model
+struct Ticket : Hashable,Identifiable{
     let id : UUID = UUID()
     let name : String
     let doctor : String
     let date : Date
     let time : Date
-    let address : CLLocationCoordinate2D
+    // These values are Doubles
+    let addressLatitude : CLLocationDegrees
+    let addressLongitude : CLLocationDegrees
 }
 
 struct ScheduleView: View {
     
-    @State private var tickets : [Ticket] = [
-        Ticket(name: "Cardioscopy", doctor: "Dr. Shaun Murphy", date: Date(), time: Date(), address: CLLocationCoordinate2D(latitude: 45.60086364085512, longitude: 9.260684505618796)),
-        Ticket(name: "Vaccination", doctor: "Dr. Aaron Glassman", date: Date(), time: Date(), address: CLLocationCoordinate2D(latitude: 45.6085934580059, longitude: 9.356561808400514)),
-        Ticket(name: "Pap Test", doctor: "Dr.ssa Audrie Lim", date: Date(), time: Date(), address: CLLocationCoordinate2D(latitude: 45.585279554967606, longitude: 9.302992975560533)),
-        Ticket(name: "Spirometry", doctor: "Dr. Gregory House", date: Date(), time: Date(), address: CLLocationCoordinate2D(latitude: 45.57802442816259, longitude: 9.306659096930387))
+    @State private var currentIndex : Int = 0
+    @State var offset: CGFloat = 0
+    
+    // Examples
+    @State var userTickets: [Ticket] = [
+        Ticket(name: "Cardioscopy", doctor: "Shaun Murphy", date: Date(), time: Date(),
+               addressLatitude: 45.60086364085512, addressLongitude: 9.260684505618796),
+        Ticket(name: "Vaccination", doctor: "Audrie Lim", date: Date(), time: Date(),
+               addressLatitude: 45.6085934580059, addressLongitude: 9.356561808400514),
+        Ticket(name: "Spirometry", doctor: "Morgan Reznick", date: Date(), time: Date(),
+               addressLatitude: 45.585279554967606, addressLongitude: 9.302992975560533),
+        Ticket(name: "Allergens Test", doctor: "Aaron Glassman", date: Date(), time: Date(),
+               addressLatitude: 45.57802442816259, addressLongitude: 9.306659096930387)
     ]
-    @State private var ticketCounter : Int = 0
     
     var body: some View {
         NavigationStack{
             VStack{
-                AppNavigationBar()
+                AppNavigationBar(currentDate: Date(),viewTitle: "Schedule", actionGlyph: "calendar",
+                                 destinationView: AnyView(BookingView()))
                 Spacer()
-                ScrollView(.horizontal){
-                    LazyHGrid(rows: [GridItem()],spacing: 20){
-                        ForEach(tickets){ ticket in
-                            TicketView(ticketCounter: $ticketCounter,
-                                       ticketTitle: ticket.name,
-                                       ticketDoctor: ticket.doctor,
-                                       ticketDate: ticket.date, ticketTime: ticket.time,
-                                       ticketAddress: ticket.address)
+                TabView(selection: $currentIndex){
+                    ForEach(Array(userTickets.enumerated()), id: \.element){ index,element in
+                        TicketView(ticketNumber: index+1, ticketName: element.name, ticketDoctor: element.doctor,
+                                   ticketLatitude: element.addressLatitude, ticketLongitude: element.addressLongitude)
+                        .tag(index)
+                        .contextMenu{
+                            Button(role: .destructive,
+                                   action: { userTickets.remove(at: index) },
+                                   label: { Label("Remove", systemImage: "trash.fill")})
                         }
                     }
-                    .padding(.leading,20)
-                    .frame(height: 420)
                 }
-                .scrollIndicators(.hidden)
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .frame(height: 460)
                 Spacer()
                 Spacer()
             }
-            .navigationBarHidden(true)
         }
+        .tint(Color(.systemPink))
     }
-
 }
 
 struct ScheduleView_Previews: PreviewProvider {
