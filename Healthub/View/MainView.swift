@@ -14,7 +14,7 @@ struct MainView: View {
                 TabView{
                     ScheduleView()
                         .tabItem{
-                            Label("Schedule", systemImage: "clipboard.fill")
+                            Label("Tickets", systemImage: "ticket.fill")
                         }
                     TherapiesView()
                         .tabItem{

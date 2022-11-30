@@ -1,0 +1,20 @@
+//
+//  ExaminationsView.swift
+//  Healthub
+//
+//  Created by Dario Crippa on 30/11/22.
+//
+
+import SwiftUI
+
+struct ExaminationsView: View {
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+struct ExaminationsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ExaminationsView()
+    }
+}

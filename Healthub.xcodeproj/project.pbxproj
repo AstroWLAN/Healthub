@@ -43,7 +43,7 @@
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
 		857A54F82922D34400413841 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F72922D34400413841 /* Preview Assets.xcassets */; };
 		857A55032922D3D200413841 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55022922D3D200413841 /* MainView.swift */; };
-		857A550A2922D6D800413841 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55092922D6D800413841 /* ScheduleView.swift */; };
+		857A550A2922D6D800413841 /* TicketGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55092922D6D800413841 /* TicketGalleryView.swift */; };
 		857A550C2922D70000413841 /* TherapiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550B2922D70000413841 /* TherapiesView.swift */; };
 		857A550E2922D72300413841 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550D2922D72300413841 /* ContactsView.swift */; };
 		857A55102922D75000413841 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550F2922D75000413841 /* SettingsView.swift */; };
@@ -54,7 +54,10 @@
 		857A551F2923130A00413841 /* PathologiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551E2923130A00413841 /* PathologiesView.swift */; };
 		85BB5AAC2935FE160039618B /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AAB2935FE160039618B /* TicketView.swift */; };
 		85BB5AAD2935FE160039618B /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AAB2935FE160039618B /* TicketView.swift */; };
-		85BCA8682927907D00A6C856 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCA8672927907D00A6C856 /* BookingView.swift */; };
+		85BB5ABA293802CE0039618B /* TicketCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* TicketCreationView.swift */; };
+		85BB5ABB293802CE0039618B /* TicketCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* TicketCreationView.swift */; };
+		85BB5ABD293808380039618B /* ExaminationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* ExaminationsView.swift */; };
+		85BB5ABE293808380039618B /* ExaminationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* ExaminationsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +107,7 @@
 		857A54F42922D34400413841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		857A54F72922D34400413841 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		857A55022922D3D200413841 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		857A55092922D6D800413841 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		857A55092922D6D800413841 /* TicketGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketGalleryView.swift; sourceTree = "<group>"; };
 		857A550B2922D70000413841 /* TherapiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapiesView.swift; sourceTree = "<group>"; };
 		857A550D2922D72300413841 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		857A550F2922D75000413841 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -114,7 +117,8 @@
 		857A551C2923120800413841 /* AppInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInformationView.swift; sourceTree = "<group>"; };
 		857A551E2923130A00413841 /* PathologiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesView.swift; sourceTree = "<group>"; };
 		85BB5AAB2935FE160039618B /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
-		85BCA8672927907D00A6C856 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
+		85BB5AB9293802CE0039618B /* TicketCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCreationView.swift; sourceTree = "<group>"; };
+		85BB5ABC293808380039618B /* ExaminationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,7 +301,7 @@
 		857A55042922D57200413841 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				857A55052922D57D00413841 /* Schedule */,
+				857A55052922D57D00413841 /* Tickets */,
 				857A55062922D58A00413841 /* Therapies */,
 				857A55082922D5A300413841 /* Contacts */,
 				857A55072922D59D00413841 /* Settings */,
@@ -305,14 +309,15 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		857A55052922D57D00413841 /* Schedule */ = {
+		857A55052922D57D00413841 /* Tickets */ = {
 			isa = PBXGroup;
 			children = (
 				85BB5AAB2935FE160039618B /* TicketView.swift */,
-				857A55092922D6D800413841 /* ScheduleView.swift */,
-				85BCA8672927907D00A6C856 /* BookingView.swift */,
+				857A55092922D6D800413841 /* TicketGalleryView.swift */,
+				85BB5AB9293802CE0039618B /* TicketCreationView.swift */,
+				85BB5ABC293808380039618B /* ExaminationsView.swift */,
 			);
-			path = Schedule;
+			path = Tickets;
 			sourceTree = "<group>";
 		};
 		857A55062922D58A00413841 /* Therapies */ = {
@@ -462,8 +467,10 @@
 			files = (
 				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
+				85BB5ABE293808380039618B /* ExaminationsView.swift in Sources */,
 				85BB5AAD2935FE160039618B /* TicketView.swift in Sources */,
 				246AC230293519D6004FAE20 /* UserServiceTests.swift in Sources */,
+				85BB5ABB293802CE0039618B /* TicketCreationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +489,7 @@
 				857A55032922D3D200413841 /* MainView.swift in Sources */,
 				241759632927DE220051BE0B /* Pathology.swift in Sources */,
 				857A55152922DC8500413841 /* OnBoardingView.swift in Sources */,
+				85BB5ABD293808380039618B /* ExaminationsView.swift in Sources */,
 				2417595F2927D8F40051BE0B /* SignUpViewModel.swift in Sources */,
 				85BB5AAC2935FE160039618B /* TicketView.swift in Sources */,
 				2417595B2927A60C0051BE0B /* SignupView.swift in Sources */,
@@ -493,7 +501,6 @@
 				857A55102922D75000413841 /* SettingsView.swift in Sources */,
 				2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */,
 				857A550E2922D72300413841 /* ContactsView.swift in Sources */,
-				85BCA8682927907D00A6C856 /* BookingView.swift in Sources */,
 				249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */,
 				249FF529292A2AF0007C802F /* RepositoryEditable.swift in Sources */,
 				24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */,
@@ -502,13 +509,14 @@
 				24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */,
 				2417595D2927A6150051BE0B /* WelcomeView.swift in Sources */,
 				2480CD642934CA08004701F6 /* UserServiceProtocol.swift in Sources */,
-				857A550A2922D6D800413841 /* ScheduleView.swift in Sources */,
+				857A550A2922D6D800413841 /* TicketGalleryView.swift in Sources */,
 				249FF527292A2ABF007C802F /* RepositoryListGettable.swift in Sources */,
 				241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */,
 				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
 				241759552927A5E70051BE0B /* DoctorView.swift in Sources */,
 				241759592927A5FA0051BE0B /* LoginView.swift in Sources */,
 				241759572927A5F00051BE0B /* EmailView.swift in Sources */,
+				85BB5ABA293802CE0039618B /* TicketCreationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

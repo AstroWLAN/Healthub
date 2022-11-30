@@ -71,7 +71,7 @@ struct ScheduleView: View {
         NavigationStack{
             VStack{
                 AppNavigationBar(currentDate: Date(),viewTitle: "Schedule", actionGlyph: "calendar",
-                                 destinationView: AnyView(BookingView()))
+                                 destinationView: AnyView(TicketCreationView()))
                 Spacer()
                 TabView(selection: $currentIndex){
                     ForEach(Array(userTickets.enumerated()), id: \.element){ index,element in

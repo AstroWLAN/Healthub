@@ -47,10 +47,12 @@ struct SettingLabelStyle : LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
         Label {
             configuration.title
+                .foregroundColor(Color(.black))
         } icon: {
             configuration.icon
                 .font(.system(size: 17))
                 .foregroundColor(Color(.white))
+                .opacity(1)
                 .background(
                     RoundedRectangle(cornerRadius: 7)
                         .foregroundColor(Color(.systemGray))
