@@ -12,7 +12,7 @@ struct MainView: View {
         }else{
             VStack{
                 TabView{
-                    ScheduleView()
+                    TicketGalleryView()
                         .tabItem{
                             Label("Tickets", systemImage: "ticket.fill")
                         }

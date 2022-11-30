@@ -50,7 +50,7 @@ struct Ticket : Hashable,Identifiable{
     let addressLongitude : CLLocationDegrees
 }
 
-struct ScheduleView: View {
+struct TicketGalleryView: View {
     
     @State private var currentIndex : Int = 0
     @State var offset: CGFloat = 0
@@ -95,8 +95,8 @@ struct ScheduleView: View {
     }
 }
 
-struct ScheduleView_Previews: PreviewProvider {
+struct TicketGalleryView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleView()
+        TicketGalleryView()
     }
 }
