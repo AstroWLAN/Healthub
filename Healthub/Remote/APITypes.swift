@@ -129,7 +129,7 @@ extension API {
                 case .generic(let reason):
                     return reason
                 case .inter(let reason) :
-                    return "Internal Error: \(reason) "
+                    return "Internal Error: \(reason)"
                 case .loginError(let reason):
                     return "Login Error: \(reason)"
                 case .server(let reason):

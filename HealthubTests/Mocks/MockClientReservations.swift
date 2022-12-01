@@ -12,6 +12,7 @@ class MockClientReservations: ClientProtocol{
     
     private (set) var numberGetReservations = 0
     private (set) var numberAddReservations = 0
+    private (set) var numberDeleteReservations = 0
     private (set) var reservations: [API.Types.Response.GetReservations.ReservationElement] = []
     
     func fetch<Request, Response>(_ endpoint: Healthub.API.Types.Endpoint, method: Healthub.API.Types.Method, body: Request?, then callback: ((Result<Response, Healthub.API.Types.Error>) -> Void)?) where Request : Encodable, Response : Decodable {
@@ -40,13 +41,25 @@ class MockClientReservations: ClientProtocol{
         case .addReservation(token: let token):
             self.numberAddReservations = self.numberAddReservations + 1
             let reservation = body as! API.Types.Request.AddReservation
-            self.reservations.append(API.Types.Response.GetReservations.ReservationElement(id: self.reservations.count, date: reservation.date, starting_time: reservation.starting_time, doctor: API.Types.Response.GetReservations.DoctorElement(id: reservation.doctor_id, name: "Gregory House", address: "221B Baker Street"), examinationType: API.Types.Response.GetReservations.ExaminationTypeElement(id: reservation.examination_type, name: "exam", duration_in_minutes: 15)))
+            self.reservations.append(API.Types.Response.GetReservations.ReservationElement(id: self.reservations.count + 1, date: reservation.date, starting_time: reservation.starting_time, doctor: API.Types.Response.GetReservations.DoctorElement(id: reservation.doctor_id, name: "Gregory House", address: "221B Baker Street"), examinationType: API.Types.Response.GetReservations.ExaminationTypeElement(id: reservation.examination_type, name: "exam", duration_in_minutes: 15)))
             
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
             
  
         case .deleteReservation(token: let token, reservation_id: let reservation_id):
-            callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
+            self.numberDeleteReservations = self.numberDeleteReservations + 1
+            
+            if(self.reservations.count == 0){
+                callback?(.failure(API.Types.Error.inter(reason: "No reservations")))
+            }else{
+                if let element = self.reservations.enumerated().first(where: {$0.element.id == reservation_id }){
+                    self.reservations.remove(at: element.offset)
+                    callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
+                }else{
+                    callback?(.failure(API.Types.Error.inter(reason: "No element found")))
+                }
+                
+            }
         }
     }
     

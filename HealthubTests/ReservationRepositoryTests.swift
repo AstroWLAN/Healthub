@@ -119,9 +119,104 @@ final class ReservationsRepositoryTests: XCTestCase {
         }
     }
     
-    func testRemoveReservation(){
+    func testRemoveReservationWithEmptyReservation(){
         //remove reservation
+        let exp = expectation(description: "Test removing reservation")
+        
+        reservationsRepository.delete(reservation_id: 1){(success,error) in
+            XCTAssertNotNil(error)
+            XCTAssertNil(success)
+            XCTAssertEqual(error?.localizedDescription, "Internal Error: No reservations")
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberDeleteReservations,1)
+                XCTAssertEqual(self.mockClient.reservations.count, 0)
+            }
+        }
+        
     }
-
+    
+    func testRemoveReservationCorrect(){
+        let exp = expectation(description: "Test add reservation")
+        
+        reservationsRepository.add(date: Date(), doctor_id: 1, examinationType: 1){(success, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(success)
+            XCTAssertTrue(success!)
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberAddReservations,1)
+                XCTAssertEqual(self.mockClient.reservations.count, 1)
+                XCTAssertEqual(self.mockClient.reservations[0].doctor.id, 1)
+            }
+        }
+        
+        let exp1 = expectation(description: "Test removing reservation")
+        
+        reservationsRepository.delete(reservation_id: 1){(success,error) in
+            XCTAssertNotNil(success)
+            XCTAssertTrue(success!)
+            XCTAssertNil(error)
+            exp1.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberDeleteReservations,1)
+                XCTAssertEqual(self.mockClient.reservations.count, 0)
+            }
+        }
+    }
+    
+    func testRemoveReservationWithNotExistId(){
+        let exp = expectation(description: "Test add reservation")
+        
+        reservationsRepository.add(date: Date(), doctor_id: 1, examinationType: 1){(success, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(success)
+            XCTAssertTrue(success!)
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberAddReservations,1)
+                XCTAssertEqual(self.mockClient.reservations.count, 1)
+                XCTAssertEqual(self.mockClient.reservations[0].doctor.id, 1)
+            }
+        }
+        
+        let exp1 = expectation(description: "Test removing reservation")
+        
+        reservationsRepository.delete(reservation_id: 5){(success,error) in
+            XCTAssertNil(success)
+            XCTAssertNotNil(error)
+            XCTAssertEqual(error?.localizedDescription, "Internal Error: No element found")
+            exp1.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberDeleteReservations,1)
+                XCTAssertEqual(self.mockClient.reservations.count, 1)
+            }
+        }
+    }
 
 }
