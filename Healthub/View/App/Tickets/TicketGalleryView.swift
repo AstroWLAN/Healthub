@@ -70,28 +70,44 @@ struct TicketGalleryView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                AppNavigationBar(currentDate: Date(),viewTitle: "Schedule", actionGlyph: "calendar",
+                AppNavigationBar(currentDate: Date(),viewTitle: "Tickets", actionGlyph: "calendar",
                                  destinationView: AnyView(TicketCreationView()))
                 Spacer()
-                TabView(selection: $currentIndex){
-                    ForEach(Array(userTickets.enumerated()), id: \.element){ index,element in
-                        TicketView(ticketNumber: index+1, ticketName: element.name, ticketDoctor: element.doctor,
-                                   ticketLatitude: element.addressLatitude, ticketLongitude: element.addressLongitude)
-                        .tag(index)
-                        .contextMenu{
-                            Button(role: .destructive,
-                                   action: { userTickets.remove(at: index) },
-                                   label: { Label("Remove", systemImage: "trash.fill")})
-                        }
+                if userTickets.isEmpty {
+                    VStack{
+                        Image("TicketsPlaceholder")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 160)
+                        Text("No Appointments")
+                            .font(.system(size: 17,weight: .medium))
+                            .foregroundColor(Color(.systemGray5))
+                            .padding(.vertical,10)
                     }
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .frame(height: 460)
-                Spacer()
+                else {
+                    VStack{
+                        TabView(selection: $currentIndex){
+                            ForEach(Array(userTickets.enumerated()), id: \.element){ index,element in
+                                TicketView(ticketNumber: index+1, ticketName: element.name, ticketDoctor: element.doctor,
+                                           ticketLatitude: element.addressLatitude, ticketLongitude: element.addressLongitude)
+                                .tag(index)
+                                .contextMenu{
+                                    Button(role: .destructive,
+                                           action: { userTickets.remove(at: index) },
+                                           label: { Label("Remove", systemImage: "trash.fill")})
+                                }
+                            }
+                        }
+                        .tabViewStyle(.page(indexDisplayMode: .never))
+                        .frame(height: 460)
+                        Spacer()
+                    }
+                }
                 Spacer()
             }
+            .tint(Color(.systemPink))
         }
-        .tint(Color(.systemPink))
     }
 }
 
