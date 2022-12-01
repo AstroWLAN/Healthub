@@ -1,50 +1,31 @@
 import SwiftUI
 
-
-
 struct MainView: View {
     
-    @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = true
     @EnvironmentObject private var loginViewModel: LoginViewModel
+    
+    @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = true
     @AppStorage("isLogged") var isLogged : Bool = false
     
     var body: some View {
-        if(isLogged == false){
-            LoginView()
-        }else{
+        if(isLogged == false){ WelcomeView() }
+        else{
             VStack{
+                // Defines the application tab bar
                 TabView{
                     TicketGalleryView()
-                        .tabItem{
-                            Label("Tickets", systemImage: "ticket.fill")
-                        }
+                        .tabItem{ Label("Tickets", systemImage: "ticket.fill") }
                     TherapiesView()
-                        .tabItem{
-                            Label("Therapies", systemImage: "pills.fill")
-                        }
+                        .tabItem{ Label("Therapies", systemImage: "pills.fill") }
                     ContactsView()
-                        .tabItem{
-                            Label("Contacts", systemImage: "person.crop.rectangle.stack.fill")
-                        }
+                        .tabItem{ Label("Contacts", systemImage: "person.crop.rectangle.stack.fill") }
                     SettingsView()
-                        .tabItem{
-                            Label("Settings", systemImage: "gear")
-                        }
+                        .tabItem{ Label("Settings", systemImage: "gear") }
                 }
-                // Changes the color of the selected item
+                // Changes the tint of the tab bar
                 .tint(Color("HealthGray3"))
-            }.sheet(isPresented: $firstAppLaunch) {
-                OnBoardingView()
             }
-            /// **FIRST APP USAGE**
-            // Displays an OnBoarding sheet where the user can see the main features of the app
-            
+            .sheet(isPresented: $firstAppLaunch) { OnBoardingView() }
         }
-    }
-}
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }
