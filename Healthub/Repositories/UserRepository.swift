@@ -8,7 +8,7 @@
 import Foundation
 import SwiftKeychainWrapper
 
-class UserService: UserServiceProtocol{
+class UserRepository: UserRepositoryProtocol{
     
     
     private var client: any ClientProtocol

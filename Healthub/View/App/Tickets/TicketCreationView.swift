@@ -27,7 +27,9 @@ struct TicketCreationView: View {
                     HStack{
                         Button(action: { displayExaminations = true },
                                label:  { Label(ticketExamination?.rawValue.capitalized ?? "Examinations",systemImage: examinationGlyph ?? "staroflife.fill" )
-                                            .labelStyle(SettingLabelStyle()) }
+                                         //   labelStyle(SettingLabelStyle())
+                            
+                        }
                         )
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -41,7 +43,9 @@ struct TicketCreationView: View {
                     HStack{
                         Button(action: { displayDoctors = true },
                                label:  { Label(ticketDoctor ?? "Doctor",systemImage: "stethoscope" )
-                                            .labelStyle(SettingLabelStyle()) }
+                            //.labelStyle(SettingLabelStyle())
+                            
+                        }
                         )
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -56,13 +60,13 @@ struct TicketCreationView: View {
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 Section(header: Text("Date")){
                     DatePicker(selection: $ticketDate, displayedComponents: [.date]){
-                        Label("Exam Date", systemImage: "calendar").labelStyle(SettingLabelStyle())
+                        Label("Exam Date", systemImage: "calendar")//.labelStyle(SettingLabelStyle())
                     }
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 Section(header: Text("Time")){
-                    Label("Exam Time Slot", systemImage: "timer").labelStyle(SettingLabelStyle())
+                    Label("Exam Time Slot", systemImage: "timer")//.labelStyle(SettingLabelStyle())
                     Picker("", selection: $ticketSlot){
                         ForEach(timeSlots, id: \.self){ slot in
                             Text("\(slot)")

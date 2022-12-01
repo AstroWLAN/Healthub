@@ -12,9 +12,9 @@ class LoginViewModel: ObservableObject {
     
     @Published var hasError: Bool = false
     private var loginCompleted: Bool = false
-    private var userService: UserService
+    private var userService: UserRepository
     
-    init(userService: UserService) {
+    init(userService: UserRepository) {
         self.userService = userService
     }
     

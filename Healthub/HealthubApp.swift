@@ -165,9 +165,9 @@ struct RecordTextfield : View {
     
     @main
     struct HealthubApp: App {
-        @StateObject var loginViewModel = LoginViewModel(userService: UserService(client: API.Client()))
+        @StateObject var loginViewModel = LoginViewModel(userService: UserRepository(client: API.Client()))
         @StateObject var pathologiesViewModel = PathologiesViewModel(pathologiesRepository: PathologiesRepository(client: API.Client()))
-        @StateObject var settingsViewModel = SettingsViewModel(userService: UserService(client: API.Client()))
+        @StateObject var settingsViewModel = SettingsViewModel(userService: UserRepository(client: API.Client()))
         var body: some Scene {
             WindowGroup {
                 MainView()

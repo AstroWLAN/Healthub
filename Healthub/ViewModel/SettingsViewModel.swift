@@ -12,7 +12,7 @@ class SettingsViewModel: ObservableObject {
     @Published private var hasError: Bool = false
   
     private var patient: Patient?
-    private var userService: any UserServiceProtocol
+    private var userService: any UserRepositoryProtocol
     @Published var isLoading = false
     @Published var name : String = ""
     @Published var gender : Genders = .Male
@@ -22,7 +22,7 @@ class SettingsViewModel: ObservableObject {
     @Published var fiscalCode : String = ""
     @Published var phone : String = ""
     
-    init(userService: any UserServiceProtocol){
+    init(userService: any UserRepositoryProtocol){
         self.userService = userService
     }
     

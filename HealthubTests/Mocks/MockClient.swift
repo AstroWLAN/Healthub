@@ -62,6 +62,12 @@ class MockClient: ClientProtocol{
         case .updatePatient(_):
             self.updatePatient = body as! API.Types.Request.UpdatePatient
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
+        case .getReservations(token: let token):
+            print("getReservations")
+        case .addReservation(token: let token):
+            print("addReservation")
+        case .deleteReservation(token: let token, reservation_id: let reservation_id):
+            print("deleteReservation")
         }
     }
     
@@ -92,6 +98,12 @@ class MockClient: ClientProtocol{
             callback?(.success(API.Types.Response.GetPatient(email: "dispoto97@gmail.com", name: "Giovanni Dispoto", sex: 0, dateOfBirth: "1997-09-18", fiscalCode: "DSPGNN97P18L113H", height: 173, weight: 78, phone: "+393318669067", pathologies: []) as! Response))
         case .updatePatient(_):
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
+        case .getReservations(token: let token):
+            print("getReservations")
+        case .addReservation(token: let token):
+            print("addReservation")
+        case .deleteReservation(token: let token, reservation_id: let reservation_id):
+            print("deleteReservation")
         }
     }
     

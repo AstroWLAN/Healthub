@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol UserServiceProtocol{
+protocol UserRepositoryProtocol{
     func updateInformation(user: Patient, completionHandler: @escaping (Bool?, Error?) -> Void)
     func getUser(completionHandler: @escaping (Patient?, Error?) -> Void)
     func registerUser()

@@ -12,7 +12,7 @@ struct DoctorsView: View {
             NavigationStack{
                     List{
                         ForEach(doctors, id : \.self){ doctor in
-                            Label(doctor, systemImage: "person.fill").labelStyle(SettingLabelStyle())
+                            Label(doctor, systemImage: "person.fill")//.labelStyle(SettingLabelStyle())
                         }
                         .listRowSeparator(.hidden)
                         .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))

@@ -25,7 +25,7 @@ struct ExaminationsView: View {
                             },
                             label:  {
                                 Label(examination.rawValue.capitalized, systemImage: examGlyphs[examination] ?? "")
-                                    .labelStyle(SettingLabelStyle())
+                                    //.labelStyle(SettingLabelStyle())
                             })
                     }
                 }

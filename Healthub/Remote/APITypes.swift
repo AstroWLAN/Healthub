@@ -45,6 +45,13 @@ extension API {
                 
             }
             
+            struct AddReservation: Encodable{
+                var date: String
+                var starting_time: String
+                var doctor_id: Int
+                var examination_type: Int
+            }
+            
             
         }
         
@@ -64,6 +71,32 @@ extension API {
                 var weight: Float
                 var phone: String
                 var pathologies: [String]
+                
+            }
+            
+            struct GetReservations:Decodable {
+                
+                var reservations: [ReservationElement]
+                
+                struct ReservationElement: Decodable{
+                    var id: Int
+                    var date: String
+                    var starting_time: String
+                    var doctor: DoctorElement
+                    var examinationType: ExaminationTypeElement
+                }
+                
+                struct DoctorElement: Decodable{
+                    var id: Int
+                    var name: String
+                    var address: String
+                }
+                
+                struct ExaminationTypeElement:Decodable{
+                    var id: Int
+                    var name: String
+                    var duration_in_minutes: Int
+                }
                 
             }
             
@@ -116,11 +149,14 @@ extension API {
             case addPathology(token: String)
             case getPatient(token: String)
             case updatePatient(token: String)
+            case getReservations(token: String)
+            case addReservation(token: String)
+            case deleteReservation(token: String, reservation_id: Int)
             
             
             var url: URL{
                 var components = URLComponents()
-                components.host = "healthub.software"
+                components.host = "localhost"
                 components.scheme = "https"
                 switch self{
                     
@@ -161,8 +197,28 @@ extension API {
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token)
                     ]
+                case .getReservations(let token):
+                    components.path = "/patients/reservations"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token)
+                    ]
+                    
+                case .addReservation(let token):
+                    components.path = "/patients/reservations"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token)
+                    ]
+                    
+                case .deleteReservation(let token, let reservation_id):
+                    components.path = "/patients/reservations"
+                    components.queryItems = [
+                        URLQueryItem(name: "reservation_id", value: String(reservation_id)),
+                        URLQueryItem(name: "token", value : token)
+                    ]
+                    
                     
                 }
+                
                 
                 return components.url!
             }

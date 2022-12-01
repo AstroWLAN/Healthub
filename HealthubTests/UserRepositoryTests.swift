@@ -9,15 +9,15 @@ import XCTest
 import SwiftKeychainWrapper
 @testable import Healthub
 
-final class UserServiceTests: XCTestCase {
+final class UserRepositoryTests: XCTestCase {
     
-    private var userService: UserService!
+    private var userRepository: UserRepository!
     private var mockClient: MockClient!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockClient = MockClient()
-        userService = UserService(client: mockClient)
+        userRepository = UserRepository(client: mockClient)
         
     }
 
@@ -28,7 +28,7 @@ final class UserServiceTests: XCTestCase {
     func testDoLogin(){
         let exp = expectation(description:"Test Login")
         
-        userService.doLogin(email: "dispoto97@gmail.com", password: "StrongPassword00"){ (success, error) in
+        userRepository.doLogin(email: "dispoto97@gmail.com", password: "StrongPassword00"){ (success, error) in
             XCTAssertNil(error, "Error is not null")
             XCTAssertTrue(success!, "Success is null")
             XCTAssertEqual(KeychainWrapper.standard.string(forKey: "access_token"), "1234")
@@ -50,7 +50,7 @@ final class UserServiceTests: XCTestCase {
         
         let exp = expectation(description:"Test Logout")
         
-        userService.doLogin(email: "dispoto97@gmail.com", password: "StrongPassword00"){ (success, error) in
+        userRepository.doLogin(email: "dispoto97@gmail.com", password: "StrongPassword00"){ (success, error) in
             XCTAssertNil(error, "Error is not null")
             XCTAssertTrue(success!, "Success is null")
             
@@ -67,7 +67,7 @@ final class UserServiceTests: XCTestCase {
         
         let exp1 = expectation(description:"Test Logout")
         
-        userService.doLogout(){(success, error) in
+        userRepository.doLogout(){(success, error) in
             XCTAssertTrue(success!, "success is null")
             XCTAssertNotEqual(KeychainWrapper.standard.string(forKey: "access_token"), "1234", "access token still set")
             XCTAssertNil(KeychainWrapper.standard.string(forKey: "access_token"), "access_token is not null")
@@ -87,7 +87,7 @@ final class UserServiceTests: XCTestCase {
     func testGetUser(){
         let exp = expectation(description:"Test Get user")
         
-        userService.doLogin(email: "dispoto97@gmail.com", password: "StrongPassword00"){ (success, error) in
+        userRepository.doLogin(email: "dispoto97@gmail.com", password: "StrongPassword00"){ (success, error) in
             XCTAssertNil(error, "Error is not null")
             XCTAssertTrue(success!, "Success is null")
             exp.fulfill()
@@ -105,7 +105,7 @@ final class UserServiceTests: XCTestCase {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
-        userService.getUser(){(patient, error) in
+        userRepository.getUser(){(patient, error) in
             XCTAssertNil(error, "Error is not null")
             XCTAssertEqual(patient?.email, "dispoto97@gmail.com")
             XCTAssertEqual(patient?.name, "Giovanni Dispoto")
@@ -131,7 +131,7 @@ final class UserServiceTests: XCTestCase {
         
         let exp = expectation(description: "Test Update User: Login")
         
-        userService.doLogin(email: "dispoto97@gmail.com", password: "StrongPassword00"){ (success, error) in
+        userRepository.doLogin(email: "dispoto97@gmail.com", password: "StrongPassword00"){ (success, error) in
             XCTAssertNil(error, "Error is not null")
             XCTAssertTrue(success!, "Success is null")
             exp.fulfill()
@@ -150,7 +150,7 @@ final class UserServiceTests: XCTestCase {
         
         let patient = Patient(email: "dispoto97@gmail.com", name: "Dario Crippa", sex: .Male, dateOfBirth: formatter.date(from: "1997-08-18")!, fiscalCode: "DSPGNN97P18L113H", height: 176, weight: 76, phone: "+393318669067")
         
-        userService.updateInformation(user: patient){ (success, error) in
+        userRepository.updateInformation(user: patient){ (success, error) in
             XCTAssertNil(error, "Error is not null")
             XCTAssertTrue(success!, "Success it not true")
             exp1.fulfill()
