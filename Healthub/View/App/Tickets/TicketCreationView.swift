@@ -18,6 +18,7 @@ struct TicketCreationView: View {
     @State private var ticketSlot : String?
     
     @State private var displayExaminations : Bool = false
+    @State private var displayDoctors : Bool = false
     
     var body: some View {
         NavigationStack{
@@ -38,7 +39,7 @@ struct TicketCreationView: View {
                             .presentationDetents([.medium])
                     }
                     HStack{
-                        Button(action: {  },
+                        Button(action: { displayDoctors = true },
                                label:  { Label(ticketDoctor ?? "Doctor",systemImage: "stethoscope" )
                                             .labelStyle(SettingLabelStyle()) }
                         )
@@ -46,6 +47,9 @@ struct TicketCreationView: View {
                         Image(systemName: "chevron.right")
                             .font(.system(size: 17,weight: .medium))
                             .foregroundColor(Color(.systemGray3))
+                    }
+                    .sheet(isPresented: $displayDoctors){
+                        DoctorsView(selectedDoctor: $ticketDoctor)
                     }
                 }
                 .listRowSeparator(.hidden)
