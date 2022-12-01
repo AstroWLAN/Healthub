@@ -17,12 +17,14 @@ struct TicketCreationView: View {
     @State private var ticketDate : Date = Date()
     @State private var ticketSlot : String?
     
+    @State private var displayExaminations : Bool = false
+    
     var body: some View {
         NavigationStack{
             List{
                 Section(header: Text("Information")){
                     HStack{
-                        Button(action: {  },
+                        Button(action: { displayExaminations = true },
                                label:  { Label(ticketExamination?.rawValue.capitalized ?? "Examinations",systemImage: examinationGlyph ?? "staroflife.fill" )
                                             .labelStyle(SettingLabelStyle()) }
                         )
@@ -30,6 +32,10 @@ struct TicketCreationView: View {
                         Image(systemName: "chevron.right")
                             .font(.system(size: 17,weight: .medium))
                             .foregroundColor(Color(.systemGray3))
+                    }
+                    .sheet(isPresented: $displayExaminations){
+                        ExaminationsView(selectedExam: $ticketExamination, examGlyph: $examinationGlyph)
+                            .presentationDetents([.medium])
                     }
                     HStack{
                         Button(action: {  },
