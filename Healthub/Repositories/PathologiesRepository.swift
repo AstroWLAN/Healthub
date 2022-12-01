@@ -19,14 +19,14 @@ struct PathologiesRepository : PathologyRepositoryProcotol{
     }
     
     
-    func add(_ item: Pathology, completionHandler: @escaping (Bool?, Error?) -> Void) {
+    func add(pathologyName:String, completionHandler: @escaping (Bool?, Error?) -> Void) {
         //code
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
             fatalError("Token not present")
         }
         
-        let body = API.Types.Request.AddPathology(name: item.name)
+        let body = API.Types.Request.AddPathology(name: pathologyName)
         
        client
             .fetch(.addPathology(token: token!), method: .post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
@@ -43,7 +43,7 @@ struct PathologiesRepository : PathologyRepositoryProcotol{
         
     }
     
-    func delete(_ item: Pathology, completionHandler: @escaping (Bool?, Error?) -> Void) {
+    func delete(pathologyId:Int, completionHandler: @escaping (Bool?, Error?) -> Void) {
         //code
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
@@ -53,7 +53,7 @@ struct PathologiesRepository : PathologyRepositoryProcotol{
         let body = API.Types.Request.Empty() //API.Types.Request.PathologyDelete(id: item.id)
         
        client
-            .fetch(.deletePathology(token: token!, id: item.id), method: .delete, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+            .fetch(.deletePathology(token: token!, id: pathologyId), method: .delete, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{
                     case .success(let success):

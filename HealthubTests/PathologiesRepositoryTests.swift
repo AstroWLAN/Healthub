@@ -38,7 +38,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         
         XCTAssertEqual(self.mockClient.pathologies.count, 0)
         
-        pathologiesRepository.add(pathology){ (success, error) in
+        pathologiesRepository.add(pathologyName: pathology.name){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp.fulfill()
@@ -62,7 +62,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         
         XCTAssertEqual(self.mockClient.pathologies.count, 0)
         
-        pathologiesRepository.add(pathology){ (success, error) in
+        pathologiesRepository.add(pathologyName: pathology.name){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp.fulfill()
@@ -81,7 +81,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         let exp1 = expectation(description: "Add Pathology")
         let pathology1 = Pathology(id: 0, name: "Pathology2")
         
-        pathologiesRepository.add(pathology1){ (success, error) in
+        pathologiesRepository.add(pathologyName: pathology1.name){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp1.fulfill()
@@ -106,7 +106,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         
         let pathology = Pathology(id: 1, name: "Pathology")
         
-        pathologiesRepository.add(pathology){ (success, error) in
+        pathologiesRepository.add(pathologyName: pathology.name){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp.fulfill()
@@ -127,7 +127,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         let exp1 = expectation(description: "Test delete")
         let pathologyToDelete = Pathology(id: 1, name: "Pathology")
 
-        pathologiesRepository.delete(pathologyToDelete){(success, error) in
+        pathologiesRepository.delete(pathologyId: pathologyToDelete.id){(success, error) in
             XCTAssertTrue(success!, "it was not possible to delete pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp1.fulfill()
@@ -154,7 +154,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         
         XCTAssertEqual(self.mockClient.pathologies.count, 0)
         
-        pathologiesRepository.add(pathology){ (success, error) in
+        pathologiesRepository.add(pathologyName: pathology.name){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp.fulfill()
@@ -173,7 +173,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         let exp1 = expectation(description: "Add Pathology")
         let pathology1 = Pathology(id: 0, name: "Pathology2")
         
-        pathologiesRepository.add(pathology1){ (success, error) in
+        pathologiesRepository.add(pathologyName: pathology1.name){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp1.fulfill()
@@ -191,7 +191,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         
         let exp2 = expectation(description: "Test delete")
         let pathologyToDelete = Pathology(id: 2, name: "Pathology2")
-        pathologiesRepository.delete(pathologyToDelete){(success, error) in
+        pathologiesRepository.delete(pathologyId: pathologyToDelete.id){(success, error) in
             XCTAssertTrue(success!, "it was not possible to delete pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp2.fulfill()
@@ -231,7 +231,7 @@ final class PathologiesRepositoryTests: XCTestCase {
         let exp1 = expectation(description: "Test GetAll: add a pathology ")
         
         let pathology = Pathology(id: 1, name: "Pathology")
-        pathologiesRepository.add(pathology){ (success, error) in
+        pathologiesRepository.add(pathologyName: pathology.name){ (success, error) in
             XCTAssertTrue(success!, "it was not possible to add pathology")
             XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
             exp1.fulfill()
