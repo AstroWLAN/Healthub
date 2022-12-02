@@ -105,7 +105,12 @@ struct TicketGalleryView: View {
                     }
                 }
                 Spacer()
-            }.onAppear(perform: ticketViewModel.fetchTickets)
+            }.onAppear(perform:{
+                if(UserDefaults.standard.bool(forKey: "isLogged")){
+                    ticketViewModel.fetchTickets()
+                }
+                
+            })
             .tint(Color(.systemPink))
         }
     }

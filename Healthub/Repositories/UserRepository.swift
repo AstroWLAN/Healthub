@@ -99,6 +99,7 @@ class UserRepository: UserRepositoryProtocol{
                             let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "access_token")
                             if removeSuccessful == true{
                                 UserDefaults.standard.set(false, forKey: "isLogged")
+                                UserDefaults.standard.synchronize()
                                 completionHandler(true, nil)
                             }
                             else{
