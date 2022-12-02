@@ -1,4 +1,5 @@
 import SwiftUI
+import AlertToast
 import MapKit
 
 // Creates the ticket inner shape
@@ -97,49 +98,62 @@ struct TicketView: View {
     let ticketDoctor : String
     let ticketDate : Date
     let ticketTime : Date
-    let ticketLatitude : CLLocationDegrees
-    let ticketLongitude : CLLocationDegrees
+    let ticketAddress: String
+    @State var ticketLatitude : CLLocationDegrees?
+    @State var ticketLongitude : CLLocationDegrees?
     
     var body: some View {
-        
-        ZStack{
-            TicketInnerShape()
-                .fill(colorScheme == .dark ? .black : .white )
-                .padding(8)
-            VStack(alignment: .leading){
-                Spacer()
-                Text(ticketName)
-                    .font(.title.bold())
-                    .padding(.bottom, 10)
-                Group{
-                    Text(ticketDoctor)
-                    Text("\(ticketDate.formatted(.dateTime.day())) "+"\(ticketDate.formatted(.dateTime.month(.wide))) "+"\(ticketDate.formatted(.dateTime.year()))")
-                    Text(ticketTime.formatted(.dateTime.hour().minute()))
+       
+            ZStack{
+                TicketInnerShape()
+                    .fill(colorScheme == .dark ? .black : .white )
+                    .padding(8)
+                VStack(alignment: .leading){
+                    Spacer()
+                    Text(ticketName)
+                        .font(.title.bold())
                         .padding(.bottom, 10)
-                }
-                .font(.system(size: 17,weight: .medium))
-                .foregroundColor(Color(.systemGray))
-                AddressView(location: CLLocationCoordinate2D(latitude: ticketLatitude, longitude: ticketLongitude))
-                HStack(spacing: 12){
-                    ForEach(0 ..< 3){ _ in
-                        Circle().fill(Color(.systemGray6)).frame(height: 6)
+                    Group{
+                        Text(ticketDoctor)
+                        Text("\(ticketDate.formatted(.dateTime.day())) "+"\(ticketDate.formatted(.dateTime.month(.wide))) "+"\(ticketDate.formatted(.dateTime.year()))")
+                        Text(ticketTime.formatted(.dateTime.hour().minute()))
+                            .padding(.bottom, 10)
                     }
-                    Text("Ticket N° \(ticketNumber)")
-                        .font(.system(size: 17,weight: .bold))
-                        .foregroundColor(Color(.systemGray3))
-                    ForEach(0 ..< 3){ _ in
-                        Circle().fill(Color(.systemGray6)).frame(height: 6)
+                    .font(.system(size: 17,weight: .medium))
+                    .foregroundColor(Color(.systemGray))
+                    if (ticketLatitude != nil && ticketLongitude != nil){
+                        AddressView(location: CLLocationCoordinate2D(latitude: ticketLatitude!, longitude: ticketLongitude!))
+                    }else{
+                        AlertToast(type: .loading, title: "Loading")
                     }
+                    
+                    HStack(spacing: 12){
+                        ForEach(0 ..< 3){ _ in
+                            Circle().fill(Color(.systemGray6)).frame(height: 6)
+                        }
+                        Text("Ticket N° \(ticketNumber)")
+                            .font(.system(size: 17,weight: .bold))
+                            .foregroundColor(Color(.systemGray3))
+                        ForEach(0 ..< 3){ _ in
+                            Circle().fill(Color(.systemGray6)).frame(height: 6)
+                        }
+                    }.padding(16)
                 }
-                .padding(16)
+                .frame(width: 264,height: 364)
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
             }
-            .frame(width: 264,height: 364)
-            .minimumScaleFactor(0.5)
-            .lineLimit(1)
+            .frame(width: 280,height: 380)
+            .background(Color(.systemGray6))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
+            .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 18))
+            .task({
+                Address2Coordinates.translate(from: ticketAddress){(location, error) in
+                    if let location = location{
+                        self.ticketLatitude = location.latitude
+                        self.ticketLongitude = location.longitude
+                    }
+                }
+            })
         }
-        .frame(width: 280,height: 380)
-        .background(Color(.systemGray6))
-        .clipShape(RoundedRectangle(cornerRadius: 18))
-        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 18))
-    }
 }

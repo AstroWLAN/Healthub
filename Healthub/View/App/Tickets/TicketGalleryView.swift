@@ -90,8 +90,7 @@ struct TicketGalleryView: View {
                     VStack{
                         TabView(selection: $currentIndex){
                             ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element){ index,element in
-                                TicketView(ticketNumber: index+1, ticketName: element.examinationType.name, ticketDoctor: element.doctor.name, ticketDate: element.date, ticketTime: element.time,
-                                           ticketLatitude: 45.585279554967606, ticketLongitude: 9.260684505618796)
+                                TicketView(ticketNumber: index+1, ticketName: element.examinationType.name, ticketDoctor: element.doctor.name, ticketDate: element.date, ticketTime: element.time, ticketAddress: element.doctor.address)
                                 .tag(index)
                                 .contextMenu{
                                     Button(role: .destructive,

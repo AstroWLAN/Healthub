@@ -97,7 +97,6 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         time.dateFormat = "HH:mm"
         
         for result in results.reservations{
-            
             let doctor = Doctor(id: result.doctor.id, name: result.doctor.name,address: result.doctor.address)
             let examinationType = ExaminationType(id: result.examinationType.id, name: result.examinationType.name, duration_in_minutes: result.examinationType.duration_in_minutes)
             

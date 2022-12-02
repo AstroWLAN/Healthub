@@ -41,6 +41,7 @@
 		24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDD29327E9C0021C783 /* ClientProtocol.swift */; };
 		24D420DF2938BC090090A42D /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420DE2938BC090090A42D /* Doctor.swift */; };
 		24D420E12938BC170090A42D /* ExaminationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420E02938BC170090A42D /* ExaminationType.swift */; };
+		24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
 		852944D12925ABFA006FC0C5 /* AppInformation.json in Resources */ = {isa = PBXBuildFile; fileRef = 852944D02925ABFA006FC0C5 /* AppInformation.json */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
@@ -110,6 +111,7 @@
 		24C54EDD29327E9C0021C783 /* ClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProtocol.swift; sourceTree = "<group>"; };
 		24D420DE2938BC090090A42D /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
 		24D420E02938BC170090A42D /* ExaminationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationType.swift; sourceTree = "<group>"; };
+		24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address2Coordinates.swift; sourceTree = "<group>"; };
 		852944D02925ABFA006FC0C5 /* AppInformation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppInformation.json; sourceTree = "<group>"; };
 		857A54ED2922D34300413841 /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A54F02922D34300413841 /* HealthubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubApp.swift; sourceTree = "<group>"; };
@@ -231,6 +233,14 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
+		24EDDCA2293A0D9D007CA69E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		857A54E42922D34300413841 = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				857A54F02922D34300413841 /* HealthubApp.swift */,
+				24EDDCA2293A0D9D007CA69E /* Utilities */,
 				857A54FE2922D38300413841 /* Resources */,
 				249FF51F292A284B007C802F /* Repositories */,
 				24C1CCFC2928F9190089F9A0 /* Remote */,
@@ -520,6 +531,7 @@
 				857A550E2922D72300413841 /* ContactsView.swift in Sources */,
 				249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */,
 				2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */,
+				24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */,
 				24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */,
 				249FF536292A79B0007C802F /* SettingsViewModel.swift in Sources */,
 				24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */,
