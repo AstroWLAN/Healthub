@@ -35,14 +35,14 @@ final class ReservationsRepositoryTests: XCTestCase {
     func testGetAll(){
         let exp = expectation(description: "Test getAll reservations")
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.dateFormat = "yyyy-MM-dd"
         reservationsRepository.getAll(){(reservations, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(reservations)
             XCTAssertEqual(reservations!.count, 1)
             XCTAssertEqual(reservations![0].examinationType.name, "visit")
             XCTAssertEqual(reservations![0].doctor.name, "Gregory House")
-            XCTAssertEqual(reservations![0].date, formatter.date(from: "2022-11-29 11:00"))
+            XCTAssertEqual(reservations![0].date, formatter.date(from: "2022-11-29"))
             exp.fulfill()
         }
         

@@ -54,6 +54,7 @@ struct TicketGalleryView: View {
     
     @State private var currentIndex : Int = 0
     @State var offset: CGFloat = 0
+    @EnvironmentObject private var ticketViewModel: TicketViewModel
     
     // Examples
     @State var userTickets: [Ticket] = [
@@ -73,7 +74,7 @@ struct TicketGalleryView: View {
                 AppNavigationBar(currentDate: Date(),viewTitle: "Tickets", actionGlyph: "calendar",
                                  destinationView: AnyView(TicketCreationView()))
                 Spacer()
-                if userTickets.isEmpty {
+                if ticketViewModel.reservations.isEmpty {
                     VStack{
                         Image("TicketsPlaceholder")
                             .resizable()
@@ -88,9 +89,9 @@ struct TicketGalleryView: View {
                 else {
                     VStack{
                         TabView(selection: $currentIndex){
-                            ForEach(Array(userTickets.enumerated()), id: \.element){ index,element in
-                                TicketView(ticketNumber: index+1, ticketName: element.name, ticketDoctor: element.doctor,
-                                           ticketLatitude: element.addressLatitude, ticketLongitude: element.addressLongitude)
+                            ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element){ index,element in
+                                TicketView(ticketNumber: index+1, ticketName: element.examinationType.name, ticketDoctor: element.doctor.name, ticketDate: element.date, ticketTime: element.time,
+                                           ticketLatitude: 45.585279554967606, ticketLongitude: 9.260684505618796)
                                 .tag(index)
                                 .contextMenu{
                                     Button(role: .destructive,
@@ -105,7 +106,7 @@ struct TicketGalleryView: View {
                     }
                 }
                 Spacer()
-            }
+            }.onAppear(perform: ticketViewModel.fetchTickets)
             .tint(Color(.systemPink))
         }
     }

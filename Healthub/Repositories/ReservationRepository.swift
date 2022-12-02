@@ -90,15 +90,18 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     private func processReservations(_ results: API.Types.Response.GetReservations) -> [Reservation]{
         var local = [Reservation]()
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let date = DateFormatter()
+        date.dateFormat = "yyyy-MM-dd"
+        
+        let time = DateFormatter()
+        time.dateFormat = "HH:mm"
         
         for result in results.reservations{
             
             let doctor = Doctor(id: result.doctor.id, name: result.doctor.name,address: result.doctor.address)
             let examinationType = ExaminationType(id: result.examinationType.id, name: result.examinationType.name, duration_in_minutes: result.examinationType.duration_in_minutes)
             
-            let reservation = Reservation(id: result.id, date: formatter.date(from: "\(result.date) \(result.starting_time)")!, doctor: doctor, examinationType: examinationType)
+            let reservation = Reservation(id: result.id, date: date.date(from: "\(result.date)")!, time: time.date(from:"\(result.starting_time)")!, doctor: doctor, examinationType: examinationType)
             
             local.append(reservation)
         }

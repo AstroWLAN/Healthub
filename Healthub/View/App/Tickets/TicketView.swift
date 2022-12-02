@@ -95,8 +95,8 @@ struct TicketView: View {
     @State var ticketNumber : Int
     let ticketName : String
     let ticketDoctor : String
-    let ticketDate : Date = Date()
-    let ticketTime : Date = Date()
+    let ticketDate : Date
+    let ticketTime : Date
     let ticketLatitude : CLLocationDegrees
     let ticketLongitude : CLLocationDegrees
     

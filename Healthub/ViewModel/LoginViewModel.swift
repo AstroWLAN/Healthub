@@ -12,14 +12,14 @@ class LoginViewModel: ObservableObject {
     
     @Published var hasError: Bool = false
     private var loginCompleted: Bool = false
-    private var userService: UserRepository
+    private var userRepository: any UserRepositoryProtocol
     
-    init(userService: UserRepository) {
-        self.userService = userService
+    init(userRepository: any UserRepositoryProtocol) {
+        self.userRepository = userRepository
     }
     
      func doLogout(){
-         userService.doLogout(){(success, error) in
+         userRepository.doLogout(){(success, error) in
              if let error = error{
                  print(error)
              }
@@ -33,7 +33,7 @@ class LoginViewModel: ObservableObject {
             }
         hasError = false
 
-        userService.doLogin(email: email, password: password){(success, error) in
+        userRepository.doLogin(email: email, password: password){(success, error) in
             
             if(success == true){
                 UserDefaults.standard.set(true, forKey: "isLogged")
