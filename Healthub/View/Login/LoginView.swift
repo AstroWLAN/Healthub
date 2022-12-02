@@ -41,7 +41,7 @@ struct LoginView: View {
                 Button(action: {
                     isPerformingLogin = true
                     loginViewModel.doLogin(email: email, password: password)
-                    isPerformingLogin = true
+                    isPerformingLogin = false
                 },
                        label: {
                     Text("Login")
