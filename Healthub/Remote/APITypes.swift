@@ -98,6 +98,17 @@ extension API {
                     var duration_in_minutes: Int
                 }
                 
+                
+            }
+            
+            struct GetDoctorsByExamName: Decodable{
+                var doctors: [DoctorElement]
+                
+                struct DoctorElement: Decodable{
+                    var id: Int
+                    var name: String
+                    var address: String
+                }
             }
             
             
@@ -152,6 +163,7 @@ extension API {
             case getReservations(token: String)
             case addReservation(token: String)
             case deleteReservation(token: String, reservation_id: Int)
+            case getDoctorsByExamName(token: String, exam_name: String)
             
             
             var url: URL{
@@ -215,7 +227,12 @@ extension API {
                         URLQueryItem(name: "reservation_id", value: String(reservation_id)),
                         URLQueryItem(name: "token", value : token)
                     ]
-                    
+                case .getDoctorsByExamName(let token, let exam_name):
+                    components.path = "/patients/get_doctor_by_exam_name"
+                    components.queryItems = [
+                        URLQueryItem(name: "exam_name", value: exam_name),
+                        URLQueryItem(name: "token", value : token)
+                    ]
                     
                 }
                 

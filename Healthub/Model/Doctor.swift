@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreLocation
-struct Doctor{
+struct Doctor: Hashable{
     private(set) var id: Int
     private(set) var name: String
     private(set) var address: String

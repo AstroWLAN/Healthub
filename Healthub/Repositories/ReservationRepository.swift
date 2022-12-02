@@ -87,6 +87,35 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         }
     }
     
+    func getDoctorsByExamName(exam_name: String, completionHandler: @escaping ([Doctor]?, Error?) -> Void){
+        let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            fatalError("Token not present")
+        }
+        
+        client
+            .get(.getDoctorsByExamName(token: token!, exam_name: exam_name)){ (result: Result<API.Types.Response.GetDoctorsByExamName, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(self.processDoctors(success), nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+        }
+    }
+    
+    private func processDoctors(_ results: API.Types.Response.GetDoctorsByExamName) -> [Doctor]{
+        var doctors = [Doctor]()
+        for result in results.doctors{
+            let doctor = Doctor(id: result.id, name: result.name ,address: result.address)
+            doctors.append(doctor)
+        }
+        
+        return doctors
+    }
+    
     private func processReservations(_ results: API.Types.Response.GetReservations) -> [Reservation]{
         var local = [Reservation]()
         

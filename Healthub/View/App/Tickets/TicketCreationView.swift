@@ -7,13 +7,14 @@ enum Examination : String, CaseIterable {
 struct TicketCreationView: View {
     
     @State private var examinationGlyph : String?
+    @EnvironmentObject private var ticketViewModel: TicketViewModel
     
     // This array should contain all the possible time slots for the selected day
     @State private var timeSlots : [String] = ["16 : 15","16 : 30","16 : 45","17 : 00"]
 
     // These variables contains the user choices
     @State private var ticketExamination : Examination?
-    @State private var ticketDoctor : String?
+    @State private var ticketDoctor : Doctor?
     @State private var ticketDate : Date = Date()
     @State private var ticketSlot : String?
     
@@ -36,13 +37,17 @@ struct TicketCreationView: View {
                             .font(.system(size: 17,weight: .medium))
                             .foregroundColor(Color(.systemGray3))
                     }
-                    .sheet(isPresented: $displayExaminations){
+                    .sheet(isPresented: $displayExaminations, onDismiss: {
+                        if let exam = ticketExamination?.rawValue{
+                            self.ticketViewModel.fetchDoctorsByExamName(exam_name: exam);
+                        }
+                    }){
                         ExaminationsView(selectedExam: $ticketExamination, examGlyph: $examinationGlyph)
                             .presentationDetents([.medium])
                     }
                     HStack{
                         Button(action: { displayDoctors = true },
-                               label:  { Label(ticketDoctor ?? "Doctor",systemImage: "stethoscope" )
+                               label:  { Label(ticketDoctor?.name ?? "Doctor",systemImage: "stethoscope" )
                             //.labelStyle(SettingLabelStyle())
                             
                         }
