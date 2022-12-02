@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "WelcomeDraw.png",
+      "filename" : "EmailDraw.png",
       "idiom" : "iphone"
     }
   ],
@@ -10,7 +10,6 @@
     "version" : 1
   },
   "properties" : {
-    "compression-type" : "automatic",
-    "preserves-vector-representation" : true
+    "compression-type" : "automatic"
   }
 }

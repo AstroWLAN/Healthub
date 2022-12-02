@@ -1,72 +1,76 @@
 import SwiftUI
+import AlertToast
 
 struct LoginView: View {
     
-    @State private var email : String = ""
-    @State private var password : String = ""
     @EnvironmentObject private var loginViewModel: LoginViewModel
+    
+    @State private var email : String = String()
+    @State private var password : String = String()
+    @State private var isPerformingLogin : Bool = false
     
     var body: some View {
         NavigationView{
             VStack{
-                
-                // Illustration
                 Spacer()
                 Image("EmailDraw")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 150)
-                
-                // Text
-                VStack(spacing: 8){
-                    Text("Welcome Back").font(.largeTitle).bold()
-                    HStack(spacing: 0){
-                        Text("New here? Please ").foregroundColor(Color(.systemGray3))
-                        
-                        NavigationLink(destination: SignupView()){
-                            Text("Signup").foregroundColor(Color(.systemPink))
-                        }
-                        
-                    }
-                    .font(.system(size: 17)).bold()
-                }
-                .padding([.top],20)
-                
-                // "Continue with Email" button
+                Text("Login")
+                    .font(.largeTitle.bold())
+                Text("We Meet Again")
+                    .foregroundColor(Color(.systemGray))
+                    .font(.system(size: 17, weight: .bold))
                 Spacer()
                 VStack{
                     TextField("\(Image(systemName: "envelope")) Email", text: $email)
-                        .frame(width: 300)
-                        .padding([.bottom],15)
+                        .padding(.bottom, 10)
+                        .textContentType(.username)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.emailAddress)
                     SecureField("\(Image(systemName: "lock")) Password", text: $password)
-                        .frame(width: 300)
+                        .textContentType(.password)
                 }
+                .autocorrectionDisabled(true)
                 .foregroundColor(Color(.systemGray))
                 .multilineTextAlignment(.center)
-                .padding(.bottom,80)
-                
-                Text("Invalid email and/or password")
-                    .foregroundColor(Color(.red))
-                    .isVisible(loginViewModel.hasError)
-                
+                .frame(width: 300)
+                .padding(.vertical, 30)
                 Spacer()
-                Button(action: { /* login action */
+                Button(action: {
+                    isPerformingLogin = true
                     loginViewModel.doLogin(email: email, password: password)
+                    isPerformingLogin = true
                 },
                        label: {
                     Text("Login")
-                        .font(.system(size: 15))
-                        .bold()
-                        .foregroundColor(Color(.white))
-                        .padding([.leading,.trailing],34)
-                        .padding([.top,.bottom],12)
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.systemPink)))
+                        .font(.system(size: 15, weight: .semibold))
+                        .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
                 })
+                .buttonStyle(.borderedProminent)
                 .padding(.bottom,20)
-                .disabled(self.email == "" || self.password == "")
-                
-                
+                .disabled(email.isEmpty || password.isEmpty)
+                HStack(spacing: 0){
+                    Text("New here? Please ")
+                        .foregroundColor(Color(.systemGray3))
+                    NavigationLink(destination: SignupView()){
+                        Text("Signup")
+                            .foregroundColor(Color(.systemPink))
+                    }
+                }
+                .font(.system(size: 15, weight: .bold))
+                .padding(.bottom,20)
             }
+            .toast(isPresenting: $loginViewModel.hasError, duration: 3){
+                AlertToast(displayMode: .hud, type: .systemImage("exclamationmark.circle.fill", Color("HealthGray3")),title: "Bad Credentials")
+            }
+        }
+        .toolbar{
+            ProgressView().progressViewStyle(.circular)
+                .opacity(isPerformingLogin ? 1 : 0)
         }
     }
 }
+
+// SwiftUI Bug : Switching between two textfields with the keyboard open will lead to a KeyboardView constraints violation
