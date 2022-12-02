@@ -11,7 +11,6 @@
 		241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2417594F2927A5290051BE0B /* SwiftKeychainWrapper */; };
 		241759522927A5420051BE0B /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759512927A5420051BE0B /* UserLogin.swift */; };
 		241759552927A5E70051BE0B /* DoctorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759542927A5E70051BE0B /* DoctorView.swift */; };
-		241759572927A5F00051BE0B /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759562927A5F00051BE0B /* EmailView.swift */; };
 		241759592927A5FA0051BE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759582927A5FA0051BE0B /* LoginView.swift */; };
 		2417595B2927A60C0051BE0B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595A2927A60C0051BE0B /* SignupView.swift */; };
 		2417595D2927A6150051BE0B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595C2927A6150051BE0B /* WelcomeView.swift */; };
@@ -78,7 +77,6 @@
 		2417594C2927A5000051BE0B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		241759512927A5420051BE0B /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserLogin.swift; path = Healthub/Model/UserLogin.swift; sourceTree = SOURCE_ROOT; };
 		241759542927A5E70051BE0B /* DoctorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorView.swift; sourceTree = "<group>"; };
-		241759562927A5F00051BE0B /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		241759582927A5FA0051BE0B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2417595A2927A60C0051BE0B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		2417595C2927A6150051BE0B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				241759542927A5E70051BE0B /* DoctorView.swift */,
-				241759562927A5F00051BE0B /* EmailView.swift */,
 				241759582927A5FA0051BE0B /* LoginView.swift */,
 				2417595A2927A60C0051BE0B /* SignupView.swift */,
 				2417595C2927A6150051BE0B /* WelcomeView.swift */,
@@ -521,7 +518,6 @@
 				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
 				241759552927A5E70051BE0B /* DoctorView.swift in Sources */,
 				241759592927A5FA0051BE0B /* LoginView.swift in Sources */,
-				241759572927A5F00051BE0B /* EmailView.swift in Sources */,
 				85BB5ABA293802CE0039618B /* TicketCreationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
