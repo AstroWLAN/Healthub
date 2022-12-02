@@ -10,7 +10,6 @@
 		2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417594C2927A5000051BE0B /* LoginViewModel.swift */; };
 		241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2417594F2927A5290051BE0B /* SwiftKeychainWrapper */; };
 		241759522927A5420051BE0B /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759512927A5420051BE0B /* UserLogin.swift */; };
-		241759552927A5E70051BE0B /* DoctorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759542927A5E70051BE0B /* DoctorView.swift */; };
 		241759592927A5FA0051BE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759582927A5FA0051BE0B /* LoginView.swift */; };
 		2417595B2927A60C0051BE0B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595A2927A60C0051BE0B /* SignupView.swift */; };
 		2417595D2927A6150051BE0B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595C2927A6150051BE0B /* WelcomeView.swift */; };
@@ -61,6 +60,7 @@
 		85BB5ABE293808380039618B /* ExaminationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* ExaminationsView.swift */; };
 		85BB5AC029388DE20039618B /* DoctorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABF29388DE20039618B /* DoctorsView.swift */; };
 		85BB5AC129388DE20039618B /* DoctorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABF29388DE20039618B /* DoctorsView.swift */; };
+		85BB5AC52939B19C0039618B /* DoctorLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AC42939B19C0039618B /* DoctorLoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +76,6 @@
 /* Begin PBXFileReference section */
 		2417594C2927A5000051BE0B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		241759512927A5420051BE0B /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserLogin.swift; path = Healthub/Model/UserLogin.swift; sourceTree = SOURCE_ROOT; };
-		241759542927A5E70051BE0B /* DoctorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorView.swift; sourceTree = "<group>"; };
 		241759582927A5FA0051BE0B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2417595A2927A60C0051BE0B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		2417595C2927A6150051BE0B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -124,6 +123,7 @@
 		85BB5AB9293802CE0039618B /* TicketCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCreationView.swift; sourceTree = "<group>"; };
 		85BB5ABC293808380039618B /* ExaminationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationsView.swift; sourceTree = "<group>"; };
 		85BB5ABF29388DE20039618B /* DoctorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsView.swift; sourceTree = "<group>"; };
+		85BB5AC42939B19C0039618B /* DoctorLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorLoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,10 +149,10 @@
 		241759532927A5B20051BE0B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				241759542927A5E70051BE0B /* DoctorView.swift */,
+				2417595C2927A6150051BE0B /* WelcomeView.swift */,
 				241759582927A5FA0051BE0B /* LoginView.swift */,
 				2417595A2927A60C0051BE0B /* SignupView.swift */,
-				2417595C2927A6150051BE0B /* WelcomeView.swift */,
+				85BB5AC42939B19C0039618B /* DoctorLoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -515,8 +515,8 @@
 				2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */,
 				857A550A2922D6D800413841 /* TicketGalleryView.swift in Sources */,
 				241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */,
+				85BB5AC52939B19C0039618B /* DoctorLoginView.swift in Sources */,
 				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
-				241759552927A5E70051BE0B /* DoctorView.swift in Sources */,
 				241759592927A5FA0051BE0B /* LoginView.swift in Sources */,
 				85BB5ABA293802CE0039618B /* TicketCreationView.swift in Sources */,
 			);

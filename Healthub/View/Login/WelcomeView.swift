@@ -29,7 +29,7 @@ struct WelcomeView: View {
                 HStack(spacing: 0){
                     Text("Are you a doctor? Please ")
                         .foregroundColor(Color(.systemGray3))
-                    NavigationLink(destination : DoctorView()){
+                    NavigationLink(destination : DoctorLoginView()){
                         Text("Sign Here")
                             .foregroundColor(Color(.systemPink))
                     }
