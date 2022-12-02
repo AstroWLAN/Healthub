@@ -27,12 +27,7 @@
 		246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */; };
 		246AC23329351B05004FAE20 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC23229351B05004FAE20 /* MockClient.swift */; };
 		2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */; };
-		249FF521292A285C007C802F /* RepositoryAddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF520292A285C007C802F /* RepositoryAddable.swift */; };
 		249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF522292A2873007C802F /* PathologiesRepository.swift */; };
-		249FF525292A2A81007C802F /* RepositorySingleGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF524292A2A81007C802F /* RepositorySingleGettable.swift */; };
-		249FF527292A2ABF007C802F /* RepositoryListGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF526292A2ABF007C802F /* RepositoryListGettable.swift */; };
-		249FF529292A2AF0007C802F /* RepositoryEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF528292A2AF0007C802F /* RepositoryEditable.swift */; };
-		249FF52B292A2B15007C802F /* RepositoryDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF52A292A2B15007C802F /* RepositoryDeletable.swift */; };
 		249FF52F292A4797007C802F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF52E292A4797007C802F /* UserRepository.swift */; };
 		249FF532292A7801007C802F /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF531292A7801007C802F /* Patient.swift */; };
 		249FF534292A7877007C802F /* Genders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF533292A7877007C802F /* Genders.swift */; };
@@ -99,12 +94,7 @@
 		246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
 		246AC23229351B05004FAE20 /* MockClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
 		2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
-		249FF520292A285C007C802F /* RepositoryAddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryAddable.swift; sourceTree = "<group>"; };
 		249FF522292A2873007C802F /* PathologiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepository.swift; sourceTree = "<group>"; };
-		249FF524292A2A81007C802F /* RepositorySingleGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySingleGettable.swift; sourceTree = "<group>"; };
-		249FF526292A2ABF007C802F /* RepositoryListGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListGettable.swift; sourceTree = "<group>"; };
-		249FF528292A2AF0007C802F /* RepositoryEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEditable.swift; sourceTree = "<group>"; };
-		249FF52A292A2B15007C802F /* RepositoryDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDeletable.swift; sourceTree = "<group>"; };
 		249FF52E292A4797007C802F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		249FF531292A7801007C802F /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		249FF533292A7877007C802F /* Genders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genders.swift; sourceTree = "<group>"; };
@@ -205,11 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */,
-				249FF520292A285C007C802F /* RepositoryAddable.swift */,
-				249FF528292A2AF0007C802F /* RepositoryEditable.swift */,
-				249FF52A292A2B15007C802F /* RepositoryDeletable.swift */,
-				249FF526292A2ABF007C802F /* RepositoryListGettable.swift */,
-				249FF524292A2A81007C802F /* RepositorySingleGettable.swift */,
 				24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */,
 				2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */,
 			);
@@ -499,13 +484,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				857A54F12922D34300413841 /* HealthubApp.swift in Sources */,
-				249FF52B292A2B15007C802F /* RepositoryDeletable.swift in Sources */,
 				857A551D2923120800413841 /* AppInformationView.swift in Sources */,
 				857A551F2923130A00413841 /* PathologiesView.swift in Sources */,
 				249FF534292A7877007C802F /* Genders.swift in Sources */,
 				85BB5AC029388DE20039618B /* DoctorsView.swift in Sources */,
 				249FF532292A7801007C802F /* Patient.swift in Sources */,
-				249FF521292A285C007C802F /* RepositoryAddable.swift in Sources */,
 				24C1CD022928FBAA0089F9A0 /* APIClient.swift in Sources */,
 				2454E1D72938B15900AF0CE0 /* ReservationRepository.swift in Sources */,
 				857A55032922D3D200413841 /* MainView.swift in Sources */,
@@ -528,15 +511,12 @@
 				857A550E2922D72300413841 /* ContactsView.swift in Sources */,
 				249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */,
 				2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */,
-				249FF529292A2AF0007C802F /* RepositoryEditable.swift in Sources */,
 				24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */,
-				249FF525292A2A81007C802F /* RepositorySingleGettable.swift in Sources */,
 				249FF536292A79B0007C802F /* SettingsViewModel.swift in Sources */,
 				24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */,
 				2417595D2927A6150051BE0B /* WelcomeView.swift in Sources */,
 				2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */,
 				857A550A2922D6D800413841 /* TicketGalleryView.swift in Sources */,
-				249FF527292A2ABF007C802F /* RepositoryListGettable.swift in Sources */,
 				241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */,
 				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
 				241759552927A5E70051BE0B /* DoctorView.swift in Sources */,

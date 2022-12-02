@@ -41,7 +41,7 @@ class PathologiesViewModel : ObservableObject {
     
     func addPathology(pathology: String){
         
-        pathologiesRepository.add(Pathology(id: 0, name: pathology)){ (success, error) in
+        pathologiesRepository.add(pathologyName: pathology){ (success, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -61,7 +61,7 @@ class PathologiesViewModel : ObservableObject {
     func removePathology(at offsets: IndexSet){
         let pathology = pathologies[offsets.first!]
         
-        pathologiesRepository.delete(pathology){ (success, error) in
+        pathologiesRepository.delete(pathologyId: pathology.id){ (success, error) in
             if let error = error {
                 print(error.localizedDescription)
             }

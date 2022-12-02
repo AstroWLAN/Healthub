@@ -7,7 +7,9 @@
 
 import Foundation
 
-protocol PathologyRepositoryProcotol: RepositoryAddable, RepositoryDeletable, RepositoryListGettable where T == Pathology
+protocol PathologyRepositoryProcotol
 {
-   // typealias T = Pathology
+    func add(pathologyName:String, completionHandler: @escaping (Bool?, Error?) -> Void)
+    func delete(pathologyId:Int, completionHandler: @escaping (Bool?, Error?) -> Void)
+    func getAll(completionHandler: @escaping ([Pathology]?, Error?) -> Void)
 }
