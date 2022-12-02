@@ -2,6 +2,14 @@ import SwiftUI
 
 enum Examination : String, CaseIterable {
     case routine, vaccination, sport, specialist, certificate, other
+    
+}
+
+extension CaseIterable where Self: Equatable {
+
+    var index: Self.AllCases.Index? {
+        return Self.allCases.firstIndex { self == $0 }
+    }
 }
 
 struct TicketCreationView: View {
@@ -10,7 +18,7 @@ struct TicketCreationView: View {
     @EnvironmentObject private var ticketViewModel: TicketViewModel
     
     // This array should contain all the possible time slots for the selected day
-    @State private var timeSlots : [String] = ["16 : 15","16 : 30","16 : 45","17 : 00"]
+    //@State private var timeSlots : [String] = ["16 : 15","16 : 30","16 : 45","17 : 00"]
 
     // These variables contains the user choices
     @State private var ticketExamination : Examination?
@@ -67,13 +75,19 @@ struct TicketCreationView: View {
                     DatePicker(selection: $ticketDate, displayedComponents: [.date]){
                         Label("Exam Date", systemImage: "calendar")//.labelStyle(SettingLabelStyle())
                     }
-                }
+                }.onChange(of: ticketDate, perform: { value in
+                    if let exam = ticketExamination?.index{
+                        if let doctor = ticketDoctor {
+                            ticketViewModel.fetchSlots(doctor_id: doctor.id, examinationType_id: exam + 1, date: value)
+                        }
+                    }
+                })
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 Section(header: Text("Time")){
                     Label("Exam Time Slot", systemImage: "timer")//.labelStyle(SettingLabelStyle())
                     Picker("", selection: $ticketSlot){
-                        ForEach(timeSlots, id: \.self){ slot in
+                        ForEach(ticketViewModel.slots, id: \.self){ slot in
                             Text("\(slot)")
                         }
                     }

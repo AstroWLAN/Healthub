@@ -125,6 +125,11 @@ extension API {
                 var status : String
             }
             
+            struct GetAvailableSlots: Decodable{
+                var morning_slots : [String]
+                var afternoon_slots: [String]
+            }
+            
         }
         
         enum Error: LocalizedError {
@@ -164,6 +169,7 @@ extension API {
             case addReservation(token: String)
             case deleteReservation(token: String, reservation_id: Int)
             case getDoctorsByExamName(token: String, exam_name: String)
+            case getAvailableSlots(token: String, doctor_id: Int, examinationType: Int, date: Date)
             
             
             var url: URL{
@@ -232,6 +238,14 @@ extension API {
                     components.queryItems = [
                         URLQueryItem(name: "exam_name", value: exam_name),
                         URLQueryItem(name: "token", value : token)
+                    ]
+                    
+                case .getAvailableSlots(let token, let doctor_id, let examinationType_id, let date):
+                    let df = DateFormatter()
+                    df.dateFormat = "yyyy-MM-dd"
+                    components.path = "/reservations/\(doctor_id)/\(examinationType_id)/\(df.string(from:date))"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
                     ]
                     
                 }

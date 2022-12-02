@@ -68,6 +68,26 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         
     }
     
+    func getAvailableSlots(date: Date, doctor_id: Int, examinationType_id: Int,  completionHandler: @escaping ([String]?, Error?) -> Void){
+        let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            fatalError("Token not present")
+        }
+        client
+            .get(.getAvailableSlots(token: token!, doctor_id: doctor_id, examinationType: examinationType_id, date: date)){(result: Result<API.Types.Response.GetAvailableSlots, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(self.processAvailability(success), nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+            }
+        
+        
+    }
+    
     func getAll(completionHandler: @escaping ([Reservation]?, Error?) -> Void) {
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
@@ -104,6 +124,13 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
                     }
                 }
         }
+    }
+    
+    private func processAvailability(_ results: API.Types.Response.GetAvailableSlots) -> [String]{
+        let morning_slots = results.morning_slots
+        let aftenoon_slots = results.afternoon_slots
+        
+        return morning_slots + aftenoon_slots
     }
     
     private func processDoctors(_ results: API.Types.Response.GetDoctorsByExamName) -> [Doctor]{

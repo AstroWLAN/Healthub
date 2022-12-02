@@ -11,6 +11,7 @@ class TicketViewModel : ObservableObject{
     private let reservationsRepository: any ReservationRepositoryProtocol
     @Published private(set) var reservations: [Reservation] = []
     @Published private(set) var doctors: [Doctor] = []
+    @Published private(set) var slots: [String] = []
     
     init(reservationsRepository: any ReservationRepositoryProtocol) {
         self.reservationsRepository = reservationsRepository
@@ -42,5 +43,21 @@ class TicketViewModel : ObservableObject{
                 self.doctors = doctors
             }
         }
+    }
+    
+    func fetchSlots(doctor_id: Int, examinationType_id: Int, date: Date ){
+        
+        reservationsRepository.getAvailableSlots(date: date, doctor_id: doctor_id, examinationType_id: examinationType_id){(slots, error) in
+            
+            if let error = error{
+                print(error.localizedDescription)
+            }
+            
+            if let slots = slots{
+                self.slots = slots
+            }
+            
+        }
+        
     }
 }
