@@ -22,9 +22,9 @@ struct TicketCreationView: View {
 
     // These variables contains the user choices
     @State private var ticketExamination : Examination?
-    @State private var ticketDoctor : Doctor?
+    @State private var ticketDoctor : Doctor!
     @State private var ticketDate : Date = Date()
-    @State private var ticketSlot : String?
+    @State private var ticketSlot : String = ""
     
     @State private var displayExaminations : Bool = false
     @State private var displayDoctors : Bool = false
@@ -87,8 +87,9 @@ struct TicketCreationView: View {
                 Section(header: Text("Time")){
                     Label("Exam Time Slot", systemImage: "timer")//.labelStyle(SettingLabelStyle())
                     Picker("", selection: $ticketSlot){
-                        ForEach(ticketViewModel.slots, id: \.self){ slot in
-                            Text("\(slot)")
+                        Text("")
+                        ForEach(ticketViewModel.slots, id: \.self){slot in
+                            Text(slot).tag(ticketViewModel.slots.firstIndex(of: slot)!)
                         }
                     }
                     .pickerStyle(WheelPickerStyle())
@@ -102,7 +103,24 @@ struct TicketCreationView: View {
         }
         .navigationTitle("Creation")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar{ Button(action: { /* Backend sync */ }, label: { Image(systemName: "checkmark") })
+        .toolbar{ Button(action: {
+            print("Add reservation 1")
+            if let exam = ticketExamination?.index{
+                print("Add reservation 2")
+                if let doctor = ticketDoctor {
+                    print("Add reservation 3")
+                    if ticketSlot != ""{
+                        print("Add reservation")
+                        ticketViewModel.addReservation(date: ticketDate, starting_time: ticketSlot, doctor_id: doctor.id, examinationType_id: exam + 1)
+                        
+                        //ticket created
+                    }
+                }
+            }
+            
+        }, label: { Image(systemName: "checkmark") })
+        .disabled(ticketSlot == "" || ticketDoctor == nil || ticketExamination == nil)
+            
         }
     }
 }

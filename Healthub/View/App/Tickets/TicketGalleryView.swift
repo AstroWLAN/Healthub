@@ -94,7 +94,7 @@ struct TicketGalleryView: View {
                                 .tag(index)
                                 .contextMenu{
                                     Button(role: .destructive,
-                                           action: { userTickets.remove(at: index) },
+                                           action: { ticketViewModel.deleteReservation(reservation_id: self.ticketViewModel.reservations[index].id)},
                                            label: { Label("Remove", systemImage: "trash.fill")})
                                 }
                             }

@@ -12,7 +12,7 @@ class TicketViewModel : ObservableObject{
     @Published private(set) var reservations: [Reservation] = []
     @Published private(set) var doctors: [Doctor] = []
     @Published private(set) var slots: [String] = []
-    
+    @Published private(set) var completed: Bool = true
     init(reservationsRepository: any ReservationRepositoryProtocol) {
         self.reservationsRepository = reservationsRepository
     }
@@ -59,5 +59,30 @@ class TicketViewModel : ObservableObject{
             
         }
         
+    }
+    
+    func addReservation(date: Date, starting_time: String, doctor_id: Int, examinationType_id: Int){
+        self.completed = false
+        reservationsRepository.addReservation(date: date, starting_time: starting_time, doctor_id: doctor_id, examinationType: examinationType_id){(success, error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }
+            
+            if let reservationCompleted = success{
+                if reservationCompleted == true{
+                    self.completed = true
+                }
+            }
+        }
+    }
+    
+    func deleteReservation(reservation_id: Int){
+        reservationsRepository.delete(reservation_id: reservation_id){(success, error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }
+            
+            self.reservations.removeAll(where: {$0.id == reservation_id})
+        }
     }
 }

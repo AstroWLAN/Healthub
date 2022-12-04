@@ -166,10 +166,10 @@ extension API {
             case getPatient(token: String)
             case updatePatient(token: String)
             case getReservations(token: String)
-            case addReservation(token: String)
             case deleteReservation(token: String, reservation_id: Int)
             case getDoctorsByExamName(token: String, exam_name: String)
-            case getAvailableSlots(token: String, doctor_id: Int, examinationType: Int, date: Date)
+            case getAvailableSlots(token: String, doctor_id: Int, examinationType: Int, date: String)
+            case addReservation(token:String)
             
             
             var url: URL{
@@ -221,16 +221,9 @@ extension API {
                         URLQueryItem(name: "token", value : token)
                     ]
                     
-                case .addReservation(let token):
-                    components.path = "/patients/reservations"
-                    components.queryItems = [
-                        URLQueryItem(name: "token", value : token)
-                    ]
-                    
                 case .deleteReservation(let token, let reservation_id):
-                    components.path = "/patients/reservations"
+                    components.path = "/patients/reservations/\(String(reservation_id))"
                     components.queryItems = [
-                        URLQueryItem(name: "reservation_id", value: String(reservation_id)),
                         URLQueryItem(name: "token", value : token)
                     ]
                 case .getDoctorsByExamName(let token, let exam_name):
@@ -241,13 +234,17 @@ extension API {
                     ]
                     
                 case .getAvailableSlots(let token, let doctor_id, let examinationType_id, let date):
-                    let df = DateFormatter()
-                    df.dateFormat = "yyyy-MM-dd"
-                    components.path = "/reservations/\(doctor_id)/\(examinationType_id)/\(df.string(from:date))"
+                    components.path = "/reservations/\(doctor_id)/\(examinationType_id)/\(date)"
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token),
                     ]
                     
+                case .addReservation(let token):
+                    components.path = "/patients/reservations"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value: token),
+                        
+                    ]
                 }
                 
                 

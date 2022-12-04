@@ -73,8 +73,10 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         guard token != nil else {
             fatalError("Token not present")
         }
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
         client
-            .get(.getAvailableSlots(token: token!, doctor_id: doctor_id, examinationType: examinationType_id, date: date)){(result: Result<API.Types.Response.GetAvailableSlots, API.Types.Error>) in
+            .get(.getAvailableSlots(token: token!, doctor_id: doctor_id, examinationType: examinationType_id, date: df.string(from: date))){(result: Result<API.Types.Response.GetAvailableSlots, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{
                     case .success(let success):
@@ -126,11 +128,58 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         }
     }
     
+    func addReservation(date: Date, starting_time: String, doctor_id: Int, examinationType: Int, completionHandler:  @escaping (Bool?, Error?) -> Void ){
+        let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            fatalError("Token not present")
+        }
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        
+        let body = API.Types.Request.AddReservation(date: df.string(from: date), starting_time: starting_time, doctor_id: doctor_id, examination_type: examinationType)
+        
+        client
+            .fetch(.addReservation(token: token!), method: .post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(success.status == "OK", nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+            }
+                
+    }
+    
+    func deleteReservation(reservation_id: Int, completionHandler:  @escaping (Bool?, Error?) -> Void){
+        let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            fatalError("Token not present")
+        }
+        let body = API.Types.Request.Empty()
+        client
+            .fetch(.deleteReservation(token: token!, reservation_id: reservation_id), method: .delete, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(success.status == "OK", nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+            }
+    }
+    
     private func processAvailability(_ results: API.Types.Response.GetAvailableSlots) -> [String]{
         let morning_slots = results.morning_slots
         let aftenoon_slots = results.afternoon_slots
         
-        return morning_slots + aftenoon_slots
+        var slots = morning_slots + aftenoon_slots
+        slots.removeAll(where: {$0 == ""})
+        
+        return slots
     }
     
     private func processDoctors(_ results: API.Types.Response.GetDoctorsByExamName) -> [Doctor]{
