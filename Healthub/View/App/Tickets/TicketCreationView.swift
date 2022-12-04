@@ -1,5 +1,5 @@
 import SwiftUI
-
+import AlertToast
 enum Examination : String, CaseIterable {
     case routine, vaccination, sport, specialist, certificate, other
     
@@ -29,6 +29,7 @@ struct TicketCreationView: View {
     
     @State private var displayExaminations : Bool = false
     @State private var displayDoctors : Bool = false
+
     
     var body: some View {
         NavigationStack{
@@ -74,7 +75,7 @@ struct TicketCreationView: View {
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 Section(header: Text("Date")){
                     DatePicker(selection: $ticketDate, displayedComponents: [.date]){
-                        Label("Exam Date", systemImage: "calendar")//.labelStyle(SettingLabelStyle())
+                        Label("Exam Date", systemImage: "calendar").labelStyle(SettingLabelStyle())
                     }
                 }.onChange(of: ticketDate, perform: { value in
                     if let exam = ticketExamination?.index{
@@ -104,25 +105,39 @@ struct TicketCreationView: View {
         }
         .navigationTitle("Creation")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar{ Button(action: {
-            print("Add reservation 1")
-            if let exam = ticketExamination?.index{
-                print("Add reservation 2")
-                if let doctor = ticketDoctor {
-                    print("Add reservation 3")
-                    if ticketSlot != ""{
-                        print("Add reservation")
-                        ticketViewModel.addReservation(date: ticketDate, starting_time: ticketSlot, doctor_id: doctor.id, examinationType_id: exam + 1)
-                        mode.wrappedValue.dismiss()
-                        //ticket created
+        .toolbar{
+            if(ticketViewModel.completed == false  && ticketViewModel.hasError == false){
+                Button(action: {
+                if let exam = ticketExamination?.index{
+                    if let doctor = ticketDoctor {
+                        if ticketSlot != ""{
+                            ticketViewModel.addReservation(date: ticketDate, starting_time: ticketSlot, doctor_id: doctor.id, examinationType_id: exam + 1)
+                           
+                        }
                     }
                 }
+                
+            }, label: { Image(systemName: "checkmark") })
+                .disabled(ticketSlot == "" || ticketDoctor == nil || ticketExamination == nil)
+            }else{
+                ProgressView().progressViewStyle(.circular)
+                    .onDisappear(perform: {
+                        self.mode.wrappedValue.dismiss()
+                    })
             }
             
-        }, label: { Image(systemName: "checkmark") })
-        .disabled(ticketSlot == "" || ticketDoctor == nil || ticketExamination == nil)
             
+       
         }
+        
+       .toast(isPresenting: $ticketViewModel.hasError, alert: {
+            AlertToast(type: .error(Color("HealthGray3")),title: "An error occured")
+        })
+        .toast(isPresenting: $ticketViewModel.completed, alert: {
+             AlertToast(type: .complete(Color("HealthGray3")),title: "Reservation Created")
+        })
+        
+        
     }
 }
 

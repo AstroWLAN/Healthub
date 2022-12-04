@@ -6,13 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 class TicketViewModel : ObservableObject{
     
     private let reservationsRepository: any ReservationRepositoryProtocol
     @Published private(set) var reservations: [Reservation] = []
     @Published private(set) var doctors: [Doctor] = []
     @Published private(set) var slots: [String] = []
-    @Published private(set) var completed: Bool = true
+    @Published var completed: Bool = false
+    @Published var hasError: Bool = false
+    
+    
     init(reservationsRepository: any ReservationRepositoryProtocol) {
         self.reservationsRepository = reservationsRepository
     }
@@ -62,12 +66,12 @@ class TicketViewModel : ObservableObject{
     }
     
     func addReservation(date: Date, starting_time: String, doctor_id: Int, examinationType_id: Int){
-        self.completed = false
+        self.hasError = false
         reservationsRepository.addReservation(date: date, starting_time: starting_time, doctor_id: doctor_id, examinationType: examinationType_id){(success, error) in
             if let error = error{
                 print(error.localizedDescription)
+                self.hasError = true
             }
-            
             if let reservationCompleted = success{
                 if reservationCompleted == true{
                     self.completed = true
