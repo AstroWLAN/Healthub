@@ -16,6 +16,7 @@ struct TicketCreationView: View {
     
     @State private var examinationGlyph : String?
     @EnvironmentObject private var ticketViewModel: TicketViewModel
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     // This array should contain all the possible time slots for the selected day
     //@State private var timeSlots : [String] = ["16 : 15","16 : 30","16 : 45","17 : 00"]
@@ -112,7 +113,7 @@ struct TicketCreationView: View {
                     if ticketSlot != ""{
                         print("Add reservation")
                         ticketViewModel.addReservation(date: ticketDate, starting_time: ticketSlot, doctor_id: doctor.id, examinationType_id: exam + 1)
-                        
+                        mode.wrappedValue.dismiss()
                         //ticket created
                     }
                 }
