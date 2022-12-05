@@ -65,16 +65,20 @@ class SettingsViewModel: ObservableObject {
     }
     
     func updatePatient(){
-        /*self.patient?.name = self.name
+        self.patient?.name = self.name
         self.patient?.sex = self.gender
         self.patient?.height = Int(self.height)!
         self.patient?.weight = Float(self.weight)!
         self.patient?.dateOfBirth = self.birthday
         self.patient?.fiscalCode = self.fiscalCode
-        self.patient?.phone = self.phone*/
+        self.patient?.phone = self.phone
         
         userService.updateInformation(user: self.patient!){ (success, error) in
-            
+            if let error = error{
+                print(error.localizedDescription)
+            }else{
+                self.cache.setObject(self.patient!, forKey: "patient" as NSString)
+            }
         }
     }
 }
