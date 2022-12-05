@@ -45,11 +45,16 @@ struct SignupView: View {
                 .toast(isPresenting: $signUpViewModel.userCreated, alert:{
                     AlertToast(type: .complete(Color("HealthGray3")),title: "Account Created")
                 })
+                .toast(isPresenting: $signUpViewModel.notificationErrorSignUp, alert:{
+                    AlertToast(type: .error(Color("HealthGray3")),title: signUpViewModel.errorType)
+                })
                 if isPerformingSignup == true {
-                    ProgressView().progressViewStyle(.circular).isVisible(signUpViewModel.userCreated == false)
+                    ProgressView().progressViewStyle(.circular).isVisible(signUpViewModel.userCreated == false && signUpViewModel.errorSignUp == false)
                         .onDisappear(perform: {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.mode.wrappedValue.dismiss()
+                            if(signUpViewModel.userCreated == true){
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    self.mode.wrappedValue.dismiss()
+                                }
                             }
                             
                         })
