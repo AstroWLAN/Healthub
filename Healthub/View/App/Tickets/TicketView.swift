@@ -32,6 +32,7 @@ struct AddressView: View {
     
     let location: CLLocationCoordinate2D
     var span: CLLocationDegrees = 0.01
+    let cache = NSCache<NSString, UIImage>()
     
     @State private var mapSnapshotImage: UIImage? = nil
     
@@ -62,7 +63,14 @@ struct AddressView: View {
             }
         }
         .onAppear {
-            generateMapSnapshot()
+            if let cachedVersion = cache.object(forKey: "\(location.latitude), \(location.longitude)" as NSString ) {
+                // use the cached version
+                self.mapSnapshotImage = cachedVersion
+            } else {
+                // create it from scratch then store in the cache
+                generateMapSnapshot()
+            }
+            
         }
     }
     
@@ -85,6 +93,8 @@ struct AddressView: View {
             }
             if let snapshot = snapshotOrNil {
                 self.mapSnapshotImage = snapshot.image
+                print("\(self.location.latitude), \(self.location.longitude)" as NSString)
+                cache.setObject(snapshot.image, forKey: "\(self.location.latitude), \(self.location.longitude)" as NSString)
             }
         }
     }

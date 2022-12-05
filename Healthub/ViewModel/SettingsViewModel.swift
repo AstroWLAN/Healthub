@@ -11,7 +11,7 @@ class SettingsViewModel: ObservableObject {
     
     @Published private var hasError: Bool = false
   
-    private var patient: Patient?
+    @Published var patient: Patient?
     private var userService: any UserRepositoryProtocol
     @Published var isLoading = false
     @Published var name : String = ""
@@ -21,6 +21,7 @@ class SettingsViewModel: ObservableObject {
     @Published var birthday : Date = Date()
     @Published var fiscalCode : String = ""
     @Published var phone : String = ""
+    let cache = NSCache<NSString, Patient>()
     
     init(userService: any UserRepositoryProtocol){
         self.userService = userService
@@ -28,33 +29,49 @@ class SettingsViewModel: ObservableObject {
     
     func getPatient(){
         self.isLoading = true
-        userService.getUser(){(patient, error) in
-            if let error = error{
-                print(error)
-                self.hasError = true
-            }else{
-                self.patient = patient!
-                self.name = patient!.name
-                self.gender = patient!.sex
-                self.height = String(patient!.height)
-                self.weight = String(patient!.weight)
-                self.birthday = patient!.dateOfBirth
-                self.fiscalCode = patient!.fiscalCode
-                self.phone = patient!.phone
-                self.isLoading = false
+        if let cachedVersion = cache.object(forKey: "patient" as NSString ) {
+            // use the cached version
+            self.patient = cachedVersion
+            self.name = patient!.name
+            self.gender = patient!.sex
+            self.height = String(patient!.height)
+            self.weight = String(patient!.weight)
+            self.birthday = patient!.dateOfBirth
+            self.fiscalCode = patient!.fiscalCode
+            self.phone = patient!.phone
+            self.isLoading = false
+        } else {
+            userService.getUser(){(patient, error) in
+                if let error = error{
+                    print(error)
+                    self.hasError = true
+                }else{
+                    self.patient = patient!
+                    self.name = patient!.name
+                    self.gender = patient!.sex
+                    self.height = String(patient!.height)
+                    self.weight = String(patient!.weight)
+                    self.birthday = patient!.dateOfBirth
+                    self.fiscalCode = patient!.fiscalCode
+                    self.phone = patient!.phone
+                    self.isLoading = false
+                    
+                    self.cache.setObject(patient!, forKey: "patient" as NSString)
+                }
+                
             }
-            
         }
+        
     }
     
     func updatePatient(){
-        self.patient?.name = self.name
+        /*self.patient?.name = self.name
         self.patient?.sex = self.gender
         self.patient?.height = Int(self.height)!
         self.patient?.weight = Float(self.weight)!
         self.patient?.dateOfBirth = self.birthday
         self.patient?.fiscalCode = self.fiscalCode
-        self.patient?.phone = self.phone
+        self.patient?.phone = self.phone*/
         
         userService.updateInformation(user: self.patient!){ (success, error) in
             
