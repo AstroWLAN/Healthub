@@ -172,6 +172,37 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
             }
     }
     
+    func getAvailableDates(doctor_id: Int, completionHandler:  @escaping ([Date]?, Error?) -> Void){
+        let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            fatalError("Token not present")
+        }
+        client
+            .get(.getAvailableDates(token: token!, doctor_id: doctor_id)){(result: Result<API.Types.Response.GetAvailableDates, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(self.processAvailableDate(success), nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+            }
+    }
+    
+    private func processAvailableDate(_ results: API.Types.Response.GetAvailableDates) -> [Date]{
+        
+        var dates: [Date] = []
+        let date = DateFormatter()
+        date.dateFormat = "yyyy-MM-dd"
+        
+        for res in results.availabilities {
+            dates.append(date.date(from: res.date)!)
+        }
+        
+        return dates
+    }
+    
     private func processAvailability(_ results: API.Types.Response.GetAvailableSlots) -> [String]{
         let morning_slots = results.morning_slots
         let aftenoon_slots = results.afternoon_slots

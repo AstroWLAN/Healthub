@@ -50,6 +50,7 @@ struct TicketCreationView: View {
                     .sheet(isPresented: $displayExaminations, onDismiss: {
                         if let exam = ticketExamination?.rawValue{
                             self.ticketViewModel.fetchDoctorsByExamName(exam_name: exam);
+                            
                         }
                     }){
                         ExaminationsView(selectedExam: $ticketExamination, examGlyph: $examinationGlyph)
@@ -67,7 +68,11 @@ struct TicketCreationView: View {
                             .font(.system(size: 17,weight: .medium))
                             .foregroundColor(Color(.systemGray3))
                     }
-                    .sheet(isPresented: $displayDoctors){
+                    .sheet(isPresented: $displayDoctors, onDismiss: {
+                        //if let doctor = ticketDoctor{
+                        //    self.ticketViewModel.fetchAvailableDates(doctor_id: doctor.id)
+                       // }
+                    }){
                         DoctorsView(selectedDoctor: $ticketDoctor)
                     }
                 }

@@ -62,8 +62,31 @@ class UserRepository: UserRepositoryProtocol{
         }
     }
     
-    func registerUser(){
-        //register user
+    func registerUser(email: String, password: String, completionHandler: @escaping (Bool?, API.Types.Error?) -> Void){
+        
+        let df = DateFormatter()
+        df.dateFormat = "YYYY-MM-dd"
+        
+        
+        let body = API.Types.Request.CreatePatient(email: email, password: password, name: "", sex: 0, dateOfBirth: df.string(from: Date()), fiscalCode: "", height: 0, weight: 0, phone: "")
+        
+        print(body)
+        
+        client.fetch(.createPatient, method:.post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+            DispatchQueue.main.async {
+                switch result{
+                case .success(let success):
+                    if success.status == "OK"{
+                        completionHandler(true , nil)
+                    }else{
+                        completionHandler(nil, API.Types.Error.inter(reason: success.problem!) )
+                    }
+                case .failure(let failure):
+                    completionHandler(nil,failure)
+                }
+            }
+        }
+        
     }
     
     func doLogin(email: String, password: String, completionHandler: @escaping (Bool?, API.Types.Error?) -> Void){

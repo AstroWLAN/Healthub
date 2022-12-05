@@ -12,6 +12,7 @@ class TicketViewModel : ObservableObject{
     private let reservationsRepository: any ReservationRepositoryProtocol
     @Published private(set) var reservations: [Reservation] = []
     @Published private(set) var doctors: [Doctor] = []
+    @Published private(set) var availabilities: [Date] = []
     @Published private(set) var slots: [String] = []
     @Published var completed: Bool = false
     @Published var hasError: Bool = false
@@ -87,6 +88,16 @@ class TicketViewModel : ObservableObject{
             }
             
             self.reservations.removeAll(where: {$0.id == reservation_id})
+        }
+    }
+    
+    func fetchAvailableDates(doctor_id: Int){
+        reservationsRepository.getAvailableDates(doctor_id: doctor_id){(availabilities, error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }
+            
+            self.availabilities = availabilities!
         }
     }
 }

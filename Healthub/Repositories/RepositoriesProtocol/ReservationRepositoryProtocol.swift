@@ -17,4 +17,6 @@ protocol ReservationRepositoryProtocol
     func addReservation(date: Date, starting_time: String, doctor_id: Int, examinationType: Int, completionHandler:  @escaping (Bool?, Error?) -> Void )
     
     func deleteReservation(reservation_id: Int, completionHandler:  @escaping (Bool?, Error?) -> Void)
+    
+    func getAvailableDates(doctor_id: Int, completionHandler:  @escaping ([Date]?, Error?) -> Void)
 }

@@ -166,6 +166,7 @@ struct RecordTextfield : View {
     @main
     struct HealthubApp: App {
         @StateObject var loginViewModel = LoginViewModel(userRepository: UserRepository(client: API.Client()))
+        @StateObject var signUpViewModel = SignUpViewModel(userRepository: UserRepository(client: API.Client()))
         @StateObject var pathologiesViewModel = PathologiesViewModel(pathologiesRepository: PathologiesRepository(client: API.Client()))
         @StateObject var settingsViewModel = SettingsViewModel(userService: UserRepository(client: API.Client()))
         @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()))
@@ -173,9 +174,11 @@ struct RecordTextfield : View {
             WindowGroup {
                 MainView()
                     .environmentObject(loginViewModel)
+                    .environmentObject(signUpViewModel)
                     .environmentObject(pathologiesViewModel)
                     .environmentObject(settingsViewModel)
                     .environmentObject(ticketViewModel)
+                    
                 
             }
         }

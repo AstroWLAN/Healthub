@@ -52,6 +52,19 @@ extension API {
                 var examination_type: Int
             }
             
+            struct CreatePatient: Encodable{
+                var email: String
+                var password: String
+                var name: String
+                var sex: Int
+                var dateOfBirth: String
+                var fiscalCode: String
+                var height: Int
+                var weight: Float
+                var phone: String
+                
+            }
+            
             
         }
         
@@ -123,12 +136,22 @@ extension API {
             
             struct GenericResponse: Decodable {
                 var status : String
+                var problem: String?
             }
             
             struct GetAvailableSlots: Decodable{
                 var morning_slots : [String]
                 var afternoon_slots: [String]
             }
+            
+            struct GetAvailableDates: Decodable{
+                var availabilities: [DateElement]
+                
+                struct DateElement: Decodable{
+                    var date: String
+                }
+            }
+            
             
         }
         
@@ -160,6 +183,7 @@ extension API {
         enum Endpoint{
             case login(email:String, password: String)
             case logout(token: String)
+            case createPatient
             case getPathologies(token: String)
             case deletePathology(token: String, id: Int)
             case addPathology(token: String)
@@ -170,6 +194,7 @@ extension API {
             case getDoctorsByExamName(token: String, exam_name: String)
             case getAvailableSlots(token: String, doctor_id: Int, examinationType: Int, date: String)
             case addReservation(token:String)
+            case getAvailableDates(token: String, doctor_id: Int)
             
             
             var url: URL{
@@ -189,6 +214,8 @@ extension API {
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token)
                     ]
+                case .createPatient:
+                    components.path="/patients"
                 case .getPatient(let token):
                     components.path="/patients/me"
                     components.queryItems = [
@@ -245,7 +272,13 @@ extension API {
                         URLQueryItem(name: "token", value: token),
                         
                     ]
+                case .getAvailableDates(let token, let doctor_id):
+                    components.path = "/reservations/get_available_dates/\(doctor_id)/"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
+                    ]
                 }
+                
                 
                 
                 return components.url!

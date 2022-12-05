@@ -3,10 +3,13 @@ import AlertToast
 
 struct SignupView: View {
     
+    @EnvironmentObject private var signUpViewModel: SignUpViewModel
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var email : String = String()
     @State private var password : String = String()
     @State private var paswordCheck : String = String()
     @State private var isPerformingSignup : Bool = false
+    @State private var error: Bool =  false
     
     var body: some View {
         NavigationStack{
@@ -39,19 +42,41 @@ struct SignupView: View {
                 .multilineTextAlignment(.center)
                 .frame(width: 300)
                 .padding(.vertical, 30)
+                .toast(isPresenting: $signUpViewModel.userCreated, alert:{
+                    AlertToast(type: .complete(Color("HealthGray3")),title: "Account Created")
+                })
+                if isPerformingSignup == true {
+                    ProgressView().progressViewStyle(.circular).isVisible(signUpViewModel.userCreated == false)
+                        .onDisappear(perform: {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                self.mode.wrappedValue.dismiss()
+                            }
+                            
+                        })
+                }
                 Spacer()
                 Button(action: {
                     isPerformingSignup = true
+                    if(self.password == self.paswordCheck){
+                        self.error = false
+                        signUpViewModel.signUp(email: self.email, password: self.password)
+                    }else{
+                        self.error = true
+                    }
                     // Signup method
-                    isPerformingSignup = false
+                   // signUpViewModel.signUp(email: self.email, password: self.password)
+                    //isPerformingSignup = false
                 },
                        label: {
-                    Text("Signup")
-                        .font(.system(size: 15, weight: .semibold))
-                        .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
+                        Text("Signup")
+                            .font(.system(size: 15, weight: .semibold))
+                            .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
                 })
                 .buttonStyle(.borderedProminent)
                 .padding(.bottom,40)
+                .toast(isPresenting: $error, alert:{
+                    AlertToast(displayMode: .hud, type: .systemImage("exclamationmark.circle.fill", Color("HealthGray3")),title: "Bad passwords")
+                })
                 // .disabled() button logic ( empty fields, password mismatch etc... )
                 /*
                  Displays signup errors
