@@ -17,7 +17,7 @@ struct MainView: View {
                         .tabItem{ Label("Tickets", systemImage: "ticket.fill") }
                     TherapiesView()
                         .tabItem{ Label("Therapies", systemImage: "pills.fill") }
-                    ContactsView()
+                    DoctorsGalleryView()
                         .tabItem{ Label("Contacts", systemImage: "person.crop.rectangle.stack.fill") }
                     SettingsView()
                         .tabItem{ Label("Settings", systemImage: "gear") }
