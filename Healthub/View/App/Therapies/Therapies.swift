@@ -1,17 +1,5 @@
 import SwiftUI
 
-struct ToolButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        ZStack{
-            Circle()
-                .frame(height: 28)
-                .opacity(0.2)
-            configuration.label
-        }
-        .tint(Color(.systemPink))
-    }
-}
-
 struct Therapy { /* Therapy Object */ }
 
 struct TherapiesView: View {
@@ -37,7 +25,7 @@ struct TherapiesView: View {
             }
             .navigationTitle("Therapies")
             .toolbar{
-                NavigationLink(destination: Prescription()) { 
+                NavigationLink(destination: Prescription()) {
                     ZStack {
                         Circle()
                             .frame(height: 28)

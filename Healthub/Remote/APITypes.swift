@@ -199,7 +199,7 @@ extension API {
             
             var url: URL{
                 var components = URLComponents()
-                components.host = "healthub.softwarer"
+                components.host = "healthub.software"
                 components.scheme = "https"
                 switch self{
                     
