@@ -1,9 +1,54 @@
 import SwiftUI
 
+struct ToolButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack{
+            Circle()
+                .frame(height: 28)
+                .opacity(0.2)
+            configuration.label
+        }
+        .tint(Color(.systemPink))
+    }
+}
+
+struct Therapy { /* Therapy Object */ }
+
 struct TherapiesView: View {
+    
+    @State private var therapies : [Therapy] = []
+    
     var body: some View {
-        Text("Hello, Therapies 💊")
-            .bold()
+        NavigationStack {
+            VStack{
+                Spacer()
+                if therapies.isEmpty {
+                    Image("TherapiesPlaceholder")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 180, height: 180)
+                        .opacity(0.2)
+                        .padding(.bottom, 30)
+                }
+                else {
+                    // Therapies slideshow
+                }
+                Spacer()
+            }
+            .navigationTitle("Therapies")
+            .toolbar{
+                NavigationLink(destination: Prescription()) { 
+                    ZStack {
+                        Circle()
+                            .frame(height: 28)
+                            .opacity(0.2)
+                        Image(systemName: "plus")
+                            .font(.system(size: 15, weight: .medium))
+                    }
+                }
+            }
+        }
+        .tint(Color(.systemPink))
     }
 }
 

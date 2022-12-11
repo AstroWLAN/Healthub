@@ -49,6 +49,8 @@
 		852F1A2A2946218900B57B18 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A282946218900B57B18 /* Prescription.swift */; };
 		852F1A2C2946219400B57B18 /* DrugsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2B2946219400B57B18 /* DrugsDatabase.swift */; };
 		852F1A2D2946219400B57B18 /* DrugsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2B2946219400B57B18 /* DrugsDatabase.swift */; };
+		852F1A302946241600B57B18 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2F2946241600B57B18 /* Styles.swift */; };
+		852F1A312946241600B57B18 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2F2946241600B57B18 /* Styles.swift */; };
 		857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857282FE293EC4A700AF993E /* DoctorsDatabase.swift */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
@@ -121,6 +123,7 @@
 		852944D02925ABFA006FC0C5 /* AppInformation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppInformation.json; sourceTree = "<group>"; };
 		852F1A282946218900B57B18 /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
 		852F1A2B2946219400B57B18 /* DrugsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugsDatabase.swift; sourceTree = "<group>"; };
+		852F1A2F2946241600B57B18 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		857282FE293EC4A700AF993E /* DoctorsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsDatabase.swift; sourceTree = "<group>"; };
 		857A54ED2922D34300413841 /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A54F02922D34300413841 /* HealthubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubApp.swift; sourceTree = "<group>"; };
@@ -250,6 +253,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		852F1A2E2946240900B57B18 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				852F1A2F2946241600B57B18 /* Styles.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		857A54E42922D34300413841 = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				857A55022922D3D200413841 /* Main.swift */,
+				852F1A2E2946240900B57B18 /* Shared */,
 				24EDDCA2293A0D9D007CA69E /* Utilities */,
 				241759532927A5B20051BE0B /* Login */,
 				857A55132922DC7500413841 /* OnBoarding */,
@@ -502,6 +514,7 @@
 				2454E1DB2938B19000AF0CE0 /* MockClientReservations.swift in Sources */,
 				852F1A2D2946219400B57B18 /* DrugsDatabase.swift in Sources */,
 				24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */,
+				852F1A312946241600B57B18 /* Styles.swift in Sources */,
 				2454E1D92938B17700AF0CE0 /* ReservationRepositoryTests.swift in Sources */,
 				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
 				852F1A2A2946218900B57B18 /* Prescription.swift in Sources */,
@@ -553,6 +566,7 @@
 				24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */,
 				249FF536292A79B0007C802F /* SettingsViewModel.swift in Sources */,
 				24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */,
+				852F1A302946241600B57B18 /* Styles.swift in Sources */,
 				2417595D2927A6150051BE0B /* Welcome.swift in Sources */,
 				2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */,
 				857A550A2922D6D800413841 /* TicketsGallery.swift in Sources */,
