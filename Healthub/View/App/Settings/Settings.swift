@@ -35,23 +35,23 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack{
             if(settingsViewModel.isLoading == true){
-              AlertToast(type: .loading, title: "Loading")
+                AlertToast(type: .loading, title: "Loading")
             }else{
                 Form{
                     Section(header: Text("General")){
                         RecordTextfield(textVariable: $settingsViewModel.name, glyph: "face.smiling.inverse",
                                         glyphColor: Color(.white), glyphBackground: Color(.systemGray),
                                         placeholder: "Name", textfieldType: .name, badInput: nameBadInput, measure: "")
-                            .onSubmit {
+                        .onSubmit {
+                            self.nameBadInput = RecordTextfield.checkInput(type: .name, str: $settingsViewModel.name.wrappedValue )
+                        }
+                        .focused($isNameFocused)
+                        .onChange(of: isNameFocused, perform:{ focus in
+                            if(!focus){
                                 self.nameBadInput = RecordTextfield.checkInput(type: .name, str: $settingsViewModel.name.wrappedValue )
                             }
-                            .focused($isNameFocused)
-                            .onChange(of: isNameFocused, perform:{ focus in
-                                if(!focus){
-                                    self.nameBadInput = RecordTextfield.checkInput(type: .name, str: $settingsViewModel.name.wrappedValue )
-                                }
-                            })
-                            .disabled(!isFormEditable)
+                        })
+                        .disabled(!isFormEditable)
                         
                         // Navigates to the AppInformationView
                         NavigationLink(destination: AppInformationView()){
@@ -186,7 +186,8 @@ struct SettingsView: View {
                     .disabled(self.nameBadInput || self.weightBadInput || self.heightBadInput || self.fiscalCodeBadInput || self.phoneBadInput)
                 }
             }
-        }.onAppear(perform: {
+        }
+        .onAppear(perform: {
             settingsViewModel.getPatient()
         })
         .tint(Color(.systemPink))

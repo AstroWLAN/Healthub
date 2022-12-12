@@ -1,103 +1,101 @@
 import SwiftUI
+import TextView
 
-private enum FocusableObject {
-    case name, duration, doctor, notes
-}
+private enum FocusableObject { case name, duration, doctor, notes }
 
 struct Drug { /* Drug Object */ }
 
 struct Prescription: View {
-    
     @FocusState private var objectFocused: FocusableObject?
     @State private var displayDrugsDatabase : Bool = false
+    @State private var displayNotes : Bool = false
     @State private var prescriptionDrugs : [Drug] = []
     @State private var prescriptionName : String = String()
-    @State private var prescriptionDuration : String = String()
     @State private var prescriptionDoctor : String = String()
+    @State private var prescriptionDuration : String = String()
     @State private var prescriptionNotes : String = String()
-    @State private var prescriptionPlaceholder : String = "Notes"
     
     var body: some View {
         ZStack {
             Color(.systemGray6)
                 .ignoresSafeArea()
-                .onTapGesture(perform: {
-                    objectFocused = nil
-                })
             NavigationStack {
                 List {
-                    Button(
-                        action: { displayDrugsDatabase = true },
-                        label:  {
-                            HStack {
-                                Label("Drugs Database", systemImage: "cloud.fill")
-                                    .labelStyle(Cubic())
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .font(.system(size: 15,weight: .semibold))
-                                    .foregroundColor(Color(.systemGray4))
-                            }
-                        }
-                    )
-                    .buttonStyle(.borderless)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 16))
                     Section {
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "cross.vial.fill")
-                                .labelStyle(Cubic())
                             TextField("Name", text: $prescriptionName)
-                                .autocorrectionDisabled(true)
                                 .focused($objectFocused, equals: .name)
                         }
                         HStack(spacing: 0) {
-                            Label(String(), systemImage: "calendar")
-                                .labelStyle(Cubic())
-                            TextField("Duration", text: $prescriptionDuration)
-                                .autocorrectionDisabled(true)
-                                .focused($objectFocused, equals: .duration)
+                            Label(String(), systemImage: "stethoscope")
+                            TextField("Doctor", text: $prescriptionDoctor)
+                                .focused($objectFocused, equals: .doctor)
                         }
                         HStack(spacing: 0) {
-                            Label(String(), systemImage: "stethoscope")
-                                .labelStyle(Cubic())
-                            TextField("Doctor", text: $prescriptionDoctor)
-                                .autocorrectionDisabled(true)
+                            Label(String(), systemImage: "timer")
+                            TextField("Duration", text: $prescriptionDuration)
                                 .focused($objectFocused, equals: .doctor)
                         }
                     }
+                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                    .labelStyle(Cubic())
+                    .autocorrectionDisabled(true)
+                    .textInputAutocapitalization(.words)
                     .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
-                    Section( footer:
+                    Section {
+                        Button(
+                            action: { displayNotes = true },
+                            label:  {
                                 HStack {
-                        Spacer()
-                        Text("\(prescriptionNotes.count) Char")
-                            .bold()
+                                    Label("Notes", systemImage: "loupe")
+                                        .labelStyle(Cubic())
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 15,weight: .medium))
+                                        .foregroundColor(Color(.systemGray3))
+                                }
+                            })
                     }
-                    ){
-                        TextField("Notes", text: $prescriptionNotes, axis: .vertical)
-                            .autocorrectionDisabled(true)
-                            .lineLimit(4, reservesSpace: true)
-                            .focused($objectFocused, equals: .notes)
-                            .padding(.vertical, 8)
+                    .buttonStyle(.borderless)
+                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                    .sheet(isPresented: $displayNotes) {
+                        Notes(doctorNotes: $prescriptionNotes)
+                            .presentationDetents([.large])
                     }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                    // Displays the drugs used in the prescription
-                    if !prescriptionDrugs.isEmpty {
-                        Section {
+                    Section(header: Text("Drugs")) {
+                        Button(
+                            action: { displayDrugsDatabase = true },
+                            label:  {
+                                HStack {
+                                    Label("Drugs Database", systemImage: "cloud.fill")
+                                        .labelStyle(Cubic())
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 15,weight: .medium))
+                                        .foregroundColor(Color(.systemGray3))
+                                }
+                            })
+                        if !prescriptionDrugs.isEmpty {
+                            // Appends drugs used in the prescription
                         }
-                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     }
-                }
-                .scrollContentBackground(.hidden)
-                .sheet(isPresented: $displayDrugsDatabase) {
-                    DrugsDatabase()
-                        .presentationDragIndicator(.visible)
-                        .presentationDetents([.large])
+                    .buttonStyle(.borderless)
+                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                    .listRowSeparator(.hidden)
+                    .sheet(isPresented: $displayDrugsDatabase) {
+                        DrugsDatabase()
+                            .presentationDragIndicator(.visible)
+                            .presentationDetents([.large])
+                    }
                 }
                 .navigationTitle("Prescription")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     Button(
-                        action: { /* Sync with backend */ },
+                        action: {
+                            /* Sync with backend */
+                        },
                         label:  {
                             ZStack {
                                 Circle()
@@ -107,6 +105,12 @@ struct Prescription: View {
                                     .font(.system(size: 13, weight: .medium))
                             }
                         }
+                    )
+                    .disabled(
+                        prescriptionDrugs.isEmpty     ||
+                        prescriptionName.isEmpty      ||
+                        prescriptionDoctor.isEmpty    ||
+                        prescriptionDuration.isEmpty
                     )
                 }
             }

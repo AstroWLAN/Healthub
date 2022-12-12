@@ -51,6 +51,9 @@
 		852F1A2D2946219400B57B18 /* DrugsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2B2946219400B57B18 /* DrugsDatabase.swift */; };
 		852F1A302946241600B57B18 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2F2946241600B57B18 /* Styles.swift */; };
 		852F1A312946241600B57B18 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2F2946241600B57B18 /* Styles.swift */; };
+		852F1A332946AFB400B57B18 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A322946AFB400B57B18 /* Notes.swift */; };
+		852F1A342946AFB400B57B18 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A322946AFB400B57B18 /* Notes.swift */; };
+		852F1A372946B09200B57B18 /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = 852F1A362946B09200B57B18 /* TextView */; };
 		857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857282FE293EC4A700AF993E /* DoctorsDatabase.swift */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
@@ -124,6 +127,7 @@
 		852F1A282946218900B57B18 /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
 		852F1A2B2946219400B57B18 /* DrugsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugsDatabase.swift; sourceTree = "<group>"; };
 		852F1A2F2946241600B57B18 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		852F1A322946AFB400B57B18 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		857282FE293EC4A700AF993E /* DoctorsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsDatabase.swift; sourceTree = "<group>"; };
 		857A54ED2922D34300413841 /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A54F02922D34300413841 /* HealthubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubApp.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */,
+				852F1A372946B09200B57B18 /* TextView in Frameworks */,
 				243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +371,7 @@
 				857A550B2922D70000413841 /* Therapies.swift */,
 				852F1A282946218900B57B18 /* Prescription.swift */,
 				852F1A2B2946219400B57B18 /* DrugsDatabase.swift */,
+				852F1A322946AFB400B57B18 /* Notes.swift */,
 			);
 			path = Therapies;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 			packageProductDependencies = (
 				2417594F2927A5290051BE0B /* SwiftKeychainWrapper */,
 				243A9C9A292B8C5600731E3D /* AlertToast */,
+				852F1A362946B09200B57B18 /* TextView */,
 			);
 			productName = Healthub;
 			productReference = 857A54ED2922D34300413841 /* Healthub.app */;
@@ -471,6 +478,7 @@
 			packageReferences = (
 				2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				243A9C99292B8C5600731E3D /* XCRemoteSwiftPackageReference "AlertToast" */,
+				852F1A352946B09200B57B18 /* XCRemoteSwiftPackageReference "TextView" */,
 			);
 			productRefGroup = 857A54EE2922D34300413841 /* Products */;
 			projectDirPath = "";
@@ -523,6 +531,7 @@
 				246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */,
 				85BB5AC129388DE20039618B /* DoctorsView.swift in Sources */,
 				85BB5ABB293802CE0039618B /* TicketCreation.swift in Sources */,
+				852F1A342946AFB400B57B18 /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +558,7 @@
 				2495CB8C293A0A1D00DD4535 /* TicketViewModel.swift in Sources */,
 				2454E1D32938B11800AF0CE0 /* ReservationRepositoryProtocol.swift in Sources */,
 				24C1CD002928FA010089F9A0 /* APITypes.swift in Sources */,
+				852F1A332946AFB400B57B18 /* Notes.swift in Sources */,
 				857A55192922DCBB00413841 /* Feature.swift in Sources */,
 				249FF52F292A4797007C802F /* UserRepository.swift in Sources */,
 				857A550C2922D70000413841 /* Therapies.swift in Sources */,
@@ -866,6 +876,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		852F1A352946B09200B57B18 /* XCRemoteSwiftPackageReference "TextView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kenmueller/TextView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -878,6 +896,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 243A9C99292B8C5600731E3D /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		852F1A362946B09200B57B18 /* TextView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 852F1A352946B09200B57B18 /* XCRemoteSwiftPackageReference "TextView" */;
+			productName = TextView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
