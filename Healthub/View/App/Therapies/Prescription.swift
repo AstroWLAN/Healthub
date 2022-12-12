@@ -9,7 +9,7 @@ struct Prescription: View {
     @State private var displayNotes : Bool = false
     @State private var prescriptionDrugs : [Drug] = []
     @State private var prescriptionName : String = String()
-    @State private var prescriptionDoctor : String = String()
+    //@State private var prescriptionDoctor : String = String()
     @State private var prescriptionDuration : String = String()
     @State private var prescriptionNotes : String = String()
     
@@ -25,11 +25,11 @@ struct Prescription: View {
                             TextField("Name", text: $prescriptionName)
                                 .focused($objectFocused, equals: .name)
                         }
-                        HStack(spacing: 0) {
+                        /*HStack(spacing: 0) {
                             Label(String(), systemImage: "stethoscope")
                             TextField("Doctor", text: $prescriptionDoctor)
                                 .focused($objectFocused, equals: .doctor)
-                        }
+                        }*/
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "timer")
                             TextField("Duration", text: $prescriptionDuration)
@@ -106,7 +106,7 @@ struct Prescription: View {
                     .disabled(
                         prescriptionDrugs.isEmpty     ||
                         prescriptionName.isEmpty      ||
-                        prescriptionDoctor.isEmpty    ||
+                        //prescriptionDoctor.isEmpty    ||
                         prescriptionDuration.isEmpty
                     )
                 }

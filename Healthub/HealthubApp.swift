@@ -170,6 +170,7 @@ struct RecordTextfield : View {
         @StateObject var pathologiesViewModel = PathologiesViewModel(pathologiesRepository: PathologiesRepository(client: API.Client()))
         @StateObject var settingsViewModel = SettingsViewModel(userService: UserRepository(client: API.Client()))
         @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()))
+        @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client()))
         var body: some Scene {
             WindowGroup {
                 MainView()
@@ -178,6 +179,7 @@ struct RecordTextfield : View {
                     .environmentObject(pathologiesViewModel)
                     .environmentObject(settingsViewModel)
                     .environmentObject(ticketViewModel)
+                    .environmentObject(therapyViewModel)
                     
                 
             }

@@ -152,6 +152,30 @@ extension API {
                 }
             }
             
+            struct GetTherapies: Decodable{
+                var therapies: [TherapyElement]
+                
+                struct TherapyElement: Decodable{
+                    var therapy_id: Int
+                    var doctor_id: Int?
+                }
+            }
+            
+            struct Search: Decodable{
+                var medications: [DrugElement]
+                
+                struct DrugElement:Decodable{
+                    var id: Int
+                    var group_description: String
+                    var ma_holder: String
+                    var equivalence_group_code: String
+                    var denomination_and_packaging: String
+                    var active_principle: String
+                    var ma_code: String
+                }
+                
+            }
+            
             
         }
         
@@ -195,11 +219,13 @@ extension API {
             case getAvailableSlots(token: String, doctor_id: Int, examinationType: Int, date: String)
             case addReservation(token:String)
             case getAvailableDates(token: String, doctor_id: Int)
+            case getDrugList(query: String)
+            case getTherapies(token:String)
             
             
             var url: URL{
                 var components = URLComponents()
-                components.host = "healthub.software"
+                components.host = "localhost"
                 components.scheme = "https"
                 switch self{
                     
@@ -277,8 +303,17 @@ extension API {
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token),
                     ]
+                    
+                case .getDrugList(let query):
+                    components.path = "/therapies/search/\(query)/"
+                    
+                    
+                case .getTherapies(let token):
+                    components.path = "/patients/me/therapies"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
+                    ]
                 }
-                
                 
                 
                 return components.url!

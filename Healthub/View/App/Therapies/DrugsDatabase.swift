@@ -1,17 +1,14 @@
 import SwiftUI
 
-struct Drug : Hashable {
-    let name : String
-}
-
 struct DrugsDatabase: View {
     
     @Environment(\.dismiss) var dismissPage
+    @EnvironmentObject private var therapyViewModel: TherapyViewModel
     // Searchbar variables
     @FocusState private var searchFocused : Bool
     @State private var searchQuery : String = String()
     // Drugs Arrays
-    @State private var drugsBuffer : [Drug] = []
+   // @State private var drugsBuffer : [Drug] = []
     @Binding var drugs : [Drug]
     
     var body: some View {
@@ -50,15 +47,16 @@ struct DrugsDatabase: View {
                     .padding(.horizontal, 7)
                     .onSubmit {
                         /* Search in the database and retrieve drugs buffer array */
+                        therapyViewModel.fetchDrugList(query: searchQuery)
                     }
                 }
                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                if searchQuery.isEmpty && drugsBuffer.isEmpty && drugs.isEmpty {
+                if searchQuery.isEmpty && therapyViewModel.drugs.isEmpty && drugs.isEmpty {
                     Spacer()
                 }
                 else {
                     List {
-                        if !searchQuery.isEmpty && drugsBuffer.isEmpty {
+                        if !searchQuery.isEmpty && therapyViewModel.drugs.isEmpty {
                             HStack {
                                 Spacer()
                                 withAnimation{
@@ -71,18 +69,20 @@ struct DrugsDatabase: View {
                             }
                             .listRowBackground(Color(.clear))
                         }
-                        else if !drugsBuffer.isEmpty {
+                        else if !therapyViewModel.drugs.isEmpty {
                             Section(header: Text("Database")) {
-                                ForEach(drugsBuffer, id: \.self) { drug in
+                                ForEach(therapyViewModel.drugs, id: \.self) { drug in
                                     Button(
                                         action: {
                                             if !isPresent(chosenDrugs: drugs, currentDrug: drug) {
                                                 drugs.insert(drug, at: 0)
+                                            }else{
+                                                drugs.remove(at: drugs.firstIndex(of: drug)!)
                                             }
                                         },
                                         label:  {
                                             HStack {
-                                                Label(drug.name, systemImage: "pill.fill").labelStyle(Cubic())
+                                                Label(drug.denomination_and_packaging, systemImage: "pill.fill").labelStyle(Cubic())
                                                 Spacer()
                                                 Image(systemName: "circle.fill")
                                                     .font(.system(size: 13))
@@ -99,7 +99,7 @@ struct DrugsDatabase: View {
                         if !drugs.isEmpty {
                             Section(header: Text("Prescription")) {
                                 ForEach(Array(drugs.enumerated()), id: \.element) { index,drug in
-                                    Label(drug.name, systemImage: "pill.fill").labelStyle(Cubic())
+                                    Label(drug.denomination_and_packaging, systemImage: "pill.fill").labelStyle(Cubic())
                                         .swipeActions {
                                             Button(
                                                 role: .destructive,

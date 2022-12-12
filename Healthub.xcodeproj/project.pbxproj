@@ -18,6 +18,10 @@
 		241759632927DE220051BE0B /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
 		24179B91293CE77E004BFD69 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
+		2441662F294764D400035824 /* TherapyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441662E294764D400035824 /* TherapyViewModel.swift */; };
+		2441663129476E6200035824 /* TherapyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663029476E6200035824 /* TherapyRepository.swift */; };
+		2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */; };
+		244166352947731B00035824 /* Drug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244166342947731B00035824 /* Drug.swift */; };
 		2454E1D32938B11800AF0CE0 /* ReservationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */; };
 		2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D42938B14500AF0CE0 /* Reservation.swift */; };
 		2454E1D72938B15900AF0CE0 /* ReservationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */; };
@@ -97,6 +101,10 @@
 		2417595E2927D8F40051BE0B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		241759602927DC330051BE0B /* PathologiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesViewModel.swift; sourceTree = "<group>"; };
 		241759622927DE220051BE0B /* Pathology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pathology.swift; path = Healthub/Model/Pathology.swift; sourceTree = SOURCE_ROOT; };
+		2441662E294764D400035824 /* TherapyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyViewModel.swift; sourceTree = "<group>"; };
+		2441663029476E6200035824 /* TherapyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepository.swift; sourceTree = "<group>"; };
+		2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepositoryProtocol.swift; sourceTree = "<group>"; };
+		244166342947731B00035824 /* Drug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drug.swift; sourceTree = "<group>"; };
 		2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2454E1D42938B14500AF0CE0 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRepository.swift; sourceTree = "<group>"; };
@@ -211,6 +219,7 @@
 				249FF522292A2873007C802F /* PathologiesRepository.swift */,
 				249FF52E292A4797007C802F /* UserRepository.swift */,
 				2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */,
+				2441663029476E6200035824 /* TherapyRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -221,6 +230,7 @@
 				2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */,
 				24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */,
 				2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */,
+				2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */,
 			);
 			path = RepositoriesProtocol;
 			sourceTree = "<group>";
@@ -232,6 +242,7 @@
 				241759622927DE220051BE0B /* Pathology.swift */,
 				249FF531292A7801007C802F /* Patient.swift */,
 				249FF533292A7877007C802F /* Genders.swift */,
+				244166342947731B00035824 /* Drug.swift */,
 				2454E1D42938B14500AF0CE0 /* Reservation.swift */,
 				24D420DE2938BC090090A42D /* Doctor.swift */,
 				24D420E02938BC170090A42D /* ExaminationType.swift */,
@@ -337,6 +348,7 @@
 				249FF535292A79B0007C802F /* SettingsViewModel.swift */,
 				2417595E2927D8F40051BE0B /* SignUpViewModel.swift */,
 				241759602927DC330051BE0B /* PathologiesViewModel.swift */,
+				2441662E294764D400035824 /* TherapyViewModel.swift */,
 				2495CB8B293A0A1D00DD4535 /* TicketViewModel.swift */,
 			);
 			path = ViewModel;
@@ -541,6 +553,7 @@
 			files = (
 				857A54F12922D34300413841 /* HealthubApp.swift in Sources */,
 				857A551D2923120800413841 /* Information.swift in Sources */,
+				2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */,
 				857A551F2923130A00413841 /* Pathologies.swift in Sources */,
 				249FF534292A7877007C802F /* Genders.swift in Sources */,
 				85BB5AC029388DE20039618B /* DoctorsView.swift in Sources */,
@@ -565,10 +578,13 @@
 				857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */,
 				24D420DF2938BC090090A42D /* Doctor.swift in Sources */,
 				852F1A2C2946219400B57B18 /* DrugsDatabase.swift in Sources */,
+				244166352947731B00035824 /* Drug.swift in Sources */,
 				241759522927A5420051BE0B /* UserLogin.swift in Sources */,
 				857A55102922D75000413841 /* Settings.swift in Sources */,
+				2441662F294764D400035824 /* TherapyViewModel.swift in Sources */,
 				2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */,
 				857A550E2922D72300413841 /* DoctorsGallery.swift in Sources */,
+				2441663129476E6200035824 /* TherapyRepository.swift in Sources */,
 				249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */,
 				2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */,
 				852F1A292946218900B57B18 /* Prescription.swift in Sources */,
