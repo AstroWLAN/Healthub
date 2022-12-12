@@ -23,6 +23,9 @@
 		2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */; };
 		244166352947731B00035824 /* Drug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244166342947731B00035824 /* Drug.swift */; };
 		2441663729477E5000035824 /* Therapy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663629477E5000035824 /* Therapy.swift */; };
+		2441663929479D1D00035824 /* ContactRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663829479D1D00035824 /* ContactRepositoryProtocol.swift */; };
+		2441663B29479D9700035824 /* ContactRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663A29479D9700035824 /* ContactRepository.swift */; };
+		2441663D29479DF200035824 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663C29479DF200035824 /* ContactsViewModel.swift */; };
 		2454E1D32938B11800AF0CE0 /* ReservationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */; };
 		2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D42938B14500AF0CE0 /* Reservation.swift */; };
 		2454E1D72938B15900AF0CE0 /* ReservationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */; };
@@ -107,6 +110,9 @@
 		2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepositoryProtocol.swift; sourceTree = "<group>"; };
 		244166342947731B00035824 /* Drug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drug.swift; sourceTree = "<group>"; };
 		2441663629477E5000035824 /* Therapy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Therapy.swift; sourceTree = "<group>"; };
+		2441663829479D1D00035824 /* ContactRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepositoryProtocol.swift; sourceTree = "<group>"; };
+		2441663A29479D9700035824 /* ContactRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepository.swift; sourceTree = "<group>"; };
+		2441663C29479DF200035824 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2454E1D42938B14500AF0CE0 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRepository.swift; sourceTree = "<group>"; };
@@ -221,6 +227,7 @@
 				249FF522292A2873007C802F /* PathologiesRepository.swift */,
 				249FF52E292A4797007C802F /* UserRepository.swift */,
 				2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */,
+				2441663A29479D9700035824 /* ContactRepository.swift */,
 				2441663029476E6200035824 /* TherapyRepository.swift */,
 			);
 			path = Repositories;
@@ -233,6 +240,7 @@
 				24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */,
 				2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */,
 				2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */,
+				2441663829479D1D00035824 /* ContactRepositoryProtocol.swift */,
 			);
 			path = RepositoriesProtocol;
 			sourceTree = "<group>";
@@ -351,6 +359,7 @@
 				249FF535292A79B0007C802F /* SettingsViewModel.swift */,
 				2417595E2927D8F40051BE0B /* SignUpViewModel.swift */,
 				241759602927DC330051BE0B /* PathologiesViewModel.swift */,
+				2441663C29479DF200035824 /* ContactsViewModel.swift */,
 				2441662E294764D400035824 /* TherapyViewModel.swift */,
 				2495CB8B293A0A1D00DD4535 /* TicketViewModel.swift */,
 			);
@@ -566,6 +575,7 @@
 				2454E1D72938B15900AF0CE0 /* ReservationRepository.swift in Sources */,
 				857A55032922D3D200413841 /* Main.swift in Sources */,
 				241759632927DE220051BE0B /* Pathology.swift in Sources */,
+				2441663929479D1D00035824 /* ContactRepositoryProtocol.swift in Sources */,
 				24D420E12938BC170090A42D /* ExaminationType.swift in Sources */,
 				857A55152922DC8500413841 /* OnBoarding.swift in Sources */,
 				85BB5ABD293808380039618B /* Examinations.swift in Sources */,
@@ -588,6 +598,7 @@
 				2441662F294764D400035824 /* TherapyViewModel.swift in Sources */,
 				2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */,
 				857A550E2922D72300413841 /* DoctorsGallery.swift in Sources */,
+				2441663B29479D9700035824 /* ContactRepository.swift in Sources */,
 				2441663129476E6200035824 /* TherapyRepository.swift in Sources */,
 				249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */,
 				2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */,
@@ -595,6 +606,7 @@
 				24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */,
 				24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */,
 				249FF536292A79B0007C802F /* SettingsViewModel.swift in Sources */,
+				2441663D29479DF200035824 /* ContactsViewModel.swift in Sources */,
 				24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */,
 				852F1A302946241600B57B18 /* Styles.swift in Sources */,
 				2417595D2927A6150051BE0B /* Welcome.swift in Sources */,
