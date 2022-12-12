@@ -22,6 +22,7 @@
 		2441663129476E6200035824 /* TherapyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663029476E6200035824 /* TherapyRepository.swift */; };
 		2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */; };
 		244166352947731B00035824 /* Drug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244166342947731B00035824 /* Drug.swift */; };
+		2441663729477E5000035824 /* Therapy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663629477E5000035824 /* Therapy.swift */; };
 		2454E1D32938B11800AF0CE0 /* ReservationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */; };
 		2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D42938B14500AF0CE0 /* Reservation.swift */; };
 		2454E1D72938B15900AF0CE0 /* ReservationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */; };
@@ -105,6 +106,7 @@
 		2441663029476E6200035824 /* TherapyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepository.swift; sourceTree = "<group>"; };
 		2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepositoryProtocol.swift; sourceTree = "<group>"; };
 		244166342947731B00035824 /* Drug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drug.swift; sourceTree = "<group>"; };
+		2441663629477E5000035824 /* Therapy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Therapy.swift; sourceTree = "<group>"; };
 		2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2454E1D42938B14500AF0CE0 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRepository.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				244166342947731B00035824 /* Drug.swift */,
 				2454E1D42938B14500AF0CE0 /* Reservation.swift */,
 				24D420DE2938BC090090A42D /* Doctor.swift */,
+				2441663629477E5000035824 /* Therapy.swift */,
 				24D420E02938BC170090A42D /* ExaminationType.swift */,
 			);
 			path = Model;
@@ -558,6 +561,7 @@
 				249FF534292A7877007C802F /* Genders.swift in Sources */,
 				85BB5AC029388DE20039618B /* DoctorsView.swift in Sources */,
 				249FF532292A7801007C802F /* Patient.swift in Sources */,
+				2441663729477E5000035824 /* Therapy.swift in Sources */,
 				24C1CD022928FBAA0089F9A0 /* APIClient.swift in Sources */,
 				2454E1D72938B15900AF0CE0 /* ReservationRepository.swift in Sources */,
 				857A55032922D3D200413841 /* Main.swift in Sources */,

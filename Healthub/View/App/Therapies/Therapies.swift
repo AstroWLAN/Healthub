@@ -1,6 +1,5 @@
 import SwiftUI
 
-struct Therapy { /* Therapy Object */ }
 
 struct TherapiesView: View {
     

@@ -9,7 +9,7 @@ import Foundation
 
 protocol TherapyRepositoryProtocol{
     func getDrugList(query: String,  completionHandler: @escaping ([Drug]?, Error?) -> Void)
-    func getAll(completionHandler: @escaping (Bool?, Error?) -> Void)
+    func getAll(completionHandler: @escaping ([Therapy]?, Error?) -> Void)
     /*func addTherapy()
     func deleteTherapy()*/
     

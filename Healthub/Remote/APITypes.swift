@@ -157,7 +157,28 @@ extension API {
                 
                 struct TherapyElement: Decodable{
                     var therapy_id: Int
-                    var doctor_id: Int?
+                    var doctor: DoctorElement?
+                    var drug: DrugElement?
+                    var duration: String
+                    var comment: String
+                    var name: String
+                    var interactions: [String]
+                }
+                
+                struct DoctorElement: Decodable{
+                    var id: Int
+                    var name: String
+                    var address: String
+                }
+                
+                struct DrugElement:Decodable{
+                    var id: Int
+                    var group_description: String
+                    var ma_holder: String
+                    var equivalence_group_code: String
+                    var denomination_and_packaging: String
+                    var active_principle: String
+                    var ma_code: String
                 }
             }
             

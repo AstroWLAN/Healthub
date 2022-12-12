@@ -10,6 +10,7 @@ import Foundation
 class TherapyViewModel: ObservableObject{
     private let therapyRepository: any TherapyRepositoryProtocol
     @Published private(set) var drugs: [Drug] = []
+    @Published private(set) var therapies: [Therapy] = []
     
     init(therapyRepository: any TherapyRepositoryProtocol) {
         self.therapyRepository = therapyRepository
@@ -24,6 +25,19 @@ class TherapyViewModel: ObservableObject{
             if let drugs = drugs{
                 self.drugs = drugs
             }
+        }
+    }
+    
+    func fetchTherapies(){
+        therapyRepository.getAll(){(therapies, error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }
+            
+            if let therapies = therapies{
+                self.therapies = therapies
+            }
+            
         }
     }
     
