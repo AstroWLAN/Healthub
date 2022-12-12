@@ -3,8 +3,6 @@ import TextView
 
 private enum FocusableObject { case name, duration, doctor, notes }
 
-struct Drug { /* Drug Object */ }
-
 struct Prescription: View {
     @FocusState private var objectFocused: FocusableObject?
     @State private var displayDrugsDatabase : Bool = false
@@ -84,8 +82,7 @@ struct Prescription: View {
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     .listRowSeparator(.hidden)
                     .sheet(isPresented: $displayDrugsDatabase) {
-                        DrugsDatabase()
-                            .presentationDragIndicator(.visible)
+                        DrugsDatabase( drugs: $prescriptionDrugs)
                             .presentationDetents([.large])
                     }
                 }

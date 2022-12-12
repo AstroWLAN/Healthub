@@ -16,7 +16,7 @@ struct Cubic : LabelStyle {
                 .background(
                     RoundedRectangle(cornerRadius: 7)
                         .foregroundColor(glyphBackgroundColor ?? Color(.systemGray))
-                        .frame(width: 30,height: 30)
+                        .frame(width: 27,height: 27)
                         .opacity(backgroundOpacityLevel ?? 1)
                 )
         }
