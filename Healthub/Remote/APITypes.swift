@@ -65,6 +65,13 @@ extension API {
                 
             }
             
+            struct CreateTherapy: Encodable{
+                var drug_id: Int
+                var duration: String
+                var name: String
+                var comment: String
+            }
+            
             
         }
         
@@ -242,7 +249,7 @@ extension API {
             case getAvailableDates(token: String, doctor_id: Int)
             case getDrugList(query: String)
             case getTherapies(token:String)
-            
+            case createTherapy(token: String)
             
             var url: URL{
                 var components = URLComponents()
@@ -330,6 +337,12 @@ extension API {
                     
                     
                 case .getTherapies(let token):
+                    components.path = "/patients/me/therapies"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
+                    ]
+                    
+                case .createTherapy(let token):
                     components.path = "/patients/me/therapies"
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token),

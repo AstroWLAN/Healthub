@@ -47,6 +47,23 @@ class TherapyRepository: TherapyRepositoryProtocol{
             }
     }
     
+    func createTherapy(drug_id: Int, duration: String, name: String, comment: String, completionHandler: @escaping (Bool?, Error?) -> Void){
+        let token = KeychainWrapper.standard.string(forKey: "access_token")
+        let body = API.Types.Request.CreateTherapy(drug_id: drug_id, duration: duration, name: name, comment: comment)
+        client
+            .fetch(.createTherapy(token: token!), method: .post, body: body){ (result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(success.status == "OK",nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+                
+            }
+    }
+    
     private func processDrugSearch(_ results: API.Types.Response.Search)->[Drug]{
         var local = [Drug]()
         
