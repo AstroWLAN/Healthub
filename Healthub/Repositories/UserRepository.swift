@@ -50,7 +50,7 @@ class UserRepository: UserRepositoryProtocol{
                 DispatchQueue.main.async {
                     switch result{
                     case .success(let success):
-                        let sex = Genders(rawValue: API.GenderTranslation.gender[success.sex]! )
+                        let sex = Gender(rawValue: API.GenderTranslation.gender[success.sex]! )
                         let patient = Patient(email: success.email,
                                               name: success.name, sex: sex! , dateOfBirth: df.date(from: success.dateOfBirth)!, fiscalCode: success.fiscalCode, height: success.height, weight: success.weight, phone: success.phone)
                          completionHandler(patient, nil)

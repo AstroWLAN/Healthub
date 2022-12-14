@@ -40,8 +40,7 @@
 		249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF522292A2873007C802F /* PathologiesRepository.swift */; };
 		249FF52F292A4797007C802F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF52E292A4797007C802F /* UserRepository.swift */; };
 		249FF532292A7801007C802F /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF531292A7801007C802F /* Patient.swift */; };
-		249FF534292A7877007C802F /* Genders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF533292A7877007C802F /* Genders.swift */; };
-		249FF536292A79B0007C802F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF535292A79B0007C802F /* SettingsViewModel.swift */; };
+		249FF536292A79B0007C802F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF535292A79B0007C802F /* ProfileViewModel.swift */; };
 		24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
 		24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */; };
 		24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFD2928F93C0089F9A0 /* API.swift */; };
@@ -62,6 +61,8 @@
 		852F1A332946AFB400B57B18 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A322946AFB400B57B18 /* Notes.swift */; };
 		852F1A342946AFB400B57B18 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A322946AFB400B57B18 /* Notes.swift */; };
 		852F1A372946B09200B57B18 /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = 852F1A362946B09200B57B18 /* TextView */; };
+		852F1A392947E17000B57B18 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A382947E17000B57B18 /* Objects.swift */; };
+		852F1A3A2947E17000B57B18 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A382947E17000B57B18 /* Objects.swift */; };
 		857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857282FE293EC4A700AF993E /* DoctorsDatabase.swift */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
@@ -70,7 +71,7 @@
 		857A550A2922D6D800413841 /* TicketsGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55092922D6D800413841 /* TicketsGallery.swift */; };
 		857A550C2922D70000413841 /* Therapies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550B2922D70000413841 /* Therapies.swift */; };
 		857A550E2922D72300413841 /* DoctorsGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550D2922D72300413841 /* DoctorsGallery.swift */; };
-		857A55102922D75000413841 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550F2922D75000413841 /* Settings.swift */; };
+		857A55102922D75000413841 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550F2922D75000413841 /* Profile.swift */; };
 		857A55152922DC8500413841 /* OnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55142922DC8500413841 /* OnBoarding.swift */; };
 		857A55192922DCBB00413841 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55182922DCBB00413841 /* Feature.swift */; };
 		857A551B2922DDDA00413841 /* OnBoarding.json in Resources */ = {isa = PBXBuildFile; fileRef = 857A551A2922DDDA00413841 /* OnBoarding.json */; };
@@ -128,8 +129,7 @@
 		249FF522292A2873007C802F /* PathologiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepository.swift; sourceTree = "<group>"; };
 		249FF52E292A4797007C802F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		249FF531292A7801007C802F /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
-		249FF533292A7877007C802F /* Genders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genders.swift; sourceTree = "<group>"; };
-		249FF535292A79B0007C802F /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		249FF535292A79B0007C802F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepositoryTests.swift; sourceTree = "<group>"; };
 		24C1CCFD2928F93C0089F9A0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		24C1CCFF2928FA010089F9A0 /* APITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITypes.swift; sourceTree = "<group>"; };
@@ -144,6 +144,7 @@
 		852F1A2B2946219400B57B18 /* DrugsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugsDatabase.swift; sourceTree = "<group>"; };
 		852F1A2F2946241600B57B18 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		852F1A322946AFB400B57B18 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		852F1A382947E17000B57B18 /* Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
 		857282FE293EC4A700AF993E /* DoctorsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsDatabase.swift; sourceTree = "<group>"; };
 		857A54ED2922D34300413841 /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A54F02922D34300413841 /* HealthubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubApp.swift; sourceTree = "<group>"; };
@@ -153,7 +154,7 @@
 		857A55092922D6D800413841 /* TicketsGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsGallery.swift; sourceTree = "<group>"; };
 		857A550B2922D70000413841 /* Therapies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Therapies.swift; sourceTree = "<group>"; };
 		857A550D2922D72300413841 /* DoctorsGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsGallery.swift; sourceTree = "<group>"; };
-		857A550F2922D75000413841 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		857A550F2922D75000413841 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		857A55142922DC8500413841 /* OnBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoarding.swift; sourceTree = "<group>"; };
 		857A55182922DCBB00413841 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		857A551A2922DDDA00413841 /* OnBoarding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OnBoarding.json; sourceTree = "<group>"; };
@@ -251,7 +252,6 @@
 				241759512927A5420051BE0B /* UserLogin.swift */,
 				241759622927DE220051BE0B /* Pathology.swift */,
 				249FF531292A7801007C802F /* Patient.swift */,
-				249FF533292A7877007C802F /* Genders.swift */,
 				244166342947731B00035824 /* Drug.swift */,
 				2454E1D42938B14500AF0CE0 /* Reservation.swift */,
 				24D420DE2938BC090090A42D /* Doctor.swift */,
@@ -284,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				852F1A2F2946241600B57B18 /* Styles.swift */,
+				852F1A382947E17000B57B18 /* Objects.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -356,7 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				2417594C2927A5000051BE0B /* LoginViewModel.swift */,
-				249FF535292A79B0007C802F /* SettingsViewModel.swift */,
+				249FF535292A79B0007C802F /* ProfileViewModel.swift */,
 				2417595E2927D8F40051BE0B /* SignUpViewModel.swift */,
 				241759602927DC330051BE0B /* PathologiesViewModel.swift */,
 				2441663C29479DF200035824 /* ContactsViewModel.swift */,
@@ -372,7 +373,7 @@
 				857A55052922D57D00413841 /* Tickets */,
 				857A55062922D58A00413841 /* Therapies */,
 				857A55082922D5A300413841 /* Doctors */,
-				857A55072922D59D00413841 /* Settings */,
+				857A55072922D59D00413841 /* Profile */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -400,14 +401,14 @@
 			path = Therapies;
 			sourceTree = "<group>";
 		};
-		857A55072922D59D00413841 /* Settings */ = {
+		857A55072922D59D00413841 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				857A550F2922D75000413841 /* Settings.swift */,
+				857A550F2922D75000413841 /* Profile.swift */,
 				857A551C2923120800413841 /* Information.swift */,
 				857A551E2923130A00413841 /* Pathologies.swift */,
 			);
-			path = Settings;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		857A55082922D5A300413841 /* Doctors */ = {
@@ -544,6 +545,7 @@
 				2495CB88293A091600DD4535 /* MockUserRepository.swift in Sources */,
 				2495CB8A293A093400DD4535 /* LoginViewModelTests.swift in Sources */,
 				2454E1DB2938B19000AF0CE0 /* MockClientReservations.swift in Sources */,
+				852F1A3A2947E17000B57B18 /* Objects.swift in Sources */,
 				852F1A2D2946219400B57B18 /* DrugsDatabase.swift in Sources */,
 				24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */,
 				852F1A312946241600B57B18 /* Styles.swift in Sources */,
@@ -567,7 +569,6 @@
 				857A551D2923120800413841 /* Information.swift in Sources */,
 				2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */,
 				857A551F2923130A00413841 /* Pathologies.swift in Sources */,
-				249FF534292A7877007C802F /* Genders.swift in Sources */,
 				85BB5AC029388DE20039618B /* DoctorsView.swift in Sources */,
 				249FF532292A7801007C802F /* Patient.swift in Sources */,
 				2441663729477E5000035824 /* Therapy.swift in Sources */,
@@ -594,7 +595,7 @@
 				852F1A2C2946219400B57B18 /* DrugsDatabase.swift in Sources */,
 				244166352947731B00035824 /* Drug.swift in Sources */,
 				241759522927A5420051BE0B /* UserLogin.swift in Sources */,
-				857A55102922D75000413841 /* Settings.swift in Sources */,
+				857A55102922D75000413841 /* Profile.swift in Sources */,
 				2441662F294764D400035824 /* TherapyViewModel.swift in Sources */,
 				2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */,
 				857A550E2922D72300413841 /* DoctorsGallery.swift in Sources */,
@@ -605,10 +606,11 @@
 				852F1A292946218900B57B18 /* Prescription.swift in Sources */,
 				24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */,
 				24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */,
-				249FF536292A79B0007C802F /* SettingsViewModel.swift in Sources */,
+				249FF536292A79B0007C802F /* ProfileViewModel.swift in Sources */,
 				2441663D29479DF200035824 /* ContactsViewModel.swift in Sources */,
 				24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */,
 				852F1A302946241600B57B18 /* Styles.swift in Sources */,
+				852F1A392947E17000B57B18 /* Objects.swift in Sources */,
 				2417595D2927A6150051BE0B /* Welcome.swift in Sources */,
 				2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */,
 				857A550A2922D6D800413841 /* TicketsGallery.swift in Sources */,

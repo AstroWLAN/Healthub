@@ -253,7 +253,7 @@ extension API {
             
             var url: URL{
                 var components = URLComponents()
-                components.host = "localhost"
+                components.host = "healthub.software"
                 components.scheme = "https"
                 switch self{
                     

@@ -19,8 +19,8 @@ struct MainView: View {
                         .tabItem{ Label("Therapies", systemImage: "pills.fill") }
                     DoctorsGalleryView()
                         .tabItem{ Label("Contacts", systemImage: "person.crop.rectangle.stack.fill") }
-                    SettingsView()
-                        .tabItem{ Label("Settings", systemImage: "gear") }
+                    ProfileView()
+                        .tabItem{ Label("Profile", systemImage: "figure.arms.open") }
                 }
                 // Changes the tint of the tab bar
                 .tint(Color("HealthGray3"))

@@ -3,12 +3,13 @@ import SwiftUI
 struct Cubic : LabelStyle {
     
     @State var glyphBackgroundColor : Color?
+    @State var textColor : Color?
     @State var backgroundOpacityLevel : Double?
     
     func makeBody(configuration: Configuration) -> some View {
         Label {
             configuration.title
-                .foregroundColor(Color(.black))
+                .foregroundColor(textColor ?? Color(.black))
         } icon: {
             configuration.icon
                 .font(.system(size: 17))

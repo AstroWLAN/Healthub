@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SettingsViewModel: ObservableObject {
+class ProfileViewModel: ObservableObject {
     
     @Published private var hasError: Bool = false
   
@@ -15,7 +15,7 @@ class SettingsViewModel: ObservableObject {
     private var userService: any UserRepositoryProtocol
     @Published var isLoading = false
     @Published var name : String = ""
-    @Published var gender : Genders = .Male
+    @Published var gender : Gender = .male
     @Published var height : String = ""
     @Published var weight : String = ""
     @Published var birthday : Date = Date()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Pathology{
+struct Pathology : Hashable {
     
     private(set) var id: Int
     private(set) var name:String
