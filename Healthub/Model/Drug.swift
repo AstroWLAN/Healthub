@@ -1,12 +1,6 @@
-//
-//  Therapy.swift
-//  Healthub
-//
-//  Created by Giovanni Dispoto on 12/12/22.
-//
-
 import Foundation
-struct Drug: Identifiable, Hashable{
+
+struct Drug : Identifiable, Hashable {
     private(set) var id: Int
     private(set) var group_description: String
     private(set) var ma_holder: String

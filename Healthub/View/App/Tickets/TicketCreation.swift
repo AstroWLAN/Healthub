@@ -80,7 +80,7 @@ struct TicketCreationView: View {
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 Section(header: Text("Date")){
                     DatePicker(selection: $ticketDate, displayedComponents: [.date]){
-                        Label("Exam Date", systemImage: "calendar").labelStyle(SettingLabelStyle())
+                        Label("Exam Date", systemImage: "calendar").labelStyle(Cubic())
                     }
                 }.onChange(of: ticketDate, perform: { value in
                     if let exam = ticketExamination?.index{

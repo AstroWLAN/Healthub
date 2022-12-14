@@ -91,7 +91,7 @@ class TherapyRepository: TherapyRepositoryProtocol{
                 doctor = Doctor(id: result.doctor!.id, name: result.doctor!.name, address: result.doctor!.address)
             }
             
-            let therapy = Therapy(id: result.therapy_id, doctor: doctor, duration: result.duration, drug: drug, comment: result.comment, name: result.name, interactions: result.interactions)
+            let therapy = Therapy(id: result.therapy_id, doctor: doctor, duration: result.duration, drug: drug, notes: result.comment, name: result.name, interactions: result.interactions)
             
             local.append(therapy)
         }

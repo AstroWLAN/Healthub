@@ -65,7 +65,7 @@ struct DoctorsDatabaseView: View {
                         selectedDoctor = doctor
                         sheetDismiss()
                     },
-                           label:  { Label(doctor.name, systemImage: "person.fill").labelStyle(SettingLabelStyle()) })
+                           label:  { Label(doctor.name, systemImage: "person.fill").labelStyle(Cubic()) })
                 }
                 .listRowSeparator(.hidden)
             }
