@@ -12,7 +12,7 @@ extension CaseIterable where Self: Equatable {
     }
 }
 
-struct TicketCreationView: View {
+struct BookingView: View {
     
     @State private var examinationGlyph : String?
     @EnvironmentObject private var ticketViewModel: TicketViewModel
@@ -148,6 +148,6 @@ struct TicketCreationView: View {
 
 struct TicketCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        TicketCreationView()
+        BookingView()
     }
 }

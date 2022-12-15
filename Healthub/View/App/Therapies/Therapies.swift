@@ -66,17 +66,14 @@ struct TherapiesView: View {
     
     // Sample therapies
     @State private var userTherapies : [Therapy] = [
-    Therapy(id: 0, duration: "Lifetime",
-            notes: "Una pastiglia al mattino e una alla sera",
-            name: "Infezione Fungina",
+        Therapy(id: 0, name: "Infezione Fungina", duration: "Lifetime",
+                notes: "Una pastiglia al mattino e una alla sera",
             interactions: []),
-    Therapy(id: 1, duration: "3 Days",
+    Therapy(id: 1, name: "Asthma", duration: "3 Days",
             notes: "Un puff mattina e sera\nSciacquare la bocca con abbondante acqua dopo l'assunzione",
-            name: "Asthma",
             interactions: []),
-    Therapy(id: 2, duration: "1 Week",
+    Therapy(id: 2, name: "COVID-19", duration: "1 Week",
             notes: "3 pastiglie mattina e sera",
-            name: "COVID-19",
             interactions: ["Azitromicina"])
     ]
     
