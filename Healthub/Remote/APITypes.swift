@@ -66,7 +66,7 @@ extension API {
             }
             
             struct CreateTherapy: Encodable{
-                var drug_id: Int
+                var drug_ids: [Int]
                 var duration: String
                 var name: String
                 var comment: String
@@ -165,7 +165,7 @@ extension API {
                 struct TherapyElement: Decodable{
                     var therapy_id: Int
                     var doctor: DoctorElement?
-                    var drug: DrugElement?
+                    var drugs: [DrugElement]
                     var duration: String
                     var comment: String
                     var name: String

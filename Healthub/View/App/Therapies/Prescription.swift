@@ -1,5 +1,6 @@
 import SwiftUI
 import TextView
+import AlertToast
 
 private enum FocusableObject { case name, duration, doctor, notes }
 
@@ -12,6 +13,8 @@ struct Prescription: View {
     //@State private var prescriptionDoctor : String = String()
     @State private var prescriptionDuration : String = String()
     @State private var prescriptionNotes : String = String()
+    @EnvironmentObject private var therapyViewModel: TherapyViewModel
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
         ZStack {
@@ -41,6 +44,7 @@ struct Prescription: View {
                     .autocorrectionDisabled(true)
                     .textInputAutocapitalization(.words)
                     .listRowSeparator(.hidden)
+                    
                     Section {
                         Button(
                             action: { displayNotes = true },
@@ -89,29 +93,43 @@ struct Prescription: View {
                 .navigationTitle("Prescription")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    Button(
-                        action: {
-                            /* Sync with backend */
-                        },
-                        label:  {
-                            ZStack {
-                                Circle()
-                                    .frame(height: 28)
-                                    .opacity(0.2)
-                                Image(systemName: "checkmark")
-                                    .font(.system(size: 13, weight: .medium))
+                    if(therapyViewModel.completedCreation == false && therapyViewModel.hasError == false){
+                        Button(
+                            action: {
+                                /* Sync with backend */
+                                therapyViewModel.createNewTherapy(drugs: prescriptionDrugs, duration: prescriptionDuration, name: prescriptionName, comment: prescriptionNotes)
+                            },
+                            label:  {
+                                ZStack {
+                                    Circle()
+                                        .frame(height: 28)
+                                        .opacity(0.2)
+                                    Image(systemName: "checkmark")
+                                        .font(.system(size: 13, weight: .medium))
+                                }
                             }
-                        }
-                    )
-                    .disabled(
-                        prescriptionDrugs.isEmpty     ||
-                        prescriptionName.isEmpty      ||
-                        //prescriptionDoctor.isEmpty    ||
-                        prescriptionDuration.isEmpty
-                    )
+                        )
+                        .disabled(
+                            prescriptionDrugs.isEmpty     ||
+                            prescriptionName.isEmpty      ||
+                            //prescriptionDoctor.isEmpty    ||
+                            prescriptionDuration.isEmpty
+                        )
+                    }else{
+                        ProgressView().progressViewStyle(.circular)
+                            .onDisappear(perform: {
+                                self.mode.wrappedValue.dismiss()
+                            })
+                    }
                 }
             }
         }
+        .toast(isPresenting: $therapyViewModel.hasError, alert: {
+            AlertToast(type: .error(Color("HealthGray3")),title: "An error occured")
+        })
+        .toast(isPresenting: $therapyViewModel.completedCreation, alert: {
+             AlertToast(type: .complete(Color("HealthGray3")),title: "Reservation Created")
+        })
     }
 }
 

@@ -4,7 +4,7 @@ import TextView
 struct TherapySheet : View {
     
     @Binding var therapy : Therapy?
-    
+   
     var body : some View {
         ZStack {
             Color(.systemGray6)
@@ -63,11 +63,12 @@ struct TherapiesView: View {
     @State private var displayTherapySheet : Bool = false
     @State private var detectedInteractions : Bool = false
     @State private var selectedTherapy : Therapy?
+    @EnvironmentObject private var therapyViewModel: TherapyViewModel
     
     // Sample therapies
-    @State private var userTherapies : [Therapy] = [
+    /*@State private var userTherapies : [Therapy] = [
         Therapy(id: 0, name: "Infezione Fungina", duration: "Lifetime",
-                notes: "Una pastiglia al mattino e una alla sera",
+                notes: "Una pastiglia al mattino e una alla sera",[],
             interactions: []),
     Therapy(id: 1, name: "Asthma", duration: "3 Days",
             notes: "Un puff mattina e sera\nSciacquare la bocca con abbondante acqua dopo l'assunzione",
@@ -75,7 +76,7 @@ struct TherapiesView: View {
     Therapy(id: 2, name: "COVID-19", duration: "1 Week",
             notes: "3 pastiglie mattina e sera",
             interactions: ["Azitromicina"])
-    ]
+    ]*/
     
     var body: some View {
         NavigationStack {
@@ -92,12 +93,12 @@ struct TherapiesView: View {
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     .listRowBackground(Color("AstroRed"))
                 }
-                if userTherapies.isEmpty {
+                if therapyViewModel.therapies.isEmpty {
                     // Display Placeholder
                 }
                 else {
                     Section {
-                        ForEach(userTherapies, id: \.self) { therapy in
+                        ForEach(therapyViewModel.therapies, id: \.self) { therapy in
                             Button(
                                 action: {
                                     selectedTherapy = therapy
@@ -140,6 +141,7 @@ struct TherapiesView: View {
             }
         }
         .tint(Color(.systemPink))
+        .onAppear(perform: therapyViewModel.fetchTherapies)
     }
 }
 

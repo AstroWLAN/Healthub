@@ -14,6 +14,7 @@ class TicketViewModel : ObservableObject{
     @Published private(set) var doctors: [Doctor] = []
     @Published private(set) var availabilities: [Date] = []
     @Published private(set) var slots: [String] = []
+    
     @Published var completed: Bool = false
     @Published var hasError: Bool = false
     

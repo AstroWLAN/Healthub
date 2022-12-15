@@ -47,9 +47,9 @@ class TherapyRepository: TherapyRepositoryProtocol{
             }
     }
     
-    func createTherapy(drug_id: Int, duration: String, name: String, comment: String, completionHandler: @escaping (Bool?, Error?) -> Void){
+    func createTherapy(drug_ids: [Int], duration: String, name: String, comment: String, completionHandler: @escaping (Bool?, Error?) -> Void){
         let token = KeychainWrapper.standard.string(forKey: "access_token")
-        let body = API.Types.Request.CreateTherapy(drug_id: drug_id, duration: duration, name: name, comment: comment)
+        let body = API.Types.Request.CreateTherapy(drug_ids: drug_ids, duration: duration, name: name, comment: comment)
         client
             .fetch(.createTherapy(token: token!), method: .post, body: body){ (result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
@@ -80,18 +80,23 @@ class TherapyRepository: TherapyRepositoryProtocol{
        
         
         for result in results.therapies{
-            var drug: Drug? = nil
+            var drugs: [Drug] = []
             var doctor: Doctor? = nil
             
-            if result.drug != nil{
-                drug = Drug(id: result.drug!.id, group_description: result.drug!.group_description, ma_holder: result.drug!.ma_holder, equivalence_group_code: result.drug!.equivalence_group_code, denomination_and_packaging: result.drug!.denomination_and_packaging, active_principle: result.drug!.active_principle, ma_code: result.drug!.ma_code)
-            }
+            
+            for d in result.drugs{
+                    drugs.append(Drug(id: d.id, group_description: d.group_description, ma_holder: d.ma_holder, equivalence_group_code: d.equivalence_group_code, denomination_and_packaging: d.denomination_and_packaging, active_principle: d.active_principle, ma_code: d.ma_code))
+                    
+                }
+                
+            
             
             if result.doctor != nil{
                 doctor = Doctor(id: result.doctor!.id, name: result.doctor!.name, address: result.doctor!.address)
             }
             
-            let therapy = Therapy(id: result.therapy_id, name: result.name, doctor: doctor, duration: result.duration, drug: drug, notes: result.comment, interactions: result.interactions)
+            
+            let therapy = Therapy(id: result.therapy_id, name: result.name, doctor: doctor, duration: result.duration, drugs: drugs, notes: result.comment, interactions: result.interactions)
             
             local.append(therapy)
         }
