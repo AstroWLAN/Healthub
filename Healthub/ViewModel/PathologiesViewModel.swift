@@ -58,8 +58,8 @@ class PathologiesViewModel : ObservableObject {
         
     }
     
-    func removePathology(at offsets: IndexSet){
-        let pathology = pathologies[offsets.first!]
+    func removePathology(at offset: Int){
+        let pathology = pathologies[offset]
         
         pathologiesRepository.delete(pathologyId: pathology.id){ (success, error) in
             if let error = error {

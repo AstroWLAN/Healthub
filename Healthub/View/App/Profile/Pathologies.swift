@@ -17,7 +17,7 @@ struct PathologiesView: View {
                             .keyboardType(.asciiCapable)
                             .onSubmit {
                                 addPathology()
-                                // pathologiesViewModel.fetchPathologies()
+                                pathologiesViewModel.fetchPathologies()
                             }
                         Spacer()
                         ZStack {
@@ -42,6 +42,7 @@ struct PathologiesView: View {
                                         role: .destructive,
                                         action: {
                                             // Remove pathology method need a valid Int index (index)
+                                            pathologiesViewModel.removePathology(at: index)
                                         },
                                         label: {
                                             Image(systemName: "trash.fill")
@@ -58,7 +59,7 @@ struct PathologiesView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .tint(Color(.systemPink))
-        //.onAppear(perform: { pathologiesViewModel.fetchPathologies() })
+        .onAppear(perform: { pathologiesViewModel.fetchPathologies() })
     }
     private func addPathology() {
         guard newPathology.count > 0,
@@ -67,7 +68,7 @@ struct PathologiesView: View {
             withAnimation{ badPathologyName = true }
             return
         }
-        withAnimation{ /*pathologiesViewModel.addPathology(pathology: newPathology)*/ }
+        withAnimation{ pathologiesViewModel.addPathology(pathology: newPathology) }
         newPathology = String()
         withAnimation { badPathologyName = false }
     }

@@ -10,7 +10,7 @@ import Foundation
 extension API {
     
     struct GenderTranslation{
-        public static let gender = [0: "Male", 1:"Female", 2: "Other"]
+        public static let gender = [0: "male", 1:"female", 2: "other"]
         public static let gender_r = ["male": 0, "female": 1, "other": 2]
     }
     
@@ -253,7 +253,7 @@ extension API {
             
             var url: URL{
                 var components = URLComponents()
-                components.host = "healthub.software"
+                components.host = "localhost"
                 components.scheme = "https"
                 switch self{
                     

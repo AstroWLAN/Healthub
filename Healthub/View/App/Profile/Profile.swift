@@ -37,7 +37,7 @@ struct ProfileView: View {
                                 .onSubmit {
                                     withAnimation { inputValidation(type: objectFocused!, input: profile.name) }
                                     if badInput == .none {
-                                        //profile.updatePatient()
+                                       profile.updatePatient()
                                     }
                                 }
                             ZStack {
@@ -61,7 +61,7 @@ struct ProfileView: View {
                                 .onSubmit {
                                     withAnimation { inputValidation(type: objectFocused!, input: profile.fiscalCode) }
                                     if badInput == .none {
-                                        //profile.updatePatient()
+                                        profile.updatePatient()
                                     }
                                 }
                             ZStack {
@@ -105,7 +105,7 @@ struct ProfileView: View {
                             action: { displayGenderPicker = true },
                             label:  { Label(profile.gender.rawValue.capitalized, systemImage: "person.fill") }
                         )
-                        .sheet(isPresented: $displayGenderPicker, onDismiss: { /*profile.updatePatient()*/ }) {
+                        .sheet(isPresented: $displayGenderPicker, onDismiss: { profile.updatePatient() }) {
                             GenderSheet(userGender: $profile.gender).presentationDetents([.height(200)])
                         }
                         
@@ -114,7 +114,7 @@ struct ProfileView: View {
                             action: { displayHeightPicker = true },
                             label:  { Label(measureComposer(value: profile.height, unit: .cm), systemImage: "ruler.fill") }
                         )
-                        .sheet(isPresented: $displayHeightPicker, onDismiss: { /*profile.updatePatient()*/ }) {
+                        .sheet(isPresented: $displayHeightPicker, onDismiss: { profile.updatePatient() }) {
                             HeightSheet(userHeight: $profile.height).presentationDetents([.height(200)])
                         }
                         
@@ -123,7 +123,7 @@ struct ProfileView: View {
                             action: { displayWeightPicker = true },
                             label:  { Label(measureComposer(value: profile.weight, unit: .kg), systemImage: "scalemass.fill") }
                         )
-                        .sheet(isPresented: $displayWeightPicker, onDismiss: { /*profile.updatePatient()*/ }) {
+                        .sheet(isPresented: $displayWeightPicker, onDismiss: { profile.updatePatient() }) {
                             WeightSheet(userWeight: $profile.weight).presentationDetents([.height(200)])
                         }
                         
@@ -132,7 +132,7 @@ struct ProfileView: View {
                             action: { displayBirthdatePicker = true },
                             label:  { Label(profile.birthday.formatted(.dateTime.day().month(.wide).year()), systemImage: "calendar") }
                         )
-                        .sheet(isPresented: $displayBirthdatePicker, onDismiss: { /*profile.updatePatient()*/ }) {
+                        .sheet(isPresented: $displayBirthdatePicker, onDismiss: { profile.updatePatient() }) {
                             BirthdateSheet(birthdate: $profile.birthday).presentationDetents([.height(200)])
                         }
                         
@@ -173,7 +173,7 @@ struct ProfileView: View {
                         action: {
                             withAnimation { inputValidation(type: .phone, input: profile.phone) }
                             if badInput == .none {
-                                //profile.updatePatient()
+                                profile.updatePatient()
                             }
                             objectFocused = nil
                         },
@@ -192,7 +192,7 @@ struct ProfileView: View {
             }
         }
         .tint(Color(.systemPink))
-        //.onAppear(perform: { profile.getPatient() })
+        .onAppear(perform: { profile.getPatient() })
     }
     
     private func inputValidation(type : FocusableObject, input : String) {

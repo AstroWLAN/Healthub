@@ -70,7 +70,6 @@ class UserRepository: UserRepositoryProtocol{
         
         let body = API.Types.Request.CreatePatient(email: email, password: password, name: "", sex: 0, dateOfBirth: df.string(from: Date()), fiscalCode: "", height: 0, weight: 0, phone: "")
         
-        print(body)
         
         client.fetch(.createPatient, method:.post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
             DispatchQueue.main.async {
