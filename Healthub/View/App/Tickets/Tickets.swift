@@ -96,7 +96,11 @@ struct TicketsView: View {
             }
         }
         .tint(Color(.systemPink))
-        .onAppear(perform: ticketViewModel.fetchTickets)
+        .onAppear(perform: {
+            if(UserDefaults.standard.bool(forKey: "isLogged")){
+                ticketViewModel.fetchTickets()
+            }
+        })
         
     }
 }
