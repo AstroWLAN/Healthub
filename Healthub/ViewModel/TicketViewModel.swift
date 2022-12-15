@@ -15,7 +15,9 @@ class TicketViewModel : ObservableObject{
     @Published private(set) var availabilities: [Date] = []
     @Published private(set) var slots: [String] = []
     
+    
     @Published var completed: Bool = false
+    @Published var isLoadingTickets = false
     @Published var hasError: Bool = false
     
     
@@ -24,7 +26,7 @@ class TicketViewModel : ObservableObject{
     }
     
     func fetchTickets(){
-        
+        self.isLoadingTickets = true
         reservationsRepository.getAll(){(reservations, error) in
             if let error = error{
                 print(error.localizedDescription)
@@ -32,6 +34,7 @@ class TicketViewModel : ObservableObject{
             
             if let reservations = reservations{
                 self.reservations = reservations
+                self.isLoadingTickets = false
             }
             
         }

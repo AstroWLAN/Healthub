@@ -1,4 +1,5 @@
 import SwiftUI
+import AlertToast
 
 struct PathologiesView: View {
     
@@ -60,6 +61,9 @@ struct PathologiesView: View {
         }
         .tint(Color(.systemPink))
         .onAppear(perform: { pathologiesViewModel.fetchPathologies() })
+        .toast(isPresenting: $pathologiesViewModel.isLoadingPathologies, alert:{
+            AlertToast(type: .loading ,title: "Loading")
+        })
     }
     private func addPathology() {
         guard newPathology.count > 0,

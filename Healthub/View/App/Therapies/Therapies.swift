@@ -81,6 +81,7 @@ struct TherapiesView: View {
     var body: some View {
         NavigationStack {
             List {
+            if therapyViewModel.isLoadingTherapies == false{
                 if detectedInteractions {
                     Section(header: Text(String())){
                         Label("Interactions Detected", systemImage: "exclamationmark.shield.fill")
@@ -126,7 +127,12 @@ struct TherapiesView: View {
                             .presentationDetents([.large])
                     }
                 }
+             
+            }else{
+               ProgressView()
             }
+        }
+         
             .navigationTitle("Therapies")
             .toolbar{
                 NavigationLink(destination: Prescription()) {

@@ -1,5 +1,5 @@
 import SwiftUI
-
+import AlertToast
 struct TicketsView: View {
     
     @State private var currentDate : Date = Date()
@@ -29,44 +29,48 @@ struct TicketsView: View {
                 Color(.systemGray6)
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
-                    if ticketViewModel.reservations.isEmpty {
-                        Image("TicketsPlaceholder")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 160, height: 160)
-                            .padding(.bottom, 80)
-                    }
-                    else {
-                        List {
-                            Section(header: Text(String())) {
-                                ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element) { index,ticket in
-                                    Button(
-                                        action: {
-                                            selectedTicket = ticket
-                                            displayTicketDetails = true
-                                        },
-                                        label: {
-                                            Label(ticket.examinationType.name, systemImage: "staroflife.fill")
-                                        }
-                                    )
-                                    .swipeActions {
+                    if ticketViewModel.isLoadingTickets == false{
+                        if ticketViewModel.reservations.isEmpty {
+                            Image("TicketsPlaceholder")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 160, height: 160)
+                                .padding(.bottom, 80)
+                        }
+                        else {
+                            List {
+                                Section(header: Text(String())) {
+                                    ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element) { index,ticket in
                                         Button(
-                                            role: .destructive,
-                                            action: { ticketViewModel.deleteReservation(reservation_id: ticket.id) },
-                                            label: { Image(systemName: "trash.fill") })
+                                            action: {
+                                                selectedTicket = ticket
+                                                displayTicketDetails = true
+                                            },
+                                            label: {
+                                                Label(ticket.examinationType.name, systemImage: "staroflife.fill")
+                                            }
+                                        )
+                                        .swipeActions {
+                                            Button(
+                                                role: .destructive,
+                                                action: { ticketViewModel.deleteReservation(reservation_id: ticket.id) },
+                                                label: { Image(systemName: "trash.fill") })
+                                        }
                                     }
                                 }
+                                .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                                .listRowSeparator(.hidden)
                             }
-                            .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                            .listRowSeparator(.hidden)
+                            .labelStyle(Cubic())
+                            .scrollIndicators(.hidden)
+                            .scrollContentBackground(.hidden)
+                            .sheet(isPresented: $displayTicketDetails) {
+                                TicketSheetView(ticket: $selectedTicket)
+                                    .presentationDetents([.large])
+                            }
                         }
-                        .labelStyle(Cubic())
-                        .scrollIndicators(.hidden)
-                        .scrollContentBackground(.hidden)
-                        .sheet(isPresented: $displayTicketDetails) {
-                            TicketSheetView(ticket: $selectedTicket)
-                                .presentationDetents([.large])
-                        }
+                    }else{
+                        ProgressView()
                     }
                 }
             }
@@ -93,6 +97,7 @@ struct TicketsView: View {
         }
         .tint(Color(.systemPink))
         .onAppear(perform: ticketViewModel.fetchTickets)
+        
     }
 }
 

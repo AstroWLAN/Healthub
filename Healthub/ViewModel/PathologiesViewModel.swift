@@ -13,6 +13,7 @@ class PathologiesViewModel : ObservableObject {
     @Published
     private(set) var pathologies: [Pathology] = []
     private var hasError: Bool = false
+    @Published var isLoadingPathologies = false
     private let pathologiesRepository: any PathologyRepositoryProcotol
     
     var onError: ((String) -> Void)?
@@ -24,7 +25,7 @@ class PathologiesViewModel : ObservableObject {
     
     func fetchPathologies(){
         //Retrieve token in order to prepare the request
-        
+        self.isLoadingPathologies = true
         pathologiesRepository.getAll{ (pathologies, error) in
             if let error = error{
                 print(error.localizedDescription)
@@ -32,6 +33,7 @@ class PathologiesViewModel : ObservableObject {
             
             if let pathologies = pathologies{
                 self.pathologies = pathologies
+                self.isLoadingPathologies = false
             }
             
         }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class TherapyViewModel: ObservableObject{
     private let therapyRepository: any TherapyRepositoryProtocol
@@ -15,6 +16,13 @@ class TherapyViewModel: ObservableObject{
     
     @Published var hasError: Bool = false
     @Published var completedCreation: Bool = false
+    var objectWillChange = PassthroughSubject<Void, Never>()
+    @Published var isLoadingTherapies = false{
+        willSet {
+            objectWillChange.send()
+        }
+    }
+
     
     init(therapyRepository: any TherapyRepositoryProtocol) {
         self.therapyRepository = therapyRepository
@@ -33,10 +41,11 @@ class TherapyViewModel: ObservableObject{
     }
     
     func fetchTherapies(force_reload: Bool = false){
-        
+        self.isLoadingTherapies = true
         if let cachedVersion = cache.object(forKey: "therapies" as NSString) as? [Therapy] {
             // use the cached version
             self.therapies = cachedVersion
+            self.isLoadingTherapies = false
         } else {
             // create it from scratch then store in the cache
             therapyRepository.getAll(){(therapies, error) in
@@ -49,10 +58,12 @@ class TherapyViewModel: ObservableObject{
                     self.cache.setObject(therapies as NSArray, forKey: "therapies")
                 }
                 
+                self.isLoadingTherapies = false
+                
             }
         }
         
-      
+       
     }
     
     func createNewTherapy(drugs: [Drug], duration:String, name: String, comment: String){
