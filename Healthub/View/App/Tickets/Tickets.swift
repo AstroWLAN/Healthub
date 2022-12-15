@@ -3,11 +3,12 @@ import SwiftUI
 struct TicketsView: View {
     
     @State private var currentDate : Date = Date()
-    @State private var selectedTicket : Ticket?
+    @State private var selectedTicket : Reservation?
     @State private var displayTicketDetails : Bool = false
+    @EnvironmentObject private var ticketViewModel: TicketViewModel
     
     // Sample Exams
-    @State private var userTickets : [Ticket] = [
+    /*@State private var userTickets : [Ticket] = [
         Ticket(title: "Cardioscopy",
                doctor: "Shaun Murphy",
                date: Date(),
@@ -20,7 +21,7 @@ struct TicketsView: View {
                time: Date(),
                ticketLatitude: 37.254226245713866,
                ticketLongitude: -121.94670027234936)
-    ]
+    ]*/
     
     var body: some View {
         NavigationStack {
@@ -28,7 +29,7 @@ struct TicketsView: View {
                 Color(.systemGray6)
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
-                    if userTickets.isEmpty {
+                    if ticketViewModel.reservations.isEmpty {
                         Image("TicketsPlaceholder")
                             .resizable()
                             .scaledToFit()
@@ -38,20 +39,20 @@ struct TicketsView: View {
                     else {
                         List {
                             Section(header: Text(String())) {
-                                ForEach(Array(userTickets.enumerated()), id: \.element) { index,ticket in
+                                ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element) { index,ticket in
                                     Button(
                                         action: {
                                             selectedTicket = ticket
                                             displayTicketDetails = true
                                         },
                                         label: {
-                                            Label(ticket.title, systemImage: "staroflife.fill")
+                                            Label(ticket.examinationType.name, systemImage: "staroflife.fill")
                                         }
                                     )
                                     .swipeActions {
                                         Button(
                                             role: .destructive,
-                                            action: { userTickets.remove(at: index) },
+                                            action: { ticketViewModel.deleteReservation(reservation_id: ticket.id) },
                                             label: { Image(systemName: "trash.fill") })
                                     }
                                 }
@@ -91,6 +92,7 @@ struct TicketsView: View {
             }
         }
         .tint(Color(.systemPink))
+        .onAppear(perform: ticketViewModel.fetchTickets)
     }
 }
 

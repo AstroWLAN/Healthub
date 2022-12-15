@@ -9,6 +9,7 @@ import Foundation
 
 class TherapyViewModel: ObservableObject{
     private let therapyRepository: any TherapyRepositoryProtocol
+    private let cache = NSCache<NSString, NSArray>()
     @Published private(set) var drugs: [Drug] = []
     @Published private(set) var therapies: [Therapy] = []
     
@@ -31,17 +32,27 @@ class TherapyViewModel: ObservableObject{
         }
     }
     
-    func fetchTherapies(){
-        therapyRepository.getAll(){(therapies, error) in
-            if let error = error{
-                print(error.localizedDescription)
+    func fetchTherapies(force_reload: Bool = false){
+        
+        if let cachedVersion = cache.object(forKey: "therapies" as NSString) as? [Therapy] {
+            // use the cached version
+            self.therapies = cachedVersion
+        } else {
+            // create it from scratch then store in the cache
+            therapyRepository.getAll(){(therapies, error) in
+                if let error = error{
+                    print(error.localizedDescription)
+                }
+                
+                if let therapies = therapies{
+                    self.therapies = therapies
+                    self.cache.setObject(therapies as NSArray, forKey: "therapies")
+                }
+                
             }
-            
-            if let therapies = therapies{
-                self.therapies = therapies
-            }
-            
         }
+        
+      
     }
     
     func createNewTherapy(drugs: [Drug], duration:String, name: String, comment: String){

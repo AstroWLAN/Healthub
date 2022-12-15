@@ -141,7 +141,7 @@ struct TherapiesView: View {
             }
         }
         .tint(Color(.systemPink))
-        .onAppear(perform: therapyViewModel.fetchTherapies)
+        .onAppear(perform:{therapyViewModel.fetchTherapies(force_reload: false)})
     }
 }
 

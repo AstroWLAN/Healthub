@@ -1,10 +1,12 @@
 import SwiftUI
 import MapKit
-
+import AlertToast
 
 struct TicketSheetView: View {
     
-    @Binding var ticket : Ticket?
+    @Binding var ticket : Reservation?
+    @State var ticketLatitude : CLLocationDegrees?
+    @State var ticketLongitude : CLLocationDegrees?
     
     var body: some View {
         ZStack {
@@ -36,8 +38,8 @@ struct TicketSheetView: View {
                 .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
                 List {
                     Section(header: Text("Generalities"))  {
-                        Label(ticket!.title, systemImage: "staroflife.fill")
-                        Label(ticket!.doctor, systemImage: "stethoscope")
+                        Label(ticket!.examinationType.name, systemImage: "staroflife.fill")
+                        Label(ticket!.doctor.name, systemImage: "stethoscope")
                     }
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
@@ -49,15 +51,26 @@ struct TicketSheetView: View {
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     Section(header: Text("Address")) {
-                        AddressView(location: CLLocationCoordinate2D(latitude: ticket!.ticketLatitude, longitude: ticket!.ticketLongitude))
-                            .frame(height: 120)
-                            .scaledToFit()
+                    if (ticketLatitude != nil && ticketLongitude != nil){
+                            AddressView(location: CLLocationCoordinate2D(latitude: ticketLatitude!, longitude: ticketLongitude!))
+                                .frame(height: 120)
+                                .scaledToFit()
+                        }else{
+                            AlertToast(type: .loading, title: "Loading")
+                        }
+                            
                     }
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
                 .labelStyle(Cubic())
                 .scrollContentBackground(.hidden)
+            }.task({Address2Coordinates.translate(from: ticket!.doctor.address){(location, error) in
+                if let location = location{
+                    self.ticketLatitude = location.latitude
+                    self.ticketLongitude = location.longitude
+                }
             }
+            })
         }
     }
 }
@@ -98,32 +111,32 @@ struct AddressView: View {
             }
         }
         .onAppear {
-            if let cachedVersion = cache.object(forKey: "\(location.latitude), \(location.longitude)" as NSString ) {
-                self.mapSnapshotImage = cachedVersion
-            } else {
-                generateMapSnapshot()
-            }
-            
+            generateMapSnapshot()
         }
     }
     
     // Generates the map snapshot
     func generateMapSnapshot() {
-        let mapOptions = MKMapSnapshotter.Options()
-        mapOptions.region = MKCoordinateRegion( center: self.location, span: MKCoordinateSpan( latitudeDelta: self.span, longitudeDelta: self.span ))
-        mapOptions.size = CGSize(width: 400, height: 140)
-        mapOptions.mapType = .standard
-        mapOptions.showsBuildings = true
+        if let cachedVersion = cache.object(forKey: "\(location.latitude), \(location.longitude)" as NSString ) {
+            self.mapSnapshotImage = cachedVersion
+        } else {
+            let mapOptions = MKMapSnapshotter.Options()
+            mapOptions.region = MKCoordinateRegion( center: self.location, span: MKCoordinateSpan( latitudeDelta: self.span, longitudeDelta: self.span ))
+            mapOptions.size = CGSize(width: 400, height: 140)
+            mapOptions.mapType = .standard
+            mapOptions.showsBuildings = true
 
-        MKMapSnapshotter(options: mapOptions).start { (mapSnapshot, mapError) in
-            if let error = mapError {
-                print(error)
-                return
-            }
-            if let snapshot = mapSnapshot {
-                self.mapSnapshotImage = snapshot.image
-                cache.setObject(snapshot.image, forKey: "\(self.location.latitude), \(self.location.longitude)" as NSString)
+            MKMapSnapshotter(options: mapOptions).start { (mapSnapshot, mapError) in
+                if let error = mapError {
+                    print(error)
+                    return
+                }
+                if let snapshot = mapSnapshot {
+                    self.mapSnapshotImage = snapshot.image
+                    cache.setObject(snapshot.image, forKey: "\(self.location.latitude), \(self.location.longitude)" as NSString)
+                }
             }
         }
+        
     }
 }

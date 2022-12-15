@@ -3,18 +3,19 @@ import SwiftUI
 struct DoctorsDatabaseView: View {
     
     @Environment(\.dismiss) var sheetDismiss
+    @EnvironmentObject private var ticketViewModel : TicketViewModel
     @FocusState var searchFocus : Bool
     @Binding var selectedDoctor : Doctor?
     @State private var searchQuery : String = String()
     @State private var isTyping : Bool = false
     
     // Fill this array with doctors among whom to search for
-    let docbase : [Doctor] = [
+    /*let docbase : [Doctor] = [
         Doctor(id: 0, name: "Shaun Murphy", address: String()),
         Doctor(id: 1, name: "Marcus Andrews", address: String()),
         Doctor(id: 2, name: "Audrie Lim", address: String()),
         Doctor(id: 3, name: "Meredith Gray", address: String())
-    ]
+    ]*/
     
     var body: some View {
         VStack(spacing: 0){
@@ -58,7 +59,7 @@ struct DoctorsDatabaseView: View {
             .padding(.horizontal, 20)
             Spacer()
             List{
-                ForEach(docbase.filter({ (doctor: Doctor) -> Bool in
+                ForEach(ticketViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
                     return doctor.name.hasPrefix(searchQuery) || searchQuery == ""
                 }), id: \.self) { doctor in
                     Button(action: {

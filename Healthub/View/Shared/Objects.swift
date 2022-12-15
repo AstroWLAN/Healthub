@@ -58,9 +58,9 @@ struct BirthdateSheet : View {
 struct DayPicker : View {
     
     @Binding var examinationDate : Date
-    
+    //.addingTimeInterval(86400)...
     var body : some View {
-        DatePicker(String(), selection: $examinationDate, in: Date().addingTimeInterval(86400)..., displayedComponents: .date)
+        DatePicker(String(), selection: $examinationDate, in: ...Date(), displayedComponents: .date)
             .datePickerStyle(WheelDatePickerStyle())
             .labelsHidden()
     }

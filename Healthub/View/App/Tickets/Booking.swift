@@ -39,7 +39,11 @@ struct BookingView: View {
                             })
                     }
                     .labelStyle(Cubic())
-                    .sheet(isPresented: $displayExaminationSheet) {
+                    .sheet(isPresented: $displayExaminationSheet, onDismiss: {
+                        if let exam = selectedExamination?.rawValue{
+                            self.ticketViewModel.fetchDoctorsByExamName(exam_name: exam);
+                            
+                        }}){
                         ExaminationsSheet(selectedExamination: $selectedExamination, selectedExaminationGlyph: $selectedExaminationGlyph)
                             .presentationDetents([.height(360)])
                     }
@@ -112,6 +116,13 @@ struct BookingView: View {
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                .onChange(of: selectedDate, perform: { value in
+                    if let exam = selectedExamination?.index{
+                        if let doctor = selectedDoctor {
+                            ticketViewModel.fetchSlots(doctor_id: doctor.id, examinationType_id: exam + 1, date: value)
+                        }
+                    }
+                })
             }
             .labelStyle(Cubic())
             .navigationTitle("Booking")
