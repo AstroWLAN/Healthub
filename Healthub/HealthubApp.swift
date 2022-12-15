@@ -17,6 +17,13 @@ extension UINavigationController {
     }
 }
 
+extension CaseIterable where Self: Equatable {
+
+    var index: Self.AllCases.Index? {
+        return Self.allCases.firstIndex { self == $0 }
+    }
+}
+
 @main
 struct HealthubApp: App {
     @StateObject var loginViewModel = LoginViewModel(userRepository: UserRepository(client: API.Client()))

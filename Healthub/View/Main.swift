@@ -13,7 +13,7 @@ struct MainView: View {
             VStack{
                 // Defines the application tab bar
                 TabView{
-                    TicketGalleryView()
+                    TicketsView()
                         .tabItem{ Label("Tickets", systemImage: "ticket.fill") }
                     TherapiesView()
                         .tabItem{ Label("Therapies", systemImage: "pills.fill") }

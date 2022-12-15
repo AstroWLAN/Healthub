@@ -84,8 +84,6 @@
 		85BB5ABB293802CE0039618B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* Booking.swift */; };
 		85BB5ABD293808380039618B /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
 		85BB5ABE293808380039618B /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
-		85BB5AC029388DE20039618B /* DoctorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABF29388DE20039618B /* DoctorsView.swift */; };
-		85BB5AC129388DE20039618B /* DoctorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABF29388DE20039618B /* DoctorsView.swift */; };
 		85BB5AC52939B19C0039618B /* DoctorLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AC42939B19C0039618B /* DoctorLogin.swift */; };
 /* End PBXBuildFile section */
 
@@ -166,7 +164,6 @@
 		85BB5AAB2935FE160039618B /* TicketSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSheet.swift; sourceTree = "<group>"; };
 		85BB5AB9293802CE0039618B /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		85BB5ABC293808380039618B /* Examinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examinations.swift; sourceTree = "<group>"; };
-		85BB5ABF29388DE20039618B /* DoctorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsView.swift; sourceTree = "<group>"; };
 		85BB5AC42939B19C0039618B /* DoctorLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorLogin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -389,7 +386,6 @@
 				857A55092922D6D800413841 /* Tickets.swift */,
 				85BB5AB9293802CE0039618B /* Booking.swift */,
 				85BB5ABC293808380039618B /* Examinations.swift */,
-				85BB5ABF29388DE20039618B /* DoctorsView.swift */,
 			);
 			path = Tickets;
 			sourceTree = "<group>";
@@ -560,7 +556,6 @@
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
 				85BB5ABE293808380039618B /* Examinations.swift in Sources */,
 				246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */,
-				85BB5AC129388DE20039618B /* DoctorsView.swift in Sources */,
 				85BB5ABB293802CE0039618B /* Booking.swift in Sources */,
 				852F1A342946AFB400B57B18 /* Notes.swift in Sources */,
 			);
@@ -574,7 +569,6 @@
 				857A551D2923120800413841 /* Information.swift in Sources */,
 				2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */,
 				857A551F2923130A00413841 /* Pathologies.swift in Sources */,
-				85BB5AC029388DE20039618B /* DoctorsView.swift in Sources */,
 				249FF532292A7801007C802F /* Patient.swift in Sources */,
 				2441663729477E5000035824 /* Therapy.swift in Sources */,
 				24C1CD022928FBAA0089F9A0 /* APIClient.swift in Sources */,

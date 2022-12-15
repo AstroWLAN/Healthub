@@ -54,3 +54,31 @@ struct BirthdateSheet : View {
             .labelsHidden()
     }
 }
+
+struct DayPicker : View {
+    
+    @Binding var examinationDate : Date
+    
+    var body : some View {
+        DatePicker(String(), selection: $examinationDate, in: Date().addingTimeInterval(86400)..., displayedComponents: .date)
+            .datePickerStyle(WheelDatePickerStyle())
+            .labelsHidden()
+    }
+}
+
+/*
+struct SlotPicker : View {
+    
+    @EnvironmentObject private var ticketViewModel : TicketViewModel
+    @Binding var examinationTimeSlot : String?
+    
+    var body : some View {
+        Picker(String(), selection: $examinationTimeSlot){
+            ForEach(ticketViewModel.slots, id: \.self) { slot in
+                Text(slot).tag(ticketViewModel.slots.firstIndex(of: slot)!)
+            }
+        }
+        .pickerStyle(WheelPickerStyle())
+    }
+}
+*/

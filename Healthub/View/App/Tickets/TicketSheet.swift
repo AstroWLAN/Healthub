@@ -12,15 +12,30 @@ struct TicketSheetView: View {
                 .ignoresSafeArea()
             VStack(spacing: 0) {
                 HStack {
-                    Text("Details")
+                    Spacer()
+                    Capsule()
+                        .frame(width: 30, height: 6)
+                        .foregroundColor(Color(.systemGray5))
+                        .padding(.top,20)
+                    Spacer()
+                }
+                HStack(spacing: 0) {
+                    Text("Ticket")
                         .font(.largeTitle.bold())
                         .lineLimit(1)
                         .minimumScaleFactor(0.2)
                     Spacer()
+                    Group {
+                        Image(systemName: "barcode")
+                            .padding(.trailing, -10)
+                        Image(systemName: "barcode")
+                    }
+                    .font(.largeTitle.bold())
+                    .foregroundColor(Color(.systemGray4))
                 }
-                .padding(EdgeInsets(top: 30, leading: 20, bottom: 20, trailing: 0))
+                .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
                 List {
-                    Section {
+                    Section(header: Text("Generalities"))  {
                         Label(ticket!.title, systemImage: "staroflife.fill")
                         Label(ticket!.doctor, systemImage: "stethoscope")
                     }
@@ -35,6 +50,8 @@ struct TicketSheetView: View {
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     Section(header: Text("Address")) {
                         AddressView(location: CLLocationCoordinate2D(latitude: ticket!.ticketLatitude, longitude: ticket!.ticketLongitude))
+                            .frame(height: 120)
+                            .scaledToFit()
                     }
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
@@ -43,31 +60,32 @@ struct TicketSheetView: View {
             }
         }
     }
-    
 }
 
 struct AddressView: View {
     
     let location: CLLocationCoordinate2D
-    var span: CLLocationDegrees = 0.01
+    let span: CLLocationDegrees = 0.01
     let cache = NSCache<NSString, UIImage>()
     
-    @State private var mapSnapshotImage: UIImage? = nil
+    @State private var mapSnapshotImage: UIImage?
     
     var body: some View {
         Group {
             if let mapImage = mapSnapshotImage {
                 Image(uiImage: mapImage)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 7))
             }
             else {
                 ZStack{
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(Color(UIColor.secondarySystemBackground))
-                        .frame(width: 336, height: 120)
+                    RoundedRectangle(cornerRadius: 7)
+                        .foregroundColor(Color(.systemGray6))
                     HStack {
                         Spacer()
                         ProgressView().progressViewStyle(CircularProgressViewStyle())
+                            .tint(Color(.systemGray))
                         Spacer()
                     }
                 }
@@ -81,35 +99,29 @@ struct AddressView: View {
         }
         .onAppear {
             if let cachedVersion = cache.object(forKey: "\(location.latitude), \(location.longitude)" as NSString ) {
-                // use the cached version
                 self.mapSnapshotImage = cachedVersion
             } else {
-                // create it from scratch then store in the cache
                 generateMapSnapshot()
             }
+            
         }
     }
     
     // Generates the map snapshot
     func generateMapSnapshot() {
-        /// ** Map Options **
         let mapOptions = MKMapSnapshotter.Options()
-        // Describes the displayed region
         mapOptions.region = MKCoordinateRegion( center: self.location, span: MKCoordinateSpan( latitudeDelta: self.span, longitudeDelta: self.span ))
-        // Describes the size of the map
-        mapOptions.size = CGSize(width: 336, height: 120)
+        mapOptions.size = CGSize(width: 400, height: 140)
         mapOptions.mapType = .standard
         mapOptions.showsBuildings = true
-        
-        // Generates the Map Snapshot
-        MKMapSnapshotter(options: mapOptions).start { (snapshotOrNil, errorOrNil) in
-            if let error = errorOrNil {
+
+        MKMapSnapshotter(options: mapOptions).start { (mapSnapshot, mapError) in
+            if let error = mapError {
                 print(error)
                 return
             }
-            if let snapshot = snapshotOrNil {
+            if let snapshot = mapSnapshot {
                 self.mapSnapshotImage = snapshot.image
-                print("\(self.location.latitude), \(self.location.longitude)" as NSString)
                 cache.setObject(snapshot.image, forKey: "\(self.location.latitude), \(self.location.longitude)" as NSString)
             }
         }

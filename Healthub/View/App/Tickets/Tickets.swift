@@ -1,17 +1,25 @@
 import SwiftUI
 
-struct TicketGalleryView: View {
+struct TicketsView: View {
     
     @State private var currentDate : Date = Date()
     @State private var selectedTicket : Ticket?
     @State private var displayTicketDetails : Bool = false
+    
+    // Sample Exams
     @State private var userTickets : [Ticket] = [
         Ticket(title: "Cardioscopy",
                doctor: "Shaun Murphy",
                date: Date(),
                time: Date(),
                ticketLatitude: 45.60085160791855,
-               ticketLongitude: 9.260335527083102)
+               ticketLongitude: 9.260335527083102),
+        Ticket(title: "Vaccination",
+               doctor: "Gregory House",
+               date: Date(),
+               time: Date(),
+               ticketLatitude: 37.254226245713866,
+               ticketLongitude: -121.94670027234936)
     ]
     
     var body: some View {
@@ -25,7 +33,7 @@ struct TicketGalleryView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 160, height: 160)
-                            .padding(.bottom, 60)
+                            .padding(.bottom, 80)
                     }
                     else {
                         List {
@@ -88,6 +96,6 @@ struct TicketGalleryView: View {
 
 struct TicketGalleryView_Previews: PreviewProvider {
     static var previews: some View {
-        TicketGalleryView()
+        TicketsView()
     }
 }

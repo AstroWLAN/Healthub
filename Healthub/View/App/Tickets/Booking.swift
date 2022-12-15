@@ -1,153 +1,138 @@
 import SwiftUI
 import AlertToast
+
 enum Examination : String, CaseIterable {
     case routine, vaccination, sport, specialist, certificate, other
     
 }
 
-extension CaseIterable where Self: Equatable {
-
-    var index: Self.AllCases.Index? {
-        return Self.allCases.firstIndex { self == $0 }
-    }
-}
 
 struct BookingView: View {
     
-    @State private var examinationGlyph : String?
-    @EnvironmentObject private var ticketViewModel: TicketViewModel
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
-    // This array should contain all the possible time slots for the selected day
-    //@State private var timeSlots : [String] = ["16 : 15","16 : 30","16 : 45","17 : 00"]
-
-    // These variables contains the user choices
-    @State private var ticketExamination : Examination?
-    @State private var ticketDoctor : Doctor!
-    @State private var ticketDate : Date = Date()
-    @State private var ticketSlot : String = ""
-    
-    @State private var displayExaminations : Bool = false
-    @State private var displayDoctors : Bool = false
-
+    @EnvironmentObject private var ticketViewModel : TicketViewModel
+    @State private var displayExaminationSheet : Bool = false
+    @State private var displayDoctorSheet : Bool = false
+    @State private var displayDateSheet : Bool = false
+    @State private var displayTimeSheet : Bool = false
+    @State private var selectedExamination : Examination?
+    @State private var selectedExaminationGlyph : String?
+    @State private var selectedDoctor : Doctor?
+    @State private var selectedDate : Date = Date()
+    @State private var selectedTimeSlot : String?
     
     var body: some View {
         NavigationStack{
-            List{
-                Section(header: Text("Information")){
-                    HStack{
-                        Button(action: { displayExaminations = true },
-                               label:  { Label(ticketExamination?.rawValue.capitalized ?? "Examinations",systemImage: examinationGlyph ?? "staroflife.fill" )
-                                         //   labelStyle(SettingLabelStyle())
-                            
-                        }
-                        )
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 17,weight: .medium))
-                            .foregroundColor(Color(.systemGray3))
+            List {
+                Section {
+                    HStack {
+                        Button(
+                            action: { displayExaminationSheet = true },
+                            label: {
+                                HStack {
+                                    Label(selectedExamination?.rawValue.capitalized ?? "Examination",
+                                          systemImage: selectedExaminationGlyph ?? "staroflife.fill")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(Color(.systemGray4))
+                                }
+                            })
                     }
-                    .sheet(isPresented: $displayExaminations, onDismiss: {
-                        if let exam = ticketExamination?.rawValue{
-                            self.ticketViewModel.fetchDoctorsByExamName(exam_name: exam);
-                            
-                        }
-                    }){
-                        ExaminationsView(selectedExam: $ticketExamination, examGlyph: $examinationGlyph)
-                            .presentationDetents([.medium])
+                    .labelStyle(Cubic())
+                    .sheet(isPresented: $displayExaminationSheet) {
+                        ExaminationsSheet(selectedExamination: $selectedExamination, selectedExaminationGlyph: $selectedExaminationGlyph)
+                            .presentationDetents([.height(360)])
                     }
-                    HStack{
-                        Button(action: { displayDoctors = true },
-                               label:  { Label(ticketDoctor?.name ?? "Doctor",systemImage: "stethoscope" )
-                            //.labelStyle(SettingLabelStyle())
-                            
-                        }
-                        )
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 17,weight: .medium))
-                            .foregroundColor(Color(.systemGray3))
+                    HStack {
+                        Button(
+                            action: { displayDoctorSheet = true },
+                            label: {
+                                HStack {
+                                    Label(selectedDoctor?.name.capitalized ?? "Doctor",
+                                          systemImage: "stethoscope")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(Color(.systemGray4))
+                                }
+                            })
                     }
-                    .sheet(isPresented: $displayDoctors, onDismiss: {
-                        //if let doctor = ticketDoctor{
-                        //    self.ticketViewModel.fetchAvailableDates(doctor_id: doctor.id)
-                       // }
-                    }){
-                        DoctorsView(selectedDoctor: $ticketDoctor)
+                    .disabled(selectedExamination == nil ? true : false)
+                    .opacity(selectedExamination == nil ? 0.4 : 1)
+                    .sheet(isPresented: $displayDoctorSheet) {
+                        DoctorsDatabaseView(selectedDoctor: $selectedDoctor)
+                            .presentationDetents([.large])
                     }
                 }
                 .listRowSeparator(.hidden)
-                .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                Section(header: Text("Date")){
-                    DatePicker(selection: $ticketDate, displayedComponents: [.date]){
-                        Label("Exam Date", systemImage: "calendar").labelStyle(Cubic())
+                .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                Section(header: Text("Date")) {
+                    HStack {
+                        Button(
+                            action: { displayDateSheet = true },
+                            label: {
+                                HStack {
+                                    Label(selectedDate.formatted(.dateTime.day().month(.wide)) + " " + selectedDate.formatted(.dateTime.year()),
+                                          systemImage: "calendar")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(Color(.systemGray4))
+                                }
+                            })
                     }
-                }.onChange(of: ticketDate, perform: { value in
-                    if let exam = ticketExamination?.index{
-                        if let doctor = ticketDoctor {
-                            ticketViewModel.fetchSlots(doctor_id: doctor.id, examinationType_id: exam + 1, date: value)
-                        }
+                    .disabled(selectedDoctor == nil ? true : false)
+                    .opacity(selectedDoctor == nil ? 0.4 : 1)
+                    .sheet(isPresented: $displayDateSheet) {
+                        DayPicker(examinationDate: $selectedDate)
+                            .presentationDetents([.height(200)])
                     }
-                })
-                .listRowSeparator(.hidden)
-                .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                Section(header: Text("Time")){
-                    Label("Exam Time Slot", systemImage: "timer")//.labelStyle(SettingLabelStyle())
-                    Picker("", selection: $ticketSlot){
-                        Text("")
-                        ForEach(ticketViewModel.slots, id: \.self){slot in
-                            Text(slot).tag(ticketViewModel.slots.firstIndex(of: slot)!)
-                        }
+                    HStack {
+                        Button(
+                            action: { displayTimeSheet = true },
+                            label: {
+                                HStack {
+                                    Label(selectedTimeSlot ?? "Time",
+                                          systemImage: "timer")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(Color(.systemGray4))
+                                }
+                            })
                     }
-                    .pickerStyle(WheelPickerStyle())
-                    .labelsHidden()
-                    .frame(height: 100)
+                    .disabled(selectedDoctor == nil ? true : false)
+                    .opacity(selectedDoctor == nil ? 0.4 : 1)
+                    .sheet(isPresented: $displayTimeSheet) {
+                        /*
+                        SlotPicker(examinationTimeSlot: $selectedTimeSlot)
+                            .presentationDetents([.height(200)])
+                         */
+                    }
                 }
                 .listRowSeparator(.hidden)
-                .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
             }
-            
-        }
-        .navigationTitle("Creation")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar{
-            if(ticketViewModel.completed == false  && ticketViewModel.hasError == false){
-                Button(action: {
-                if let exam = ticketExamination?.index{
-                    if let doctor = ticketDoctor {
-                        if ticketSlot != ""{
-                            ticketViewModel.addReservation(date: ticketDate, starting_time: ticketSlot, doctor_id: doctor.id, examinationType_id: exam + 1)
-                           
+            .labelStyle(Cubic())
+            .navigationTitle("Booking")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button(
+                    action: {
+                        /* Sync with backend */
+                    },
+                    label:  {
+                        ZStack {
+                            Circle()
+                                .frame(height: 28)
+                                .opacity(0.2)
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 13, weight: .medium))
                         }
                     }
-                }
-                
-            }, label: { Image(systemName: "checkmark") })
-                .disabled(ticketSlot == "" || ticketDoctor == nil || ticketExamination == nil)
-            }else{
-                ProgressView().progressViewStyle(.circular)
-                    .onDisappear(perform: {
-                        self.mode.wrappedValue.dismiss()
-                    })
+                )
+                .disabled(selectedExamination == nil || selectedDoctor == nil || selectedDate == Date() || selectedTimeSlot == nil)
             }
-            
-            
-       
         }
-        
-       .toast(isPresenting: $ticketViewModel.hasError, alert: {
-            AlertToast(type: .error(Color("HealthGray3")),title: "An error occured")
-        })
-        .toast(isPresenting: $ticketViewModel.completed, alert: {
-             AlertToast(type: .complete(Color("HealthGray3")),title: "Reservation Created")
-        })
-        
-        
-    }
-}
-
-struct TicketCreationView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookingView()
     }
 }
