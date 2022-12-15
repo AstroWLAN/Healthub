@@ -15,9 +15,13 @@ class TherapyViewModel: ObservableObject{
     @Published private(set) var therapies: [Therapy] = []
     
     @Published var hasError: Bool = false
-    @Published var completedCreation: Bool = false
+    @Published var completedCreation: Bool = false {
+        willSet {
+            objectWillChange.send()
+        }
+    }
     var objectWillChange = PassthroughSubject<Void, Never>()
-    @Published var isLoadingTherapies = false{
+    @Published var isLoadingTherapies = false {
         willSet {
             objectWillChange.send()
         }
@@ -42,12 +46,7 @@ class TherapyViewModel: ObservableObject{
     
     func fetchTherapies(force_reload: Bool = false){
         self.isLoadingTherapies = true
-        if let cachedVersion = cache.object(forKey: "therapies" as NSString) as? [Therapy] {
-            // use the cached version
-            self.therapies = cachedVersion
-            self.isLoadingTherapies = false
-        } else {
-            // create it from scratch then store in the cache
+        if force_reload == true{
             therapyRepository.getAll(){(therapies, error) in
                 if let error = error{
                     print(error.localizedDescription)
@@ -60,6 +59,27 @@ class TherapyViewModel: ObservableObject{
                 
                 self.isLoadingTherapies = false
                 
+            }
+        }else{
+            if let cachedVersion = cache.object(forKey: "therapies" as NSString) as? [Therapy] {
+                // use the cached version
+                self.therapies = cachedVersion
+                self.isLoadingTherapies = false
+            } else {
+                // create it from scratch then store in the cache
+                therapyRepository.getAll(){(therapies, error) in
+                    if let error = error{
+                        print(error.localizedDescription)
+                    }
+                    
+                    if let therapies = therapies{
+                        self.therapies = therapies
+                        self.cache.setObject(therapies as NSArray, forKey: "therapies")
+                    }
+                    
+                    self.isLoadingTherapies = false
+                    
+                }
             }
         }
         
@@ -78,6 +98,7 @@ class TherapyViewModel: ObservableObject{
             if let _ = error{
                 self.hasError = true
             }else{
+                self.fetchTherapies(force_reload: true)
                 self.completedCreation = true
             }
             

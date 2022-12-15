@@ -66,7 +66,6 @@ struct DayPicker : View {
     }
 }
 
-/*
 struct SlotPicker : View {
     
     @EnvironmentObject private var ticketViewModel : TicketViewModel
@@ -81,4 +80,3 @@ struct SlotPicker : View {
         .pickerStyle(WheelPickerStyle())
     }
 }
-*/

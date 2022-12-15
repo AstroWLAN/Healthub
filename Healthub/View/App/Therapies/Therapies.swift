@@ -1,5 +1,6 @@
 import SwiftUI
 import TextView
+import AlertToast
 
 struct TherapySheet : View {
     
@@ -63,6 +64,7 @@ struct TherapiesView: View {
     @State private var displayTherapySheet : Bool = false
     @State private var detectedInteractions : Bool = false
     @State private var selectedTherapy : Therapy?
+    @State private var displayCreation: Bool = false
     @EnvironmentObject private var therapyViewModel: TherapyViewModel
     
     // Sample therapies
@@ -127,10 +129,13 @@ struct TherapiesView: View {
                             .presentationDetents([.large])
                     }
                 }
-             
+           
             }else{
-               ProgressView()
+               //ProgressView()
+                AlertToast(type: .loading, title: "Loading")
             }
+                
+            Text(String(therapyViewModel.isLoadingTherapies))
         }
          
             .navigationTitle("Therapies")
