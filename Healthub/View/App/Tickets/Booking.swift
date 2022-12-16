@@ -18,7 +18,8 @@ struct BookingView: View {
     @State private var selectedExaminationGlyph : String?
     @State private var selectedDoctor : Doctor?
     @State private var selectedDate : Date = Date()
-    @State private var selectedTimeSlot : String?
+    @State private var selectedTimeSlot : String = ""
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
         NavigationStack{
@@ -96,7 +97,7 @@ struct BookingView: View {
                             action: { displayTimeSheet = true },
                             label: {
                                 HStack {
-                                    Label(selectedTimeSlot ?? "Time",
+                                    Label(selectedTimeSlot == "" ? "Time": selectedTimeSlot,
                                           systemImage: "timer")
                                     Spacer()
                                     Image(systemName: "chevron.right")
@@ -108,10 +109,8 @@ struct BookingView: View {
                     .disabled(selectedDoctor == nil ? true : false)
                     .opacity(selectedDoctor == nil ? 0.4 : 1)
                     .sheet(isPresented: $displayTimeSheet) {
-                        /*
                         SlotPicker(examinationTimeSlot: $selectedTimeSlot)
                             .presentationDetents([.height(200)])
-                         */
                     }
                 }
                 .listRowSeparator(.hidden)
@@ -128,21 +127,33 @@ struct BookingView: View {
             .navigationTitle("Booking")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                Button(
-                    action: {
-                        /* Sync with backend */
-                    },
-                    label:  {
-                        ZStack {
-                            Circle()
-                                .frame(height: 28)
-                                .opacity(0.2)
-                            Image(systemName: "checkmark")
-                                .font(.system(size: 13, weight: .medium))
+                if ticketViewModel.sent == false{
+                    Button(
+                        action: {
+                            /* Sync with backend */
+                            ticketViewModel.addReservation(date: selectedDate, starting_time: selectedTimeSlot, doctor_id: selectedDoctor!.id, examinationType_id: (selectedExamination?.index ?? 0) + 1)
+                            
+                        },
+                        label:  {
+                            ZStack {
+                                Circle()
+                                    .frame(height: 28)
+                                    .opacity(0.2)
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 13, weight: .medium))
+                            }
                         }
+                    )
+                    .disabled(selectedExamination == nil || selectedDoctor == nil || selectedTimeSlot.isEmpty)
+                }else{
+                    if(ticketViewModel.completed == false && ticketViewModel.hasError == false){
+                        ProgressView().progressViewStyle(.circular)
+                            .isVisible(ticketViewModel.completed == false && ticketViewModel.hasError == false)
+                            .onDisappear(perform:{
+                                self.mode.wrappedValue.dismiss()
+                            })
                     }
-                )
-                .disabled(selectedExamination == nil || selectedDoctor == nil || selectedDate == Date() || selectedTimeSlot == nil)
+                }
             }
         }
     }

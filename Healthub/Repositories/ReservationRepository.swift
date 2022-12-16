@@ -29,7 +29,7 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         let starting_time = dateFormatter.string(from: date)
         
         let body = API.Types.Request.AddReservation(date: date_, starting_time: starting_time, doctor_id: doctor_id, examination_type: examinationType)
-        
+        print(body)
        client
             .fetch(.addReservation(token: token!), method: .post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
@@ -99,9 +99,11 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         client
             .get(.getReservations(token: token!)){ (result: Result<API.Types.Response.GetReservations, API.Types.Error>) in
                 DispatchQueue.main.async {
+                    print(result)
                     switch result{
                     case .success(let success):
                         completionHandler(self.processReservations(success), nil)
+                        print(self.processReservations(success))
                     case .failure(let failure):
                         completionHandler(nil,failure)
                     }
@@ -138,10 +140,10 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         df.dateFormat = "yyyy-MM-dd"
         
         let body = API.Types.Request.AddReservation(date: df.string(from: date), starting_time: starting_time, doctor_id: doctor_id, examination_type: examinationType)
-        
         client
             .fetch(.addReservation(token: token!), method: .post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
+                    print(result)
                     switch result{
                     case .success(let success):
                         completionHandler(success.status == "OK", nil)

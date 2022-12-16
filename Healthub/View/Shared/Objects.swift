@@ -69,12 +69,12 @@ struct DayPicker : View {
 struct SlotPicker : View {
     
     @EnvironmentObject private var ticketViewModel : TicketViewModel
-    @Binding var examinationTimeSlot : String?
+    @Binding var examinationTimeSlot : String
     
-    var body : some View {
+    var body : some View { //.tag(ticketViewModel.slots.firstIndex(of: slot)!)
         Picker(String(), selection: $examinationTimeSlot){
             ForEach(ticketViewModel.slots, id: \.self) { slot in
-                Text(slot).tag(ticketViewModel.slots.firstIndex(of: slot)!)
+                Text(String(slot))
             }
         }
         .pickerStyle(WheelPickerStyle())

@@ -46,7 +46,7 @@ struct TicketSheetView: View {
                     Section(header: Text("Date")) {
                         Label(ticket!.date.formatted(.dateTime.day().month(.wide)) + " " + ticket!.date.formatted(.dateTime.year()),
                               systemImage: "calendar")
-                        Label(ticket!.date.formatted(.dateTime.hour().minute()), systemImage: "timer")
+                        Label(String(ticket!.time.formatted(.dateTime.hour().minute())), systemImage: "timer")
                     }
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))

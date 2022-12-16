@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 class TicketViewModel : ObservableObject{
     
     private let reservationsRepository: any ReservationRepositoryProtocol
@@ -16,9 +17,30 @@ class TicketViewModel : ObservableObject{
     @Published private(set) var slots: [String] = []
     
     
-    @Published var completed: Bool = false
-    @Published var isLoadingTickets = false
-    @Published var hasError: Bool = false
+    var objectWillChange = PassthroughSubject<Void, Never>()
+    
+    
+    @Published var completed: Bool = false{
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    @Published var isLoadingTickets = false{
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    @Published var hasError: Bool = false{
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    @Published var sent: Bool = false
+    {
+        willSet {
+            objectWillChange.send()
+        }
+    }
     
     
     init(reservationsRepository: any ReservationRepositoryProtocol) {
@@ -33,6 +55,7 @@ class TicketViewModel : ObservableObject{
             }
             
             if let reservations = reservations{
+                
                 self.reservations = reservations
                 self.isLoadingTickets = false
             }
@@ -72,18 +95,27 @@ class TicketViewModel : ObservableObject{
     
     func addReservation(date: Date, starting_time: String, doctor_id: Int, examinationType_id: Int){
         self.hasError = false
+        self.completed = false
+        
         reservationsRepository.addReservation(date: date, starting_time: starting_time, doctor_id: doctor_id, examinationType: examinationType_id){(success, error) in
             if let error = error{
                 print(error.localizedDescription)
                 self.hasError = true
+                self.sent = false
             }
             if let reservationCompleted = success{
                 if reservationCompleted == true{
                     self.completed = true
+                    self.sent = false
+                }else{
+                    self.hasError = true
+                    self.sent = false
                 }
             }
         }
+        self.sent = true
     }
+    
     
     func deleteReservation(reservation_id: Int){
         reservationsRepository.delete(reservation_id: reservation_id){(success, error) in
