@@ -144,7 +144,7 @@ struct BookingView: View {
                             }
                         }
                     )
-                    .disabled(selectedExamination == nil || selectedDoctor == nil || selectedTimeSlot.isEmpty)
+                    .disabled(selectedExamination == nil || selectedDoctor == nil || selectedTimeSlot == "")
                 }else{
                     if(ticketViewModel.completed == false && ticketViewModel.hasError == false){
                         ProgressView().progressViewStyle(.circular)

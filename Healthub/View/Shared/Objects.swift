@@ -73,6 +73,7 @@ struct SlotPicker : View {
     
     var body : some View { //.tag(ticketViewModel.slots.firstIndex(of: slot)!)
         Picker(String(), selection: $examinationTimeSlot){
+            Text("")
             ForEach(ticketViewModel.slots, id: \.self) { slot in
                 Text(String(slot))
             }
