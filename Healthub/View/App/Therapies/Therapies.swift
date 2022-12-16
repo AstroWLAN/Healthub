@@ -37,15 +37,16 @@ struct TherapySheet : View {
                     }
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                    /*
+                    
                      Section(header: Text("Drugs")) {
-                     ForEach(therapy!.drugs, id: \.self) { drug in
-                     Label(drug.name, systemImage: "pill.fill")
-                     }
+                         ForEach(therapy!.drugs, id: \.id) { drug in
+                             Label(drug.denomination_and_packaging, systemImage: "pill.fill")
+                         }
+                    
                      }
                      .listRowSeparator(.hidden)
                      .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                     */
+                     
                     Text(therapy!.notes)
                         .foregroundColor(Color(.systemGray))
                         .listRowBackground(Color(.systemGray5))
