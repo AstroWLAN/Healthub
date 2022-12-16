@@ -11,7 +11,11 @@ import Combine
 class TherapyViewModel: ObservableObject{
     private let therapyRepository: any TherapyRepositoryProtocol
     private let cache = NSCache<NSString, NSArray>()
-    @Published private(set) var drugs: [Drug] = []
+    @Published private(set) var drugs: [Drug] = [] {
+        willSet {
+            objectWillChange.send()
+        }
+    }
     @Published private(set) var therapies: [Therapy] = []
     
     @Published var hasError: Bool = false

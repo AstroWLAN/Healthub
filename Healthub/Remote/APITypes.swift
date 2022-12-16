@@ -327,13 +327,13 @@ extension API {
                         
                     ]
                 case .getAvailableDates(let token, let doctor_id):
-                    components.path = "/reservations/get_available_dates/\(doctor_id)/"
+                    components.path = "/reservations/get_available_dates/\(doctor_id)"
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token),
                     ]
                     
                 case .getDrugList(let query):
-                    components.path = "/therapies/search/\(query)/"
+                    components.path = "/therapies/search/\(query)"
                     
                     
                 case .getTherapies(let token):
