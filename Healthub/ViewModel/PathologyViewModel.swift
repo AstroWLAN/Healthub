@@ -8,7 +8,7 @@
 import Foundation
 import SwiftKeychainWrapper
 
-class PathologiesViewModel : ObservableObject {
+class PathologyViewModel : ObservableObject {
     
     @Published
     private(set) var pathologies: [Pathology] = []

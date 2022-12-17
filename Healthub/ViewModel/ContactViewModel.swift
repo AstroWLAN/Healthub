@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ContactsViewModel: ObservableObject{
+class ContactViewModel: ObservableObject{
     private let contactRepository: any ContactRepositoryProtocol
     
     init(contactRepository: any ContactRepositoryProtocol) {

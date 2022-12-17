@@ -3,7 +3,7 @@ import AlertToast
 
 struct PathologiesView: View {
     
-    @EnvironmentObject private var pathologiesViewModel : PathologiesViewModel
+    @EnvironmentObject private var pathologiesViewModel : PathologyViewModel
     @State private var newPathology : String = String()
     @State private var badPathologyName : Bool = false
     

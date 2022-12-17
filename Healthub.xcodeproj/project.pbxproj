@@ -14,7 +14,7 @@
 		2417595B2927A60C0051BE0B /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595A2927A60C0051BE0B /* Signup.swift */; };
 		2417595D2927A6150051BE0B /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595C2927A6150051BE0B /* Welcome.swift */; };
 		2417595F2927D8F40051BE0B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595E2927D8F40051BE0B /* SignUpViewModel.swift */; };
-		241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologiesViewModel.swift */; };
+		241759612927DC330051BE0B /* PathologyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologyViewModel.swift */; };
 		241759632927DE220051BE0B /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
 		24179B91293CE77E004BFD69 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
@@ -25,7 +25,7 @@
 		2441663729477E5000035824 /* Therapy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663629477E5000035824 /* Therapy.swift */; };
 		2441663929479D1D00035824 /* ContactRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663829479D1D00035824 /* ContactRepositoryProtocol.swift */; };
 		2441663B29479D9700035824 /* ContactRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663A29479D9700035824 /* ContactRepository.swift */; };
-		2441663D29479DF200035824 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663C29479DF200035824 /* ContactsViewModel.swift */; };
+		2441663D29479DF200035824 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663C29479DF200035824 /* ContactViewModel.swift */; };
 		2454E1D32938B11800AF0CE0 /* ReservationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */; };
 		2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D42938B14500AF0CE0 /* Reservation.swift */; };
 		2454E1D72938B15900AF0CE0 /* ReservationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */; };
@@ -104,7 +104,7 @@
 		2417595A2927A60C0051BE0B /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		2417595C2927A6150051BE0B /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 		2417595E2927D8F40051BE0B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		241759602927DC330051BE0B /* PathologiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesViewModel.swift; sourceTree = "<group>"; };
+		241759602927DC330051BE0B /* PathologyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologyViewModel.swift; sourceTree = "<group>"; };
 		241759622927DE220051BE0B /* Pathology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pathology.swift; path = Healthub/Model/Pathology.swift; sourceTree = SOURCE_ROOT; };
 		2441662E294764D400035824 /* TherapyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyViewModel.swift; sourceTree = "<group>"; };
 		2441663029476E6200035824 /* TherapyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepository.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		2441663629477E5000035824 /* Therapy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Therapy.swift; sourceTree = "<group>"; };
 		2441663829479D1D00035824 /* ContactRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2441663A29479D9700035824 /* ContactRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepository.swift; sourceTree = "<group>"; };
-		2441663C29479DF200035824 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
+		2441663C29479DF200035824 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2454E1D42938B14500AF0CE0 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRepository.swift; sourceTree = "<group>"; };
@@ -360,8 +360,8 @@
 				2417594C2927A5000051BE0B /* LoginViewModel.swift */,
 				249FF535292A79B0007C802F /* ProfileViewModel.swift */,
 				2417595E2927D8F40051BE0B /* SignUpViewModel.swift */,
-				241759602927DC330051BE0B /* PathologiesViewModel.swift */,
-				2441663C29479DF200035824 /* ContactsViewModel.swift */,
+				241759602927DC330051BE0B /* PathologyViewModel.swift */,
+				2441663C29479DF200035824 /* ContactViewModel.swift */,
 				2441662E294764D400035824 /* TherapyViewModel.swift */,
 				2495CB8B293A0A1D00DD4535 /* TicketViewModel.swift */,
 			);
@@ -607,14 +607,14 @@
 				24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */,
 				24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */,
 				249FF536292A79B0007C802F /* ProfileViewModel.swift in Sources */,
-				2441663D29479DF200035824 /* ContactsViewModel.swift in Sources */,
+				2441663D29479DF200035824 /* ContactViewModel.swift in Sources */,
 				24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */,
 				852F1A302946241600B57B18 /* Styles.swift in Sources */,
 				852F1A392947E17000B57B18 /* Objects.swift in Sources */,
 				2417595D2927A6150051BE0B /* Welcome.swift in Sources */,
 				2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */,
 				857A550A2922D6D800413841 /* Tickets.swift in Sources */,
-				241759612927DC330051BE0B /* PathologiesViewModel.swift in Sources */,
+				241759612927DC330051BE0B /* PathologyViewModel.swift in Sources */,
 				85BB5AC52939B19C0039618B /* DoctorLogin.swift in Sources */,
 				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
 				241759592927A5FA0051BE0B /* Login.swift in Sources */,
