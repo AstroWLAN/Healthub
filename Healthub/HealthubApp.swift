@@ -28,7 +28,7 @@ extension CaseIterable where Self: Equatable {
 struct HealthubApp: App {
     @StateObject var loginViewModel = LoginViewModel(userRepository: UserRepository(client: API.Client()))
     @StateObject var signUpViewModel = SignUpViewModel(userRepository: UserRepository(client: API.Client()))
-    @StateObject var pathologiesViewModel = PathologiesViewModel(pathologiesRepository: PathologiesRepository(client: API.Client()))
+    @StateObject var pathologiesViewModel = PathologiesViewModel(pathologiesRepository: PathologyRepository(client: API.Client()))
     @StateObject var settingsViewModel = ProfileViewModel(userService: UserRepository(client: API.Client()))
     @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()))
     @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client()))

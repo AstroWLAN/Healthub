@@ -10,13 +10,13 @@ import XCTest
 import SwiftKeychainWrapper
 final class PathologiesRepositoryTests: XCTestCase {
     
-    private var pathologiesRepository: PathologiesRepository!
+    private var pathologiesRepository: PathologyRepository!
     private var mockClient: MockClient!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockClient = MockClient()
-        pathologiesRepository = PathologiesRepository(client: mockClient)
+        pathologiesRepository = PathologyRepository(client: mockClient)
         let saveSuccessful: Bool = KeychainWrapper.standard.set("1234", forKey: "access_token")
         guard saveSuccessful == true else{
             preconditionFailure("Unable to save access_token to keychain")

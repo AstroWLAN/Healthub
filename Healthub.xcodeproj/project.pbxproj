@@ -37,7 +37,7 @@
 		2495CB88293A091600DD4535 /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB87293A091600DD4535 /* MockUserRepository.swift */; };
 		2495CB8A293A093400DD4535 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB89293A093400DD4535 /* LoginViewModelTests.swift */; };
 		2495CB8C293A0A1D00DD4535 /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB8B293A0A1D00DD4535 /* TicketViewModel.swift */; };
-		249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF522292A2873007C802F /* PathologiesRepository.swift */; };
+		249FF523292A2873007C802F /* PathologyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF522292A2873007C802F /* PathologyRepository.swift */; };
 		249FF52F292A4797007C802F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF52E292A4797007C802F /* UserRepository.swift */; };
 		249FF532292A7801007C802F /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF531292A7801007C802F /* Patient.swift */; };
 		249FF536292A79B0007C802F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF535292A79B0007C802F /* ProfileViewModel.swift */; };
@@ -126,7 +126,7 @@
 		2495CB87293A091600DD4535 /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
 		2495CB89293A093400DD4535 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2495CB8B293A0A1D00DD4535 /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
-		249FF522292A2873007C802F /* PathologiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepository.swift; sourceTree = "<group>"; };
+		249FF522292A2873007C802F /* PathologyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologyRepository.swift; sourceTree = "<group>"; };
 		249FF52E292A4797007C802F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		249FF531292A7801007C802F /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		249FF535292A79B0007C802F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				249FF52C292A3F23007C802F /* RepositoriesProtocol */,
-				249FF522292A2873007C802F /* PathologiesRepository.swift */,
+				249FF522292A2873007C802F /* PathologyRepository.swift */,
 				249FF52E292A4797007C802F /* UserRepository.swift */,
 				2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */,
 				2441663A29479D9700035824 /* ContactRepository.swift */,
@@ -601,7 +601,7 @@
 				857A550E2922D72300413841 /* DoctorsGallery.swift in Sources */,
 				2441663B29479D9700035824 /* ContactRepository.swift in Sources */,
 				2441663129476E6200035824 /* TherapyRepository.swift in Sources */,
-				249FF523292A2873007C802F /* PathologiesRepository.swift in Sources */,
+				249FF523292A2873007C802F /* PathologyRepository.swift in Sources */,
 				2454E1D52938B14500AF0CE0 /* Reservation.swift in Sources */,
 				852F1A292946218900B57B18 /* Prescription.swift in Sources */,
 				24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */,

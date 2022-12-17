@@ -8,7 +8,7 @@
 import Foundation
 import SwiftKeychainWrapper
 
-struct PathologiesRepository : PathologyRepositoryProcotol{
+struct PathologyRepository : PathologyRepositoryProcotol{
     
     
     typealias T = Pathology
