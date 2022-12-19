@@ -99,11 +99,9 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         client
             .get(.getReservations(token: token!)){ (result: Result<API.Types.Response.GetReservations, API.Types.Error>) in
                 DispatchQueue.main.async {
-                    print(result)
                     switch result{
                     case .success(let success):
                         completionHandler(self.processReservations(success), nil)
-                        print(self.processReservations(success))
                     case .failure(let failure):
                         completionHandler(nil,failure)
                     }

@@ -48,6 +48,7 @@
 		24C1CD022928FBAA0089F9A0 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CD012928FBAA0089F9A0 /* APIClient.swift */; };
 		24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */; };
 		24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDD29327E9C0021C783 /* ClientProtocol.swift */; };
+		24D09CBA295067FF00E88DBC /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D09CB9295067FF00E88DBC /* Gender.swift */; };
 		24D420DF2938BC090090A42D /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420DE2938BC090090A42D /* Doctor.swift */; };
 		24D420E12938BC170090A42D /* ExaminationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420E02938BC170090A42D /* ExaminationType.swift */; };
 		24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
@@ -136,6 +137,7 @@
 		24C1CD012928FBAA0089F9A0 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologyRepositoryProtocol.swift; sourceTree = "<group>"; };
 		24C54EDD29327E9C0021C783 /* ClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProtocol.swift; sourceTree = "<group>"; };
+		24D09CB9295067FF00E88DBC /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		24D420DE2938BC090090A42D /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
 		24D420E02938BC170090A42D /* ExaminationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationType.swift; sourceTree = "<group>"; };
 		24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address2Coordinates.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				2441663629477E5000035824 /* Therapy.swift */,
 				24D420E02938BC170090A42D /* ExaminationType.swift */,
 				85A048AF294A95B000FE5979 /* Ticket.swift */,
+				24D09CB9295067FF00E88DBC /* Gender.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				857A54F12922D34300413841 /* HealthubApp.swift in Sources */,
+				24D09CBA295067FF00E88DBC /* Gender.swift in Sources */,
 				857A551D2923120800413841 /* Information.swift in Sources */,
 				2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */,
 				857A551F2923130A00413841 /* Pathologies.swift in Sources */,

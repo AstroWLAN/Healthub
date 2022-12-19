@@ -1,7 +1,6 @@
 import SwiftUI
 import AlertToast
 
-enum Gender : String, RawRepresentable, CaseIterable { case male, female, other }
 private enum FocusableObject { case name, code, phone }
 private enum BadObject { case badName, badCode, badPhone, none }
 private enum MeasureUnit { case kg, cm }

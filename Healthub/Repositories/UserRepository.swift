@@ -108,7 +108,6 @@ class UserRepository: UserRepositoryProtocol{
     
     func doLogout(completionHandler: @escaping (Bool?, Error?) -> Void){
         //perform logout
-        //TODO: Add logout also on server by destroying the token
         let token = KeychainWrapper.standard.string(forKey: "access_token")
         
         let body = API.Types.Request.Empty()

@@ -13,7 +13,6 @@ extension API {
         
         
         private let encoder = JSONEncoder()
-        private let dateFormatter = DateFormatter()
         private let decoder = JSONDecoder()
         
         
@@ -28,10 +27,8 @@ extension API {
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
             if let body = body{
                 do{
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
-                    dateFormatter.calendar = Calendar(identifier: .iso8601)
-                    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                     encoder.dateEncodingStrategy = .formatted(dateFormatter)
                     urlRequest.httpBody = try encoder.encode(body)
                 }catch{
@@ -54,11 +51,9 @@ extension API {
                             }else{
                                 if let data = data {
                                     do{
-                                        self.dateFormatter.dateFormat = "yyyy-MM-dd"
-                                        self.dateFormatter.calendar = Calendar(identifier: .iso8601)
-                                        self.dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                                        self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                                        self.encoder.dateEncodingStrategy = .formatted(self.dateFormatter)
+                                        let dateFormatter = DateFormatter()
+                                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                                        self.decoder.dateDecodingStrategy = .formatted(dateFormatter)
                                         let result = try self.decoder.decode(Response.self, from: data)
                                         callback?(.success(result))
                                     }catch{
