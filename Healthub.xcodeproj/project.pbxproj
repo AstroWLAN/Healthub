@@ -78,6 +78,14 @@
 		857A551B2922DDDA00413841 /* OnBoarding.json in Resources */ = {isa = PBXBuildFile; fileRef = 857A551A2922DDDA00413841 /* OnBoarding.json */; };
 		857A551D2923120800413841 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551C2923120800413841 /* Information.swift */; };
 		857A551F2923130A00413841 /* Pathologies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551E2923130A00413841 /* Pathologies.swift */; };
+		8596F500295358F400E2410C /* WatchubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F4FF295358F400E2410C /* WatchubApp.swift */; };
+		8596F502295358F400E2410C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F501295358F400E2410C /* MainView.swift */; };
+		8596F504295358F500E2410C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8596F503295358F500E2410C /* Assets.xcassets */; };
+		8596F507295358F500E2410C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8596F506295358F500E2410C /* Preview Assets.xcassets */; };
+		8596F50E29535A9500E2410C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F50D29535A9500E2410C /* Profile.swift */; };
+		8596F51129535EBA00E2410C /* Tickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51029535EBA00E2410C /* Tickets.swift */; };
+		8596F51429535F5000E2410C /* Doctors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51329535F5000E2410C /* Doctors.swift */; };
+		8596F51729535FC400E2410C /* Therapies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51629535FC400E2410C /* Therapies.swift */; };
 		85A048B0294A95B000FE5979 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A048AF294A95B000FE5979 /* Ticket.swift */; };
 		85A048B1294A95B000FE5979 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A048AF294A95B000FE5979 /* Ticket.swift */; };
 		85BB5AAC2935FE160039618B /* TicketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AAB2935FE160039618B /* TicketSheet.swift */; };
@@ -162,6 +170,15 @@
 		857A551A2922DDDA00413841 /* OnBoarding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OnBoarding.json; sourceTree = "<group>"; };
 		857A551C2923120800413841 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		857A551E2923130A00413841 /* Pathologies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pathologies.swift; sourceTree = "<group>"; };
+		8596F4FD295358F400E2410C /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8596F4FF295358F400E2410C /* WatchubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchubApp.swift; sourceTree = "<group>"; };
+		8596F501295358F400E2410C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		8596F503295358F500E2410C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8596F506295358F500E2410C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8596F50D29535A9500E2410C /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		8596F51029535EBA00E2410C /* Tickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tickets.swift; sourceTree = "<group>"; };
+		8596F51329535F5000E2410C /* Doctors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctors.swift; sourceTree = "<group>"; };
+		8596F51629535FC400E2410C /* Therapies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Therapies.swift; sourceTree = "<group>"; };
 		85A048AF294A95B000FE5979 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		85BB5AAB2935FE160039618B /* TicketSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSheet.swift; sourceTree = "<group>"; };
 		85BB5AB9293802CE0039618B /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
@@ -184,6 +201,13 @@
 				241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */,
 				852F1A372946B09200B57B18 /* TextView in Frameworks */,
 				243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8596F4FA295358F400E2410C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +322,7 @@
 			children = (
 				857A54EF2922D34300413841 /* Healthub */,
 				246AC22729351951004FAE20 /* HealthubTests */,
+				8596F4FE295358F400E2410C /* Healthub Watch */,
 				857A54EE2922D34300413841 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -307,6 +332,7 @@
 			children = (
 				857A54ED2922D34300413841 /* Healthub.app */,
 				246AC22629351951004FAE20 /* HealthubTests.xctest */,
+				8596F4FD295358F400E2410C /* Healthub.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -432,6 +458,69 @@
 			path = OnBoarding;
 			sourceTree = "<group>";
 		};
+		8596F4FE295358F400E2410C /* Healthub Watch */ = {
+			isa = PBXGroup;
+			children = (
+				8596F4FF295358F400E2410C /* WatchubApp.swift */,
+				8596F50B29535A6300E2410C /* View */,
+				8596F503295358F500E2410C /* Assets.xcassets */,
+				8596F505295358F500E2410C /* Preview Content */,
+			);
+			path = "Healthub Watch";
+			sourceTree = "<group>";
+		};
+		8596F505295358F500E2410C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8596F506295358F500E2410C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8596F50B29535A6300E2410C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8596F501295358F400E2410C /* MainView.swift */,
+				8596F50F29535EA600E2410C /* Tickets */,
+				8596F51529535FB400E2410C /* Therapies */,
+				8596F51229535F3B00E2410C /* Doctors */,
+				8596F50C29535A6D00E2410C /* Profile */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8596F50C29535A6D00E2410C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8596F50D29535A9500E2410C /* Profile.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8596F50F29535EA600E2410C /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				8596F51029535EBA00E2410C /* Tickets.swift */,
+			);
+			path = Tickets;
+			sourceTree = "<group>";
+		};
+		8596F51229535F3B00E2410C /* Doctors */ = {
+			isa = PBXGroup;
+			children = (
+				8596F51329535F5000E2410C /* Doctors.swift */,
+			);
+			path = Doctors;
+			sourceTree = "<group>";
+		};
+		8596F51529535FB400E2410C /* Therapies */ = {
+			isa = PBXGroup;
+			children = (
+				8596F51629535FC400E2410C /* Therapies.swift */,
+			);
+			path = Therapies;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -475,6 +564,23 @@
 			productReference = 857A54ED2922D34300413841 /* Healthub.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8596F4FC295358F400E2410C /* Healthub Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8596F50A295358F500E2410C /* Build configuration list for PBXNativeTarget "Healthub Watch" */;
+			buildPhases = (
+				8596F4F9295358F400E2410C /* Sources */,
+				8596F4FA295358F400E2410C /* Frameworks */,
+				8596F4FB295358F400E2410C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Healthub Watch";
+			productName = "Watchub Watch App";
+			productReference = 8596F4FD295358F400E2410C /* Healthub.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -482,7 +588,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					246AC22529351951004FAE20 = {
@@ -491,6 +597,9 @@
 					};
 					857A54EC2922D34300413841 = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					8596F4FC295358F400E2410C = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -513,6 +622,7 @@
 			projectRoot = "";
 			targets = (
 				857A54EC2922D34300413841 /* Healthub */,
+				8596F4FC295358F400E2410C /* Healthub Watch */,
 				246AC22529351951004FAE20 /* HealthubTests */,
 			);
 		};
@@ -534,6 +644,15 @@
 				857A54F52922D34400413841 /* Assets.xcassets in Resources */,
 				852944D12925ABFA006FC0C5 /* AppInformation.json in Resources */,
 				857A551B2922DDDA00413841 /* OnBoarding.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8596F4FB295358F400E2410C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8596F507295358F500E2410C /* Preview Assets.xcassets in Resources */,
+				8596F504295358F500E2410C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +742,19 @@
 				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
 				241759592927A5FA0051BE0B /* Login.swift in Sources */,
 				85BB5ABA293802CE0039618B /* Booking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8596F4F9295358F400E2410C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8596F51429535F5000E2410C /* Doctors.swift in Sources */,
+				8596F502295358F400E2410C /* MainView.swift in Sources */,
+				8596F50E29535A9500E2410C /* Profile.swift in Sources */,
+				8596F51129535EBA00E2410C /* Tickets.swift in Sources */,
+				8596F500295358F400E2410C /* WatchubApp.swift in Sources */,
+				8596F51729535FC400E2410C /* Therapies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,6 +997,64 @@
 			};
 			name = Release;
 		};
+		8596F508295358F500E2410C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Healthub Watch/Preview Content\"";
+				DEVELOPMENT_TEAM = XH89Z8J7P5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp;
+				PRODUCT_NAME = Healthub;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		8596F509295358F500E2410C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Healthub Watch/Preview Content\"";
+				DEVELOPMENT_TEAM = XH89Z8J7P5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp;
+				PRODUCT_NAME = Healthub;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -891,6 +1081,15 @@
 			buildConfigurations = (
 				857A54FC2922D34400413841 /* Debug */,
 				857A54FD2922D34400413841 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8596F50A295358F500E2410C /* Build configuration list for PBXNativeTarget "Healthub Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8596F508295358F500E2410C /* Debug */,
+				8596F509295358F500E2410C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
