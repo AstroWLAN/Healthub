@@ -36,14 +36,11 @@ struct Tickets: View {
     var body : some View {
         // Display user tickets
         if userTickets.isEmpty {
-            VStack(spacing: 8) {
-                // Empty list placeholder
-                Image("TicketsPlaceholder")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 140)
-            }
-            .foregroundColor(.gray)
+            Image("TicketsPlaceholder")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 140)
+                .opacity(0.7)
         }
         else {
             // Tickets list

@@ -34,7 +34,7 @@ struct TicketSheet: View {
                 RoundedRectangle(cornerRadius: 8)
                     .padding(10)
                     .foregroundColor(.gray)
-                    .opacity(0.15)
+                    .opacity(0.2)
                 VStack(alignment: .leading, spacing: 8) {
                     Text(ticket!.title)
                         .font(.system(size: 23, weight: .bold))
