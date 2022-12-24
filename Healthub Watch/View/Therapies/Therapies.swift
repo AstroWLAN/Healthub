@@ -1,10 +1,3 @@
-//
-//  Therapies.swift
-//  Healthub Watch
-//
-//  Created by Dario Crippa on 21/12/22.
-//
-
 import SwiftUI
 
 struct Therapies: View {

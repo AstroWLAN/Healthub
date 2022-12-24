@@ -53,6 +53,8 @@
 		24D420E12938BC170090A42D /* ExaminationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420E02938BC170090A42D /* ExaminationType.swift */; };
 		24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
 		851B5FD92954445D00D59CBC /* TicketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FD82954445D00D59CBC /* TicketSheet.swift */; };
+		851B5FDB2954B01A00D59CBC /* TherapySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FDA2954B01A00D59CBC /* TherapySheet.swift */; };
+		851B5FDD29558B5800D59CBC /* Pathologies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FDC29558B5800D59CBC /* Pathologies.swift */; };
 		852944D12925ABFA006FC0C5 /* AppInformation.json in Resources */ = {isa = PBXBuildFile; fileRef = 852944D02925ABFA006FC0C5 /* AppInformation.json */; };
 		852F1A292946218900B57B18 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A282946218900B57B18 /* Prescription.swift */; };
 		852F1A2A2946218900B57B18 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A282946218900B57B18 /* Prescription.swift */; };
@@ -151,6 +153,8 @@
 		24D420E02938BC170090A42D /* ExaminationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationType.swift; sourceTree = "<group>"; };
 		24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address2Coordinates.swift; sourceTree = "<group>"; };
 		851B5FD82954445D00D59CBC /* TicketSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSheet.swift; sourceTree = "<group>"; };
+		851B5FDA2954B01A00D59CBC /* TherapySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapySheet.swift; sourceTree = "<group>"; };
+		851B5FDC29558B5800D59CBC /* Pathologies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pathologies.swift; sourceTree = "<group>"; };
 		852944D02925ABFA006FC0C5 /* AppInformation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppInformation.json; sourceTree = "<group>"; };
 		852F1A282946218900B57B18 /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
 		852F1A2B2946219400B57B18 /* DrugsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugsDatabase.swift; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				8596F50D29535A9500E2410C /* Profile.swift */,
+				851B5FDC29558B5800D59CBC /* Pathologies.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				8596F51629535FC400E2410C /* Therapies.swift */,
+				851B5FDA2954B01A00D59CBC /* TherapySheet.swift */,
 			);
 			path = Therapies;
 			sourceTree = "<group>";
@@ -592,7 +598,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					246AC22529351951004FAE20 = {
 						CreatedOnToolsVersion = 14.1;
@@ -752,9 +758,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				851B5FDD29558B5800D59CBC /* Pathologies.swift in Sources */,
 				8596F51429535F5000E2410C /* Doctors.swift in Sources */,
 				8596F502295358F400E2410C /* MainView.swift in Sources */,
 				8596F50E29535A9500E2410C /* Profile.swift in Sources */,
+				851B5FDB2954B01A00D59CBC /* TherapySheet.swift in Sources */,
 				8596F51129535EBA00E2410C /* Tickets.swift in Sources */,
 				8596F500295358F400E2410C /* WatchubApp.swift in Sources */,
 				8596F51729535FC400E2410C /* Therapies.swift in Sources */,
@@ -779,6 +787,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 5MLNK3T9JX;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
@@ -801,6 +810,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 5MLNK3T9JX;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
