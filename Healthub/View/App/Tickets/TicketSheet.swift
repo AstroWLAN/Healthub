@@ -39,7 +39,7 @@ struct TicketSheetView: View {
                 List {
                     Section(header: Text("Generalities"))  {
                         Label(ticket!.examinationType.name, systemImage: "staroflife.fill")
-                        Label(ticket!.doctor.name, systemImage: "stethoscope")
+                        Label(ticket!.doctor.name!, systemImage: "stethoscope")
                     }
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
@@ -64,7 +64,7 @@ struct TicketSheetView: View {
                 }
                 .labelStyle(Cubic())
                 .scrollContentBackground(.hidden)
-            }.task({Address2Coordinates.translate(from: ticket!.doctor.address){(location, error) in
+            }.task({Address2Coordinates.translate(from: ticket!.doctor.address!){(location, error) in
                 if let location = location{
                     self.ticketLatitude = location.latitude
                     self.ticketLongitude = location.longitude

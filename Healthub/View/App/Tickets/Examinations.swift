@@ -12,14 +12,14 @@ struct ExaminationsSheet : View {
     
     var body: some View {
         ZStack {
-            Color(.systemGray6)
-                .ignoresSafeArea()
+            //Color(.systemGray6)
+             //   .ignoresSafeArea()
             VStack(spacing: 0) {
                 HStack {
                     Spacer()
                     Capsule()
                         .frame(width: 30, height: 6)
-                        .foregroundColor(Color(.systemGray5))
+                        //.foregroundColor(Color(.systemGray5))
                         .padding(.top,20)
                     Spacer()
                 }
@@ -36,7 +36,7 @@ struct ExaminationsSheet : View {
                                     Label(examination.rawValue.capitalized, systemImage: examGlyphs[examination] ?? "")
                                     Spacer()
                                     Image(systemName: "circle.fill")
-                                        .foregroundColor(Color(.systemGreen))
+                                       // .foregroundColor(Color(.systemGreen))
                                         .font(.system(size: 10))
                                         .opacity(selectionDetection(currentExamination: examination) ? 1 : 0)
                                 }
@@ -45,7 +45,7 @@ struct ExaminationsSheet : View {
                     }
                     .labelStyle(Cubic())
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                    .listRowSeparator(.hidden)
+                    //.listRowSeparator(.hidden)
                 }
             }
         }

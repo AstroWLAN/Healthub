@@ -236,7 +236,7 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
             let doctor = Doctor(id: result.doctor.id, name: result.doctor.name,address: result.doctor.address)
             let examinationType = ExaminationType(id: result.examinationType.id, name: result.examinationType.name, duration_in_minutes: result.examinationType.duration_in_minutes)
             
-            let reservation = Reservation(id: result.id, date: date.date(from: "\(result.date)")!, time: time.date(from:"\(result.starting_time)")!, doctor: doctor, examinationType: examinationType)
+            let reservation = Reservation( id: result.id, date: date.date(from: "\(result.date)")!, time: time.date(from:"\(result.starting_time)")!, doctor: doctor, examinationType: examinationType)
             
             local.append(reservation)
         }

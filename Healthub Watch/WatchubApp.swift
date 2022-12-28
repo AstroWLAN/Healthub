@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct Watchub_Watch_AppApp: App {
+    @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
     var body: some Scene {
         WindowGroup {
             WatchMain()
+              .environmentObject(ticketViewModel)
         }
     }
+    
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24141EE12959C45200A20EFF /* Healthub.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8596F4FD295358F400E2410C /* Healthub.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417594C2927A5000051BE0B /* LoginViewModel.swift */; };
 		241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2417594F2927A5290051BE0B /* SwiftKeychainWrapper */; };
 		241759522927A5420051BE0B /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759512927A5420051BE0B /* UserLogin.swift */; };
@@ -17,6 +18,33 @@
 		241759612927DC330051BE0B /* PathologyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologyViewModel.swift */; };
 		241759632927DE220051BE0B /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
 		24179B91293CE77E004BFD69 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
+		2431A5392959A6CB001F9E64 /* WatchubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F4FF295358F400E2410C /* WatchubApp.swift */; };
+		2431A53A2959A6CB001F9E64 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F501295358F400E2410C /* MainView.swift */; };
+		2431A53B2959A6CB001F9E64 /* Tickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51029535EBA00E2410C /* Tickets.swift */; };
+		2431A53C2959A6CB001F9E64 /* TicketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FD82954445D00D59CBC /* TicketSheet.swift */; };
+		2431A53D2959A6CB001F9E64 /* Therapies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51629535FC400E2410C /* Therapies.swift */; };
+		2431A53E2959A6CB001F9E64 /* TherapySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FDA2954B01A00D59CBC /* TherapySheet.swift */; };
+		2431A53F2959A6CB001F9E64 /* Doctors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51329535F5000E2410C /* Doctors.swift */; };
+		2431A5402959A6CB001F9E64 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F50D29535A9500E2410C /* Profile.swift */; };
+		2431A5412959A6CB001F9E64 /* Pathologies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FDC29558B5800D59CBC /* Pathologies.swift */; };
+		2431A5422959A6E3001F9E64 /* ReservationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */; };
+		2431A5432959A6E3001F9E64 /* ReservationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */; };
+		2431A5442959A6E3001F9E64 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D42938B14500AF0CE0 /* Reservation.swift */; };
+		2431A5452959A6E3001F9E64 /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB8B293A0A1D00DD4535 /* TicketViewModel.swift */; };
+		2431A5472959A797001F9E64 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2431A5462959A797001F9E64 /* SwiftKeychainWrapper */; };
+		2431A5482959A95C001F9E64 /* ConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC3B0B2957646900EE7FBC /* ConnectionProvider.swift */; };
+		2431A5492959A9B2001F9E64 /* ExaminationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420E02938BC170090A42D /* ExaminationType.swift */; };
+		2431A54A2959A9CA001F9E64 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFD2928F93C0089F9A0 /* API.swift */; };
+		2431A54B2959A9CA001F9E64 /* APITypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFF2928FA010089F9A0 /* APITypes.swift */; };
+		2431A54C2959A9CA001F9E64 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDD29327E9C0021C783 /* ClientProtocol.swift */; };
+		2431A54D2959A9CA001F9E64 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CD012928FBAA0089F9A0 /* APIClient.swift */; };
+		2431A54E2959AC84001F9E64 /* Drug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244166342947731B00035824 /* Drug.swift */; };
+		2431A54F2959AC84001F9E64 /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420DE2938BC090090A42D /* Doctor.swift */; };
+		2431A5502959AC84001F9E64 /* Therapy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663629477E5000035824 /* Therapy.swift */; };
+		2431A5512959AC84001F9E64 /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
+		2431A5532959AD96001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
+		2431A5542959ADB5001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
+		2431A5552959ADF0001F9E64 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2F2946241600B57B18 /* Styles.swift */; };
 		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
 		2441662F294764D400035824 /* TherapyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441662E294764D400035824 /* TherapyViewModel.swift */; };
 		2441663129476E6200035824 /* TherapyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663029476E6200035824 /* TherapyRepository.swift */; };
@@ -34,6 +62,7 @@
 		246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */; };
 		246AC23329351B05004FAE20 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC23229351B05004FAE20 /* MockClient.swift */; };
 		2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */; };
+		248C68A0295C3F5800B90959 /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
 		2495CB88293A091600DD4535 /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB87293A091600DD4535 /* MockUserRepository.swift */; };
 		2495CB8A293A093400DD4535 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB89293A093400DD4535 /* LoginViewModelTests.swift */; };
 		2495CB8C293A0A1D00DD4535 /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB8B293A0A1D00DD4535 /* TicketViewModel.swift */; };
@@ -51,10 +80,9 @@
 		24D09CBA295067FF00E88DBC /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D09CB9295067FF00E88DBC /* Gender.swift */; };
 		24D420DF2938BC090090A42D /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420DE2938BC090090A42D /* Doctor.swift */; };
 		24D420E12938BC170090A42D /* ExaminationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420E02938BC170090A42D /* ExaminationType.swift */; };
+		24DC3B0C2957646900EE7FBC /* ConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC3B0B2957646900EE7FBC /* ConnectionProvider.swift */; };
+		24DC3B0F2957649400EE7FBC /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */; };
 		24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
-		851B5FD92954445D00D59CBC /* TicketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FD82954445D00D59CBC /* TicketSheet.swift */; };
-		851B5FDB2954B01A00D59CBC /* TherapySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FDA2954B01A00D59CBC /* TherapySheet.swift */; };
-		851B5FDD29558B5800D59CBC /* Pathologies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FDC29558B5800D59CBC /* Pathologies.swift */; };
 		852944D12925ABFA006FC0C5 /* AppInformation.json in Resources */ = {isa = PBXBuildFile; fileRef = 852944D02925ABFA006FC0C5 /* AppInformation.json */; };
 		852F1A292946218900B57B18 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A282946218900B57B18 /* Prescription.swift */; };
 		852F1A2A2946218900B57B18 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A282946218900B57B18 /* Prescription.swift */; };
@@ -81,16 +109,8 @@
 		857A551B2922DDDA00413841 /* OnBoarding.json in Resources */ = {isa = PBXBuildFile; fileRef = 857A551A2922DDDA00413841 /* OnBoarding.json */; };
 		857A551D2923120800413841 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551C2923120800413841 /* Information.swift */; };
 		857A551F2923130A00413841 /* Pathologies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A551E2923130A00413841 /* Pathologies.swift */; };
-		8596F500295358F400E2410C /* WatchubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F4FF295358F400E2410C /* WatchubApp.swift */; };
-		8596F502295358F400E2410C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F501295358F400E2410C /* MainView.swift */; };
 		8596F504295358F500E2410C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8596F503295358F500E2410C /* Assets.xcassets */; };
 		8596F507295358F500E2410C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8596F506295358F500E2410C /* Preview Assets.xcassets */; };
-		8596F50E29535A9500E2410C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F50D29535A9500E2410C /* Profile.swift */; };
-		8596F51129535EBA00E2410C /* Tickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51029535EBA00E2410C /* Tickets.swift */; };
-		8596F51429535F5000E2410C /* Doctors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51329535F5000E2410C /* Doctors.swift */; };
-		8596F51729535FC400E2410C /* Therapies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51629535FC400E2410C /* Therapies.swift */; };
-		85A048B0294A95B000FE5979 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A048AF294A95B000FE5979 /* Ticket.swift */; };
-		85A048B1294A95B000FE5979 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A048AF294A95B000FE5979 /* Ticket.swift */; };
 		85BB5AAC2935FE160039618B /* TicketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AAB2935FE160039618B /* TicketSheet.swift */; };
 		85BB5ABA293802CE0039618B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* Booking.swift */; };
 		85BB5ABB293802CE0039618B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* Booking.swift */; };
@@ -109,6 +129,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		24141EE42959C45200A20EFF /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				24141EE12959C45200A20EFF /* Healthub.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2417594C2927A5000051BE0B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		241759512927A5420051BE0B /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserLogin.swift; path = Healthub/Model/UserLogin.swift; sourceTree = SOURCE_ROOT; };
@@ -118,6 +152,7 @@
 		2417595E2927D8F40051BE0B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		241759602927DC330051BE0B /* PathologyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologyViewModel.swift; sourceTree = "<group>"; };
 		241759622927DE220051BE0B /* Pathology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pathology.swift; path = Healthub/Model/Pathology.swift; sourceTree = SOURCE_ROOT; };
+		2431A5522959AD96001F9E64 /* Examination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examination.swift; sourceTree = "<group>"; };
 		2441662E294764D400035824 /* TherapyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyViewModel.swift; sourceTree = "<group>"; };
 		2441663029476E6200035824 /* TherapyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepository.swift; sourceTree = "<group>"; };
 		2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -151,6 +186,8 @@
 		24D09CB9295067FF00E88DBC /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		24D420DE2938BC090090A42D /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
 		24D420E02938BC170090A42D /* ExaminationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationType.swift; sourceTree = "<group>"; };
+		24DC3B0B2957646900EE7FBC /* ConnectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionProvider.swift; sourceTree = "<group>"; };
+		24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address2Coordinates.swift; sourceTree = "<group>"; };
 		851B5FD82954445D00D59CBC /* TicketSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSheet.swift; sourceTree = "<group>"; };
 		851B5FDA2954B01A00D59CBC /* TherapySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapySheet.swift; sourceTree = "<group>"; };
@@ -185,7 +222,6 @@
 		8596F51029535EBA00E2410C /* Tickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tickets.swift; sourceTree = "<group>"; };
 		8596F51329535F5000E2410C /* Doctors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctors.swift; sourceTree = "<group>"; };
 		8596F51629535FC400E2410C /* Therapies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Therapies.swift; sourceTree = "<group>"; };
-		85A048AF294A95B000FE5979 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		85BB5AAB2935FE160039618B /* TicketSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSheet.swift; sourceTree = "<group>"; };
 		85BB5AB9293802CE0039618B /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		85BB5ABC293808380039618B /* Examinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examinations.swift; sourceTree = "<group>"; };
@@ -205,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */,
+				24DC3B0F2957649400EE7FBC /* WatchConnectivity.framework in Frameworks */,
 				852F1A372946B09200B57B18 /* TextView in Frameworks */,
 				243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */,
 			);
@@ -214,6 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2431A5472959A797001F9E64 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,13 +321,13 @@
 			children = (
 				241759512927A5420051BE0B /* UserLogin.swift */,
 				241759622927DE220051BE0B /* Pathology.swift */,
+				2431A5522959AD96001F9E64 /* Examination.swift */,
 				249FF531292A7801007C802F /* Patient.swift */,
 				244166342947731B00035824 /* Drug.swift */,
 				2454E1D42938B14500AF0CE0 /* Reservation.swift */,
 				24D420DE2938BC090090A42D /* Doctor.swift */,
 				2441663629477E5000035824 /* Therapy.swift */,
 				24D420E02938BC170090A42D /* ExaminationType.swift */,
-				85A048AF294A95B000FE5979 /* Ticket.swift */,
 				24D09CB9295067FF00E88DBC /* Gender.swift */,
 			);
 			path = Model;
@@ -304,6 +342,22 @@
 				24C1CD012928FBAA0089F9A0 /* APIClient.swift */,
 			);
 			path = Remote;
+			sourceTree = "<group>";
+		};
+		24DC3B0A2957640F00EE7FBC /* Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				24DC3B0B2957646900EE7FBC /* ConnectionProvider.swift */,
+			);
+			path = Connectivity;
+			sourceTree = "<group>";
+		};
+		24DC3B0D2957649400EE7FBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		24EDDCA2293A0D9D007CA69E /* Utilities */ = {
@@ -330,6 +384,7 @@
 				246AC22729351951004FAE20 /* HealthubTests */,
 				8596F4FE295358F400E2410C /* Healthub Watch */,
 				857A54EE2922D34300413841 /* Products */,
+				24DC3B0D2957649400EE7FBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -349,6 +404,7 @@
 				857A54F02922D34300413841 /* HealthubApp.swift */,
 				857A54FE2922D38300413841 /* Resources */,
 				249FF51F292A284B007C802F /* Repositories */,
+				24DC3B0A2957640F00EE7FBC /* Connectivity */,
 				24C1CCFC2928F9190089F9A0 /* Remote */,
 				249FF530292A721F007C802F /* Model */,
 				857A55012922D3AA00413841 /* ViewModel */,
@@ -558,6 +614,7 @@
 				857A54E92922D34300413841 /* Sources */,
 				857A54EA2922D34300413841 /* Frameworks */,
 				857A54EB2922D34300413841 /* Resources */,
+				24141EE42959C45200A20EFF /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -577,15 +634,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8596F50A295358F500E2410C /* Build configuration list for PBXNativeTarget "Healthub Watch" */;
 			buildPhases = (
-				8596F4F9295358F400E2410C /* Sources */,
 				8596F4FA295358F400E2410C /* Frameworks */,
 				8596F4FB295358F400E2410C /* Resources */,
+				2431A5382959A6B5001F9E64 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Healthub Watch";
+			packageProductDependencies = (
+				2431A5462959A797001F9E64 /* SwiftKeychainWrapper */,
+			);
 			productName = "Watchub Watch App";
 			productReference = 8596F4FD295358F400E2410C /* Healthub.app */;
 			productType = "com.apple.product-type.application";
@@ -668,6 +728,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2431A5382959A6B5001F9E64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				248C68A0295C3F5800B90959 /* Address2Coordinates.swift in Sources */,
+				2431A5552959ADF0001F9E64 /* Styles.swift in Sources */,
+				2431A5542959ADB5001F9E64 /* Examination.swift in Sources */,
+				2431A54E2959AC84001F9E64 /* Drug.swift in Sources */,
+				2431A54F2959AC84001F9E64 /* Doctor.swift in Sources */,
+				2431A5502959AC84001F9E64 /* Therapy.swift in Sources */,
+				2431A5512959AC84001F9E64 /* Examinations.swift in Sources */,
+				2431A54A2959A9CA001F9E64 /* API.swift in Sources */,
+				2431A54B2959A9CA001F9E64 /* APITypes.swift in Sources */,
+				2431A54C2959A9CA001F9E64 /* ClientProtocol.swift in Sources */,
+				2431A54D2959A9CA001F9E64 /* APIClient.swift in Sources */,
+				2431A5492959A9B2001F9E64 /* ExaminationType.swift in Sources */,
+				2431A5482959A95C001F9E64 /* ConnectionProvider.swift in Sources */,
+				2431A5422959A6E3001F9E64 /* ReservationRepositoryProtocol.swift in Sources */,
+				2431A5432959A6E3001F9E64 /* ReservationRepository.swift in Sources */,
+				2431A5442959A6E3001F9E64 /* Reservation.swift in Sources */,
+				2431A5452959A6E3001F9E64 /* TicketViewModel.swift in Sources */,
+				2431A5392959A6CB001F9E64 /* WatchubApp.swift in Sources */,
+				2431A53A2959A6CB001F9E64 /* MainView.swift in Sources */,
+				2431A53B2959A6CB001F9E64 /* Tickets.swift in Sources */,
+				2431A53C2959A6CB001F9E64 /* TicketSheet.swift in Sources */,
+				2431A53D2959A6CB001F9E64 /* Therapies.swift in Sources */,
+				2431A53E2959A6CB001F9E64 /* TherapySheet.swift in Sources */,
+				2431A53F2959A6CB001F9E64 /* Doctors.swift in Sources */,
+				2431A5402959A6CB001F9E64 /* Profile.swift in Sources */,
+				2431A5412959A6CB001F9E64 /* Pathologies.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		246AC22229351951004FAE20 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -679,7 +772,6 @@
 				852F1A3A2947E17000B57B18 /* Objects.swift in Sources */,
 				852F1A2D2946219400B57B18 /* DrugsDatabase.swift in Sources */,
 				24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */,
-				85A048B1294A95B000FE5979 /* Ticket.swift in Sources */,
 				852F1A312946241600B57B18 /* Styles.swift in Sources */,
 				2454E1D92938B17700AF0CE0 /* ReservationRepositoryTests.swift in Sources */,
 				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
@@ -716,11 +808,12 @@
 				2417595B2927A60C0051BE0B /* Signup.swift in Sources */,
 				2495CB8C293A0A1D00DD4535 /* TicketViewModel.swift in Sources */,
 				2454E1D32938B11800AF0CE0 /* ReservationRepositoryProtocol.swift in Sources */,
-				85A048B0294A95B000FE5979 /* Ticket.swift in Sources */,
 				24C1CD002928FA010089F9A0 /* APITypes.swift in Sources */,
+				24DC3B0C2957646900EE7FBC /* ConnectionProvider.swift in Sources */,
 				852F1A332946AFB400B57B18 /* Notes.swift in Sources */,
 				857A55192922DCBB00413841 /* Feature.swift in Sources */,
 				249FF52F292A4797007C802F /* UserRepository.swift in Sources */,
+				2431A5532959AD96001F9E64 /* Examination.swift in Sources */,
 				857A550C2922D70000413841 /* Therapies.swift in Sources */,
 				857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */,
 				24D420DF2938BC090090A42D /* Doctor.swift in Sources */,
@@ -754,22 +847,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8596F4F9295358F400E2410C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				851B5FDD29558B5800D59CBC /* Pathologies.swift in Sources */,
-				8596F51429535F5000E2410C /* Doctors.swift in Sources */,
-				8596F502295358F400E2410C /* MainView.swift in Sources */,
-				8596F50E29535A9500E2410C /* Profile.swift in Sources */,
-				851B5FDB2954B01A00D59CBC /* TherapySheet.swift in Sources */,
-				8596F51129535EBA00E2410C /* Tickets.swift in Sources */,
-				8596F500295358F400E2410C /* WatchubApp.swift in Sources */,
-				8596F51729535FC400E2410C /* Therapies.swift in Sources */,
-				851B5FD92954445D00D59CBC /* TicketSheet.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -793,7 +870,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.sample-code.HealthubTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -816,7 +893,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.sample-code.HealthubTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -1023,13 +1100,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sakura.Healthub;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub.watchkitapp;
 				PRODUCT_NAME = Healthub;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1052,13 +1129,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sakura.Healthub;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub.watchkitapp;
 				PRODUCT_NAME = Healthub;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1139,6 +1216,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		2417594F2927A5290051BE0B /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+		2431A5462959A797001F9E64 /* SwiftKeychainWrapper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;

@@ -100,6 +100,9 @@ struct TicketsView: View {
             if(UserDefaults.standard.bool(forKey: "isLogged")){
                 ticketViewModel.fetchTickets()
             }
+            
+            ticketViewModel.connectivityProvider.connect()
+            //ticketViewModel.connectivityProvider.sendWatchMessage()
         })
         
     }

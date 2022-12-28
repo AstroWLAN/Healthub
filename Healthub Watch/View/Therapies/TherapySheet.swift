@@ -3,25 +3,22 @@ import SwiftUI
 struct TherapySheet: View {
     
     //@Binding var therapy : Therapy
-    @State private var therapy = Therapy(name: "Asthma", doctor: "Shaun Murphy", duration: "Lifetime",
-                                         notes: "Un puff mattina e sera ogni giorno",
-                                         drugs: [
-                                             Drug(id: 3598,
-                                                  group_description: "BECLOMETASONE+FORMOTEROLO 100+6MCG 120 DOSI POLVERE USO RESPIRATORIO",
-                                                  ma_holder: "PROMEDICA Srl",
-                                                  equivalence_group_code: "I2B",
-                                                  denomination_and_packaging: "FORMODUAL*polv inal 120 dosi 100 mcg + 6 mcg nexthaler",
-                                                  active_principle: "Beclometasone/formoterolo",
-                                                  ma_code: "37778038"),
-                                             Drug(id: 3598,
-                                                  group_description: "BECLOMETASONE+FORMOTEROLO 100+6MCG 120 DOSI POLVERE USO RESPIRATORIO",
-                                                  ma_holder: "PROMEDICA Srl",
-                                                  equivalence_group_code: "I2B",
-                                                  denomination_and_packaging: "FORMODUAL*polv inal 120 dosi 100 mcg + 6 mcg nexthaler",
-                                                  active_principle: "Beclometasone/formoterolo",
-                                                  ma_code: "37778038")
-                                         ],
-                                         interactions: ["Foster is a doping drug and for this reason you could be disqualified from sport competitions"])
+    @State private var therapy = Therapy(id: 1, name: "Therapy 1", doctor : nil, duration: "10 days", drugs: [
+        Drug(id: 3598,
+             group_description: "BECLOMETASONE+FORMOTEROLO 100+6MCG 120 DOSI POLVERE USO RESPIRATORIO",
+             ma_holder: "PROMEDICA Srl",
+             equivalence_group_code: "I2B",
+             denomination_and_packaging: "FORMODUAL*polv inal 120 dosi 100 mcg + 6 mcg nexthaler",
+             active_principle: "Beclometasone/formoterolo",
+             ma_code: "37778038"),
+        Drug(id: 3598,
+             group_description: "BECLOMETASONE+FORMOTEROLO 100+6MCG 120 DOSI POLVERE USO RESPIRATORIO",
+             ma_holder: "PROMEDICA Srl",
+             equivalence_group_code: "I2B",
+             denomination_and_packaging: "FORMODUAL*polv inal 120 dosi 100 mcg + 6 mcg nexthaler",
+             active_principle: "Beclometasone/formoterolo",
+             ma_code: "37778038")
+     ], notes: "Un puff mattina e sera ogni giorno", interactions: ["Foster is a doping drug and for this reason you could be disqualified from sport competitions"])
     
     var body: some View {
         TabView {

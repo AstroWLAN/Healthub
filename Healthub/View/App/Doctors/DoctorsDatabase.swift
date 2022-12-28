@@ -60,13 +60,13 @@ struct DoctorsDatabaseView: View {
             Spacer()
             List{
                 ForEach(ticketViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
-                    return doctor.name.hasPrefix(searchQuery) || searchQuery == ""
+                    return doctor.name!.hasPrefix(searchQuery) || searchQuery == ""
                 }), id: \.self) { doctor in
                     Button(action: {
                         selectedDoctor = doctor
                         sheetDismiss()
                     },
-                           label:  { Label(doctor.name, systemImage: "person.fill").labelStyle(Cubic()) })
+                           label:  { Label(doctor.name!, systemImage: "person.fill").labelStyle(Cubic()) })
                 }
                 .listRowSeparator(.hidden)
             }

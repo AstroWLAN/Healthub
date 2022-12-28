@@ -93,6 +93,7 @@ class TherapyRepository: TherapyRepositoryProtocol{
             
             if result.doctor != nil{
                 doctor = Doctor(id: result.doctor!.id, name: result.doctor!.name, address: result.doctor!.address)
+               
             }
             
             

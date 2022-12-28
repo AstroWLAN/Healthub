@@ -11,12 +11,12 @@ import Combine
 class TicketViewModel : ObservableObject{
     
     private let reservationsRepository: any ReservationRepositoryProtocol
+    private(set) var connectivityProvider: ConnectionProvider
     @Published private(set) var reservations: [Reservation] = []
     @Published private(set) var doctors: [Doctor] = []
     @Published private(set) var availabilities: [Date] = []
     @Published private(set) var slots: [String] = []
     private let cache = NSCache<NSString, NSArray>()
-    
     
     var objectWillChange = PassthroughSubject<Void, Never>()
     
@@ -44,8 +44,10 @@ class TicketViewModel : ObservableObject{
     }
     
     
-    init(reservationsRepository: any ReservationRepositoryProtocol) {
+    init(reservationsRepository: any ReservationRepositoryProtocol, connectivityProvider: ConnectionProvider) {
         self.reservationsRepository = reservationsRepository
+        self.connectivityProvider = connectivityProvider
+        self.connectivityProvider.connect()
     }
     
     func fetchTickets(force_reload: Bool = false){
@@ -59,6 +61,8 @@ class TicketViewModel : ObservableObject{
                 if let reservations = reservations{
                     
                     self.reservations = reservations
+                    self.connectivityProvider.connect()
+                    self.connectivityProvider.sendWatchMessage(reservations)
                     self.isLoadingTickets = false
                 }
                 
@@ -78,6 +82,8 @@ class TicketViewModel : ObservableObject{
                     if let reservations = reservations{
                         
                         self.reservations = reservations
+                        self.connectivityProvider.connect()
+                        self.connectivityProvider.sendWatchMessage(reservations)
                         self.isLoadingTickets = false
                         self.cache.setObject(reservations as NSArray, forKey: "tickets")
                     }
@@ -85,6 +91,9 @@ class TicketViewModel : ObservableObject{
                 }
             }
         }
+        
+
+                    
     }
             
         

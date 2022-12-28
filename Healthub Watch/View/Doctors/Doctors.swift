@@ -1,16 +1,16 @@
 import SwiftUI
 
-struct Doctor: Hashable {
+/*struct Doctor: Hashable {
     let name: String
     let address: String
-}
+}*/
 
 
 struct Doctors: View {
     
     @State private var userDoctors : [Doctor] = [
-        Doctor(name: "Shaun Murphy", address: "Via Della Spiga, 97"),
-        Doctor(name: "Gregory House", address: "Via Vicodin, 69")
+        //Doctor(id: 0, name: "Shaun Murphy", address: "Via Della Spiga, 97"),
+       // Doctor(id: 1, name: "Gregory House", address: "Via Vicodin, 69")
     ]
     
     var body: some View {
@@ -21,9 +21,9 @@ struct Doctors: View {
             else {
                 ForEach(userDoctors, id: \.self) { doctor in
                     VStack(alignment: .leading) {
-                        Text(doctor.name)
+                        Text(doctor.name!)
                             .font(.system(size: 17, weight: .semibold))
-                        Text(doctor.address)
+                        Text(doctor.address!)
                             .font(.system(size: 15))
                             .foregroundColor(.gray)
                     }
