@@ -18,6 +18,8 @@
 		241759612927DC330051BE0B /* PathologyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologyViewModel.swift */; };
 		241759632927DE220051BE0B /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
 		24179B91293CE77E004BFD69 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
+		242D9C73295DF08800A32FD3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242D9C72295DF08800A32FD3 /* CoreData.framework */; };
+		242D9C74295DF48100A32FD3 /* persistenceData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24889475295D89E5002215A7 /* persistenceData.xcdatamodeld */; };
 		2431A5392959A6CB001F9E64 /* WatchubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F4FF295358F400E2410C /* WatchubApp.swift */; };
 		2431A53A2959A6CB001F9E64 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F501295358F400E2410C /* MainView.swift */; };
 		2431A53B2959A6CB001F9E64 /* Tickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51029535EBA00E2410C /* Tickets.swift */; };
@@ -159,6 +161,7 @@
 		2417595E2927D8F40051BE0B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		241759602927DC330051BE0B /* PathologyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologyViewModel.swift; sourceTree = "<group>"; };
 		241759622927DE220051BE0B /* Pathology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pathology.swift; path = Healthub/Model/Pathology.swift; sourceTree = SOURCE_ROOT; };
+		242D9C72295DF08800A32FD3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS9.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		2431A5522959AD96001F9E64 /* Examination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examination.swift; sourceTree = "<group>"; };
 		2441662E294764D400035824 /* TherapyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyViewModel.swift; sourceTree = "<group>"; };
 		2441663029476E6200035824 /* TherapyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepository.swift; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 		249FF52E292A4797007C802F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		249FF531292A7801007C802F /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		249FF535292A79B0007C802F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		24A5DADD295DF062004D4E1A /* Healthub-Watch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Healthub-Watch-Info.plist"; sourceTree = SOURCE_ROOT; };
 		24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepositoryTests.swift; sourceTree = "<group>"; };
 		24C1CCFD2928F93C0089F9A0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		24C1CCFF2928FA010089F9A0 /* APITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITypes.swift; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2431A5472959A797001F9E64 /* SwiftKeychainWrapper in Frameworks */,
+				242D9C73295DF08800A32FD3 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				24889472295D8971002215A7 /* CoreData.framework */,
+				242D9C72295DF08800A32FD3 /* CoreData.framework */,
 				24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */,
 			);
 			name = Frameworks;
@@ -547,6 +553,7 @@
 		8596F4FE295358F400E2410C /* Healthub Watch */ = {
 			isa = PBXGroup;
 			children = (
+				24A5DADD295DF062004D4E1A /* Healthub-Watch-Info.plist */,
 				8596F4FF295358F400E2410C /* WatchubApp.swift */,
 				8596F50B29535A6300E2410C /* View */,
 				8596F503295358F500E2410C /* Assets.xcassets */,
@@ -785,6 +792,7 @@
 				2431A53F2959A6CB001F9E64 /* Doctors.swift in Sources */,
 				2431A5402959A6CB001F9E64 /* Profile.swift in Sources */,
 				2431A5412959A6CB001F9E64 /* Pathologies.swift in Sources */,
+				242D9C74295DF48100A32FD3 /* persistenceData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,6 +1137,7 @@
 				DEVELOPMENT_TEAM = XH89Z8J7P5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Healthub-Watch-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sakura.Healthub;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1158,6 +1167,7 @@
 				DEVELOPMENT_TEAM = XH89Z8J7P5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Healthub-Watch-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sakura.Healthub;
 				LD_RUNPATH_SEARCH_PATHS = (

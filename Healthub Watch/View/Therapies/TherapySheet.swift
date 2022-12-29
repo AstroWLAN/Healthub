@@ -32,7 +32,7 @@ struct TherapySheet: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.2)
                 Section(header: Text("Drugs")) {
-                    ForEach(therapy.drugs, id:\.self) { drug in
+                    ForEach(Array(therapy.drugs), id:\.self) { drug in
                         Text(drug.group_description)
                             .lineLimit(4)
                             .minimumScaleFactor(0.8)

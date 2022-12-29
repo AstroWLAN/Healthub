@@ -22,20 +22,19 @@ class Reservation: NSManagedObject, Identifiable, NSSecureCoding {
     }*/
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Reservation> {
-        print(1)
         return NSFetchRequest<Reservation>(entityName: "Reservation")
     }
     
     func encode(with coder: NSCoder) {
-        coder.encode(self.id, forKey: "id")
+        coder.encode(Int32(self.id), forKey: "id")
         coder.encode(self.date, forKey: "date")
         coder.encode(self.time, forKey: "time")
-        coder.encode(self.doctor.id, forKey: "doctor.id")
+        coder.encode(Int32(self.doctor.id), forKey: "doctor.id")
         coder.encode(self.doctor.name!, forKey: "doctor.name")
         coder.encode(self.doctor.address!, forKey: "doctor.address")
-        coder.encode(self.examinationType.id, forKey: "examinationType.id")
+        coder.encode(Int32(self.examinationType.id), forKey: "examinationType.id")
         coder.encode(self.examinationType.name, forKey: "examinationType.name")
-        coder.encode(self.examinationType.duration_in_minutes, forKey: "examinationType.duration")
+        coder.encode(Int32(self.examinationType.duration_in_minutes), forKey: "examinationType.duration")
     }
     
     /*init(id: Int, date: Date, time: Date, doctor: Doctor, examinationType: ExaminationType) {
@@ -48,15 +47,15 @@ class Reservation: NSManagedObject, Identifiable, NSSecureCoding {
     
     
     required convenience init?(coder: NSCoder) {
-        guard let id = coder.decodeInteger(forKey: "id") as? Int,
+        guard let id = Int16(coder.decodeInt32(forKey: "id")) as? Int16,
               let date = coder.decodeObject(of: NSDate.self, forKey: "date") as? Date,
               let time = coder.decodeObject(of: NSDate.self, forKey: "time") as? Date,
-              let doctor_id = coder.decodeInteger(forKey: "doctor.id") as? Int,
+              let doctor_id = Int16(coder.decodeInt32(forKey: "doctor.id")) as? Int16,
               let doctor_name = coder.decodeObject(of: NSString.self, forKey: "doctor.name") as String?,
               let doctor_address = coder.decodeObject(of: NSString.self, forKey: "doctor.address") as? String,
-              let examinationType_id = coder.decodeInteger(forKey: "examinationType.id") as? Int,
+              let examinationType_id =  Int16(coder.decodeInt32(forKey: "examinationType.id")) as? Int16,
               let examinationType_name = coder.decodeObject(of: NSString.self, forKey: "examinationType.name")as? String,
-              let examinationType_duration = coder.decodeInteger(forKey: "examinationType.duration") as? Int
+              let examinationType_duration = Int16(coder.decodeInt32(forKey: "examinationType.duration")) as? Int16
         else{
             return nil
         }
@@ -67,13 +66,15 @@ class Reservation: NSManagedObject, Identifiable, NSSecureCoding {
         doctor.address = doctor_address
         doctor.id = Int16(doctor_id)
         
-        self.init()
-        self.id = Int16(id)
+        let entityReservation = NSEntityDescription.entity(forEntityName: "Reservation", in: CoreDataHelper.shared.context)!
+        self.init(entity: entityReservation, insertInto: CoreDataHelper.shared.context)
+        self.id = id
         self.date = date
+        self.time = time
         self.doctor = doctor
         
-        let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: CoreDataHelper.shared.context)!
-        self.examinationType = ExaminationType(entity: entityExamination, insertInto: CoreDataHelper.shared.context)//(id: examinationType_id, name: examinationType_name, duration_in_minutes: examinationType_duration)
+       // let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: CoreDataHelper.shared.context)!
+        self.examinationType = ExaminationType(entity: ExaminationType().entity, insertInto: CoreDataHelper.shared.context)//(id: examinationType_id, name: examinationType_name, duration_in_minutes: examinationType_duration)
         self.examinationType.id = Int16(examinationType_id)
         self.examinationType.name = examinationType_name
         self.examinationType.duration_in_minutes = Int16(examinationType_duration)
