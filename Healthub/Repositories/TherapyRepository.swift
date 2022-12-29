@@ -7,10 +7,12 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import CoreData
 
 class TherapyRepository: TherapyRepositoryProtocol{
     
     private var client: any ClientProtocol
+    var dbHelper: CoreDataHelper = CoreDataHelper.shared
     
     init(client: any ClientProtocol) {
         self.client = client
@@ -33,21 +35,35 @@ class TherapyRepository: TherapyRepositoryProtocol{
     func getAll(completionHandler: @escaping ([Therapy]?, Error?) -> Void) {
         
         let token = KeychainWrapper.standard.string(forKey: "access_token")
-        client
-            .get(.getTherapies(token: token!)){ (result: Result<API.Types.Response.GetTherapies, API.Types.Error>) in
-                DispatchQueue.main.async {
-                    switch result{
-                    case .success(let success):
-                        completionHandler(self.processTherapies(success),nil)
-                    case .failure(let failure):
-                        completionHandler(nil,failure)
-                    }
+        
+        let result: Result<[Therapy], Error> = dbHelper.fetch(Therapy.self, predicate: nil)
+       
+        switch result {
+                case .success(let therapies):
+                if therapies.isEmpty == false{
+                    completionHandler(therapies, nil)
+                }else{
+                    client
+                        .get(.getTherapies(token: token!)){ (result: Result<API.Types.Response.GetTherapies, API.Types.Error>) in
+                            DispatchQueue.main.async {
+                                switch result{
+                                case .success(let success):
+                                    completionHandler(self.processTherapies(success),nil)
+                                case .failure(let failure):
+                                    completionHandler(nil,failure)
+                                }
+                            }
+                            
+                        }
                 }
-                
+                case .failure(let error):
+                    print(error)
             }
+        
+        
     }
     
-    func createTherapy(drug_ids: [Int], duration: String, name: String, comment: String, completionHandler: @escaping (Bool?, Error?) -> Void){
+    func createTherapy(drug_ids: [Int16], duration: String, name: String, comment: String, completionHandler: @escaping (Bool?, Error?) -> Void){
         let token = KeychainWrapper.standard.string(forKey: "access_token")
         let body = API.Types.Request.CreateTherapy(drug_ids: drug_ids, duration: duration, name: name, comment: comment)
         client
@@ -68,7 +84,14 @@ class TherapyRepository: TherapyRepositoryProtocol{
         var local = [Drug]()
         
         for result in results.medications{
-            let drug = Drug(id: result.id, group_description: result.group_description, ma_holder: result.ma_holder, equivalence_group_code: result.equivalence_group_code, denomination_and_packaging: result.denomination_and_packaging, active_principle: result.active_principle, ma_code: result.ma_code)
+            let drug = Drug()//(id: result.id, group_description: result.group_description, ma_holder: result.ma_holder, equivalence_group_code: result.equivalence_group_code, denomination_and_packaging: result.denomination_and_packaging, active_principle: result.active_principle, ma_code: result.ma_code)
+            drug.id = Int16(result.id)
+            drug.group_description = result.group_description
+            drug.ma_holder = result.ma_holder
+            drug.ma_code = result.ma_code
+            drug.equivalence_group_code = result.equivalence_group_code
+            drug.denomination_and_packaging = result.denomination_and_packaging
+            drug.active_principle = result.active_principle
             local.append(drug)
         }
         
@@ -80,25 +103,50 @@ class TherapyRepository: TherapyRepositoryProtocol{
        
         
         for result in results.therapies{
-            var drugs: [Drug] = []
+            var drugs: Set<Drug> = Set.init()
             var doctor: Doctor? = nil
             
             
             for d in result.drugs{
-                    drugs.append(Drug(id: d.id, group_description: d.group_description, ma_holder: d.ma_holder, equivalence_group_code: d.equivalence_group_code, denomination_and_packaging: d.denomination_and_packaging, active_principle: d.active_principle, ma_code: d.ma_code))
+                
+                //let entity = NSEntityDescription.entity(forEntityName: "Drug", in: dbHelper.context)!
+                
+                let drug = Drug(entity: Drug().entity, insertInto: dbHelper.context)
+                drug.id = Int16(d.id)
+                drug.group_description = d.group_description
+                drug.ma_holder = d.ma_holder
+                drug.ma_code = d.ma_code
+                drug.denomination_and_packaging = d.denomination_and_packaging
+                drug.active_principle = d.active_principle
+                drug.equivalence_group_code = d.equivalence_group_code
+                
+                dbHelper.create(drug)
+                drugs.insert(drug)
                     
                 }
                 
             
             
             if result.doctor != nil{
-                doctor = Doctor(id: result.doctor!.id, name: result.doctor!.name, address: result.doctor!.address)
-               
+                let entity = Doctor().entity
+                doctor = Doctor(entity: entity, insertInto: dbHelper.context ) //(id: result.doctor!.id, name: result.doctor!.name, address: result.doctor!.address)
+                doctor!.id = Int16(result.doctor!.id)
+                doctor!.name = result.doctor!.name
+                doctor!.address = result.doctor!.address
+                
+                dbHelper.create(doctor!)
             }
             
-            
-            let therapy = Therapy(id: result.therapy_id, name: result.name, doctor: doctor, duration: result.duration, drugs: drugs, notes: result.comment, interactions: result.interactions)
-            
+    
+            let therapy = Therapy(entity: Therapy().entity, insertInto: dbHelper.context)//(id: result.therapy_id, name: result.name, doctor: doctor, duration: result.duration, drugs: drugs, notes: result.comment, interactions: result.interactions)
+            therapy.id = Int16(result.therapy_id)
+            therapy.name = result.name
+            therapy.doctor = doctor
+            therapy.duration = result.duration
+            therapy.drugs = drugs
+            therapy.notes = result.comment
+            therapy.interactions = result.interactions
+            dbHelper.create(therapy)
             local.append(therapy)
         }
         

@@ -62,6 +62,11 @@
 		246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */; };
 		246AC23329351B05004FAE20 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC23229351B05004FAE20 /* MockClient.swift */; };
 		2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */; };
+		24889471295D8923002215A7 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24889470295D8923002215A7 /* CoreDataHelper.swift */; };
+		24889473295D8971002215A7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24889472295D8971002215A7 /* CoreData.framework */; };
+		24889474295D89B1002215A7 /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
+		24889477295D89E5002215A7 /* persistenceData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24889475295D89E5002215A7 /* persistenceData.xcdatamodeld */; };
+		2488949D295D90CB002215A7 /* DBHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488949C295D90CB002215A7 /* DBHelperProtocol.swift */; };
 		248C68A0295C3F5800B90959 /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
 		2495CB88293A091600DD4535 /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB87293A091600DD4535 /* MockUserRepository.swift */; };
 		2495CB8A293A093400DD4535 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2495CB89293A093400DD4535 /* LoginViewModelTests.swift */; };
@@ -77,6 +82,8 @@
 		24C1CD022928FBAA0089F9A0 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CD012928FBAA0089F9A0 /* APIClient.swift */; };
 		24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */; };
 		24C54EDE29327E9C0021C783 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDD29327E9C0021C783 /* ClientProtocol.swift */; };
+		24D077A3295DA58D00190969 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24889470295D8923002215A7 /* CoreDataHelper.swift */; };
+		24D077A4295DA59000190969 /* DBHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488949C295D90CB002215A7 /* DBHelperProtocol.swift */; };
 		24D09CBA295067FF00E88DBC /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D09CB9295067FF00E88DBC /* Gender.swift */; };
 		24D420DF2938BC090090A42D /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420DE2938BC090090A42D /* Doctor.swift */; };
 		24D420E12938BC170090A42D /* ExaminationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420E02938BC170090A42D /* ExaminationType.swift */; };
@@ -170,6 +177,10 @@
 		246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
 		246AC23229351B05004FAE20 /* MockClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
 		2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
+		24889470295D8923002215A7 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		24889472295D8971002215A7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		24889476295D89E5002215A7 /* Persistence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Persistence.xcdatamodel; sourceTree = "<group>"; };
+		2488949C295D90CB002215A7 /* DBHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelperProtocol.swift; sourceTree = "<group>"; };
 		2495CB87293A091600DD4535 /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
 		2495CB89293A093400DD4535 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2495CB8B293A0A1D00DD4535 /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
@@ -242,6 +253,7 @@
 			files = (
 				241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */,
 				24DC3B0F2957649400EE7FBC /* WatchConnectivity.framework in Frameworks */,
+				24889473295D8971002215A7 /* CoreData.framework in Frameworks */,
 				852F1A372946B09200B57B18 /* TextView in Frameworks */,
 				243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */,
 			);
@@ -291,6 +303,15 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		2488946F295D8902002215A7 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				24889470295D8923002215A7 /* CoreDataHelper.swift */,
+				2488949C295D90CB002215A7 /* DBHelperProtocol.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		249FF51F292A284B007C802F /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,8 +345,8 @@
 				2431A5522959AD96001F9E64 /* Examination.swift */,
 				249FF531292A7801007C802F /* Patient.swift */,
 				244166342947731B00035824 /* Drug.swift */,
-				2454E1D42938B14500AF0CE0 /* Reservation.swift */,
 				24D420DE2938BC090090A42D /* Doctor.swift */,
+				2454E1D42938B14500AF0CE0 /* Reservation.swift */,
 				2441663629477E5000035824 /* Therapy.swift */,
 				24D420E02938BC170090A42D /* ExaminationType.swift */,
 				24D09CB9295067FF00E88DBC /* Gender.swift */,
@@ -355,6 +376,7 @@
 		24DC3B0D2957649400EE7FBC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24889472295D8971002215A7 /* CoreData.framework */,
 				24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */,
 			);
 			name = Frameworks;
@@ -401,7 +423,9 @@
 		857A54EF2922D34300413841 /* Healthub */ = {
 			isa = PBXGroup;
 			children = (
+				24889475295D89E5002215A7 /* persistenceData.xcdatamodeld */,
 				857A54F02922D34300413841 /* HealthubApp.swift */,
+				2488946F295D8902002215A7 /* Persistence */,
 				857A54FE2922D38300413841 /* Resources */,
 				249FF51F292A284B007C802F /* Repositories */,
 				24DC3B0A2957640F00EE7FBC /* Connectivity */,
@@ -732,6 +756,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D077A4295DA59000190969 /* DBHelperProtocol.swift in Sources */,
+				24D077A3295DA58D00190969 /* CoreDataHelper.swift in Sources */,
+				24889474295D89B1002215A7 /* Pathology.swift in Sources */,
 				248C68A0295C3F5800B90959 /* Address2Coordinates.swift in Sources */,
 				2431A5552959ADF0001F9E64 /* Styles.swift in Sources */,
 				2431A5542959ADB5001F9E64 /* Examination.swift in Sources */,
@@ -813,6 +840,7 @@
 				852F1A332946AFB400B57B18 /* Notes.swift in Sources */,
 				857A55192922DCBB00413841 /* Feature.swift in Sources */,
 				249FF52F292A4797007C802F /* UserRepository.swift in Sources */,
+				2488949D295D90CB002215A7 /* DBHelperProtocol.swift in Sources */,
 				2431A5532959AD96001F9E64 /* Examination.swift in Sources */,
 				857A550C2922D70000413841 /* Therapies.swift in Sources */,
 				857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */,
@@ -839,9 +867,11 @@
 				2417595D2927A6150051BE0B /* Welcome.swift in Sources */,
 				2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */,
 				857A550A2922D6D800413841 /* Tickets.swift in Sources */,
+				24889471295D8923002215A7 /* CoreDataHelper.swift in Sources */,
 				241759612927DC330051BE0B /* PathologyViewModel.swift in Sources */,
 				85BB5AC52939B19C0039618B /* DoctorLogin.swift in Sources */,
 				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
+				24889477295D89E5002215A7 /* persistenceData.xcdatamodeld in Sources */,
 				241759592927A5FA0051BE0B /* Login.swift in Sources */,
 				85BB5ABA293802CE0039618B /* Booking.swift in Sources */,
 			);
@@ -1236,6 +1266,19 @@
 			productName = TextView;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		24889475295D89E5002215A7 /* persistenceData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				24889476295D89E5002215A7 /* Persistence.xcdatamodel */,
+			);
+			currentVersion = 24889476295D89E5002215A7 /* Persistence.xcdatamodel */;
+			path = persistenceData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 857A54E52922D34300413841 /* Project object */;
 }

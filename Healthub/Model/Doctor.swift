@@ -7,17 +7,24 @@
 
 import Foundation
 import CoreLocation
-class Doctor: NSObject, NSSecureCoding{
+import CoreData
+
+@objc(Doctor)
+class Doctor: NSManagedObject, NSSecureCoding{
     static var supportsSecureCoding: Bool = true
     
-    private(set) var id: Int?
-    private(set) var name: String?
-    private(set) var address: String?
+    @NSManaged public var id: Int16
+    @NSManaged public var name: String?
+    @NSManaged public var address: String?
     
-    init(id: Int, name: String, address: String) {
-        self.id = id
+    /*init(id: Int, name: String, address: String) {
+        self.id = Int16(id)
         self.name = name
         self.address = address
+    }*/
+    
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Doctor> {
+        return NSFetchRequest<Doctor>(entityName: "Doctor")
     }
     
     static func == (lhs: Doctor, rhs: Doctor) -> Bool {
@@ -37,7 +44,11 @@ class Doctor: NSObject, NSSecureCoding{
         else{
             return nil
         }
-        self.init(id: id, name: name, address: address)
+       // self.init(id: id, name: name, address: address)
+        self.init()
+        self.id = Int16(id)
+        self.name = name
+        self.address = address
               
     }
   

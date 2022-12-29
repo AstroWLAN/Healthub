@@ -7,9 +7,11 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import CoreData
 struct ReservationsRepository: ReservationRepositoryProtocol{
     
     private var client: any ClientProtocol
+    private var dbHelper = CoreDataHelper.shared
     
     init(client: any ClientProtocol) {
         self.client = client
@@ -96,17 +98,28 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
             fatalError("Token not present")
         }
         
-        client
-            .get(.getReservations(token: token!)){ (result: Result<API.Types.Response.GetReservations, API.Types.Error>) in
-                DispatchQueue.main.async {
-                    switch result{
-                    case .success(let success):
-                        completionHandler(self.processReservations(success), nil)
-                    case .failure(let failure):
-                        completionHandler(nil,failure)
+        let result: Result<[Reservation], Error> = dbHelper.fetch(Reservation.self, predicate: nil)
+       
+        switch result {
+                case .success(let reservations):
+                if reservations.isEmpty == false{
+                    completionHandler(reservations, nil)
+                }else{
+                    client
+                        .get(.getReservations(token: token!)){ (result: Result<API.Types.Response.GetReservations, API.Types.Error>) in
+                            DispatchQueue.main.async {
+                                switch result{
+                                case .success(let success):
+                                    completionHandler(self.processReservations(success), nil)
+                                case .failure(let failure):
+                                    completionHandler(nil,failure)
+                                }
+                            }
                     }
                 }
-        }
+                case .failure(let error):
+                    print(error)
+            }
     }
     
     func getDoctorsByExamName(exam_name: String, completionHandler: @escaping ([Doctor]?, Error?) -> Void){
@@ -216,7 +229,11 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     private func processDoctors(_ results: API.Types.Response.GetDoctorsByExamName) -> [Doctor]{
         var doctors = [Doctor]()
         for result in results.doctors{
-            let doctor = Doctor(id: result.id, name: result.name ,address: result.address)
+            let entity = Doctor().entity
+            let doctor = Doctor(entity: entity, insertInto: dbHelper.context)// Doctor(id: result.id, name: result.name ,address: result.address)
+            doctor.id = Int16(result.id)
+            doctor.name = result.name
+            doctor.address = result.address
             doctors.append(doctor)
         }
         
@@ -233,10 +250,32 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         time.dateFormat = "HH:mm"
         
         for result in results.reservations{
-            let doctor = Doctor(id: result.doctor.id, name: result.doctor.name,address: result.doctor.address)
-            let examinationType = ExaminationType(id: result.examinationType.id, name: result.examinationType.name, duration_in_minutes: result.examinationType.duration_in_minutes)
+            let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: dbHelper.context)!
+            let doctor = Doctor(entity: entity, insertInto: dbHelper.context)//Doctor(id: result.doctor.id, name: result.doctor.name,address: result.doctor.address)
+            doctor.id = Int16(result.doctor.id)
+            doctor.name = result.doctor.name
+            doctor.address = result.doctor.address
             
-            let reservation = Reservation( id: result.id, date: date.date(from: "\(result.date)")!, time: time.date(from:"\(result.starting_time)")!, doctor: doctor, examinationType: examinationType)
+            dbHelper.create(doctor)
+            
+            let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: dbHelper.context)!
+            
+            let examinationType = ExaminationType(entity: entityExamination, insertInto: dbHelper.context)//(id: result.examinationType.id, name: result.examinationType.name, duration_in_minutes: result.examinationType.duration_in_minutes)
+            examinationType.id = Int16(result.examinationType.id)
+            examinationType.name = result.examinationType.name
+            examinationType.duration_in_minutes = Int16(result.examinationType.duration_in_minutes)
+            
+            dbHelper.create(examinationType)
+            let entityReservation = NSEntityDescription.entity(forEntityName: "Reservation", in: dbHelper.context)!
+            let reservation = Reservation(entity: entityReservation, insertInto: dbHelper.context)
+            //( id: result.id, date: date.date(from: "\(result.date)")!, time: time.date(from:"\(result.starting_time)")!, doctor: doctor, examinationType: examinationType)
+            reservation.id = Int16(result.id)
+            reservation.date = date.date(from: "\(result.date)")!
+            reservation.time = time.date(from:"\(result.starting_time)")!
+            reservation.doctor = doctor
+            reservation.examinationType = examinationType
+            
+            dbHelper.create(reservation)
             
             local.append(reservation)
         }

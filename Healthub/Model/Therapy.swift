@@ -1,14 +1,16 @@
 import Foundation
+import CoreData
 
-struct Therapy : Identifiable, Hashable {
-    private(set) var id: Int
-    private(set) var name: String
+@objc(Therapy)
+class Therapy : NSManagedObject, Identifiable {
+    @NSManaged var id: Int16
+    @NSManaged var name: String
     // Può anche essere una stringa... basta il nome del medico
-    private(set) var doctor: Doctor?
-    private(set) var duration: String
+    @NSManaged var doctor: Doctor?
+    @NSManaged var duration: String
     // Rendere drug un array ( ogni terapia può avere molteplici farmaci )
     // Può anche essere un array di stringhe... basta solo il nome del farmaco
-    private(set) var drugs: [Drug]
-    private(set) var notes: String
-    private(set) var interactions: [String]
+    @NSManaged var drugs: Set<Drug>
+    @NSManaged var notes: String
+    @NSManaged var interactions: [String]
 }

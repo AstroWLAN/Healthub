@@ -6,17 +6,24 @@
 //
 
 import Foundation
-class ExaminationType:NSObject, NSSecureCoding{
+import CoreData
+
+@objc(ExaminationType)
+class ExaminationType: NSManagedObject, NSSecureCoding{
     static var supportsSecureCoding: Bool = true
     
-    private(set) var id: Int
-    private(set) var name: String
-    private(set) var duration_in_minutes: Int
+    @NSManaged var id: Int16
+    @NSManaged var name: String
+    @NSManaged var duration_in_minutes: Int16
     
-    init(id: Int, name: String, duration_in_minutes: Int) {
+    /*init(id: Int, name: String, duration_in_minutes: Int) {
         self.id = id
         self.name = name
         self.duration_in_minutes = duration_in_minutes
+    }*/
+    
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ExaminationType> {
+        return NSFetchRequest<ExaminationType>(entityName: "ExaminationType")
     }
     
     static func == (lhs: ExaminationType, rhs: ExaminationType) -> Bool {
@@ -42,7 +49,13 @@ class ExaminationType:NSObject, NSSecureCoding{
         else{
             return nil
         }
-        self.init(id: id, name: name, duration_in_minutes: duration)
+        
+        self.init()
+        self.id = Int16(id)
+        self.name = name
+        self.duration_in_minutes = Int16(duration)
+        
+        //self.init(id: id, name: name, duration_in_minutes: duration)
               
     }
     

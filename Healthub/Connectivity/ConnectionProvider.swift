@@ -13,6 +13,10 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
     private let session: WCSession
     var send: [Reservation] = []
     @Published var received: [Reservation] = []
+    @Published var receivedTherapies: [Therapy] = []
+    @Published var receivedDoctors: [Doctor] = []
+    @Published var receivedProfile: Patient?
+    @Published var receivedPathologies: [Pathology] = []
     var lastMessage: CFAbsoluteTime = 0
     
     init(session: WCSession = .default){
@@ -39,7 +43,11 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
             print(error.localizedDescription)
         }
     }
-    
+    func sendWatchMessageTherapies(_msgData: [Therapy]){}
+    func sendWatchMessageDoctors(_msgData: [Doctor]){}
+    func sendWatchMessageProfile(_msgData: Patient) {}
+    func sendWatchMessagePathologies(_msgData: [Pathology]) {}
+
     func sendWatchMessage(_ msgData: [Reservation]){
         print("Sending Data")
         let currentTime = CFAbsoluteTimeGetCurrent()
@@ -69,7 +77,7 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
             print(2)
             print("Sending message: \(Reservation.self) Object")
             
-            let message: [String: Any] = ["Data": programData]
+            let message: [String: Any] = ["Type": "Reservation" ,"Data": programData]
             self.session.sendMessage(message, replyHandler: nil){ (error) in
                 print(error.localizedDescription)
             }

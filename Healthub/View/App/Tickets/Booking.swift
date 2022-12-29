@@ -113,7 +113,7 @@ struct BookingView: View {
                 .onChange(of: selectedDate, perform: { value in
                     if let exam = selectedExamination?.index{
                         if let doctor = selectedDoctor {
-                            ticketViewModel.fetchSlots(doctor_id: doctor.id!, examinationType_id: exam + 1, date: value)
+                            ticketViewModel.fetchSlots(doctor_id: Int(doctor.id), examinationType_id: exam + 1, date: value)
                         }
                     }
                 })
@@ -126,7 +126,7 @@ struct BookingView: View {
                     Button(
                         action: {
                             /* Sync with backend */
-                            ticketViewModel.addReservation(date: selectedDate, starting_time: selectedTimeSlot, doctor_id: selectedDoctor!.id!, examinationType_id: (selectedExamination?.index ?? 0) + 1)
+                            ticketViewModel.addReservation(date: selectedDate, starting_time: selectedTimeSlot, doctor_id: Int(selectedDoctor!.id), examinationType_id: (selectedExamination?.index ?? 0) + 1)
                             
                         },
                         label:  {

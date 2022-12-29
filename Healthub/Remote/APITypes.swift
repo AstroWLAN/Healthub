@@ -66,7 +66,7 @@ extension API {
             }
             
             struct CreateTherapy: Encodable{
-                var drug_ids: [Int]
+                var drug_ids: [Int16]
                 var duration: String
                 var name: String
                 var comment: String
@@ -253,8 +253,8 @@ extension API {
             
             var url: URL{
                 var components = URLComponents()
-                components.host = "healthub.software"
-                components.scheme = "https"
+                components.host = "localhost"
+                components.scheme = "http"
                 switch self{
                     
                 case .login(let email, let password):

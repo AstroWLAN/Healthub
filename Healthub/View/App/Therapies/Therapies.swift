@@ -39,7 +39,7 @@ struct TherapySheet : View {
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     
                      Section(header: Text("Drugs")) {
-                         ForEach(therapy!.drugs, id: \.id) { drug in
+                         ForEach(Array(therapy!.drugs), id: \.id) { drug in
                              Label(drug.denomination_and_packaging, systemImage: "pill.fill")
                          }
                     

@@ -53,7 +53,7 @@ struct TicketsView: View {
                                         .swipeActions {
                                             Button(
                                                 role: .destructive,
-                                                action: { ticketViewModel.deleteReservation(reservation_id: ticket.id) },
+                                                action: { ticketViewModel.deleteReservation(reservation_id: Int(ticket.id)) },
                                                 label: { Image(systemName: "trash.fill") })
                                         }
                                     }

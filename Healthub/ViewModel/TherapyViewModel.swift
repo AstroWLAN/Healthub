@@ -93,7 +93,7 @@ class TherapyViewModel: ObservableObject{
     func createNewTherapy(drugs: [Drug], duration:String, name: String, comment: String){
         hasError = false
         completedCreation = false
-        var drug_ids:[Int] = []
+        var drug_ids:[Int16] = []
         
         for d in drugs{
             drug_ids.append(d.id)

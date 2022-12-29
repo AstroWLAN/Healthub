@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Doctor" representedClassName=".Doctor" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Drug" representedClassName=".Drug" syncable="YES">
+        <attribute name="active_principle" optional="YES" attributeType="String"/>
+        <attribute name="denomination_and_packaging" optional="YES" attributeType="String"/>
+        <attribute name="equivalence_group_code" optional="YES" attributeType="String"/>
+        <attribute name="group_description" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ma_code" optional="YES" attributeType="String"/>
+        <attribute name="ma_holder" optional="YES" attributeType="String"/>
+        <relationship name="therapy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Therapy" inverseName="drugs" inverseEntity="Therapy"/>
+    </entity>
+    <entity name="ExaminationType" representedClassName=".ExaminationType" syncable="YES">
+        <attribute name="duration_in_minutes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Reservation" representedClassName=".Reservation" syncable="YES">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor"/>
+        <relationship name="examinationType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExaminationType"/>
+    </entity>
+    <entity name="Therapy" representedClassName=".Therapy" syncable="YES">
+        <attribute name="duration" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="interactions" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor"/>
+        <relationship name="drugs" toMany="YES" deletionRule="Nullify" destinationEntity="Drug" inverseName="therapy" inverseEntity="Drug"/>
+    </entity>
+</model>
