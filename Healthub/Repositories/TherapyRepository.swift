@@ -32,14 +32,15 @@ class TherapyRepository: TherapyRepositoryProtocol{
             }
     }
     
-    func getAll(completionHandler: @escaping ([Therapy]?, Error?) -> Void) {
+    func getAll(force_reload: Bool = false, completionHandler: @escaping ([Therapy]?, Error?) -> Void) {
         
         let token = KeychainWrapper.standard.string(forKey: "access_token")
         
-        let result: Result<[Therapy], Error> = dbHelper.fetch(Therapy.self, predicate: nil)
-       
-        switch result {
-                case .success(let therapies):
+        if force_reload == false {
+            let result: Result<[Therapy], Error> = dbHelper.fetch(Therapy.self, predicate: nil)
+            
+            switch result {
+            case .success(let therapies):
                 if therapies.isEmpty == false{
                     completionHandler(therapies, nil)
                 }else{
@@ -56,9 +57,24 @@ class TherapyRepository: TherapyRepositoryProtocol{
                             
                         }
                 }
-                case .failure(let error):
-                    print(error)
+            case .failure(let error):
+                print(error)
             }
+        }else{
+            dbHelper.deleteAllEntries(entity: "Therapy")
+            client
+                .get(.getTherapies(token: token!)){ (result: Result<API.Types.Response.GetTherapies, API.Types.Error>) in
+                    DispatchQueue.main.async {
+                        switch result{
+                        case .success(let success):
+                            completionHandler(self.processTherapies(success),nil)
+                        case .failure(let failure):
+                            completionHandler(nil,failure)
+                        }
+                    }
+                    
+                }
+        }
         
         
     }
@@ -84,7 +100,7 @@ class TherapyRepository: TherapyRepositoryProtocol{
         var local = [Drug]()
         
         for result in results.medications{
-            let drug = Drug()//(id: result.id, group_description: result.group_description, ma_holder: result.ma_holder, equivalence_group_code: result.equivalence_group_code, denomination_and_packaging: result.denomination_and_packaging, active_principle: result.active_principle, ma_code: result.ma_code)
+            let drug = Drug(entity: Drug().entity, insertInto: dbHelper.context)//(id: result.id, group_description: result.group_description, ma_holder: result.ma_holder, equivalence_group_code: result.equivalence_group_code, denomination_and_packaging: result.denomination_and_packaging, active_principle: result.active_principle, ma_code: result.ma_code)
             drug.id = Int16(result.id)
             drug.group_description = result.group_description
             drug.ma_holder = result.ma_holder

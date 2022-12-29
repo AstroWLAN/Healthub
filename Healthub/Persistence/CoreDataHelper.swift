@@ -80,6 +80,17 @@ class CoreDataHelper: DBHelperProtocol{
     }
     
     
+    func deleteAllEntries(entity: String){
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+        } catch let error as NSError {
+            fatalError("Unable to delete: \(error)")
+        }
+    }
+    
     lazy var persistentContainer: NSPersistentContainer = {
             let container = NSPersistentContainer(name: "persistenceData")
             container.loadPersistentStores(completionHandler: { (storeDescription, error) in

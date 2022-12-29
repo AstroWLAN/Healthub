@@ -16,7 +16,6 @@ class TicketViewModel : ObservableObject{
     @Published private(set) var doctors: [Doctor] = []
     @Published private(set) var availabilities: [Date] = []
     @Published private(set) var slots: [String] = []
-    private let cache = NSCache<NSString, NSArray>()
     
     var objectWillChange = PassthroughSubject<Void, Never>()
     
@@ -51,49 +50,21 @@ class TicketViewModel : ObservableObject{
     }
     
     func fetchTickets(force_reload: Bool = false){
-        if force_reload == true{
-            self.isLoadingTickets = true
-            reservationsRepository.getAll(){(reservations, error) in
-                if let error = error{
-                    print(error.localizedDescription)
-                }
-                
-                if let reservations = reservations{
-                    
-                    self.reservations = reservations
-                    self.connectivityProvider.connect()
-                    self.connectivityProvider.sendWatchMessage(reservations)
-                    self.isLoadingTickets = false
-                }
-                
+        self.isLoadingTickets = true
+        reservationsRepository.getAll(force_reload:force_reload){(reservations, error) in
+            if let error = error{
+                print(error.localizedDescription)
             }
-        }else{
-            if let cachedVersion = cache.object(forKey: "tickets" as NSString) as? [Reservation] {
-                // use the cached version
-                self.reservations = cachedVersion
+            
+            if let reservations = reservations{
+                
+                self.reservations = reservations
+                self.connectivityProvider.connect()
+                self.connectivityProvider.sendWatchMessage(reservations)
                 self.isLoadingTickets = false
-            } else {
-                self.isLoadingTickets = true
-                reservationsRepository.getAll(){(reservations, error) in
-                    if let error = error{
-                        print(error.localizedDescription)
-                    }
-                    
-                    if let reservations = reservations{
-                        
-                        self.reservations = reservations
-                        self.connectivityProvider.connect()
-                        self.connectivityProvider.sendWatchMessage(reservations)
-                        self.isLoadingTickets = false
-                        self.cache.setObject(reservations as NSArray, forKey: "tickets")
-                    }
-                    
-                }
             }
+            
         }
-        
-
-                    
     }
             
         

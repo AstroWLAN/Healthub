@@ -50,8 +50,7 @@ class TherapyViewModel: ObservableObject{
     
     func fetchTherapies(force_reload: Bool = false){
         self.isLoadingTherapies = true
-        if force_reload == true{
-            therapyRepository.getAll(){(therapies, error) in
+        therapyRepository.getAll(force_reload: force_reload){(therapies, error) in
                 if let error = error{
                     print(error.localizedDescription)
                 }
@@ -64,7 +63,7 @@ class TherapyViewModel: ObservableObject{
                 self.isLoadingTherapies = false
                 
             }
-        }else{
+        /*}else{
             if let cachedVersion = cache.object(forKey: "therapies" as NSString) as? [Therapy] {
                 // use the cached version
                 self.therapies = cachedVersion
@@ -85,7 +84,7 @@ class TherapyViewModel: ObservableObject{
                     
                 }
             }
-        }
+        }*/
         
        
     }

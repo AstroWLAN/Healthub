@@ -92,16 +92,17 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         
     }
     
-    func getAll(completionHandler: @escaping ([Reservation]?, Error?) -> Void) {
+    func getAll(force_reload: Bool = false, completionHandler: @escaping ([Reservation]?, Error?) -> Void) {
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
             fatalError("Token not present")
         }
         
-        let result: Result<[Reservation], Error> = dbHelper.fetch(Reservation.self, predicate: nil)
-       
-        switch result {
-                case .success(let reservations):
+        if force_reload == false {
+            let result: Result<[Reservation], Error> = dbHelper.fetch(Reservation.self, predicate: nil)
+            
+            switch result {
+            case .success(let reservations):
                 if reservations.isEmpty == false{
                     completionHandler(reservations, nil)
                 }else{
@@ -115,11 +116,25 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
                                     completionHandler(nil,failure)
                                 }
                             }
+                        }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }else{
+            dbHelper.deleteAllEntries(entity: "Reservation")
+            client
+                .get(.getReservations(token: token!)){ (result: Result<API.Types.Response.GetReservations, API.Types.Error>) in
+                    DispatchQueue.main.async {
+                        switch result{
+                        case .success(let success):
+                            completionHandler(self.processReservations(success), nil)
+                        case .failure(let failure):
+                            completionHandler(nil,failure)
+                        }
                     }
                 }
-                case .failure(let error):
-                    print(error)
-            }
+        }
     }
     
     func getDoctorsByExamName(exam_name: String, completionHandler: @escaping ([Doctor]?, Error?) -> Void){
