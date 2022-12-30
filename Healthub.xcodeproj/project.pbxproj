@@ -20,6 +20,8 @@
 		24179B91293CE77E004BFD69 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		242D9C73295DF08800A32FD3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242D9C72295DF08800A32FD3 /* CoreData.framework */; };
 		242D9C74295DF48100A32FD3 /* persistenceData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24889475295D89E5002215A7 /* persistenceData.xcdatamodeld */; };
+		242D9C75295DF98300A32FD3 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D09CB9295067FF00E88DBC /* Gender.swift */; };
+		242D9C76295DF98A00A32FD3 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF531292A7801007C802F /* Patient.swift */; };
 		2431A5392959A6CB001F9E64 /* WatchubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F4FF295358F400E2410C /* WatchubApp.swift */; };
 		2431A53A2959A6CB001F9E64 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F501295358F400E2410C /* MainView.swift */; };
 		2431A53B2959A6CB001F9E64 /* Tickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51029535EBA00E2410C /* Tickets.swift */; };
@@ -763,6 +765,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				242D9C76295DF98A00A32FD3 /* Patient.swift in Sources */,
+				242D9C75295DF98300A32FD3 /* Gender.swift in Sources */,
 				24D077A4295DA59000190969 /* DBHelperProtocol.swift in Sources */,
 				24D077A3295DA58D00190969 /* CoreDataHelper.swift in Sources */,
 				24889474295D89B1002215A7 /* Pathology.swift in Sources */,

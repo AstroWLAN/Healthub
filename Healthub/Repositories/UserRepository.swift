@@ -7,11 +7,13 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import CoreData
 
 class UserRepository: UserRepositoryProtocol{
     
     
     private var client: any ClientProtocol
+    private var dbHelper = CoreDataHelper.shared
     
     init(client: any ClientProtocol) {
         self.client = client
@@ -24,9 +26,9 @@ class UserRepository: UserRepositoryProtocol{
         let df = DateFormatter()
         df.dateFormat = "YYYY-MM-dd"
         
-        let sex = API.GenderTranslation.gender_r["\(user.sex)".lowercased()]
+        let sex = Int(user.sex)
         
-        let body = API.Types.Request.UpdatePatient(name: user.name, sex: sex!, dateOfBirth: df.string(from:user.dateOfBirth), fiscalCode: user.fiscalCode, height: user.height, weight: user.weight, phone: user.phone)
+        let body = API.Types.Request.UpdatePatient(name: user.name, sex: sex, dateOfBirth: df.string(from:user.dateOfBirth), fiscalCode: user.fiscalCode, height: Int(user.height), weight: user.weight, phone: user.phone)
         
         client.fetch(.updatePatient(token: token!), method:.put, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
@@ -40,26 +42,72 @@ class UserRepository: UserRepositoryProtocol{
             }
     }
     
-    func getUser(completionHandler: @escaping (Patient?, Error?) -> Void){
+    func getUser(force_reload: Bool = false, completionHandler: @escaping (Patient?, Error?) -> Void){
         let df = DateFormatter()
         df.dateFormat = "YYYY-MM-dd"
 
         let token = KeychainWrapper.standard.string(forKey: "access_token")
-        client
-            .get(.getPatient(token: token!)){ (result: Result<API.Types.Response.GetPatient, API.Types.Error>) in
-                DispatchQueue.main.async {
-                    switch result{
-                    case .success(let success):
-                        let sex = Gender(rawValue: API.GenderTranslation.gender[success.sex]! )
-                        let patient = Patient(email: success.email,
-                                              name: success.name, sex: sex! , dateOfBirth: df.date(from: success.dateOfBirth)!, fiscalCode: success.fiscalCode, height: success.height, weight: success.weight, phone: success.phone)
-                         completionHandler(patient, nil)
-                    case .failure(let failure):
-                        completionHandler(nil,failure)
+        
+        if force_reload == false {
+            let result: Result<[Patient], Error> = dbHelper.fetch(Patient.self, predicate: nil)
+            
+            switch result {
+            case .success(let patient):
+                if patient.isEmpty == false{
+                    completionHandler(patient[0], nil)
+                }else{
+                    client
+                        .get(.getPatient(token: token!)){ (result: Result<API.Types.Response.GetPatient, API.Types.Error>) in
+                            DispatchQueue.main.async {
+                                switch result{
+                                case .success(let success):
+                                    let sex = Gender(rawValue: API.GenderTranslation.gender[success.sex]! )
+                                    let patient = Patient(entity: NSEntityDescription.entity(forEntityName: "Patient", in: self.dbHelper.context)!, insertInto: self.dbHelper.context)
+                                    patient.email = success.email
+                                    patient.name = success.name
+                                    patient.sex = Int16(Gender.index(of: sex!))
+                                    patient.dateOfBirth = df.date(from: success.dateOfBirth)!
+                                    patient.fiscalCode = success.fiscalCode
+                                    patient.height = Int16(success.height)
+                                    patient.weight = success.weight
+                                    patient.phone = success.phone
+                                    
+                                    completionHandler(patient, nil)
+                                case .failure(let failure):
+                                    completionHandler(nil,failure)
+                                }
+                            }
                     }
                 }
-            
+            case .failure(let error):
+                print(error)
+            }
+        }else{
+            dbHelper.deleteAllEntries(entity: "Patient")
+            client
+                .get(.getPatient(token: token!)){ (result: Result<API.Types.Response.GetPatient, API.Types.Error>) in
+                    DispatchQueue.main.async {
+                        switch result{
+                        case .success(let success):
+                            let sex = Gender(rawValue: API.GenderTranslation.gender[success.sex]! )
+                            let patient = Patient(entity:NSEntityDescription.entity(forEntityName: "Patient", in: self.dbHelper.context)!, insertInto: self.dbHelper.context)
+                            patient.email = success.email
+                            patient.name = success.name
+                            patient.sex = Int16(Gender.index(of: sex!))
+                            patient.dateOfBirth = df.date(from: success.dateOfBirth)!
+                            patient.fiscalCode = success.fiscalCode
+                            patient.height = Int16(success.height)
+                            patient.weight = success.weight
+                            patient.phone = success.phone
+                            
+                            completionHandler(patient, nil)
+                        case .failure(let failure):
+                            completionHandler(nil,failure)
+                        }
+                    }
+            }
         }
+        
     }
     
     func registerUser(email: String, password: String, completionHandler: @escaping (Bool?, API.Types.Error?) -> Void){

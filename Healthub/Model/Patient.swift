@@ -6,17 +6,20 @@
 //
 
 import Foundation
-class Patient: ObservableObject{
-    @Published var email: String
-    @Published var name: String
-    @Published var sex: Gender
-    @Published var dateOfBirth: Date
-    @Published var fiscalCode: String
-    @Published var height: Int
-    @Published var weight: Float
-    @Published var phone: String
+import CoreData
+
+@objc(Patient)
+class Patient: NSManagedObject{
+    @NSManaged var email: String
+    @NSManaged var name: String
+    @NSManaged var sex: Int16
+    @NSManaged var dateOfBirth: Date
+    @NSManaged var fiscalCode: String
+    @NSManaged var height: Int16
+    @NSManaged var weight: Float
+    @NSManaged var phone: String
     
-    init(email:String, name: String, sex: Gender, dateOfBirth: Date, fiscalCode: String, height: Int, weight: Float, phone: String) {
+    /*init(email:String, name: String, sex: Gender, dateOfBirth: Date, fiscalCode: String, height: Int, weight: Float, phone: String) {
         self.email = email
         self.name = name
         self.sex = sex
@@ -25,6 +28,6 @@ class Patient: ObservableObject{
         self.height = height
         self.weight = weight
         self.phone = phone
-    }
+    }*/
     
 }
