@@ -23,10 +23,10 @@ class PathologyViewModel : ObservableObject {
     }
     
     
-    func fetchPathologies(){
+    func fetchPathologies(force_reload: Bool = false){
         //Retrieve token in order to prepare the request
         self.isLoadingPathologies = true
-        pathologiesRepository.getAll{ (pathologies, error) in
+        pathologiesRepository.getAll(force_reload: force_reload){ (pathologies, error) in
             if let error = error{
                 print(error.localizedDescription)
             }
@@ -52,7 +52,7 @@ class PathologyViewModel : ObservableObject {
                 if(success == false){
                     print("Problem in adding the pathology")
                 }
-                self.fetchPathologies()
+                self.fetchPathologies(force_reload: true)
             }
             
             
@@ -63,7 +63,7 @@ class PathologyViewModel : ObservableObject {
     func removePathology(at offset: Int){
         let pathology = pathologies[offset]
         
-        pathologiesRepository.delete(pathologyId: pathology.id){ (success, error) in
+        pathologiesRepository.delete(pathologyId: Int(pathology.id)){ (success, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -73,7 +73,7 @@ class PathologyViewModel : ObservableObject {
                     print("Problem in deleting the pathology")
                 }
                 
-                self.fetchPathologies()
+                self.fetchPathologies(force_reload: true)
             }
             
         }

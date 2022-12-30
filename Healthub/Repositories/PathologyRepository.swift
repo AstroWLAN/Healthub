@@ -13,6 +13,7 @@ struct PathologyRepository : PathologyRepositoryProcotol{
     
     typealias T = Pathology
     private var client: any ClientProtocol
+    private var dbHelper = CoreDataHelper.shared
     
     init(client: any ClientProtocol) {
         self.client = client
@@ -65,23 +66,50 @@ struct PathologyRepository : PathologyRepositoryProcotol{
             }
     }
     
-    func getAll(completionHandler: @escaping ([Pathology]?, Error?) -> Void) {
+    func getAll(force_reload: Bool = false, completionHandler: @escaping ([Pathology]?, Error?) -> Void) {
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
             fatalError("Token not present")
         }
         
-        client
-            .get(.getPathologies(token: token!)){ (result: Result<API.Types.Response.GetPathologies, API.Types.Error>) in
-                DispatchQueue.main.async {
-                    switch result{
-                    case .success(let success):
-                        completionHandler(self.processPathologies(success), nil)
-                    case .failure(let failure):
-                        completionHandler(nil,failure)
+        if force_reload == false {
+            let result: Result<[Pathology], Error> = dbHelper.fetch(Pathology.self, predicate: nil)
+            
+            switch result {
+            case .success(let pathologies):
+                if pathologies.isEmpty == false{
+                    completionHandler(pathologies, nil)
+                }else{
+                    client
+                        .get(.getPathologies(token: token!)){ (result: Result<API.Types.Response.GetPathologies, API.Types.Error>) in
+                            DispatchQueue.main.async {
+                                switch result{
+                                case .success(let success):
+                                    completionHandler(self.processPathologies(success), nil)
+                                case .failure(let failure):
+                                    completionHandler(nil,failure)
+                                }
+                            }
                     }
                 }
+            case .failure(let error):
+                print(error)
+            }
+        }else{
+            dbHelper.deleteAllEntries(entity: "Pathology")
+            client
+                .get(.getPathologies(token: token!)){ (result: Result<API.Types.Response.GetPathologies, API.Types.Error>) in
+                    DispatchQueue.main.async {
+                        switch result{
+                        case .success(let success):
+                            completionHandler(self.processPathologies(success), nil)
+                        case .failure(let failure):
+                            completionHandler(nil,failure)
+                        }
+                    }
+            }
         }
+        
         
     }
     
@@ -91,7 +119,11 @@ struct PathologyRepository : PathologyRepositoryProcotol{
         var local = [Pathology]()
         
         for result in results.pathologies{
-            let pathology = Pathology(id: result.id, name: result.name)
+            
+            let pathology = Pathology(entity: Pathology().entity, insertInto: dbHelper.context)//(id: result.id, name: result.name)
+            pathology.id = Int16(result.id)
+            pathology.name = result.name
+            dbHelper.create(pathology)
             local.append(pathology)
         }
         
