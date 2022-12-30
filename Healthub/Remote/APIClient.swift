@@ -33,6 +33,7 @@ extension API {
                     urlRequest.httpBody = try encoder.encode(body)
                 }catch{
                     callback?(.failure(.inter(reason: "Could not encode body")))
+                    
                     return
                 }
             }
@@ -48,6 +49,7 @@ extension API {
                         if let httpResponse = response as? HTTPURLResponse {
                             if httpResponse.statusCode == 401{
                                 callback?(.failure(.unauthorized(reason: "\(httpResponse.statusCode)")))
+                                UserDefaults.standard.set(false, forKey: "isLogged")
                             }else{
                                 if let data = data {
                                     do{
