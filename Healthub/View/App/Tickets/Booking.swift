@@ -4,17 +4,19 @@ import AlertToast
 
 struct BookingView: View {
     
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject private var ticketViewModel : TicketViewModel
+    
     @State private var displayExaminationSheet : Bool = false
     @State private var displayDoctorSheet : Bool = false
     @State private var displayDateSheet : Bool = false
     @State private var displayTimeSheet : Bool = false
+    
     @State private var selectedExamination : Examination?
     @State private var selectedExaminationGlyph : String?
     @State private var selectedDoctor : Doctor?
     @State private var selectedDate : Date = Date()
-    @State private var selectedTimeSlot : String = ""
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @State private var selectedTimeSlot : String = String()
     
     var body: some View {
         NavigationStack{
@@ -41,7 +43,7 @@ struct BookingView: View {
                             
                         }}){
                         ExaminationsSheet(selectedExamination: $selectedExamination, selectedExaminationGlyph: $selectedExaminationGlyph)
-                            .presentationDetents([.height(360)])
+                            .presentationDetents([.height(320)])
                     }
                     HStack {
                         Button(
@@ -72,7 +74,7 @@ struct BookingView: View {
                             action: { displayDateSheet = true },
                             label: {
                                 HStack {
-                                    Label(selectedDate.formatted(.dateTime.day().month(.wide)) + " " + selectedDate.formatted(.dateTime.year()),
+                                    Label(selectedDate.formatted(.dateTime.day().month(.wide)).capitalized + " " + selectedDate.formatted(.dateTime.year()),
                                           systemImage: "calendar")
                                     Spacer()
                                     Image(systemName: "chevron.right")

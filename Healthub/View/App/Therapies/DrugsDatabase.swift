@@ -17,6 +17,14 @@ struct DrugsDatabase: View {
                 .ignoresSafeArea()
             VStack(spacing: 0) {
                 HStack {
+                    Spacer()
+                    Capsule()
+                        .frame(width: 30, height: 6)
+                        .foregroundColor(Color(.systemGray5))
+                        .padding(.top,20)
+                    Spacer()
+                }
+                HStack {
                     Text("Drugs")
                         .font(.largeTitle.bold())
                         .padding(.leading, 27)

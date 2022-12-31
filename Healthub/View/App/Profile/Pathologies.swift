@@ -35,7 +35,7 @@ struct PathologiesView: View {
                 .labelStyle(Cubic(glyphBackgroundColor: Color(.systemPink)))
                 .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 if !pathologiesViewModel.pathologies.isEmpty {
-                    Section(header: Text("User Pathologies")) {
+                    Section(header: Text("List")) {
                         ForEach(Array(pathologiesViewModel.pathologies.enumerated()), id: \.element) { index,pathology in
                             Label(pathology.name.capitalized, systemImage: "microbe.fill")
                                 .swipeActions {

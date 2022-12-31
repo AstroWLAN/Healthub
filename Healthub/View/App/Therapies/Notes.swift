@@ -11,6 +11,14 @@ struct Notes: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
+                Spacer()
+                Capsule()
+                    .frame(width: 30, height: 6)
+                    .foregroundColor(Color(.systemGray5))
+                    .padding(.top,20)
+                Spacer()
+            }
+            HStack {
                 Text("Notes")
                     .font(.largeTitle.bold())
                 Spacer()
@@ -35,7 +43,6 @@ struct Notes: View {
                 .focused($descriptionFocused)
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 10, trailing: 20))
         }
-        .interactiveDismissDisabled()
         .onAppear(perform: { descriptionFocused = true })
     }
 }

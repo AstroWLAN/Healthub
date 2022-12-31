@@ -71,13 +71,28 @@ struct SlotPicker : View {
     @EnvironmentObject private var ticketViewModel : TicketViewModel
     @Binding var examinationTimeSlot : String
     
-    var body : some View { //.tag(ticketViewModel.slots.firstIndex(of: slot)!)
-        Picker(String(), selection: $examinationTimeSlot){
-            Text("")
-            ForEach(ticketViewModel.slots, id: \.self) { slot in
-                Text(String(slot))
+    var body : some View {
+        
+        // Placeholder for the empty slots list
+        if ticketViewModel.slots.isEmpty {
+            VStack {
+                Text("No Slots Available")
+                    .font(.system(size: 17,weight: .semibold))
+                    .foregroundColor(Color(.systemGray))
+                Text("Select Another Date")
+                    .font(.system(size: 15))
+                    .foregroundColor(Color(.systemGray2))
             }
         }
-        .pickerStyle(WheelPickerStyle())
+        // Slot picker
+        else {
+            Picker(String(), selection: $examinationTimeSlot){
+                Text("")
+                ForEach(ticketViewModel.slots, id: \.self) { slot in
+                    Text(String(slot))
+                }
+            }
+            .pickerStyle(WheelPickerStyle())
+        }
     }
 }
