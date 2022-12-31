@@ -11,6 +11,8 @@ import MapKit
     let longitude : Double
 }*/
 
+//test
+
 struct Marker: Identifiable {
     let id = UUID()
     var location: MapMarker

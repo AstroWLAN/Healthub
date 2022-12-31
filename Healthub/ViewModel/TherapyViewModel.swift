@@ -108,4 +108,8 @@ class TherapyViewModel: ObservableObject{
         }
     }
     
+    func deleteTherapy(therapy_id : Int){
+        //add delete action
+    }
+    
 }
