@@ -253,8 +253,8 @@ extension API {
             
             var url: URL{
                 var components = URLComponents()
-                components.host = "healthub.software"
-                components.scheme = "https"
+                components.host = "localhost"
+                components.scheme = "http"
                 switch self{
                     
                 case .login(let email, let password):

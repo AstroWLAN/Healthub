@@ -20,7 +20,9 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     func add(date: Date, doctor_id: Int, examinationType: Int, completionHandler: @escaping (Bool?, Error?) -> Void) {
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         let dateFormatter = DateFormatter()
          
@@ -51,7 +53,9 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         //code
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         let body = API.Types.Request.Empty()
         client
@@ -73,7 +77,9 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     func getAvailableSlots(date: Date, doctor_id: Int, examinationType_id: Int,  completionHandler: @escaping ([String]?, Error?) -> Void){
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
@@ -95,7 +101,14 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     func getAll(force_reload: Bool = false, completionHandler: @escaping ([Reservation]?, Error?) -> Void) {
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
+        }
+        
+        if token == nil {
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
         }
         
         if force_reload == false {
@@ -140,7 +153,9 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     func getDoctorsByExamName(exam_name: String, completionHandler: @escaping ([Doctor]?, Error?) -> Void){
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         
         client
@@ -159,7 +174,9 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     func addReservation(date: Date, starting_time: String, doctor_id: Int, examinationType: Int, completionHandler:  @escaping (Bool?, Error?) -> Void ){
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         
         let df = DateFormatter()
@@ -184,7 +201,9 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     func deleteReservation(reservation_id: Int, completionHandler:  @escaping (Bool?, Error?) -> Void){
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         let body = API.Types.Request.Empty()
         client
@@ -203,7 +222,9 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     func getAvailableDates(doctor_id: Int, completionHandler:  @escaping ([Date]?, Error?) -> Void){
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         client
             .get(.getAvailableDates(token: token!, doctor_id: doctor_id)){(result: Result<API.Types.Response.GetAvailableDates, API.Types.Error>) in

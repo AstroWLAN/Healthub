@@ -157,6 +157,11 @@ class UserRepository: UserRepositoryProtocol{
     func doLogout(completionHandler: @escaping (Bool?, Error?) -> Void){
         //perform logout
         let token = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
+        }
         
         let body = API.Types.Request.Empty()
         client
@@ -167,8 +172,16 @@ class UserRepository: UserRepositoryProtocol{
                         if(success.status == "OK"){
                             let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "access_token")
                             if removeSuccessful == true{
+                                self.dbHelper.deleteAllEntries(entity: "Patient")
+                                self.dbHelper.deleteAllEntries(entity: "Pathology")
+                                self.dbHelper.deleteAllEntries(entity: "Reservation")
+                                self.dbHelper.deleteAllEntries(entity: "Therapy")
+                                self.dbHelper.deleteAllEntries(entity: "Doctor")
+                                self.dbHelper.deleteAllEntries(entity: "Drug")
                                 UserDefaults.standard.set(false, forKey: "isLogged")
                                 UserDefaults.standard.synchronize()
+                                
+                                
                                 completionHandler(true, nil)
                             }
                             else{

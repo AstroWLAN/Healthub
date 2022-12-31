@@ -14,7 +14,7 @@ struct Cubic : LabelStyle {
         Label {
             configuration.title
                 .foregroundColor(textColor ?? Color(.black))
-                .isVisible(textHidden ?? true)
+               // .isVisible(textHidden ?? true)
         } icon: {
             configuration.icon
                 .font(.system(size: 17))
@@ -22,7 +22,7 @@ struct Cubic : LabelStyle {
                 .opacity(glyphOpacityLevel ?? 1)
                 .background(
                     RoundedRectangle(cornerRadius: 7)
-                        .foregroundColor(glyphBackgroundColor ?? Color(.systemGray))
+                       // .foregroundColor(glyphBackgroundColor ?? Color(.systemGray))
                         .frame(width: 27,height: 27)
                         .opacity(backgroundOpacityLevel ?? 1)
                 )

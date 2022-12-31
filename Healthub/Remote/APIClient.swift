@@ -49,6 +49,12 @@ extension API {
                         if let httpResponse = response as? HTTPURLResponse {
                             if httpResponse.statusCode == 401{
                                 callback?(.failure(.unauthorized(reason: "\(httpResponse.statusCode)")))
+                                CoreDataHelper.shared.deleteAllEntries(entity: "Patient")
+                                CoreDataHelper.shared.deleteAllEntries(entity: "Pathology")
+                                CoreDataHelper.shared.deleteAllEntries(entity: "Reservation")
+                                CoreDataHelper.shared.deleteAllEntries(entity: "Therapy")
+                                CoreDataHelper.shared.deleteAllEntries(entity: "Doctor")
+                                CoreDataHelper.shared.deleteAllEntries(entity: "Drug")
                                 UserDefaults.standard.set(false, forKey: "isLogged")
                             }else{
                                 if let data = data {

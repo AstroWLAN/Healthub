@@ -35,6 +35,11 @@ class TherapyRepository: TherapyRepositoryProtocol{
     func getAll(force_reload: Bool = false, completionHandler: @escaping ([Therapy]?, Error?) -> Void) {
         
         let token = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
+        }
         
         if force_reload == false {
             let result: Result<[Therapy], Error> = dbHelper.fetch(Therapy.self, predicate: nil)
@@ -81,6 +86,11 @@ class TherapyRepository: TherapyRepositoryProtocol{
     
     func createTherapy(drug_ids: [Int16], duration: String, name: String, comment: String, completionHandler: @escaping (Bool?, Error?) -> Void){
         let token = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
+        }
         let body = API.Types.Request.CreateTherapy(drug_ids: drug_ids, duration: duration, name: name, comment: comment)
         client
             .fetch(.createTherapy(token: token!), method: .post, body: body){ (result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in

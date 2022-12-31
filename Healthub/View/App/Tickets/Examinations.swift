@@ -25,7 +25,7 @@ struct ExaminationsSheet : View {
                             Label(examination.rawValue.capitalized, systemImage: examGlyphs[examination] ?? "staroflife.fill")
                             Spacer()
                             Image(systemName: "circle.fill")
-                                .foregroundColor(Color(.systemGreen))
+                                //.foregroundColor(Color(.systemGreen))
                                 .font(.system(size: 10))
                                 .opacity(selectionDetection(currentExamination: examination) ? 1 : 0)
                         }
@@ -34,7 +34,7 @@ struct ExaminationsSheet : View {
             }
             .labelStyle(Cubic())
             .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-            .listRowSeparator(.hidden)
+            //.listRowSeparator(.hidden)
         }
         .scrollContentBackground(.hidden)
         .scrollDisabled(true)

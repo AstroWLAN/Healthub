@@ -24,7 +24,9 @@ struct PathologyRepository : PathologyRepositoryProcotol{
         //code
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         
         let body = API.Types.Request.AddPathology(name: pathologyName)
@@ -48,7 +50,9 @@ struct PathologyRepository : PathologyRepositoryProcotol{
         //code
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         
         let body = API.Types.Request.Empty() //API.Types.Request.PathologyDelete(id: item.id)
@@ -69,7 +73,9 @@ struct PathologyRepository : PathologyRepositoryProcotol{
     func getAll(force_reload: Bool = false, completionHandler: @escaping ([Pathology]?, Error?) -> Void) {
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
-            fatalError("Token not present")
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
         }
         
         if force_reload == false {
