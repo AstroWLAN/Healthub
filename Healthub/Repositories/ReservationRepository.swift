@@ -49,7 +49,7 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         
     }
     
-    func delete(reservation_id: Int, completionHandler: @escaping (Bool?, Error?) -> Void) {
+    /*func delete(reservation_id: Int, completionHandler: @escaping (Bool?, Error?) -> Void) {
         //code
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
         guard token != nil else {
@@ -72,7 +72,7 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
                 
             
         
-    }
+    }*/
     
     func getAvailableSlots(date: Date, doctor_id: Int, examinationType_id: Int,  completionHandler: @escaping ([String]?, Error?) -> Void){
         let token : String? = KeychainWrapper.standard.string(forKey: "access_token")
@@ -212,6 +212,19 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
                     switch result{
                     case .success(let success):
                         completionHandler(success.status == "OK", nil)
+                        
+                        let predicate = NSPredicate(
+                            format: "id = %@",
+                            NSNumber.init(value: reservation_id) as CVarArg)
+                        
+                        let result = CoreDataHelper.shared.fetchFirst(Reservation.self, predicate: predicate)
+                        
+                    switch result{
+                        case .success(let reservation):
+                            CoreDataHelper.shared.delete(reservation!)
+                        case .failure(_):
+                            print("failure")
+                        }
                     case .failure(let failure):
                         completionHandler(nil,failure)
                     }

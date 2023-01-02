@@ -123,13 +123,12 @@ class TicketViewModel : ObservableObject{
         
         
         func deleteReservation(reservation_id: Int){
-            reservationsRepository.delete(reservation_id: reservation_id){(success, error) in
+            reservationsRepository.deleteReservation(reservation_id: reservation_id){(success, error) in
                 if let error = error{
                     print(error.localizedDescription)
                 }
                 
                 self.reservations.removeAll(where: {$0.id == reservation_id})
-                self.fetchTickets(force_reload: true)
             }
         }
         
