@@ -73,8 +73,8 @@ class Reservation: NSManagedObject, Identifiable, NSSecureCoding {
         self.time = time
         self.doctor = doctor
         
-       // let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: CoreDataHelper.shared.context)!
-        self.examinationType = ExaminationType(entity: ExaminationType().entity, insertInto: CoreDataHelper.shared.context)//(id: examinationType_id, name: examinationType_name, duration_in_minutes: examinationType_duration)
+        let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: CoreDataHelper.shared.context)!
+        self.examinationType = ExaminationType(entity: entityExamination, insertInto: CoreDataHelper.shared.context)//(id: examinationType_id, name: examinationType_name, duration_in_minutes: examinationType_duration)
         self.examinationType.id = Int16(examinationType_id)
         self.examinationType.name = examinationType_name
         self.examinationType.duration_in_minutes = Int16(examinationType_duration)

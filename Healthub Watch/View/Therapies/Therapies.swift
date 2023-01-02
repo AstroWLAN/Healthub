@@ -21,14 +21,16 @@ import Foundation
 }
 */
 struct Therapies: View {
-    
+
     @State private var displayTherapyDetails : Bool = false
     @State private var interactionsDetected : Bool = false
+    @State private var selectedTherapy : Therapy?
     
-    @State private var userTherapies : [Therapy] = []
+    @EnvironmentObject private var therapyViewModel: TherapyViewModel
+    
     
     var body: some View {
-        if userTherapies.isEmpty {
+        if therapyViewModel.connectivityProvider.receivedTherapies.isEmpty {
             Image("TherapiesPlaceholder")
                 .resizable()
                 .scaledToFit()
@@ -47,16 +49,19 @@ struct Therapies: View {
                     }
                     .listItemTint(Color("AstroRed"))
                 }
-                ForEach(userTherapies, id: \.self) { therapy in
+                ForEach(therapyViewModel.connectivityProvider.receivedTherapies, id: \.self) { therapy in
                     Button(
                         action: {
                             displayTherapyDetails = true
+                            selectedTherapy = therapy
                         },
                         label:  {
                             HStack(spacing: 8) {
-                                Image(systemName: "circle.fill")
-                                    .font(.system(size: 10))
-                                    .foregroundColor(Color("AstroRed"))
+                                if  therapy.interactions.count != 0 {
+                                    Image(systemName: "circle.fill")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(Color("AstroRed"))
+                                }
                                 Text(therapy.name)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -65,16 +70,14 @@ struct Therapies: View {
                             }
                         }
                     )
-                    .onAppear {
-                        if !therapy.interactions.isEmpty {
-                            interactionsDetected = true
-                        }
-                    }
                 }
             }
             .listStyle(.elliptical)
+            .onAppear(perform: {
+                therapyViewModel.connectivityProvider.connect()
+            })
             .sheet(isPresented: $displayTherapyDetails) {
-                TherapySheet()
+                TherapySheet(therapy: $selectedTherapy)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button(

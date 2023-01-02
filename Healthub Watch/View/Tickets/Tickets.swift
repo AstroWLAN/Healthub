@@ -44,6 +44,7 @@ struct Tickets: View {
         else {
             // Tickets list
             List {
+                
                 ForEach(ticketViewModel.connectivityProvider.received, id: \.self) { ticket in
                     Button(
                         action: {

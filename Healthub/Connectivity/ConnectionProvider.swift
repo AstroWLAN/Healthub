@@ -7,15 +7,31 @@
 
 import UIKit
 import WatchConnectivity
+import Combine
 
 class ConnectionProvider: NSObject, WCSessionDelegate {
     
     private let session: WCSession
+    var objectWillChange = PassthroughSubject<Void, Never>()
     var send: [Reservation] = []
-    @Published var received: [Reservation] = []
-    @Published var receivedTherapies: [Therapy] = []
+    var sendTherapies: [Therapy] = []
+    var sendDoctors: [Doctor] = []
+    var sendProfile: [Patient] = []
+    var sendPathologies: [Pathology] = []
+    static let shared = ConnectionProvider()
+    
+    @Published var received: [Reservation] = []{
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    @Published var receivedTherapies: [Therapy] = []{
+        willSet {
+            objectWillChange.send()
+        }
+    }
     @Published var receivedDoctors: [Doctor] = []
-    @Published var receivedProfile: Patient?
+    @Published var receivedProfile: [Patient] = []
     @Published var receivedPathologies: [Pathology] = []
     var lastMessage: CFAbsoluteTime = 0
     
@@ -37,19 +53,11 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
     }
     
     func sendMessage(message: [String: Any]) -> Void{
-        print(123)
-        print(message)
         session.sendMessage(message, replyHandler: nil){ (error) in
             print(error.localizedDescription)
         }
     }
-    func sendWatchMessageTherapies(_msgData: [Therapy]){}
-    func sendWatchMessageDoctors(_msgData: [Doctor]){}
-    func sendWatchMessageProfile(_msgData: Patient) {}
-    func sendWatchMessagePathologies(_msgData: [Pathology]) {}
-
-    func sendWatchMessage(_ msgData: [Reservation]){
-        print("Sending Data")
+    func sendWatchMessageTherapies(_ msgData: [Therapy]){
         let currentTime = CFAbsoluteTimeGetCurrent()
         
         if lastMessage + 0.5 > currentTime{
@@ -59,14 +67,47 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
         }
         
         if(session.isReachable == true){
-            print("Reachable")
-            print(msgData.count)
+            NSKeyedArchiver.setClassName("Therapy Object", for: Therapy.self)
+            sendTherapies.removeAll()
+            for res in msgData{
+                sendTherapies.append(res)
+            }
+            var programData:Data = Data.init()
+            
+            
+            do{
+                programData = try NSKeyedArchiver.archivedData(withRootObject: sendTherapies, requiringSecureCoding: false)
+            }catch{
+                print(error)
+            }
+                
+            print("Sending message: \(Therapy.self) Object")
+            
+            let message: [String: Any] = ["Type": "Therapies" ,"Data": programData]
+            self.session.sendMessage(message, replyHandler: nil){ (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
+    func sendWatchMessageDoctors(_ msgData: [Doctor]){}
+    func sendWatchMessageProfile(_ msgData: Patient) {}
+    func sendWatchMessagePathologies(_ msgData: [Pathology]) {}
+
+    func sendWatchMessage(_ msgData: [Reservation]){
+        let currentTime = CFAbsoluteTimeGetCurrent()
+        
+        if lastMessage + 0.5 > currentTime{
+            print("Abort data")
+            return
+            
+        }
+        
+        if(session.isReachable == true){
             NSKeyedArchiver.setClassName("Reservation Object", for: Reservation.self)
             send.removeAll()
             for res in msgData{
                 send.append(res)
             }
-            print(1)
             var programData:Data = Data.init()
             do{
                 programData = try NSKeyedArchiver.archivedData(withRootObject: send, requiringSecureCoding: false)
@@ -74,16 +115,13 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
                 print(error)
             }
                 
-            print(2)
             print("Sending message: \(Reservation.self) Object")
             
-            let message: [String: Any] = ["Type": "Reservation" ,"Data": programData]
+            let message: [String: Any] = ["Type": "Reservations","Data": programData]
             self.session.sendMessage(message, replyHandler: nil){ (error) in
                 print(error.localizedDescription)
             }
-            print("End1")
         }
-        print("End")
     }
     
     
@@ -103,7 +141,7 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        //on lose connectoin
+        //on lose
         print("deactivate")
     }
     
@@ -111,24 +149,38 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         DispatchQueue.main.async {
-            print("entered didreceive")
+            
             
             if message["Data"] != nil {
+                
+                let type = message["Type"] as! String
                 let loadedData = message["Data"]
-                print(message)
                 
-                NSKeyedUnarchiver.setClass(Reservation.self, forClassName: "Reservation Object")
-                
-                do{
+                switch type {
                     
-                    let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Reservation.self] , from: loadedData as! Data) as? [Reservation]
-                    print(data!)
-                    self.received = data!
-                }catch{
-                    print(error)
+                case "Reservations":
+                    NSKeyedUnarchiver.setClass(Reservation.self, forClassName: "Reservation Object")
+                    
+                    do{
+                        let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Reservation.self] , from: loadedData as! Data) as? [Reservation]
+                        self.received = data!
+                    }catch{
+                        print(error)
+                    }
+                case "Therapies":
+                    
+                   NSKeyedUnarchiver.setClass(Therapy.self, forClassName: "Therapy Object")
+                    
+                    do{
+                        let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Therapy.self] , from: loadedData as! Data) as? [Therapy]
+                        self.receivedTherapies = data!
+                    }catch{
+                        print(error)
+                    }
+                default:
+                    print("Something went wrong")
+                    
                 }
-                
-                
             }
         }
     }

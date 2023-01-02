@@ -10,7 +10,7 @@ import Combine
 
 class TherapyViewModel: ObservableObject{
     private let therapyRepository: any TherapyRepositoryProtocol
-    private let cache = NSCache<NSString, NSArray>()
+    private(set) var connectivityProvider: ConnectionProvider
     @Published private(set) var drugs: [Drug] = [] {
         willSet {
             objectWillChange.send()
@@ -32,8 +32,11 @@ class TherapyViewModel: ObservableObject{
     }
 
     
-    init(therapyRepository: any TherapyRepositoryProtocol) {
+    init(therapyRepository: any TherapyRepositoryProtocol,  connectivityProvider: ConnectionProvider) {
         self.therapyRepository = therapyRepository
+        self.connectivityProvider = connectivityProvider
+        connectivityProvider.connect()
+        
     }
     
     func fetchDrugList(query: String){
@@ -57,7 +60,8 @@ class TherapyViewModel: ObservableObject{
                 
                 if let therapies = therapies{
                     self.therapies = therapies
-                    self.cache.setObject(therapies as NSArray, forKey: "therapies")
+                    self.connectivityProvider.connect()
+                    self.connectivityProvider.sendWatchMessageTherapies(therapies)
                 }
                 
                 self.isLoadingTherapies = false

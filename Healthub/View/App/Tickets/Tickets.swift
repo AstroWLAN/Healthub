@@ -33,6 +33,7 @@ struct TicketsView: View {
                         
                         // Tickets list
                         else {
+                            
                             List {
                                 Section(header: Text(String())) {
                                     ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element) { index,ticket in
@@ -100,10 +101,10 @@ struct TicketsView: View {
         .onAppear(
             perform: {
                 if(UserDefaults.standard.bool(forKey: "isLogged")) {
+                ticketViewModel.connectivityProvider.connect()
                 ticketViewModel.fetchTickets()
                 }
-            
-                ticketViewModel.connectivityProvider.connect()
+                
             }
         )
     }

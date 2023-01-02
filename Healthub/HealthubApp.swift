@@ -31,7 +31,7 @@ struct HealthubApp: App {
     @StateObject var pathologiesViewModel = PathologyViewModel(pathologiesRepository: PathologyRepository(client: API.Client()))
     @StateObject var settingsViewModel = ProfileViewModel(userService: UserRepository(client: API.Client()))
     @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
-    @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client()))
+    @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
     var body: some Scene {
         WindowGroup {
             MainView()
