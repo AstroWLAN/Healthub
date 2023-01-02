@@ -73,7 +73,6 @@ class PathologyViewModel : ObservableObject {
                     print("Problem in deleting the pathology")
                 }
                 
-                self.fetchPathologies(force_reload: true)
             }
             
         }

@@ -63,6 +63,18 @@ struct PathologyRepository : PathologyRepositoryProcotol{
                     switch result{
                     case .success(let success):
                         completionHandler(success.status == "OK", nil)
+                        let predicate = NSPredicate(
+                            format: "id = %@",
+                            NSNumber.init(value: pathologyId) as CVarArg)
+                        
+                        let result = dbHelper.fetchFirst(Pathology.self, predicate: predicate)
+                        
+                    switch result{
+                        case .success(let reservation):
+                            dbHelper.delete(reservation!)
+                        case .failure(_):
+                            print("failure")
+                        }
                     case .failure(let failure):
                         completionHandler(nil,failure)
                     }
