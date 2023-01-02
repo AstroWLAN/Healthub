@@ -217,11 +217,11 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
                             format: "id = %@",
                             NSNumber.init(value: reservation_id) as CVarArg)
                         
-                        let result = CoreDataHelper.shared.fetchFirst(Reservation.self, predicate: predicate)
+                        let result = dbHelper.fetchFirst(Reservation.self, predicate: predicate)
                         
                     switch result{
                         case .success(let reservation):
-                            CoreDataHelper.shared.delete(reservation!)
+                            dbHelper.delete(reservation!)
                         case .failure(_):
                             print("failure")
                         }

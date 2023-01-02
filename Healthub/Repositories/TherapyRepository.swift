@@ -125,11 +125,11 @@ class TherapyRepository: TherapyRepositoryProtocol{
                             format: "id = %@",
                             NSNumber.init(value: therapy_id) as CVarArg)
                         
-                        let result = CoreDataHelper.shared.fetchFirst(Therapy.self, predicate: predicate)
+                        let result = self.dbHelper.fetchFirst(Therapy.self, predicate: predicate)
                         
                     switch result{
                         case .success(let therapy):
-                            CoreDataHelper.shared.delete(therapy!)
+                            self.dbHelper.delete(therapy!)
                         case .failure(_):
                             print("failure")
                         }
