@@ -31,7 +31,7 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
         }
     }
     @Published var receivedDoctors: [Doctor] = []
-    @Published var receivedProfile: [Patient] = []
+    @Published var receivedProfile: Patient?
     @Published var receivedPathologies: [Pathology] = []
     var lastMessage: CFAbsoluteTime = 0
     
@@ -90,7 +90,34 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
         }
     }
     func sendWatchMessageDoctors(_ msgData: [Doctor]){}
-    func sendWatchMessageProfile(_ msgData: Patient) {}
+    func sendWatchMessageProfile(_ msgData: Patient) {
+        let currentTime = CFAbsoluteTimeGetCurrent()
+        
+        if lastMessage + 0.5 > currentTime{
+            print("Abort data")
+            return
+            
+        }
+        
+        if(session.isReachable == true){
+            NSKeyedArchiver.setClassName("Patient Object", for: Patient.self)
+            sendProfile.removeAll()
+            sendProfile.append(msgData)
+            var programData:Data = Data.init()
+            do{
+                programData = try NSKeyedArchiver.archivedData(withRootObject: sendProfile, requiringSecureCoding: false)
+            }catch{
+                print(error)
+            }
+                
+            print("Sending message: \(Patient.self) Object")
+            
+            let message: [String: Any] = ["Type": "Patient","Data": programData]
+            self.session.sendMessage(message, replyHandler: nil){ (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
     func sendWatchMessagePathologies(_ msgData: [Pathology]) {}
 
     func sendWatchMessage(_ msgData: [Reservation]){
@@ -174,6 +201,16 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
                     do{
                         let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Therapy.self] , from: loadedData as! Data) as? [Therapy]
                         self.receivedTherapies = data!
+                    }catch{
+                        print(error)
+                    }
+                case "Patient":
+                    
+                   NSKeyedUnarchiver.setClass(Patient.self, forClassName: "Patient Object")
+                    
+                    do{
+                        let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Patient.self] , from: loadedData as! Data) as? [Patient]
+                        self.receivedProfile = data![0]
                     }catch{
                         print(error)
                     }

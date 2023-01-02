@@ -15,6 +15,7 @@ import SwiftUI
 struct Profile: View {
     
     @State private var user: Patient?
+    @EnvironmentObject private var profileViewModel: ProfileViewModel
     
     var body: some View {
         
@@ -23,28 +24,28 @@ struct Profile: View {
                 Text("Generalities")
                     .font(.system(size: 21, weight: .bold))
                     .listItemTint(.clear)
-                Label(user!.name, systemImage: "face.smiling.inverse")
-                Label(user!.fiscalCode, systemImage: "barcode")
-                Label(user!.phone, systemImage: "phone.fill")
+                Label(profileViewModel.connectivityProvider.receivedProfile!.name, systemImage: "face.smiling.inverse")
+                Label(profileViewModel.connectivityProvider.receivedProfile!.fiscalCode, systemImage: "barcode")
+                Label(profileViewModel.connectivityProvider.receivedProfile!.phone, systemImage: "phone.fill")
             }
             List {
                 Text("Medical Records")
                     .font(.system(size: 21, weight: .bold))
                     .listItemTint(.clear)
-                Label("sex", systemImage: "person.fill")
-                Label(String(user!.height) + " cm", systemImage: "ruler.fill")
-                Label(String(user!.weight) + " kg", systemImage: "scalemass.fill")
-                Label(user!.dateOfBirth.formatted(.dateTime.day()) +  " " + user!.dateOfBirth.formatted(.dateTime.month(.wide)) +  " " + user!.dateOfBirth.formatted(.dateTime.year()),
+                Label(Gender.element(at: Int(profileViewModel.connectivityProvider.receivedProfile!.sex))!.rawValue, systemImage: "person.fill")
+                Label(String(profileViewModel.connectivityProvider.receivedProfile!.height) + " cm", systemImage: "ruler.fill")
+                Label(String(profileViewModel.connectivityProvider.receivedProfile!.weight) + " kg", systemImage: "scalemass.fill")
+                Label(profileViewModel.connectivityProvider.receivedProfile!.dateOfBirth.formatted(.dateTime.day()) +  " " + profileViewModel.connectivityProvider.receivedProfile!.dateOfBirth.formatted(.dateTime.month(.wide)) +  " " + profileViewModel.connectivityProvider.receivedProfile!.dateOfBirth.formatted(.dateTime.year()),
                       systemImage: "calendar")
-            }
-            List {
+            } 
+            /*List {
                 Text("Pathologies")
                     .font(.system(size: 21, weight: .bold))
                     .listItemTint(.clear)
                /* ForEach(user!.pathologies, id: \.self) { pathology in
                     Text("pathology")
                 }*/
-            }
+            }*/
         }
         .listStyle(.elliptical)
         .lineLimit(1)

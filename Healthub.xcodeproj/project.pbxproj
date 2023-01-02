@@ -10,6 +10,9 @@
 		240366F82962E16B003E0F1E /* TherapyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441662E294764D400035824 /* TherapyViewModel.swift */; };
 		240366F92962E184003E0F1E /* TherapyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */; };
 		240366FA2962E18D003E0F1E /* TherapyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663029476E6200035824 /* TherapyRepository.swift */; };
+		240366FB2963356B003E0F1E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF535292A79B0007C802F /* ProfileViewModel.swift */; };
+		240366FC29633573003E0F1E /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */; };
+		240366FD296335A7003E0F1E /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF52E292A4797007C802F /* UserRepository.swift */; };
 		24141EE12959C45200A20EFF /* Healthub.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8596F4FD295358F400E2410C /* Healthub.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417594C2927A5000051BE0B /* LoginViewModel.swift */; };
 		241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2417594F2927A5290051BE0B /* SwiftKeychainWrapper */; };
@@ -771,6 +774,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240366FD296335A7003E0F1E /* UserRepository.swift in Sources */,
+				240366FC29633573003E0F1E /* UserRepositoryProtocol.swift in Sources */,
+				240366FB2963356B003E0F1E /* ProfileViewModel.swift in Sources */,
 				240366FA2962E18D003E0F1E /* TherapyRepository.swift in Sources */,
 				240366F92962E184003E0F1E /* TherapyRepositoryProtocol.swift in Sources */,
 				240366F82962E16B003E0F1E /* TherapyViewModel.swift in Sources */,

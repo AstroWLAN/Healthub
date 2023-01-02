@@ -10,6 +10,7 @@ import Foundation
 class ProfileViewModel: ObservableObject {
     
     @Published private var hasError: Bool = false
+    private(set) var connectivityProvider: ConnectionProvider
   
     @Published var patient: Patient?
     private var userService: any UserRepositoryProtocol
@@ -22,8 +23,11 @@ class ProfileViewModel: ObservableObject {
     @Published var fiscalCode : String = ""
     @Published var phone : String = ""
     
-    init(userService: any UserRepositoryProtocol){
+    init(userService: any UserRepositoryProtocol, connectivityProvider: ConnectionProvider){
         self.userService = userService
+        self.connectivityProvider = connectivityProvider
+        self.connectivityProvider.connect()
+        
     }
     
     func getPatient(force_reload: Bool = false){
@@ -42,6 +46,8 @@ class ProfileViewModel: ObservableObject {
                     self.fiscalCode = patient!.fiscalCode
                     self.phone = patient!.phone
                     self.isLoading = false
+                    self.connectivityProvider.connect()
+                    self.connectivityProvider.sendWatchMessageProfile(patient!)
                 }
                 
             }
