@@ -109,7 +109,13 @@ class TherapyViewModel: ObservableObject{
     }
     
     func deleteTherapy(therapy_id : Int){
-        //add delete action
+        therapyRepository.removeTherapy(therapy_id: therapy_id){(success, error) in
+                if let error = error{
+                    print(error.localizedDescription)
+                }
+                
+                self.therapies.removeAll(where: {$0.id == therapy_id})
+            }
     }
     
 }

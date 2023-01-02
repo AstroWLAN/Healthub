@@ -106,6 +106,41 @@ class TherapyRepository: TherapyRepositoryProtocol{
             }
     }
     
+    func removeTherapy(therapy_id: Int, completionHandler: @escaping (Bool?, Error?) -> Void){
+        let token = KeychainWrapper.standard.string(forKey: "access_token")
+        guard token != nil else {
+            UserDefaults.standard.set(false, forKey: "isLogged")
+            UserDefaults.standard.synchronize()
+            return
+        }
+        let body = API.Types.Request.Empty()
+        client
+            .fetch(.deleteTherapy(token: token!, therapy_id: therapy_id), method: .delete, body: body){ (result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(success.status == "OK",nil)
+                        
+                        let predicate = NSPredicate(
+                            format: "id = %@",
+                            NSNumber.init(value: therapy_id) as CVarArg)
+                        
+                        let result = CoreDataHelper.shared.fetchFirst(Therapy.self, predicate: predicate)
+                        
+                    switch result{
+                        case .success(let therapy):
+                            CoreDataHelper.shared.delete(therapy!)
+                        case .failure(_):
+                            print("failure")
+                        }
+                        
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+            }
+    }
+    
     private func processDrugSearch(_ results: API.Types.Response.Search)->[Drug]{
         var local = [Drug]()
         

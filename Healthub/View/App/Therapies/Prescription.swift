@@ -128,7 +128,7 @@ struct Prescription: View {
             AlertToast(type: .error(Color("HealthGray3")),title: "An error occured")
         })
         .toast(isPresenting: $therapyViewModel.completedCreation, alert: {
-             AlertToast(type: .complete(Color("HealthGray3")),title: "Reservation Created")
+             AlertToast(type: .complete(Color("HealthGray3")),title: "Therapy Created")
         })
     }
 }

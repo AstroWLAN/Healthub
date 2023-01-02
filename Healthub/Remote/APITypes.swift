@@ -250,6 +250,7 @@ extension API {
             case getDrugList(query: String)
             case getTherapies(token:String)
             case createTherapy(token: String)
+            case deleteTherapy(token: String, therapy_id: Int)
             
             var url: URL{
                 var components = URLComponents()
@@ -347,7 +348,14 @@ extension API {
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token),
                     ]
+                    
+                case .deleteTherapy(let token, let therapy_id):
+                    components.path = "/patients/me/therapies/\(therapy_id)"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
+                    ]
                 }
+                
                 
                 
                 return components.url!

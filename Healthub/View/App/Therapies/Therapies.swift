@@ -57,7 +57,9 @@ struct TherapiesView: View {
                                     .swipeActions {
                                         Button(
                                             role: .destructive,
-                                            action: { /* Remove therapy */ },
+                                            action: {
+                                                therapyViewModel.deleteTherapy(therapy_id: Int(therapy.id))
+                                            },
                                             label: { Image(systemName: "trash.fill") })
                                     }
                                 }
