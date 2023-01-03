@@ -34,7 +34,7 @@ struct ExaminationsSheet : View {
             }
             .labelStyle(Cubic())
             .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-            //.listRowSeparator(.hidden)
+            .listRowSeparator(.hidden)
         }
         .scrollContentBackground(.hidden)
         .scrollDisabled(true)

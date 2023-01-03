@@ -51,10 +51,8 @@
 		2431A54E2959AC84001F9E64 /* Drug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244166342947731B00035824 /* Drug.swift */; };
 		2431A54F2959AC84001F9E64 /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420DE2938BC090090A42D /* Doctor.swift */; };
 		2431A5502959AC84001F9E64 /* Therapy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663629477E5000035824 /* Therapy.swift */; };
-		2431A5512959AC84001F9E64 /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
 		2431A5532959AD96001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
 		2431A5542959ADB5001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
-		2431A5552959ADF0001F9E64 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2F2946241600B57B18 /* Styles.swift */; };
 		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
 		2441662F294764D400035824 /* TherapyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441662E294764D400035824 /* TherapyViewModel.swift */; };
 		2441663129476E6200035824 /* TherapyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663029476E6200035824 /* TherapyRepository.swift */; };
@@ -133,8 +131,8 @@
 		85BB5ABB293802CE0039618B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* Booking.swift */; };
 		85BB5ABD293808380039618B /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
 		85BB5ABE293808380039618B /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
-		85BB5AC52939B19C0039618B /* DoctorLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AC42939B19C0039618B /* DoctorLogin.swift */; };
 		85EE03FD295F9565000106BC /* TherapySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE03FC295F9565000106BC /* TherapySheet.swift */; };
+		85F713502964925D00C6E77D /* Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7134F2964925D00C6E77D /* Recover.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,14 +148,14 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		24141EE42959C45200A20EFF /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
 				24141EE12959C45200A20EFF /* Healthub.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -200,7 +198,6 @@
 		249FF52E292A4797007C802F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		249FF531292A7801007C802F /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		249FF535292A79B0007C802F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		24A5DADD295DF062004D4E1A /* Healthub-Watch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Healthub-Watch-Info.plist"; sourceTree = SOURCE_ROOT; };
 		24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepositoryTests.swift; sourceTree = "<group>"; };
 		24C1CCFD2928F93C0089F9A0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		24C1CCFF2928FA010089F9A0 /* APITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITypes.swift; sourceTree = "<group>"; };
@@ -249,8 +246,8 @@
 		85BB5AAB2935FE160039618B /* TicketSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSheet.swift; sourceTree = "<group>"; };
 		85BB5AB9293802CE0039618B /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		85BB5ABC293808380039618B /* Examinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examinations.swift; sourceTree = "<group>"; };
-		85BB5AC42939B19C0039618B /* DoctorLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorLogin.swift; sourceTree = "<group>"; };
 		85EE03FC295F9565000106BC /* TherapySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapySheet.swift; sourceTree = "<group>"; };
+		85F7134F2964925D00C6E77D /* Recover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recover.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,7 +288,7 @@
 				2417595C2927A6150051BE0B /* Welcome.swift */,
 				241759582927A5FA0051BE0B /* Login.swift */,
 				2417595A2927A60C0051BE0B /* Signup.swift */,
-				85BB5AC42939B19C0039618B /* DoctorLogin.swift */,
+				85F7134F2964925D00C6E77D /* Recover.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -321,6 +318,7 @@
 		2488946F295D8902002215A7 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				24889475295D89E5002215A7 /* persistenceData.xcdatamodeld */,
 				24889470295D8923002215A7 /* CoreDataHelper.swift */,
 				2488949C295D90CB002215A7 /* DBHelperProtocol.swift */,
 			);
@@ -439,10 +437,9 @@
 		857A54EF2922D34300413841 /* Healthub */ = {
 			isa = PBXGroup;
 			children = (
-				24889475295D89E5002215A7 /* persistenceData.xcdatamodeld */,
 				857A54F02922D34300413841 /* HealthubApp.swift */,
-				2488946F295D8902002215A7 /* Persistence */,
 				857A54FE2922D38300413841 /* Resources */,
+				2488946F295D8902002215A7 /* Persistence */,
 				249FF51F292A284B007C802F /* Repositories */,
 				24DC3B0A2957640F00EE7FBC /* Connectivity */,
 				24C1CCFC2928F9190089F9A0 /* Remote */,
@@ -564,7 +561,6 @@
 		8596F4FE295358F400E2410C /* Healthub Watch */ = {
 			isa = PBXGroup;
 			children = (
-				24A5DADD295DF062004D4E1A /* Healthub-Watch-Info.plist */,
 				8596F4FF295358F400E2410C /* WatchubApp.swift */,
 				8596F50B29535A6300E2410C /* View */,
 				8596F503295358F500E2410C /* Assets.xcassets */,
@@ -786,12 +782,10 @@
 				24D077A3295DA58D00190969 /* CoreDataHelper.swift in Sources */,
 				24889474295D89B1002215A7 /* Pathology.swift in Sources */,
 				248C68A0295C3F5800B90959 /* Address2Coordinates.swift in Sources */,
-				2431A5552959ADF0001F9E64 /* Styles.swift in Sources */,
 				2431A5542959ADB5001F9E64 /* Examination.swift in Sources */,
 				2431A54E2959AC84001F9E64 /* Drug.swift in Sources */,
 				2431A54F2959AC84001F9E64 /* Doctor.swift in Sources */,
 				2431A5502959AC84001F9E64 /* Therapy.swift in Sources */,
-				2431A5512959AC84001F9E64 /* Examinations.swift in Sources */,
 				2431A54A2959A9CA001F9E64 /* API.swift in Sources */,
 				2431A54B2959A9CA001F9E64 /* APITypes.swift in Sources */,
 				2431A54C2959A9CA001F9E64 /* ClientProtocol.swift in Sources */,
@@ -875,6 +869,7 @@
 				24D420DF2938BC090090A42D /* Doctor.swift in Sources */,
 				852F1A2C2946219400B57B18 /* DrugsDatabase.swift in Sources */,
 				244166352947731B00035824 /* Drug.swift in Sources */,
+				85F713502964925D00C6E77D /* Recover.swift in Sources */,
 				241759522927A5420051BE0B /* UserLogin.swift in Sources */,
 				857A55102922D75000413841 /* Profile.swift in Sources */,
 				2441662F294764D400035824 /* TherapyViewModel.swift in Sources */,
@@ -897,7 +892,6 @@
 				857A550A2922D6D800413841 /* Tickets.swift in Sources */,
 				24889471295D8923002215A7 /* CoreDataHelper.swift in Sources */,
 				241759612927DC330051BE0B /* PathologyViewModel.swift in Sources */,
-				85BB5AC52939B19C0039618B /* DoctorLogin.swift in Sources */,
 				24C54EDC293279520021C783 /* PathologyRepositoryProtocol.swift in Sources */,
 				24889477295D89E5002215A7 /* persistenceData.xcdatamodeld in Sources */,
 				241759592927A5FA0051BE0B /* Login.swift in Sources */,
@@ -1019,6 +1013,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1073,6 +1068,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -1080,7 +1076,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = HealthubIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AstroRed;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Healthub/Preview Content\"";
@@ -1104,7 +1100,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1115,7 +1111,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = HealthubIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AstroRed;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Healthub/Preview Content\"";
@@ -1139,7 +1135,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1150,7 +1146,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AstroRed;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Healthub Watch/Preview Content\"";
@@ -1180,7 +1176,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AstroRed;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Healthub Watch/Preview Content\"";

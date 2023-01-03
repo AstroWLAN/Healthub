@@ -1,74 +1,76 @@
 import SwiftUI
 import AlertToast
 
+private enum FocusableObject { case email, pswd }
+
 struct LoginView: View {
     
     @EnvironmentObject private var loginViewModel: LoginViewModel
-    
+    @FocusState private var objectFocused: FocusableObject?
     @State private var email : String = String()
     @State private var password : String = String()
-    @State private var isPerformingLogin : Bool = false
     
     var body: some View {
         NavigationView{
             VStack{
                 Spacer()
-                Image("EmailDraw")
+                Image("LoginImage")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 150)
+                    .frame(width: 180)
                 Text("Login")
                     .font(.largeTitle.bold())
                 Text("We Meet Again")
                     .foregroundColor(Color(.systemGray))
-                    .font(.system(size: 17, weight: .bold))
+                    .font(.system(size: 17, weight: .semibold))
                 Spacer()
+                
                 VStack{
                     TextField("\(Image(systemName: "envelope")) Email", text: $email)
-                        .padding(.bottom, 10)
+                        .focused($objectFocused, equals: .email)
                         .textContentType(.username)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
+                        .padding(.bottom, 10)
                     SecureField("\(Image(systemName: "lock")) Password", text: $password)
+                        .focused($objectFocused, equals: .pswd)
                         .textContentType(.password)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.default)
                 }
                 .autocorrectionDisabled(true)
                 .foregroundColor(Color(.systemGray))
                 .multilineTextAlignment(.center)
                 .frame(width: 300)
-                .padding(.vertical, 30)
+                .padding(.vertical, 20)
                 Spacer()
-                Button(action: {
-                    isPerformingLogin = true
-                    loginViewModel.doLogin(email: email, password: password)
-                    isPerformingLogin = false
-                },
-                       label: {
-                    Text("Login")
-                        .font(.system(size: 15, weight: .semibold))
-                        .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
-                })
+                Button(
+                    action: { loginViewModel.doLogin(email: email, password: password) },
+                    label:  {
+                        Text("Login")
+                            .font(.system(size: 15, weight: .semibold))
+                            .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
+                    }
+                )
                 .buttonStyle(.borderedProminent)
-                .padding(.bottom,20)
+                .padding(.bottom, 20)
                 .disabled(email.isEmpty || password.isEmpty)
                 HStack(spacing: 0){
-                    Text("New here? Please ")
-                        .foregroundColor(Color(.systemGray3))
-                    NavigationLink(destination: SignupView()){
-                        Text("Signup")
-                            .foregroundColor(Color(.systemPink))
+                    Text("Forgotten password? ")
+                        .foregroundColor(Color(.systemGray2))
+                        .font(.system(size: 15, weight: .semibold))
+                    NavigationLink(destination: RecoverView()){
+                        Text("Recover")
+                            .foregroundColor(Color.accentColor)
+                            .font(.system(size: 15, weight: .bold))
                     }
                 }
-                .font(.system(size: 15, weight: .bold))
                 .padding(.bottom,20)
+                
             }
-            .toast(isPresenting: $loginViewModel.hasError, duration: 3){
-                AlertToast(displayMode: .hud, type: .systemImage("exclamationmark.circle.fill", Color("HealthGray3")),title: "Bad Credentials")
+            .toast(isPresenting: $loginViewModel.hasError, duration: 3) {
+                AlertToast(displayMode: .hud, type: .systemImage("exclamationmark.circle.fill", Color(.black)),title: "Login Failure")
             }
-        }
-        .toolbar{
-            ProgressView().progressViewStyle(.circular)
-                .opacity(isPerformingLogin ? 1 : 0)
         }
     }
 }
