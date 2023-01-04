@@ -22,7 +22,6 @@ struct TherapiesView: View {
                             Section(header: Text(String())){
                                 Label("Interactions Detected", systemImage: "exclamationmark.shield.fill")
                                     .labelStyle(Cubic(glyphBackgroundColor: .white, glyphColor: Color("AstroRed"), textColor: .white))
-                                    .font(.system(size: 17, weight: .medium))
                             }
                             .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                             .listRowBackground(Color("AstroRed"))
@@ -43,13 +42,16 @@ struct TherapiesView: View {
                                             displayTherapySheet = true
                                         },
                                         label:  {
-                                            HStack {
+                                            HStack(spacing: 8) {
                                                 Label(therapy.name.capitalized, systemImage: "cross.vial.fill")
                                                 Spacer()
                                                 Image(systemName: "circle.fill")
                                                     .foregroundColor(Color("AstroRed"))
                                                     .font(.system(size: 10))
                                                     .opacity(therapy.interactions.isEmpty ? 0 : 1)
+                                                Image(systemName: "chevron.right")
+                                                    .font(.system(size: 13, weight: .semibold))
+                                                    .foregroundColor(Color(.systemGray4))
                                             }
                                         }
                                     )
@@ -97,7 +99,7 @@ struct TherapiesView: View {
                 }
             }
         }
-        .tint(Color(.systemPink))
+        .tint(Color("AstroRed"))
         .onAppear(perform:{therapyViewModel.fetchTherapies(force_reload: false)})
     }
 }

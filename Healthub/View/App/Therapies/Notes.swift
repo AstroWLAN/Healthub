@@ -18,10 +18,24 @@ struct Notes: View {
                     .padding(.top,20)
                 Spacer()
             }
-            HStack {
+            HStack(spacing: 16) {
                 Text("Notes")
                     .font(.largeTitle.bold())
                 Spacer()
+                Button(
+                    action: {
+                        doctorNotes = String()
+                    },
+                    label:  {
+                        ZStack {
+                            Circle()
+                                .frame(height: 28)
+                                .opacity(0.2)
+                            Image(systemName: "eraser")
+                                .font(.system(size: 17, weight: .medium))
+                        }
+                    }
+                )
                 Button(
                     action: {
                         dismissView()
@@ -31,15 +45,14 @@ struct Notes: View {
                             Circle()
                                 .frame(height: 28)
                                 .opacity(0.2)
-                            Image(systemName: "paperclip")
+                            Image(systemName: "checkmark")
                                 .font(.system(size: 15, weight: .medium))
                         }
                     }
                 )
-                
             }
             .padding(EdgeInsets(top: 30, leading: 20, bottom: 10, trailing: 20))
-            TextView(text: $doctorNotes, isEditing: $isWriting, placeholder: "Therapy Description")
+            TextView(text: $doctorNotes, isEditing: $isWriting, placeholder: "Prescription")
                 .focused($descriptionFocused)
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 10, trailing: 20))
         }

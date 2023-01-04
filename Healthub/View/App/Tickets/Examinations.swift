@@ -7,25 +7,21 @@ struct ExaminationsSheet : View {
     @Binding var selectedExamination : Examination?
     @Binding var selectedExaminationGlyph : String?
     
-    let examGlyphs : [ Examination : String ] = [ .routine : "figure.arms.open", .vaccination : "cross.vial.fill", .sport : "figure.run",
-                                                  .specialist : "brain.head.profile", .certificate : "heart.text.square.fill", .other : "magnifyingglass" ]
-        
-    
     var body: some View {
         List {
             ForEach(Examination.allCases, id:\.self) { examination in
                 Button(
                     action: {
                         selectedExamination = examination
-                        selectedExaminationGlyph = examGlyphs[examination]
+                        selectedExaminationGlyph = ExamGlyph().generateGlyph(name: examination.rawValue)
                         dismissView()
                     },
                     label:  {
                         HStack {
-                            Label(examination.rawValue.capitalized, systemImage: examGlyphs[examination] ?? "staroflife.fill")
+                            Label(examination.rawValue.capitalized, systemImage: ExamGlyph().generateGlyph(name: examination.rawValue))
                             Spacer()
                             Image(systemName: "circle.fill")
-                                //.foregroundColor(Color(.systemGreen))
+                                .foregroundColor(Color(.systemGreen))
                                 .font(.system(size: 10))
                                 .opacity(selectionDetection(currentExamination: examination) ? 1 : 0)
                         }

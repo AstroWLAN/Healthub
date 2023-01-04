@@ -22,8 +22,8 @@ struct PathologiesView: View {
                     }
                 }
                 else {
+                    
                 }
-                
             }
             .navigationBarTitle("Pathologies")
             .navigationBarTitleDisplayMode(.inline)

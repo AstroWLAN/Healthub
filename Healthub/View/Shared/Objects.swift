@@ -1,5 +1,28 @@
 import SwiftUI
 
+struct ExamGlyph {
+    static let examGlyphs : [ String : String ] = [ "routine" : "figure.arms.open", "vaccination" : "cross.vial.fill", "sport" : "figure.run",
+                                                    "specialist" : "brain.head.profile", "certificate" : "heart.text.square.fill", "other" : "magnifyingglass" ]
+    
+    func generateGlyph(name : String) -> String {
+        return ExamGlyph.examGlyphs[name] ?? "staroflife.fill"
+    }
+}
+
+struct DrugAnalyzer {
+    enum DrugComponent { case name, packaging }
+    
+    func decomposeDrugName(input : String, component : DrugComponent) -> String {
+        let drugNameComponents = input.components(separatedBy: "*")
+        switch component {
+        case .name:
+            return drugNameComponents[0]
+        case .packaging:
+            return drugNameComponents[1]
+        }
+    }
+}
+
 struct GenderSheet : View {
     
     @Binding var userGender : Gender

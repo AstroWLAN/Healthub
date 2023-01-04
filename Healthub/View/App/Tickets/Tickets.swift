@@ -8,9 +8,6 @@ struct TicketsView: View {
     @State private var selectedTicket : Reservation?
     @State private var displayTicketDetails : Bool = false
     
-    let examGlyphs : [ String : String ] = [ "routine" : "figure.arms.open", "vaccination" : "cross.vial.fill", "sport" : "figure.run",
-                                                  "specialist" : "brain.head.profile", "certificate" : "heart.text.square.fill", "other" : "magnifyingglass" ]
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -45,7 +42,13 @@ struct TicketsView: View {
                                                 displayTicketDetails = true
                                             },
                                             label: {
-                                                Label(ticket.examinationType.name.capitalized, systemImage: examGlyphs[ticket.examinationType.name] ?? "staroflife.fill")
+                                                HStack {
+                                                    Label(ticket.examinationType.name.capitalized, systemImage: ExamGlyph().generateGlyph(name: ticket.examinationType.name))
+                                                    Spacer()
+                                                    Image(systemName: "chevron.right")
+                                                        .font(.system(size: 13, weight: .semibold))
+                                                        .foregroundColor(Color(.systemGray4))
+                                                }
                                             }
                                         )
                                         .swipeActions {
@@ -79,8 +82,7 @@ struct TicketsView: View {
             .navigationTitle("Tickets")
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Text(currentDate.formatted(.dateTime.weekday(.wide)).capitalized + " " +
-                         currentDate.formatted(.dateTime.day().month(.wide)).capitalized)
+                    Text(currentDate.formatted(.dateTime.day().month(.wide)).capitalized + " " + currentDate.formatted(.dateTime.year()))
                     .font(.system(size: 17, weight: .medium))
                     .foregroundColor(Color(.systemGray))
                 }
@@ -97,14 +99,13 @@ struct TicketsView: View {
                 }
             }
         }
-        .tint(Color(.systemPink))
+        .tint(Color("AstroRed"))
         .onAppear(
             perform: {
                 if(UserDefaults.standard.bool(forKey: "isLogged")) {
-                ticketViewModel.connectivityProvider.connect()
-                ticketViewModel.fetchTickets()
+                    ticketViewModel.connectivityProvider.connect()
+                    ticketViewModel.fetchTickets()
                 }
-                
             }
         )
     }

@@ -17,13 +17,13 @@ struct MainView: View {
                         .tabItem{ Label("Tickets", systemImage: "ticket.fill") }
                     TherapiesView()
                         .tabItem{ Label("Therapies", systemImage: "pills.fill") }
-                    DoctorsGalleryView()
+                    DoctorsView()
                         .tabItem{ Label("Contacts", systemImage: "person.crop.rectangle.stack.fill") }
                     ProfileView()
                         .tabItem{ Label("Profile", systemImage: "figure.arms.open") }
                 }
                 // Changes the tint of the tab bar
-                .tint(Color("HealthGray3"))
+                .tint(Color("AstroGray"))
             }
             .sheet(isPresented: $firstAppLaunch) { OnBoardingView() }
         }

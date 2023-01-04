@@ -36,7 +36,6 @@
 		2431A53E2959A6CB001F9E64 /* TherapySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FDA2954B01A00D59CBC /* TherapySheet.swift */; };
 		2431A53F2959A6CB001F9E64 /* Doctors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F51329535F5000E2410C /* Doctors.swift */; };
 		2431A5402959A6CB001F9E64 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F50D29535A9500E2410C /* Profile.swift */; };
-		2431A5412959A6CB001F9E64 /* Pathologies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B5FDC29558B5800D59CBC /* Pathologies.swift */; };
 		2431A5422959A6E3001F9E64 /* ReservationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D22938B11800AF0CE0 /* ReservationRepositoryProtocol.swift */; };
 		2431A5432959A6E3001F9E64 /* ReservationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D62938B15900AF0CE0 /* ReservationRepository.swift */; };
 		2431A5442959A6E3001F9E64 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454E1D42938B14500AF0CE0 /* Reservation.swift */; };
@@ -117,7 +116,7 @@
 		857A55032922D3D200413841 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55022922D3D200413841 /* Main.swift */; };
 		857A550A2922D6D800413841 /* Tickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55092922D6D800413841 /* Tickets.swift */; };
 		857A550C2922D70000413841 /* Therapies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550B2922D70000413841 /* Therapies.swift */; };
-		857A550E2922D72300413841 /* DoctorsGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550D2922D72300413841 /* DoctorsGallery.swift */; };
+		857A550E2922D72300413841 /* Doctors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550D2922D72300413841 /* Doctors.swift */; };
 		857A55102922D75000413841 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A550F2922D75000413841 /* Profile.swift */; };
 		857A55152922DC8500413841 /* OnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55142922DC8500413841 /* OnBoarding.swift */; };
 		857A55192922DCBB00413841 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A55182922DCBB00413841 /* Feature.swift */; };
@@ -133,6 +132,7 @@
 		85BB5ABE293808380039618B /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
 		85EE03FD295F9565000106BC /* TherapySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE03FC295F9565000106BC /* TherapySheet.swift */; };
 		85F713502964925D00C6E77D /* Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7134F2964925D00C6E77D /* Recover.swift */; };
+		85F713532965125700C6E77D /* Pathologies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F713522965125700C6E77D /* Pathologies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,7 +212,6 @@
 		24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address2Coordinates.swift; sourceTree = "<group>"; };
 		851B5FD82954445D00D59CBC /* TicketSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSheet.swift; sourceTree = "<group>"; };
 		851B5FDA2954B01A00D59CBC /* TherapySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapySheet.swift; sourceTree = "<group>"; };
-		851B5FDC29558B5800D59CBC /* Pathologies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pathologies.swift; sourceTree = "<group>"; };
 		852944D02925ABFA006FC0C5 /* AppInformation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppInformation.json; sourceTree = "<group>"; };
 		852F1A282946218900B57B18 /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
 		852F1A2B2946219400B57B18 /* DrugsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugsDatabase.swift; sourceTree = "<group>"; };
@@ -227,7 +226,7 @@
 		857A55022922D3D200413841 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		857A55092922D6D800413841 /* Tickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tickets.swift; sourceTree = "<group>"; };
 		857A550B2922D70000413841 /* Therapies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Therapies.swift; sourceTree = "<group>"; };
-		857A550D2922D72300413841 /* DoctorsGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsGallery.swift; sourceTree = "<group>"; };
+		857A550D2922D72300413841 /* Doctors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctors.swift; sourceTree = "<group>"; };
 		857A550F2922D75000413841 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		857A55142922DC8500413841 /* OnBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoarding.swift; sourceTree = "<group>"; };
 		857A55182922DCBB00413841 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
@@ -248,6 +247,7 @@
 		85BB5ABC293808380039618B /* Examinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examinations.swift; sourceTree = "<group>"; };
 		85EE03FC295F9565000106BC /* TherapySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapySheet.swift; sourceTree = "<group>"; };
 		85F7134F2964925D00C6E77D /* Recover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recover.swift; sourceTree = "<group>"; };
+		85F713522965125700C6E77D /* Pathologies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pathologies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -543,7 +543,7 @@
 		857A55082922D5A300413841 /* Doctors */ = {
 			isa = PBXGroup;
 			children = (
-				857A550D2922D72300413841 /* DoctorsGallery.swift */,
+				857A550D2922D72300413841 /* Doctors.swift */,
 				857282FE293EC4A700AF993E /* DoctorsDatabase.swift */,
 			);
 			path = Doctors;
@@ -583,6 +583,7 @@
 				8596F501295358F400E2410C /* MainView.swift */,
 				8596F50F29535EA600E2410C /* Tickets */,
 				8596F51529535FB400E2410C /* Therapies */,
+				85F713512965124600C6E77D /* Pathologies */,
 				8596F51229535F3B00E2410C /* Doctors */,
 				8596F50C29535A6D00E2410C /* Profile */,
 			);
@@ -593,7 +594,6 @@
 			isa = PBXGroup;
 			children = (
 				8596F50D29535A9500E2410C /* Profile.swift */,
-				851B5FDC29558B5800D59CBC /* Pathologies.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -622,6 +622,14 @@
 				851B5FDA2954B01A00D59CBC /* TherapySheet.swift */,
 			);
 			path = Therapies;
+			sourceTree = "<group>";
+		};
+		85F713512965124600C6E77D /* Pathologies */ = {
+			isa = PBXGroup;
+			children = (
+				85F713522965125700C6E77D /* Pathologies.swift */,
+			);
+			path = Pathologies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -784,6 +792,7 @@
 				248C68A0295C3F5800B90959 /* Address2Coordinates.swift in Sources */,
 				2431A5542959ADB5001F9E64 /* Examination.swift in Sources */,
 				2431A54E2959AC84001F9E64 /* Drug.swift in Sources */,
+				85F713532965125700C6E77D /* Pathologies.swift in Sources */,
 				2431A54F2959AC84001F9E64 /* Doctor.swift in Sources */,
 				2431A5502959AC84001F9E64 /* Therapy.swift in Sources */,
 				2431A54A2959A9CA001F9E64 /* API.swift in Sources */,
@@ -804,7 +813,6 @@
 				2431A53E2959A6CB001F9E64 /* TherapySheet.swift in Sources */,
 				2431A53F2959A6CB001F9E64 /* Doctors.swift in Sources */,
 				2431A5402959A6CB001F9E64 /* Profile.swift in Sources */,
-				2431A5412959A6CB001F9E64 /* Pathologies.swift in Sources */,
 				242D9C74295DF48100A32FD3 /* persistenceData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -874,7 +882,7 @@
 				857A55102922D75000413841 /* Profile.swift in Sources */,
 				2441662F294764D400035824 /* TherapyViewModel.swift in Sources */,
 				2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */,
-				857A550E2922D72300413841 /* DoctorsGallery.swift in Sources */,
+				857A550E2922D72300413841 /* Doctors.swift in Sources */,
 				2441663B29479D9700035824 /* ContactRepository.swift in Sources */,
 				2441663129476E6200035824 /* TherapyRepository.swift in Sources */,
 				249FF523292A2873007C802F /* PathologyRepository.swift in Sources */,

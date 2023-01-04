@@ -9,6 +9,7 @@ struct Cubic : LabelStyle {
     @State var glyphOpacityLevel : Double?
     @State var backgroundOpacityLevel : Double?
     @State var textHidden : Bool?
+    @State var examPreset : Bool?
     
     func makeBody(configuration: Configuration) -> some View {
         Label {

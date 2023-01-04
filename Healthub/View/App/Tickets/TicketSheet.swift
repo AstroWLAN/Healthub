@@ -50,7 +50,7 @@ struct TicketSheetView: View {
                     
                     // Generalities
                     Section(header: Text("Generalities"))  {
-                        Label(ticket!.examinationType.name.capitalized, systemImage: "staroflife.fill")
+                        Label(ticket!.examinationType.name.capitalized, systemImage: ExamGlyph().generateGlyph(name: ticket!.examinationType.name))
                             .labelStyle(Cubic(glyphBackgroundColor: Color(.systemPink)))
                         Label(ticket!.doctor.name!.capitalized, systemImage: "stethoscope")
                             .labelStyle(Cubic())

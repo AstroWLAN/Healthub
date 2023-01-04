@@ -78,9 +78,6 @@ struct Prescription: View {
                                         .foregroundColor(Color(.systemGray3))
                                 }
                             })
-                        if !prescriptionDrugs.isEmpty {
-                            // Appends drugs used in the prescription
-                        }
                     }
                     .buttonStyle(.borderless)
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
@@ -88,6 +85,25 @@ struct Prescription: View {
                     .sheet(isPresented: $displayDrugsDatabase) {
                         DrugsDatabase( drugs: $prescriptionDrugs)
                             .presentationDetents([.large])
+                    }
+                    if !prescriptionDrugs.isEmpty {
+                        ForEach(Array(prescriptionDrugs.enumerated()), id: \.element) { index,drug in
+                            HStack(alignment: .firstTextBaseline) {
+                                Label(String(), systemImage: "pill.fill")
+                                VStack(alignment: .leading) {
+                                    Text(DrugAnalyzer().decomposeDrugName(input: drug.denomination_and_packaging, component: .name).lowercased().capitalized)
+                                    Text(DrugAnalyzer().decomposeDrugName(input: drug.denomination_and_packaging, component: .packaging).lowercased().capitalized)
+                                        .foregroundColor(Color(.systemGray2))
+                                        .font(.system(size: 15))
+                                }
+                            }
+                            .labelStyle(Cubic())
+                            .swipeActions {
+                                // Delete drug from the selected ones
+                            }
+                        }
+                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                        .listRowSeparator(.hidden)
                     }
                 }
                 .navigationTitle("Prescription")

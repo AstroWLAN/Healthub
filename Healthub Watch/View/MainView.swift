@@ -36,6 +36,22 @@ struct WatchMain: View {
                     }
                     .padding(.vertical, 10)
                 }
+                NavigationLink(destination: Pathologies()) {
+                    VStack(alignment: .leading) {
+                        ZStack {
+                            Circle().frame(width: 48)
+                                .foregroundColor(Color.pink)
+                            Image(systemName: "allergens.fill")
+                                .font(.system(size: 22,weight: .bold))
+                        }
+                        Text("Pathologies")
+                            .font(.system(size: 20,weight: .bold))
+                        Text("User Illnesses")
+                            .font(.system(size: 15,weight: .regular))
+                            .foregroundColor(Color.gray)
+                    }
+                    .padding(.vertical, 10)
+                }
                 NavigationLink(destination: Doctors()) {
                     VStack(alignment: .leading) {
                         ZStack {

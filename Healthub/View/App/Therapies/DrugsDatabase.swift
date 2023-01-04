@@ -4,18 +4,18 @@ struct DrugsDatabase: View {
     
     @Environment(\.dismiss) var dismissPage
     @EnvironmentObject private var therapyViewModel: TherapyViewModel
-    // Searchbar variables
     @FocusState private var searchFocused : Bool
     @State private var searchQuery : String = String()
-    // Drugs Arrays
-   // @State private var drugsBuffer : [Drug] = []
     @Binding var drugs : [Drug]
     
     var body: some View {
         ZStack {
+            
             Color(.systemGray6)
                 .ignoresSafeArea()
+            
             VStack(spacing: 0) {
+                
                 HStack {
                     Spacer()
                     Capsule()
@@ -24,6 +24,7 @@ struct DrugsDatabase: View {
                         .padding(.top,20)
                     Spacer()
                 }
+                
                 HStack {
                     Text("Drugs")
                         .font(.largeTitle.bold())
@@ -36,7 +37,7 @@ struct DrugsDatabase: View {
                                 Circle()
                                     .frame(height: 28)
                                     .opacity(0.2)
-                                Image(systemName: "paperclip")
+                                Image(systemName: "checkmark")
                                     .font(.system(size: 15, weight: .medium))
                             }
                         }
@@ -44,24 +45,23 @@ struct DrugsDatabase: View {
                     .padding(.trailing, 20)
                 }
                 .padding(.top, 30)
+                
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color(.systemGray5))
                         .frame(height: 37)
                     TextField("\(Image(systemName: "magnifyingglass")) Search", text: $searchQuery)
                     .autocorrectionDisabled(true)
-                    .textCase(.lowercase)
                     .focused($searchFocused)
                     .padding(.horizontal, 7)
                     .onSubmit {
                         /* Search in the database and retrieve drugs buffer array */
-                        therapyViewModel.fetchDrugList(query: searchQuery)
+                        therapyViewModel.fetchDrugList(query: searchQuery.lowercased())
                     }
                 }
                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                if searchQuery.isEmpty && therapyViewModel.drugs.isEmpty && drugs.isEmpty {
-                    Spacer()
-                }
+                
+                if searchQuery.isEmpty && therapyViewModel.drugs.isEmpty && drugs.isEmpty { Spacer() }
                 else {
                     List {
                         if !searchQuery.isEmpty && therapyViewModel.drugs.isEmpty {
@@ -89,19 +89,28 @@ struct DrugsDatabase: View {
                                             }
                                         },
                                         label:  {
-                                            HStack {
-                                                Label(drug.denomination_and_packaging, systemImage: "pill.fill").labelStyle(Cubic())
+                                            
+                                            HStack(alignment: .firstTextBaseline) {
+                                                Label(String(), systemImage: "pill.fill")
+                                                VStack(alignment: .leading) {
+                                                    Text(DrugAnalyzer().decomposeDrugName(input: drug.denomination_and_packaging, component: .name).lowercased().capitalized)
+                                                        .foregroundColor(Color(.black))
+                                                    Text(DrugAnalyzer().decomposeDrugName(input: drug.denomination_and_packaging, component: .packaging).lowercased().capitalized)
+                                                        .foregroundColor(Color(.systemGray2))
+                                                        .font(.system(size: 15))
+                                                }
                                                 Spacer()
                                                 Image(systemName: "circle.fill")
                                                     .font(.system(size: 13))
                                                     .foregroundColor(Color(.systemGreen))
                                                     .opacity(isPresent(chosenDrugs: drugs, currentDrug: drug) ? 1 : 0)
                                             }
+                                            .labelStyle(Cubic())
                                         }
                                     )
                                 }
                             }
-                            .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                            .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 16))
                             .listRowSeparator(.hidden)
                         }
                         if !drugs.isEmpty {
