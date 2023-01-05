@@ -194,6 +194,8 @@ class TherapyRepository: TherapyRepositoryProtocol{
                 doctor!.id = Int16(result.doctor!.id)
                 doctor!.name = result.doctor!.name
                 doctor!.address = result.doctor!.address
+                doctor!.email = result.doctor!.email
+                doctor!.phone = result.doctor!.phone
                 
                 dbHelper.create(doctor!)
             }

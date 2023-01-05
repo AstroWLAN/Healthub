@@ -53,6 +53,7 @@
 		2431A5532959AD96001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
 		2431A5542959ADB5001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
 		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
+		243C20CD2966E0E3005A7D80 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C20CC2966E0E3005A7D80 /* Contact.swift */; };
 		2441662F294764D400035824 /* TherapyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441662E294764D400035824 /* TherapyViewModel.swift */; };
 		2441663129476E6200035824 /* TherapyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663029476E6200035824 /* TherapyRepository.swift */; };
 		2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */; };
@@ -170,6 +171,7 @@
 		241759622927DE220051BE0B /* Pathology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pathology.swift; path = Healthub/Model/Pathology.swift; sourceTree = SOURCE_ROOT; };
 		242D9C72295DF08800A32FD3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS9.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		2431A5522959AD96001F9E64 /* Examination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examination.swift; sourceTree = "<group>"; };
+		243C20CC2966E0E3005A7D80 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		2441662E294764D400035824 /* TherapyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyViewModel.swift; sourceTree = "<group>"; };
 		2441663029476E6200035824 /* TherapyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepository.swift; sourceTree = "<group>"; };
 		2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				241759622927DE220051BE0B /* Pathology.swift */,
 				2431A5522959AD96001F9E64 /* Examination.swift */,
 				249FF531292A7801007C802F /* Patient.swift */,
+				243C20CC2966E0E3005A7D80 /* Contact.swift */,
 				244166342947731B00035824 /* Drug.swift */,
 				24D420DE2938BC090090A42D /* Doctor.swift */,
 				2454E1D42938B14500AF0CE0 /* Reservation.swift */,
@@ -875,6 +878,7 @@
 				857A550C2922D70000413841 /* Therapies.swift in Sources */,
 				857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */,
 				24D420DF2938BC090090A42D /* Doctor.swift in Sources */,
+				243C20CD2966E0E3005A7D80 /* Contact.swift in Sources */,
 				852F1A2C2946219400B57B18 /* DrugsDatabase.swift in Sources */,
 				244166352947731B00035824 /* Drug.swift in Sources */,
 				85F713502964925D00C6E77D /* Recover.swift in Sources */,

@@ -110,6 +110,8 @@ extension API {
                     var id: Int
                     var name: String
                     var address: String
+                    var phone: String
+                    var email: String
                 }
                 
                 struct ExaminationTypeElement:Decodable{
@@ -176,6 +178,8 @@ extension API {
                     var id: Int
                     var name: String
                     var address: String
+                    var email: String
+                    var phone: String
                 }
                 
                 struct DrugElement:Decodable{

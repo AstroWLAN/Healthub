@@ -11,7 +11,7 @@ import Combine
 class ContactViewModel: ObservableObject{
     private let contactRepository: any ContactRepositoryProtocol
     @Published var doctors: [Doctor] = []
-    @Published var contacts: [Doctor] = []{
+    @Published var contacts: [Contact] = []{
         willSet {
             objectWillChange.send()
         }
@@ -34,8 +34,8 @@ class ContactViewModel: ObservableObject{
         }
     }
     
-    func fetchContacts(){
-        contactRepository.getAll(){(contacts, error) in
+    func fetchContacts(force_reload: Bool){
+        contactRepository.getAll(force_reload: force_reload){(contacts, error) in
             if let error = error {
                 print(error)
             }else{

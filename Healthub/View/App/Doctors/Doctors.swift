@@ -47,7 +47,7 @@ struct DoctorsView: View {
             }
             .sheet(isPresented: $displayDoctorsDatabase,onDismiss: {
                 displayDoctorsDatabase = false
-                contactViewModel.fetchContacts()
+                contactViewModel.fetchContacts(force_reload: false)
                 
             }){
                 DoctorsDatabaseView( selectedDoctor: $selectedDoctor)
@@ -73,7 +73,7 @@ struct DoctorsView: View {
         }
         .tint(Color("AstroRed"))
         .onAppear(perform: {
-            contactViewModel.fetchContacts()
+            contactViewModel.fetchContacts(force_reload: false)
         })
     }
 }
