@@ -77,6 +77,7 @@ class ContactRepository: ContactRepositoryProtocol{
             }
             
         } else {
+            dbHelper.deleteAllEntries(entity: "Contact")
             client
                 .get(.getContacts(token: token!)){(result: Result<API.Types.Response.GetDoctorList, API.Types.Error>) in
                     DispatchQueue.main.async {

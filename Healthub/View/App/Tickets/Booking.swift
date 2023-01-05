@@ -62,7 +62,7 @@ struct BookingView: View {
                     .disabled(selectedExamination == nil ? true : false)
                     .opacity(selectedExamination == nil ? 0.4 : 1)
                     .sheet(isPresented: $displayDoctorSheet) {
-                        DoctorsDatabaseView(selectedDoctor: $selectedDoctor)
+                        DoctorsDatabaseView(selectedDoctor: $selectedDoctor, ticketsView: true)
                             .presentationDetents([.large])
                     }
                 }

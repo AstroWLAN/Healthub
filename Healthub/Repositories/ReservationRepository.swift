@@ -136,6 +136,8 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
             }
         }else{
             dbHelper.deleteAllEntries(entity: "Reservation")
+            dbHelper.deleteAllEntries(entity: "Doctor")
+            dbHelper.deleteAllEntries(entity: "ExaminationType")
             client
                 .get(.getReservations(token: token!)){ (result: Result<API.Types.Response.GetReservations, API.Types.Error>) in
                     DispatchQueue.main.async {
@@ -186,7 +188,6 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
         client
             .fetch(.addReservation(token: token!), method: .post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
-                    print(result)
                     switch result{
                     case .success(let success):
                         completionHandler(success.status == "OK", nil)
@@ -206,25 +207,26 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
             return
         }
         let body = API.Types.Request.Empty()
+        
+        let predicate = NSPredicate(
+            format: "id = %@",
+            NSNumber.init(value: reservation_id) as CVarArg)
+        
+        let result = dbHelper.fetchFirst(Reservation.self, predicate: predicate)
+        
+        switch result{
+            case .success(let reservation):
+                dbHelper.delete(reservation!)
+            case .failure(_):
+                print("failure")
+            }
+        
         client
             .fetch(.deleteReservation(token: token!, reservation_id: reservation_id), method: .delete, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
                 DispatchQueue.main.async {
                     switch result{
                     case .success(let success):
                         completionHandler(success.status == "OK", nil)
-                        
-                        let predicate = NSPredicate(
-                            format: "id = %@",
-                            NSNumber.init(value: reservation_id) as CVarArg)
-                        
-                        let result = dbHelper.fetchFirst(Reservation.self, predicate: predicate)
-                        
-                    switch result{
-                        case .success(let reservation):
-                            dbHelper.delete(reservation!)
-                        case .failure(_):
-                            print("failure")
-                        }
                     case .failure(let failure):
                         completionHandler(nil,failure)
                     }
@@ -283,6 +285,8 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
             doctor.id = Int16(result.id)
             doctor.name = result.name
             doctor.address = result.address
+            doctor.email = result.email
+            doctor.phone = result.phone
             doctors.append(doctor)
         }
         
@@ -290,48 +294,49 @@ struct ReservationsRepository: ReservationRepositoryProtocol{
     }
     
     private func processReservations(_ results: API.Types.Response.GetReservations) -> [Reservation]{
+        
         var local = [Reservation]()
-        
-        let date = DateFormatter()
-        date.dateFormat = "yyyy-MM-dd"
-        
-        let time = DateFormatter()
-        time.dateFormat = "HH:mm"
-        
-        for result in results.reservations{
-            let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: dbHelper.context)!
-            let doctor = Doctor(entity: entity, insertInto: dbHelper.context)//Doctor(id: result.doctor.id, name: result.doctor.name,address: result.doctor.address)
-            doctor.id = Int16(result.doctor.id)
-            doctor.name = result.doctor.name
-            doctor.address = result.doctor.address
-            doctor.email = result.doctor.email
-            doctor.phone = result.doctor.phone
-            
-            dbHelper.create(doctor)
-            
-            let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: dbHelper.context)!
-            
-            let examinationType = ExaminationType(entity: entityExamination, insertInto: dbHelper.context)//(id: result.examinationType.id, name: result.examinationType.name, duration_in_minutes: result.examinationType.duration_in_minutes)
-            examinationType.id = Int16(result.examinationType.id)
-            examinationType.name = result.examinationType.name
-            examinationType.duration_in_minutes = Int16(result.examinationType.duration_in_minutes)
-            
-            dbHelper.create(examinationType)
-            let entityReservation = NSEntityDescription.entity(forEntityName: "Reservation", in: dbHelper.context)!
-            let reservation = Reservation(entity: entityReservation, insertInto: dbHelper.context)
-            //( id: result.id, date: date.date(from: "\(result.date)")!, time: time.date(from:"\(result.starting_time)")!, doctor: doctor, examinationType: examinationType)
-            reservation.id = Int16(result.id)
-            reservation.date = date.date(from: "\(result.date)")!
-            reservation.time = time.date(from:"\(result.starting_time)")!
-            reservation.doctor = doctor
-            reservation.examinationType = examinationType
-            
-            dbHelper.create(reservation)
-            
-            local.append(reservation)
-        }
-        
-        return local
+                
+                let date = DateFormatter()
+                date.dateFormat = "yyyy-MM-dd"
+                
+                let time = DateFormatter()
+                time.dateFormat = "HH:mm"
+                
+                for result in results.reservations{
+                    let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: dbHelper.context)!
+                    let doctor = Doctor(entity: entity, insertInto: dbHelper.context)//Doctor(id: result.doctor.id, name: result.doctor.name,address: result.doctor.address)
+                    doctor.id = Int16(result.doctor.id)
+                    doctor.name = result.doctor.name
+                    doctor.address = result.doctor.address
+                    doctor.email = result.doctor.email
+                    doctor.phone = result.doctor.phone
+                    
+                    dbHelper.create(doctor)
+                    
+                    let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: dbHelper.context)!
+                    
+                    let examinationType = ExaminationType(entity: entityExamination, insertInto: dbHelper.context)//(id: result.examinationType.id, name: result.examinationType.name, duration_in_minutes: result.examinationType.duration_in_minutes)
+                    examinationType.id = Int16(result.examinationType.id)
+                    examinationType.name = result.examinationType.name
+                    examinationType.duration_in_minutes = Int16(result.examinationType.duration_in_minutes)
+                    
+                    dbHelper.create(examinationType)
+                    let entityReservation = NSEntityDescription.entity(forEntityName: "Reservation", in: dbHelper.context)!
+                    let reservation = Reservation(entity: entityReservation, insertInto: dbHelper.context)
+                    //( id: result.id, date: date.date(from: "\(result.date)")!, time: time.date(from:"\(result.starting_time)")!, doctor: doctor, examinationType: examinationType)
+                    reservation.id = Int16(result.id)
+                    reservation.date = date.date(from: "\(result.date)")!
+                    reservation.time = time.date(from:"\(result.starting_time)")!
+                    reservation.doctor = doctor
+                    reservation.examinationType = examinationType
+                    
+                    dbHelper.create(reservation)
+                    
+                    local.append(reservation)
+                }
+                
+                return local
         
     }
     

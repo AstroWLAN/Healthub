@@ -70,9 +70,9 @@ class CoreDataHelper: DBHelperProtocol{
     }
     
     func delete(_ object: NSManagedObject) {
-        context.delete(object)
         
         do{
+            context.delete(object)
             try context.save()
         } catch {
             fatalError("error saving a context while creating an object")
@@ -86,6 +86,7 @@ class CoreDataHelper: DBHelperProtocol{
         
         do {
             try context.execute(deleteRequest)
+            saveContext()
         } catch let error as NSError {
             fatalError("Unable to delete: \(error)")
         }

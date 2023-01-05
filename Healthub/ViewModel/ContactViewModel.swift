@@ -35,17 +35,20 @@ class ContactViewModel: ObservableObject{
     }
     
     func fetchContacts(force_reload: Bool){
-        contactRepository.getAll(force_reload: force_reload){(contacts, error) in
+        contactRepository.getAll(force_reload: true){(contact, error) in
             if let error = error {
                 print(error)
             }else{
-                self.contacts = contacts!
+                self.contacts = contact!
+                print(self.contacts.count)
             }
             
         }
     }
     
     func deleteContact(doctor_id : Int){
+        
+        self.contacts = self.contacts.filter{ $0.id != doctor_id}
         contactRepository.removeContact(doctor_id: doctor_id){(success, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -69,6 +72,8 @@ class ContactViewModel: ObservableObject{
                 if let success = success {
                     if(success == false){
                         print("Problem in adding the contact")
+                    }else{
+                        self.fetchContacts(force_reload: true)
                     }
                 }
         }

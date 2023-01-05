@@ -45,12 +45,15 @@ struct DoctorsView: View {
                     }
                 }
             }
-            .sheet(isPresented: $displayDoctorsDatabase,onDismiss: {
+            .sheet(isPresented: $displayDoctorsDatabase, onDismiss: {
                 displayDoctorsDatabase = false
-                contactViewModel.fetchContacts(force_reload: false)
+                if selectedDoctor != nil {
+                    contactViewModel.addContact(doctor_id: Int(selectedDoctor!.id))
+                    contactViewModel.fetchContacts(force_reload: true)
+                }
                 
             }){
-                DoctorsDatabaseView( selectedDoctor: $selectedDoctor)
+                DoctorsDatabaseView( selectedDoctor: $selectedDoctor, ticketsView: false)
                     .presentationDragIndicator(.visible)
                     .presentationDetents([.large])
                 
@@ -74,6 +77,7 @@ struct DoctorsView: View {
         .tint(Color("AstroRed"))
         .onAppear(perform: {
             contactViewModel.fetchContacts(force_reload: false)
+            contactViewModel.getDoctorList()
         })
     }
 }

@@ -3,9 +3,11 @@ import SwiftUI
 struct DoctorsDatabaseView: View {
     
     @Environment(\.dismiss) var sheetDismiss
+    @EnvironmentObject private var ticketViewModel : TicketViewModel
     @EnvironmentObject private var contactViewModel : ContactViewModel
     @FocusState var searchFocus : Bool
     @Binding var selectedDoctor : Doctor?
+    @State var ticketsView: Bool
     @State private var searchQuery : String = String()
     @State private var isTyping : Bool = false
     
@@ -58,28 +60,39 @@ struct DoctorsDatabaseView: View {
             .padding(.bottom, 10)
             .padding(.horizontal, 20)
             Spacer()
-            List{
-                ForEach(self.contactViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
-                    return doctor.name!.hasPrefix(searchQuery) || searchQuery == ""
-                }), id: \.self) { doctor in
-                    Button(action: {
-                        selectedDoctor = doctor
-                        sheetDismiss()
-                        contactViewModel.addContact(doctor_id: Int(doctor.id))
-                    },
-                           label:  { Label(doctor.name!, systemImage: "person.fill").labelStyle(Cubic()) })
+            if ticketsView == true {
+                List{
+                    ForEach(ticketViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
+                        return doctor.name!.hasPrefix(searchQuery) || searchQuery == ""
+                    }), id: \.self) { doctor in
+                        Button(action: {
+                            selectedDoctor = doctor
+                            sheetDismiss()
+                        },
+                               label:  { Label(doctor.name!, systemImage: "person.fill").labelStyle(Cubic()) })
+                    }
+                    .listRowSeparator(.hidden)
+                }.scrollContentBackground(.hidden)
+                 .listStyle(.plain)
+            }else{
+                List{
+                    ForEach(contactViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
+                        return doctor.name!.hasPrefix(searchQuery) || searchQuery == ""
+                    }), id: \.self) { doctor in
+                        Button(action: {
+                            selectedDoctor = doctor
+                            sheetDismiss()
+                        },
+                               label:  { Label(doctor.name!, systemImage: "person.fill").labelStyle(Cubic()) })
+                    }
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
+                .scrollContentBackground(.hidden)
+                .listStyle(.plain)
             }
-            .scrollContentBackground(.hidden)
-            .listStyle(.plain)
             Spacer()
         }
         .ignoresSafeArea(.keyboard)
-        .onAppear(perform: {
-            self.contactViewModel.getDoctorList()
-            searchFocus = true
-            
-        })
+        .onAppear(perform: { searchFocus = true })
     }
 }

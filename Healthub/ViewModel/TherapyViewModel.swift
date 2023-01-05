@@ -16,7 +16,11 @@ class TherapyViewModel: ObservableObject{
             objectWillChange.send()
         }
     }
-    @Published private(set) var therapies: [Therapy] = []
+    @Published private(set) var therapies: [Therapy] = []{
+        willSet {
+            objectWillChange.send()
+        }
+    }
     
     @Published var hasError: Bool = false
     @Published var completedCreation: Bool = false {
@@ -113,12 +117,11 @@ class TherapyViewModel: ObservableObject{
     }
     
     func deleteTherapy(therapy_id : Int){
+        self.therapies = self.therapies.filter{$0.id != therapy_id}
         therapyRepository.removeTherapy(therapy_id: therapy_id){(success, error) in
                 if let error = error{
                     print(error.localizedDescription)
                 }
-                
-                self.therapies.removeAll(where: {$0.id == therapy_id})
             }
     }
     

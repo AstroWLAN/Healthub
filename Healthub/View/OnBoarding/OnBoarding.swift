@@ -81,7 +81,7 @@ struct OnBoardingView: View {
                 }
             )
             .buttonStyle(.borderedProminent)
-            .tint(Color("HealthGray3"))
+            .tint(Color("AstroGray"))
             .padding(.bottom,20)
             // Displays the "Configure" botton IFF the current page is the one about notifications
             .opacity(currentPage != 3 ? 0 : 1)

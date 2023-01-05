@@ -12,7 +12,11 @@ class TicketViewModel : ObservableObject{
     
     private let reservationsRepository: any ReservationRepositoryProtocol
     private(set) var connectivityProvider: ConnectionProvider
-    @Published private(set) var reservations: [Reservation] = []
+    @Published private(set) var reservations: [Reservation] = []{
+        willSet {
+            objectWillChange.send()
+        }
+    }
     @Published private(set) var doctors: [Doctor] = []
     @Published private(set) var availabilities: [Date] = []
     @Published private(set) var slots: [String] = []
@@ -108,7 +112,7 @@ class TicketViewModel : ObservableObject{
                     self.sent = false
                 }
                 if let reservationCompleted = success{
-                    if reservationCompleted == true{
+                    if reservationCompleted == true {
                         self.completed = true
                         self.sent = false
                         self.fetchTickets(force_reload: true)
@@ -123,12 +127,16 @@ class TicketViewModel : ObservableObject{
         
         
         func deleteReservation(reservation_id: Int){
+            print(self.reservations)
+            print(self.reservations.count)
+            self.reservations = self.reservations.filter{$0.id != reservation_id}
             reservationsRepository.deleteReservation(reservation_id: reservation_id){(success, error) in
                 if let error = error{
                     print(error.localizedDescription)
+                }else{
+                    print(self.reservations)
+                    print(self.reservations.count)
                 }
-                
-                self.reservations.removeAll(where: {$0.id == reservation_id})
             }
         }
         

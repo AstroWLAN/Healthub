@@ -130,6 +130,8 @@ extension API {
                     var id: Int
                     var name: String
                     var address: String
+                    var email: String
+                    var phone: String
                 }
             }
             
