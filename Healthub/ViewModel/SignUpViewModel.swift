@@ -20,6 +20,9 @@ class SignUpViewModel : ObservableObject {
         self.userRepository = userRepository
     }
     
+    func recover(email: String){
+    }
+    
     func signUp(email: String, password: String){
         self.errorSignUp = false
         guard !email.isEmpty && !password.isEmpty else {

@@ -273,6 +273,7 @@ extension API {
             case addContact(token: String, doctor_id: Int)
             case getContacts(token: String)
             case deleteContact(token: String, doctor_id: Int)
+            case resetPassword(email: String)
             
             var url: URL{
                 var components = URLComponents()
@@ -397,6 +398,11 @@ extension API {
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token),
                         URLQueryItem(name: "doctor_id", value : String(doctor_id))
+                    ]
+                case .resetPassword(let email):
+                    components.path = "/patients/forgot_password"
+                    components.queryItems = [
+                        URLQueryItem(name: "email", value : email),
                     ]
                 }
                 

@@ -5,6 +5,7 @@ private enum FocusableObject { case email }
 struct RecoverView: View {
     
     @FocusState private var objectFocused: FocusableObject?
+    @EnvironmentObject private var signUpViewModel: SignUpViewModel
     @State private var email : String = String()
 
     var body: some View {
@@ -34,7 +35,9 @@ struct RecoverView: View {
                     .padding(.vertical, 20)
                 Spacer()
                 Button(
-                    action: { /* Recover Password Action */ },
+                    action: {
+                        signUpViewModel.recover(email: self.email)
+                    },
                     label:  {
                         Text("Recover")
                             .font(.system(size: 15, weight: .semibold))
