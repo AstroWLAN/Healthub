@@ -16,6 +16,8 @@ class Doctor: NSManagedObject, NSSecureCoding{
     @NSManaged public var id: Int16
     @NSManaged public var name: String?
     @NSManaged public var address: String?
+    @NSManaged public var phone: String?
+    @NSManaged public var email: String?
     
     /*init(id: Int, name: String, address: String) {
         self.id = Int16(id)
@@ -35,20 +37,27 @@ class Doctor: NSManagedObject, NSSecureCoding{
             coder.encode(self.id, forKey: "id")
             coder.encode(self.name, forKey: "name")
             coder.encode(self.address, forKey: "address")
+            coder.encode(self.phone, forKey: "phone")
+            coder.encode(self.email, forKey: "email")
         }
     
     public required convenience init?(coder: NSCoder) {
         guard let id = coder.decodeInteger(forKey: "id") as? Int,
               let name = coder.decodeObject(of: NSString.self, forKey: "name") as? String,
-              let address = coder.decodeObject(of: NSString.self, forKey: "address") as? String
+              let address = coder.decodeObject(of: NSString.self, forKey: "address") as? String,
+              let phone = coder.decodeObject(of: NSString.self, forKey: "phone") as? String,
+              let email = coder.decodeObject(of: NSString.self, forKey: "email") as? String
         else{
             return nil
         }
        // self.init(id: id, name: name, address: address)
-        self.init()
+        let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: CoreDataHelper.shared.context)!
+        self.init(entity: entity, insertInto: CoreDataHelper.shared.context)
         self.id = Int16(id)
         self.name = name
         self.address = address
+        self.phone = phone
+        self.email = email
               
     }
   

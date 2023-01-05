@@ -3,7 +3,7 @@ import SwiftUI
 struct DoctorsDatabaseView: View {
     
     @Environment(\.dismiss) var sheetDismiss
-    @EnvironmentObject private var ticketViewModel : TicketViewModel
+    @EnvironmentObject private var contactViewModel : ContactViewModel
     @FocusState var searchFocus : Bool
     @Binding var selectedDoctor : Doctor?
     @State private var searchQuery : String = String()
@@ -59,12 +59,13 @@ struct DoctorsDatabaseView: View {
             .padding(.horizontal, 20)
             Spacer()
             List{
-                ForEach(ticketViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
+                ForEach(self.contactViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
                     return doctor.name!.hasPrefix(searchQuery) || searchQuery == ""
                 }), id: \.self) { doctor in
                     Button(action: {
                         selectedDoctor = doctor
                         sheetDismiss()
+                        contactViewModel.addContact(doctor_id: Int(doctor.id))
                     },
                            label:  { Label(doctor.name!, systemImage: "person.fill").labelStyle(Cubic()) })
                 }
@@ -75,6 +76,10 @@ struct DoctorsDatabaseView: View {
             Spacer()
         }
         .ignoresSafeArea(.keyboard)
-        .onAppear(perform: { searchFocus = true })
+        .onAppear(perform: {
+            self.contactViewModel.getDoctorList()
+            searchFocus = true
+            
+        })
     }
 }

@@ -32,6 +32,8 @@ struct HealthubApp: App {
     @StateObject var settingsViewModel = ProfileViewModel(userService: UserRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
     @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
     @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
+    @StateObject var contactViewModel = ContactViewModel(contactRepository: ContactRepository(client: API.Client()))
+    
     var body: some Scene {
         WindowGroup {
             MainView()
@@ -41,6 +43,7 @@ struct HealthubApp: App {
                 .environmentObject(settingsViewModel)
                 .environmentObject(ticketViewModel)
                 .environmentObject(therapyViewModel)
+                .environmentObject(contactViewModel)
         }
     }
 }

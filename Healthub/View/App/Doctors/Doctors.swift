@@ -4,12 +4,12 @@ struct DoctorsView: View {
     
     @State private var displayDoctorsDatabase : Bool = false
     @State private var selectedDoctor : Doctor?
-    @State private var doctors : [Doctor] = []
+    @EnvironmentObject private var contactViewModel : ContactViewModel
     
     var body: some View {
         NavigationStack {
             VStack{
-                if doctors.isEmpty {
+                if contactViewModel.contacts.isEmpty {
                     Image("DoctorsPlaceholder")
                         .resizable()
                         .scaledToFit()
@@ -17,20 +17,39 @@ struct DoctorsView: View {
                         .padding(.bottom, 80)
                 }
                 else {
-                    ForEach(Array(doctors.enumerated()), id: \.element) { index,doctor in
-                        HStack(alignment: .firstTextBaseline) {
-                            Label(String(), systemImage: "person.fill")
-                            VStack(alignment: .leading) {
-                                Text(doctor.name!.capitalized)
-                                Text(doctor.address!.capitalized)
-                                    .foregroundColor(Color(.systemGray2))
-                                    .font(.system(size: 15))
+                    List{
+                        ForEach(Array(contactViewModel.contacts.enumerated()), id: \.element) { index,doctor in
+                            HStack(alignment: .firstTextBaseline) {
+                                Label(String(), systemImage: "person.fill")
+                                VStack(alignment: .leading) {
+                                    Text(doctor.name!.capitalized)
+                                    Text(doctor.address!.capitalized)
+                                        .foregroundColor(Color(.systemGray2))
+                                        .font(.system(size: 15))
+                                    Text(doctor.phone!)
+                                        .foregroundColor(Color(.systemGray2))
+                                        .font(.system(size: 15))
+                                    Text(doctor.email!)
+                                        .foregroundColor(Color(.systemGray2))
+                                        .font(.system(size: 15))
+                                }
+                            }.swipeActions{
+                                Button(
+                                    role: .destructive,
+                                    action: {
+                                        contactViewModel.deleteContact(doctor_id: Int(doctor.id))
+                                    },
+                                    label: { Image(systemName: "trash.fill") })
                             }
                         }
                     }
                 }
             }
-            .sheet(isPresented: $displayDoctorsDatabase,onDismiss: { displayDoctorsDatabase = false }){
+            .sheet(isPresented: $displayDoctorsDatabase,onDismiss: {
+                displayDoctorsDatabase = false
+                contactViewModel.fetchContacts()
+                
+            }){
                 DoctorsDatabaseView( selectedDoctor: $selectedDoctor)
                     .presentationDragIndicator(.visible)
                     .presentationDetents([.large])
@@ -53,5 +72,8 @@ struct DoctorsView: View {
             }
         }
         .tint(Color("AstroRed"))
+        .onAppear(perform: {
+            contactViewModel.fetchContacts()
+        })
     }
 }

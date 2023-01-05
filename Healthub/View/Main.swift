@@ -4,7 +4,7 @@ struct MainView: View {
     
     @EnvironmentObject private var loginViewModel: LoginViewModel
     
-    @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = true
+    @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = false
     @AppStorage("isLogged") var isLogged : Bool = false
     
     var body: some View {

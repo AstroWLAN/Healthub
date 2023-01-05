@@ -204,6 +204,18 @@ extension API {
                 
             }
             
+            struct GetDoctorList: Decodable {
+                var doctors : [DoctorElement]
+                
+                struct DoctorElement: Decodable{
+                    var id: Int
+                    var name: String
+                    var address: String
+                    var phone: String
+                    var email:String
+                }
+            }
+            
             
         }
         
@@ -251,11 +263,15 @@ extension API {
             case getTherapies(token:String)
             case createTherapy(token: String)
             case deleteTherapy(token: String, therapy_id: Int)
+            case getDoctorList(token: String)
+            case addContact(token: String, doctor_id: Int)
+            case getContacts(token: String)
+            case deleteContact(token: String, doctor_id: Int)
             
             var url: URL{
                 var components = URLComponents()
-                components.host = "healthub.software"
-                components.scheme = "https"
+                components.host = "localhost"
+                components.scheme = "http"
                 switch self{
                     
                 case .login(let email, let password):
@@ -353,6 +369,28 @@ extension API {
                     components.path = "/patients/me/therapies/\(therapy_id)"
                     components.queryItems = [
                         URLQueryItem(name: "token", value : token),
+                    ]
+                case .getDoctorList(let token):
+                    components.path = "/patients/get_doctor_list"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
+                    ]
+                case .addContact(let token, let doctor_id):
+                    components.path = "/patients/contacts"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
+                        URLQueryItem(name: "doctor_id", value : String(doctor_id))
+                    ]
+                case .getContacts(let token):
+                    components.path = "/patients/contacts"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
+                    ]
+                case .deleteContact(let token, let doctor_id):
+                    components.path = "/patients/contacts"
+                    components.queryItems = [
+                        URLQueryItem(name: "token", value : token),
+                        URLQueryItem(name: "doctor_id", value : String(doctor_id))
                     ]
                 }
                 
