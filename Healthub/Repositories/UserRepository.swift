@@ -154,6 +154,22 @@ class UserRepository: UserRepositoryProtocol{
         
     }
     
+    func recover(email: String, completionHandler: @escaping (Bool?, Error?) -> Void){
+        let body = API.Types.Request.Empty()
+        client
+            .fetch(.resetPassword(email: email), method: .post, body: body){(result: Result<API.Types.Response.GenericResponse, API.Types.Error>) in
+                DispatchQueue.main.async {
+                    switch result{
+                    case .success(let success):
+                        completionHandler(success.status == "OK", nil)
+                    case .failure(let failure):
+                        completionHandler(nil,failure)
+                    }
+                }
+                
+            }
+    }
+    
     func doLogout(completionHandler: @escaping (Bool?, Error?) -> Void){
         //perform logout
         let token = KeychainWrapper.standard.string(forKey: "access_token")
