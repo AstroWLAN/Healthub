@@ -112,6 +112,9 @@
 		852F1A3A2947E17000B57B18 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A382947E17000B57B18 /* Objects.swift */; };
 		8536F54E2968E9EF008CFBD0 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 8536F54D2968E9EF008CFBD0 /* SPAlert */; };
 		8536F5512968F53D008CFBD0 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 8536F5502968F53D008CFBD0 /* SPIndicator */; };
+		8536F55329690379008CFBD0 /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8536F55229690379008CFBD0 /* LoginUITests.swift */; };
+		8536F55529690944008CFBD0 /* SignupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8536F55429690944008CFBD0 /* SignupUITests.swift */; };
+		8536F55729690A2D008CFBD0 /* RestoreUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8536F55629690A2D008CFBD0 /* RestoreUITest.swift */; };
 		857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857282FE293EC4A700AF993E /* DoctorsDatabase.swift */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
@@ -222,6 +225,9 @@
 		852F1A2F2946241600B57B18 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		852F1A322946AFB400B57B18 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		852F1A382947E17000B57B18 /* Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
+		8536F55229690379008CFBD0 /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
+		8536F55429690944008CFBD0 /* SignupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUITests.swift; sourceTree = "<group>"; };
+		8536F55629690A2D008CFBD0 /* RestoreUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreUITest.swift; sourceTree = "<group>"; };
 		857282FE293EC4A700AF993E /* DoctorsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsDatabase.swift; sourceTree = "<group>"; };
 		857A54ED2922D34300413841 /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A54F02922D34300413841 /* HealthubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubApp.swift; sourceTree = "<group>"; };
@@ -424,6 +430,9 @@
 		8541252F2968DBE8008115E8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8536F55229690379008CFBD0 /* LoginUITests.swift */,
+				8536F55429690944008CFBD0 /* SignupUITests.swift */,
+				8536F55629690A2D008CFBD0 /* RestoreUITest.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -844,12 +853,15 @@
 				2495CB88293A091600DD4535 /* MockUserRepository.swift in Sources */,
 				2495CB8A293A093400DD4535 /* LoginViewModelTests.swift in Sources */,
 				2454E1DB2938B19000AF0CE0 /* MockClientReservations.swift in Sources */,
+				8536F55329690379008CFBD0 /* LoginUITests.swift in Sources */,
+				8536F55529690944008CFBD0 /* SignupUITests.swift in Sources */,
 				852F1A3A2947E17000B57B18 /* Objects.swift in Sources */,
 				852F1A2D2946219400B57B18 /* DrugsDatabase.swift in Sources */,
 				24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */,
 				852F1A312946241600B57B18 /* Styles.swift in Sources */,
 				2454E1D92938B17700AF0CE0 /* ReservationRepositoryTests.swift in Sources */,
 				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
+				8536F55729690A2D008CFBD0 /* RestoreUITest.swift in Sources */,
 				852F1A2A2946218900B57B18 /* Prescription.swift in Sources */,
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
 				85BB5ABE293808380039618B /* Examinations.swift in Sources */,
@@ -945,7 +957,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 5MLNK3T9JX;
+				DEVELOPMENT_TEAM = XH89Z8J7P5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -968,7 +980,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 5MLNK3T9JX;
+				DEVELOPMENT_TEAM = XH89Z8J7P5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
