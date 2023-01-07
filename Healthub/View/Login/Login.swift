@@ -1,7 +1,7 @@
 import SwiftUI
-import AlertToast
+import SPIndicator
 
-private enum FocusableObject { case email, pswd }
+private enum FocusableObject { case email, codeword }
 
 struct LoginView: View {
     
@@ -11,66 +11,91 @@ struct LoginView: View {
     @State private var password : String = String()
     
     var body: some View {
-        NavigationView{
-            VStack{
-                Spacer()
-                Image("LoginImage")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 180)
-                Text("Login")
-                    .font(.largeTitle.bold())
-                Text("We Meet Again")
-                    .foregroundColor(Color(.systemGray))
-                    .font(.system(size: 17, weight: .semibold))
-                Spacer()
-                
-                VStack{
-                    TextField("\(Image(systemName: "envelope")) Email", text: $email)
-                        .focused($objectFocused, equals: .email)
-                        .textContentType(.username)
-                        .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
-                        .padding(.bottom, 10)
-                    SecureField("\(Image(systemName: "lock")) Password", text: $password)
-                        .focused($objectFocused, equals: .pswd)
-                        .textContentType(.password)
-                        .textInputAutocapitalization(.never)
-                        .keyboardType(.default)
-                }
-                .autocorrectionDisabled(true)
-                .foregroundColor(Color(.systemGray))
-                .multilineTextAlignment(.center)
-                .frame(width: 300)
-                .padding(.vertical, 20)
-                Spacer()
-                Button(
-                    action: { loginViewModel.doLogin(email: email, password: password) },
-                    label:  {
+        NavigationStack {
+            ZStack {
+                // Background
+                Color(.systemGray6)
+                    .ignoresSafeArea()
+                VStack(spacing: 0) {
+                    // Login form
+                    VStack(spacing: 0) {
+                        // Header
+                        Image("LoginImage")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 220)
                         Text("Login")
-                            .font(.system(size: 15, weight: .semibold))
-                            .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
+                            .font(.system(size: 34, weight: .heavy))
+                        Text("Hello Again")
+                            .foregroundColor(Color(.systemGray2))
+                            .font(.system(size: 17, weight: .semibold))
+                        // Fields
+                        Spacer()
+                        VStack(spacing: 0) {
+                            TextField("Email", text: $email)
+                                .focused($objectFocused, equals: .email)
+                                .textContentType(.emailAddress)
+                                .keyboardType(.emailAddress)
+                                .padding(.bottom, 10)
+                            SecureField("Password", text: $password)
+                                .focused($objectFocused, equals: .codeword)
+                                .textContentType(.password)
+                                .keyboardType(.default)
+                        }
+                        .autocorrectionDisabled(true)
+                        .textInputAutocapitalization(.never)
+                        .foregroundColor(Color("AstroGray"))
+                        .multilineTextAlignment(.center)
+                        .frame(width: 300)
+                        .padding(EdgeInsets(top: 20, leading: 30, bottom: 20, trailing: 30))
+                        Spacer()
+                        // Submit button
+                        Button(
+                            action: {
+                                loginViewModel.doLogin(email: email, password: password)
+                            },
+                            label:  {
+                                Text("Login")
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
+                            }
+                        )
+                        .buttonStyle(.borderedProminent)
+                        .padding(.bottom, 20)
+                        .disabled(email.isEmpty || password.isEmpty)
                     }
-                )
-                .buttonStyle(.borderedProminent)
-                .padding(.bottom, 20)
-                .disabled(email.isEmpty || password.isEmpty)
-                HStack(spacing: 0){
-                    Text("Forgotten password? ")
-                        .foregroundColor(Color(.systemGray2))
-                        .font(.system(size: 15, weight: .semibold))
-                    NavigationLink(destination: RecoverView()){
-                        Text("Recover")
-                            .foregroundColor(Color.accentColor)
-                            .font(.system(size: 15, weight: .bold))
+                    .background {
+                        RoundedRectangle(cornerRadius: 18)
+                            .fill(Color(.white))
+                            .shadow(color: Color(.systemGray4), radius: 1)
                     }
+                    // Password restore hyperlink
+                    HStack(spacing: 0) {
+                        Text("Forgotten Password? ")
+                            .foregroundColor(Color(.systemGray2))
+                            .font(.system(size: 15, weight: .medium))
+                        NavigationLink(destination: RecoverView()){
+                            Text("Restore")
+                                .foregroundColor(Color.accentColor)
+                                .font(.system(size: 15, weight: .bold))
+                        }
+                    }
+                    .padding(.vertical,20)
                 }
-                .padding(.bottom,20)
-                
-            }
-            .toast(isPresenting: $loginViewModel.hasError, duration: 3) {
-                AlertToast(displayMode: .hud, type: .systemImage("exclamationmark.circle.fill", Color(.black)),title: "Login Failure")
+                .padding(.top, 15)
             }
         }
+        // Displays an alert if the login procedure fails
+        .SPIndicator(
+            isPresent: $loginViewModel.hasError,
+            title: "Error",
+            message: "Login Failed",
+            duration: 3.5,
+            presentSide: .top,
+            dismissByDrag: false,
+            preset: .custom(UIImage.init(systemName: "xmark.circle.fill")!.withTintColor(UIColor(Color("AstroRed")), renderingMode: .alwaysOriginal)),
+            haptic: .warning,
+            layout: .init(iconSize: CGSize(width: 26, height: 26), margins: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
+        )
     }
 }

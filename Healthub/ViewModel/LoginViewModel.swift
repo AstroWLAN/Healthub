@@ -42,14 +42,17 @@ class LoginViewModel: ObservableObject {
                     switch error{
                     case .generic(reason: _):
                         print(error)
+                        self.hasError = true
                     case .server(reason: _):
                         print(error)
                     case .unauthorized(reason: _):
                         self.hasError = true
                     case .inter(reason: _):
                         print(error)
+                        self.hasError = true
                     case .loginError(reason: _):
                         print(error)
+                        self.hasError = true
                     }
                     
                 }

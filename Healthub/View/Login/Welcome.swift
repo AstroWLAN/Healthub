@@ -3,35 +3,37 @@ import SwiftUI
 struct WelcomeView: View {
     
     var body: some View {
-        NavigationStack{
-            VStack{
+        NavigationStack {
+            VStack(spacing: 0) {
+                // Header
                 Spacer()
                 Image("WelcomeImage")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 180)
+                    .padding(.bottom, 20)
                 Text("Hello")
-                    .font(.largeTitle.bold())
+                    .font(.system(size: 34, weight: .heavy))
                 Text("Welcome to Healthub")
-                    .foregroundColor(Color(.systemGray))
+                    .foregroundColor(Color(.systemGray2))
                     .font(.system(size: 17, weight: .semibold))
-                    .padding(.bottom, 5)
                 Spacer()
+                // Continue with Email button
                 NavigationLink(destination: LoginView()){
                     HStack(spacing: 0) {
                         Image(systemName: "envelope")
-                            .font(.system(size: 15,weight: .medium))
                         Text(" Continue with Email")
-                            .font(.system(size: 15, weight: .semibold))
                     }
+                    .font(.system(size: 15,weight: .medium))
                     .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                 }
                 .buttonStyle(.borderedProminent)
                 .padding(.bottom,20)
-                HStack(spacing: 0){
-                    Text("New here? ")
+                // Signup hyperlink
+                HStack(spacing: 0) {
+                    Text("Newbie? ")
                         .foregroundColor(Color(.systemGray2))
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.system(size: 15, weight: .medium))
                     NavigationLink(destination: SignupView()){
                         Text("Signup")
                             .foregroundColor(Color.accentColor)

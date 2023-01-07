@@ -110,6 +110,8 @@
 		852F1A372946B09200B57B18 /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = 852F1A362946B09200B57B18 /* TextView */; };
 		852F1A392947E17000B57B18 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A382947E17000B57B18 /* Objects.swift */; };
 		852F1A3A2947E17000B57B18 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A382947E17000B57B18 /* Objects.swift */; };
+		8536F54E2968E9EF008CFBD0 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 8536F54D2968E9EF008CFBD0 /* SPAlert */; };
+		8536F5512968F53D008CFBD0 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 8536F5502968F53D008CFBD0 /* SPIndicator */; };
 		857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857282FE293EC4A700AF993E /* DoctorsDatabase.swift */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		857A54F52922D34400413841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A54F42922D34400413841 /* Assets.xcassets */; };
@@ -264,7 +266,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8536F54E2968E9EF008CFBD0 /* SPAlert in Frameworks */,
 				241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */,
+				8536F5512968F53D008CFBD0 /* SPIndicator in Frameworks */,
 				24DC3B0F2957649400EE7FBC /* WatchConnectivity.framework in Frameworks */,
 				24889473295D8971002215A7 /* CoreData.framework in Frameworks */,
 				852F1A372946B09200B57B18 /* TextView in Frameworks */,
@@ -298,6 +302,7 @@
 		246AC22729351951004FAE20 /* HealthubTests */ = {
 			isa = PBXGroup;
 			children = (
+				8541252F2968DBE8008115E8 /* UI */,
 				246AC23129351AEE004FAE20 /* Mocks */,
 				246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */,
 				24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */,
@@ -414,6 +419,13 @@
 				852F1A382947E17000B57B18 /* Objects.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		8541252F2968DBE8008115E8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		857A54E42922D34300413841 = {
@@ -674,6 +686,8 @@
 				2417594F2927A5290051BE0B /* SwiftKeychainWrapper */,
 				243A9C9A292B8C5600731E3D /* AlertToast */,
 				852F1A362946B09200B57B18 /* TextView */,
+				8536F54D2968E9EF008CFBD0 /* SPAlert */,
+				8536F5502968F53D008CFBD0 /* SPIndicator */,
 			);
 			productName = Healthub;
 			productReference = 857A54ED2922D34300413841 /* Healthub.app */;
@@ -734,6 +748,8 @@
 				2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				243A9C99292B8C5600731E3D /* XCRemoteSwiftPackageReference "AlertToast" */,
 				852F1A352946B09200B57B18 /* XCRemoteSwiftPackageReference "TextView" */,
+				8536F54C2968E9EF008CFBD0 /* XCRemoteSwiftPackageReference "SPAlert" */,
+				8536F54F2968F53D008CFBD0 /* XCRemoteSwiftPackageReference "SPIndicator" */,
 			);
 			productRefGroup = 857A54EE2922D34300413841 /* Products */;
 			projectDirPath = "";
@@ -1092,7 +1108,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Healthub/Preview Content\"";
-				DEVELOPMENT_TEAM = 5MLNK3T9JX;
+				DEVELOPMENT_TEAM = XH89Z8J7P5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Healthub;
@@ -1108,7 +1124,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1127,7 +1143,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Healthub/Preview Content\"";
-				DEVELOPMENT_TEAM = 5MLNK3T9JX;
+				DEVELOPMENT_TEAM = XH89Z8J7P5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Healthub;
@@ -1143,7 +1159,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1280,6 +1296,22 @@
 				kind = branch;
 			};
 		};
+		8536F54C2968E9EF008CFBD0 /* XCRemoteSwiftPackageReference "SPAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/SPAlert";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		8536F54F2968F53D008CFBD0 /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1302,6 +1334,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 852F1A352946B09200B57B18 /* XCRemoteSwiftPackageReference "TextView" */;
 			productName = TextView;
+		};
+		8536F54D2968E9EF008CFBD0 /* SPAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8536F54C2968E9EF008CFBD0 /* XCRemoteSwiftPackageReference "SPAlert" */;
+			productName = SPAlert;
+		};
+		8536F5502968F53D008CFBD0 /* SPIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8536F54F2968F53D008CFBD0 /* XCRemoteSwiftPackageReference "SPIndicator" */;
+			productName = SPIndicator;
 		};
 /* End XCSwiftPackageProductDependency section */
 
