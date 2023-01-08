@@ -11,13 +11,13 @@ import SwiftKeychainWrapper
 
 final class UserRepositoryTests: XCTestCase {
     
-    private var userRepository: UserRepository!
+    private var userRepository: Healthub.UserRepository!
     private var mockClient: MockClient!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockClient = MockClient()
-        userRepository = UserRepository(client: mockClient)
+        userRepository = Healthub.UserRepository(client: mockClient!)
         
     }
 
@@ -147,7 +147,7 @@ final class UserRepositoryTests: XCTestCase {
         }
         
         let exp1 = expectation(description: "Test Update User: update")
-        let patient = Patient(entity: Patient().entity, insertInto: nil)
+        let patient = Healthub.Patient(entity: Patient().entity, insertInto: nil)
         patient.email = "dispoto97@gmail.com"
         patient.name =  "Dario Crippa"
         patient.sex = 0

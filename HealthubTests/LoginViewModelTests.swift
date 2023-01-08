@@ -11,11 +11,11 @@ import SwiftKeychainWrapper
 
 final class LoginViewModelTests: XCTestCase {
     
-    private var loginViewModel: LoginViewModel!
+    private var loginViewModel: Healthub.LoginViewModel!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        loginViewModel = LoginViewModel(userRepository: MockUserRepository())
+        loginViewModel = Healthub.LoginViewModel(userRepository: MockUserRepository() as! Healthub.UserRepositoryProtocol)
     }
 
     override func tearDownWithError() throws {

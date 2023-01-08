@@ -11,13 +11,13 @@ import SwiftKeychainWrapper
 
 final class ReservationsRepositoryTests: XCTestCase {
     
-    private var reservationsRepository: ReservationsRepository!
+    private var reservationsRepository: Healthub.ReservationsRepository!
     private var mockClient: MockClientReservations!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockClient = MockClientReservations()
-        reservationsRepository = ReservationsRepository(client: mockClient)
+        reservationsRepository = Healthub.ReservationsRepository(client: mockClient as! Healthub.ClientProtocol)
         let saveSuccessful: Bool = KeychainWrapper.standard.set("1234", forKey: "access_token")
         guard saveSuccessful == true else{
             preconditionFailure("Unable to save access_token to keychain")
@@ -123,7 +123,7 @@ final class ReservationsRepositoryTests: XCTestCase {
         //remove reservation
         let exp = expectation(description: "Test removing reservation")
         
-        reservationsRepository.delete(reservation_id: 1){(success,error) in
+        reservationsRepository.deleteReservation(reservation_id: 1){(success,error) in
             XCTAssertNotNil(error)
             XCTAssertNil(success)
             XCTAssertEqual(error?.localizedDescription, "Internal Error: No reservations")
@@ -163,7 +163,7 @@ final class ReservationsRepositoryTests: XCTestCase {
         
         let exp1 = expectation(description: "Test removing reservation")
         
-        reservationsRepository.delete(reservation_id: 1){(success,error) in
+        reservationsRepository.deleteReservation(reservation_id: 1){(success,error) in
             XCTAssertNotNil(success)
             XCTAssertTrue(success!)
             XCTAssertNil(error)
@@ -202,7 +202,7 @@ final class ReservationsRepositoryTests: XCTestCase {
         
         let exp1 = expectation(description: "Test removing reservation")
         
-        reservationsRepository.delete(reservation_id: 5){(success,error) in
+        reservationsRepository.deleteReservation(reservation_id: 5){(success,error) in
             XCTAssertNil(success)
             XCTAssertNotNil(error)
             XCTAssertEqual(error?.localizedDescription, "Internal Error: No element found")

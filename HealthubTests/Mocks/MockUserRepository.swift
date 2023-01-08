@@ -8,7 +8,7 @@
 import Foundation
 import SwiftKeychainWrapper
 @testable import Healthub
-struct MockUserRepository: UserRepositoryProtocol{
+struct MockUserRepository: Healthub.UserRepositoryProtocol{
     
     
     private var user: Healthub.Patient

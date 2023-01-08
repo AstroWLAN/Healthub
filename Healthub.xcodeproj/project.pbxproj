@@ -27,7 +27,6 @@
 		2417595F2927D8F40051BE0B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417595E2927D8F40051BE0B /* SignUpViewModel.swift */; };
 		241759612927DC330051BE0B /* PathologyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologyViewModel.swift */; };
 		241759632927DE220051BE0B /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
-		24179B91293CE77E004BFD69 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
 		242D9C73295DF08800A32FD3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242D9C72295DF08800A32FD3 /* CoreData.framework */; };
 		242D9C74295DF48100A32FD3 /* persistenceData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24889475295D89E5002215A7 /* persistenceData.xcdatamodeld */; };
 		242D9C75295DF98300A32FD3 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D09CB9295067FF00E88DBC /* Gender.swift */; };
@@ -104,16 +103,12 @@
 		24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
 		852944D12925ABFA006FC0C5 /* AppInformation.json in Resources */ = {isa = PBXBuildFile; fileRef = 852944D02925ABFA006FC0C5 /* AppInformation.json */; };
 		852F1A292946218900B57B18 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A282946218900B57B18 /* Prescription.swift */; };
-		852F1A2A2946218900B57B18 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A282946218900B57B18 /* Prescription.swift */; };
 		852F1A2C2946219400B57B18 /* DrugsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2B2946219400B57B18 /* DrugsDatabase.swift */; };
-		852F1A2D2946219400B57B18 /* DrugsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2B2946219400B57B18 /* DrugsDatabase.swift */; };
 		852F1A302946241600B57B18 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2F2946241600B57B18 /* Styles.swift */; };
-		852F1A312946241600B57B18 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A2F2946241600B57B18 /* Styles.swift */; };
 		852F1A332946AFB400B57B18 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A322946AFB400B57B18 /* Notes.swift */; };
 		852F1A342946AFB400B57B18 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A322946AFB400B57B18 /* Notes.swift */; };
 		852F1A372946B09200B57B18 /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = 852F1A362946B09200B57B18 /* TextView */; };
 		852F1A392947E17000B57B18 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A382947E17000B57B18 /* Objects.swift */; };
-		852F1A3A2947E17000B57B18 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A382947E17000B57B18 /* Objects.swift */; };
 		8536F54E2968E9EF008CFBD0 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 8536F54D2968E9EF008CFBD0 /* SPAlert */; };
 		8536F5512968F53D008CFBD0 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 8536F5502968F53D008CFBD0 /* SPIndicator */; };
 		8536F55329690379008CFBD0 /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8536F55229690379008CFBD0 /* LoginUITests.swift */; };
@@ -137,9 +132,7 @@
 		8596F507295358F500E2410C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8596F506295358F500E2410C /* Preview Assets.xcassets */; };
 		85BB5AAC2935FE160039618B /* TicketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AAB2935FE160039618B /* TicketSheet.swift */; };
 		85BB5ABA293802CE0039618B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* Booking.swift */; };
-		85BB5ABB293802CE0039618B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* Booking.swift */; };
 		85BB5ABD293808380039618B /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
-		85BB5ABE293808380039618B /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
 		85EE03FD295F9565000106BC /* TherapySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE03FC295F9565000106BC /* TherapySheet.swift */; };
 		85F713502964925D00C6E77D /* Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7134F2964925D00C6E77D /* Recover.swift */; };
 		85F713532965125700C6E77D /* Pathologies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F713522965125700C6E77D /* Pathologies.swift */; };
@@ -857,24 +850,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24179B91293CE77E004BFD69 /* HealthubApp.swift in Sources */,
 				2495CB88293A091600DD4535 /* MockUserRepository.swift in Sources */,
 				2495CB8A293A093400DD4535 /* LoginViewModelTests.swift in Sources */,
 				2454E1DB2938B19000AF0CE0 /* MockClientReservations.swift in Sources */,
 				8536F55329690379008CFBD0 /* LoginUITests.swift in Sources */,
 				8536F55529690944008CFBD0 /* SignupUITests.swift in Sources */,
-				852F1A3A2947E17000B57B18 /* Objects.swift in Sources */,
-				852F1A2D2946219400B57B18 /* DrugsDatabase.swift in Sources */,
 				24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */,
-				852F1A312946241600B57B18 /* Styles.swift in Sources */,
 				2454E1D92938B17700AF0CE0 /* ReservationRepositoryTests.swift in Sources */,
 				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
 				8536F55729690A2D008CFBD0 /* RestoreUITest.swift in Sources */,
-				852F1A2A2946218900B57B18 /* Prescription.swift in Sources */,
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
-				85BB5ABE293808380039618B /* Examinations.swift in Sources */,
 				246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */,
-				85BB5ABB293802CE0039618B /* Booking.swift in Sources */,
 				852F1A342946AFB400B57B18 /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
