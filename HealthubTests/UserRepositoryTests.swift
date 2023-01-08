@@ -147,8 +147,15 @@ final class UserRepositoryTests: XCTestCase {
         }
         
         let exp1 = expectation(description: "Test Update User: update")
-        
-        let patient = Patient(email: "dispoto97@gmail.com", name: "Dario Crippa", sex: .Male, dateOfBirth: formatter.date(from: "1997-08-18")!, fiscalCode: "DSPGNN97P18L113H", height: 176, weight: 76, phone: "+393318669067")
+        let patient = Patient(entity: Patient().entity, insertInto: nil)
+        patient.email = "dispoto97@gmail.com"
+        patient.name =  "Dario Crippa"
+        patient.sex = 0
+        patient.dateOfBirth = formatter.date(from: "1997-08-18")!
+        patient.fiscalCode =  "DSPGNN97P18L113H"
+        patient.height = 176
+        patient.weight = 76
+        patient.phone = "+393318669067"
         
         userRepository.updateInformation(user: patient){ (success, error) in
             XCTAssertNil(error, "Error is not null")

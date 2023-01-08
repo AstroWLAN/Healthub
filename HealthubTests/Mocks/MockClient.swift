@@ -62,12 +62,8 @@ class MockClient: ClientProtocol{
         case .updatePatient(_):
             self.updatePatient = body as! API.Types.Request.UpdatePatient
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
-        case .getReservations(token: let token):
-            print("getReservations")
-        case .addReservation(token: let token):
-            print("addReservation")
-        case .deleteReservation(token: let token, reservation_id: let reservation_id):
-            print("deleteReservation")
+        default:
+            print("else")
         }
     }
     
@@ -104,6 +100,8 @@ class MockClient: ClientProtocol{
             print("addReservation")
         case .deleteReservation(token: let token, reservation_id: let reservation_id):
             print("deleteReservation")
+        default:
+            print("else")
         }
     }
     

@@ -34,14 +34,14 @@ class MockClientReservations: ClientProtocol{
             case .getReservations(token: let token):
                 var reservations : API.Types.Response.GetReservations = API.Types.Response.GetReservations(reservations: [])
                 self.numberGetReservations = self.numberGetReservations + 1
-            let r = API.Types.Response.GetReservations.ReservationElement(id: 1, date: "2022-11-29", starting_time: "11:00", doctor: API.Types.Response.GetReservations.DoctorElement(id: 1, name: "Gregory House", address: "221B Baker Street, Princeton"), examinationType: API.Types.Response.GetReservations.ExaminationTypeElement(id: 1, name: "visit", duration_in_minutes: 15))
+            let r = API.Types.Response.GetReservations.ReservationElement(id: 1, date: "2022-11-29", starting_time: "11:00", doctor: API.Types.Response.GetReservations.DoctorElement(id: 1, name: "Gregory House", address: "221B Baker Street, Princeton", phone: "1234", email:"dr.house@mail.com"), examinationType: API.Types.Response.GetReservations.ExaminationTypeElement(id: 1, name: "visit", duration_in_minutes: 15))
             reservations.reservations.append(r)
                 
                 callback?(.success(reservations as! Response))
         case .addReservation(token: let token):
             self.numberAddReservations = self.numberAddReservations + 1
             let reservation = body as! API.Types.Request.AddReservation
-            self.reservations.append(API.Types.Response.GetReservations.ReservationElement(id: self.reservations.count + 1, date: reservation.date, starting_time: reservation.starting_time, doctor: API.Types.Response.GetReservations.DoctorElement(id: reservation.doctor_id, name: "Gregory House", address: "221B Baker Street"), examinationType: API.Types.Response.GetReservations.ExaminationTypeElement(id: reservation.examination_type, name: "exam", duration_in_minutes: 15)))
+            self.reservations.append(API.Types.Response.GetReservations.ReservationElement(id: self.reservations.count + 1, date: reservation.date, starting_time: reservation.starting_time, doctor: API.Types.Response.GetReservations.DoctorElement(id: reservation.doctor_id, name: "Gregory House", address: "221B Baker Street", phone: "1234", email:"dr.house@mail.com"), examinationType: API.Types.Response.GetReservations.ExaminationTypeElement(id: reservation.examination_type, name: "exam", duration_in_minutes: 15)))
             
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
             
@@ -60,6 +60,8 @@ class MockClientReservations: ClientProtocol{
                 }
                 
             }
+        default:
+            print("else")
         }
     }
     
@@ -82,7 +84,7 @@ class MockClientReservations: ClientProtocol{
             case .getReservations(token: let token):
                 var reservations : API.Types.Response.GetReservations = API.Types.Response.GetReservations(reservations: [])
                 self.numberGetReservations = self.numberGetReservations + 1
-            let r = API.Types.Response.GetReservations.ReservationElement(id: 1, date: "2022-11-29", starting_time: "11:00", doctor: API.Types.Response.GetReservations.DoctorElement(id: 1, name: "Gregory House", address: "221B Baker Street, Princeton"), examinationType: API.Types.Response.GetReservations.ExaminationTypeElement(id: 1, name: "visit", duration_in_minutes: 15))
+            let r = API.Types.Response.GetReservations.ReservationElement(id: 1, date: "2022-11-29", starting_time: "11:00", doctor: API.Types.Response.GetReservations.DoctorElement(id: 1, name: "Gregory House", address: "221B Baker Street, Princeton", phone: "1234", email:"dr.house@mail.com"), examinationType: API.Types.Response.GetReservations.ExaminationTypeElement(id: 1, name: "visit", duration_in_minutes: 15))
             reservations.reservations.append(r)
                 
                 callback?(.success(reservations as! Response))
@@ -90,6 +92,8 @@ class MockClientReservations: ClientProtocol{
             print("addReservation")
         case .deleteReservation(token: let token, reservation_id: let reservation_id):
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
+        default:
+            print("else")
         }
     }
     
