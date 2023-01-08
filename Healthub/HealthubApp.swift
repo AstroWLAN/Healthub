@@ -32,7 +32,7 @@ struct HealthubApp: App {
     @StateObject var settingsViewModel = ProfileViewModel(userService: UserRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
     @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
     @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
-    @StateObject var contactViewModel = ContactViewModel(contactRepository: ContactRepository(client: API.Client()))
+    @StateObject var contactViewModel = ContactViewModel(contactRepository: ContactRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
     
     var body: some Scene {
         WindowGroup {

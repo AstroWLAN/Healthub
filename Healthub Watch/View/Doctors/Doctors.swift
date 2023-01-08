@@ -8,18 +8,18 @@ import SwiftUI
 
 struct Doctors: View {
     
-    @State private var userDoctors : [Doctor] = [
-        //Doctor(id: 0, name: "Shaun Murphy", address: "Via Della Spiga, 97"),
-       // Doctor(id: 1, name: "Gregory House", address: "Via Vicodin, 69")
-    ]
+    @EnvironmentObject private var contactViewModel: ContactViewModel
+
     
     var body: some View {
-        List {
-            if userDoctors.isEmpty {
+        
+            if contactViewModel.connectivityProvider.receivedContacts.isEmpty {
                 // Doctors Placeholder
+                Text("Nothing to show here")
             }
             else {
-                ForEach(userDoctors, id: \.self) { doctor in
+                List {
+                ForEach(contactViewModel.connectivityProvider.receivedContacts, id: \.self) { doctor in
                     VStack(alignment: .leading) {
                         Text(doctor.name!)
                             .font(.system(size: 17, weight: .semibold))
@@ -28,11 +28,12 @@ struct Doctors: View {
                             .foregroundColor(.gray)
                     }
                 }
+                }
+                .listStyle(.elliptical)
+                .lineLimit(1)
+                .minimumScaleFactor(0.2)
             }
-        }
-        .listStyle(.elliptical)
-        .lineLimit(1)
-        .minimumScaleFactor(0.2)
+        
     }
 }
 

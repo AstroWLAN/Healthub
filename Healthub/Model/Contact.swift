@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreData
 
 @objc(Contact)
-class Contact: Doctor{}
+class Contact: Doctor {
+}

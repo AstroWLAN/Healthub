@@ -10,6 +10,7 @@ import Combine
 
 class ContactViewModel: ObservableObject{
     private let contactRepository: any ContactRepositoryProtocol
+    private(set) var connectivityProvider: ConnectionProvider
     @Published var doctors: [Doctor] = []
     @Published var contacts: [Contact] = []{
         willSet {
@@ -18,8 +19,10 @@ class ContactViewModel: ObservableObject{
     }
     var objectWillChange = PassthroughSubject<Void, Never>()
     
-    init(contactRepository: any ContactRepositoryProtocol) {
+    init(contactRepository: any ContactRepositoryProtocol, connectivityProvider: ConnectionProvider ) {
         self.contactRepository = contactRepository
+        self.connectivityProvider = connectivityProvider
+        self.connectivityProvider.connect()
     }
     
     func getDoctorList(){
@@ -35,12 +38,13 @@ class ContactViewModel: ObservableObject{
     }
     
     func fetchContacts(force_reload: Bool){
-        contactRepository.getAll(force_reload: true){(contact, error) in
+        contactRepository.getAll(force_reload: true){(contacts, error) in
             if let error = error {
                 print(error)
             }else{
-                self.contacts = contact!
-                print(self.contacts.count)
+                self.contacts = contacts!
+                self.connectivityProvider.connect()
+                self.connectivityProvider.sendWatchMessageContacts(contacts!)
             }
             
         }

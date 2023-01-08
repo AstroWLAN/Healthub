@@ -8,6 +8,7 @@
 import UIKit
 import WatchConnectivity
 import Combine
+import CoreData
 
 class ConnectionProvider: NSObject, WCSessionDelegate {
     
@@ -15,7 +16,7 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
     var objectWillChange = PassthroughSubject<Void, Never>()
     var send: [Reservation] = []
     var sendTherapies: [Therapy] = []
-    var sendDoctors: [Doctor] = []
+    var sendContacts: [Contact] = []
     var sendProfile: [Patient] = []
     var sendPathologies: [Pathology] = []
     static let shared = ConnectionProvider()
@@ -30,7 +31,11 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
             objectWillChange.send()
         }
     }
-    @Published var receivedDoctors: [Doctor] = []
+    @Published var receivedContacts: [Contact] = []{
+        willSet {
+            objectWillChange.send()
+        }
+    }
     @Published var receivedProfile: Patient?
     @Published var receivedPathologies: [Pathology] = []
     var lastMessage: CFAbsoluteTime = 0
@@ -89,7 +94,36 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
             }
         }
     }
-    func sendWatchMessageDoctors(_ msgData: [Doctor]){}
+    func sendWatchMessageContacts(_ msgData: [Contact]){
+        let currentTime = CFAbsoluteTimeGetCurrent()
+        
+        if lastMessage + 0.5 > currentTime{
+            print("Abort data")
+            return
+            
+        }
+        
+        if(session.isReachable == true){
+            NSKeyedArchiver.setClassName("Contact Object", for: Contact.self)
+            sendContacts.removeAll()
+            for res in msgData{
+                sendContacts.append(res)
+            }
+            var programData:Data = Data.init()
+            do{
+                programData = try NSKeyedArchiver.archivedData(withRootObject: sendContacts, requiringSecureCoding: false)
+            }catch{
+                print(error)
+            }
+                
+            print("Sending message: \(Contact.self) Object")
+            
+            let message: [String: Any] = ["Type": "Contacts","Data": programData]
+            self.session.sendMessage(message, replyHandler: nil){ (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
     func sendWatchMessageProfile(_ msgData: Patient) {
         let currentTime = CFAbsoluteTimeGetCurrent()
         
@@ -204,6 +238,28 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
                     }catch{
                         print(error)
                     }
+                case "Contacts":
+                    NSKeyedUnarchiver.setClass(Contact.self, forClassName: "Contact Object")
+                     
+                     do{
+                         let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Doctor.self] , from: loadedData as! Data) as? [Doctor]
+                         self.receivedContacts.removeAll()
+                         for d in data!{
+                             let entity = NSEntityDescription.entity(forEntityName: "Contact", in: CoreDataHelper.shared.context)!
+                             let contact = Contact(entity: entity, insertInto: CoreDataHelper.shared.context)
+                             contact.id = d.id
+                             contact.name = d.name
+                             contact.email = d.email
+                             contact.phone = d.phone
+                             contact.address = d.address
+                             self.receivedContacts.append(contact)
+                         }
+                         
+                         
+                     }catch{
+                         print(error)
+                     }
+                    
                 case "Patient":
                     
                    NSKeyedUnarchiver.setClass(Patient.self, forClassName: "Patient Object")

@@ -34,7 +34,7 @@ class Doctor: NSManagedObject, NSSecureCoding{
     }
     
     func encode(with coder: NSCoder) {
-            coder.encode(self.id, forKey: "id")
+            coder.encode(Int32(self.id), forKey: "id")
             coder.encode(self.name, forKey: "name")
             coder.encode(self.address, forKey: "address")
             coder.encode(self.phone, forKey: "phone")
@@ -42,7 +42,7 @@ class Doctor: NSManagedObject, NSSecureCoding{
         }
     
     public required convenience init?(coder: NSCoder) {
-        guard let id = coder.decodeInteger(forKey: "id") as? Int,
+        guard let id = Int16(coder.decodeInt32(forKey: "id")) as? Int16,
               let name = coder.decodeObject(of: NSString.self, forKey: "name") as? String,
               let address = coder.decodeObject(of: NSString.self, forKey: "address") as? String,
               let phone = coder.decodeObject(of: NSString.self, forKey: "phone") as? String,

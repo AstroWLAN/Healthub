@@ -13,6 +13,10 @@
 		240366FB2963356B003E0F1E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF535292A79B0007C802F /* ProfileViewModel.swift */; };
 		240366FC29633573003E0F1E /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */; };
 		240366FD296335A7003E0F1E /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF52E292A4797007C802F /* UserRepository.swift */; };
+		240C31E4296AC9B30064E8CB /* ContactRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663829479D1D00035824 /* ContactRepositoryProtocol.swift */; };
+		240C31E5296AC9B80064E8CB /* ContactRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663A29479D9700035824 /* ContactRepository.swift */; };
+		240C31E6296AC9BD0064E8CB /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663C29479DF200035824 /* ContactViewModel.swift */; };
+		240C31E7296ACA6C0064E8CB /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C20CC2966E0E3005A7D80 /* Contact.swift */; };
 		24141EE12959C45200A20EFF /* Healthub.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8596F4FD295358F400E2410C /* Healthub.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417594C2927A5000051BE0B /* LoginViewModel.swift */; };
 		241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2417594F2927A5290051BE0B /* SwiftKeychainWrapper */; };
@@ -806,6 +810,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240C31E7296ACA6C0064E8CB /* Contact.swift in Sources */,
+				240C31E6296AC9BD0064E8CB /* ContactViewModel.swift in Sources */,
+				240C31E5296AC9B80064E8CB /* ContactRepository.swift in Sources */,
+				240C31E4296AC9B30064E8CB /* ContactRepositoryProtocol.swift in Sources */,
 				240366FD296335A7003E0F1E /* UserRepository.swift in Sources */,
 				240366FC29633573003E0F1E /* UserRepositoryProtocol.swift in Sources */,
 				240366FB2963356B003E0F1E /* ProfileViewModel.swift in Sources */,
