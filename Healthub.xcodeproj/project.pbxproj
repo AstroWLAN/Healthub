@@ -154,14 +154,14 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		24141EE42959C45200A20EFF /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
 				24141EE12959C45200A20EFF /* Healthub.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -1201,7 +1201,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub.watchkitapp.watchkitextension;
 				PRODUCT_NAME = Healthub;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1231,7 +1231,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.Healthub.watchkitapp.watchkitextension;
 				PRODUCT_NAME = Healthub;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
