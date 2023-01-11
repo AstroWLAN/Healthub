@@ -7,16 +7,18 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import CoreData
 
 struct PathologyRepository : PathologyRepositoryProcotol{
     
     
     typealias T = Pathology
     private var client: any ClientProtocol
-    private var dbHelper = CoreDataHelper.shared
+    private var dbHelper: any DBHelperProtocol
     
-    init(client: any ClientProtocol) {
+    init(client: any ClientProtocol, dbHelper: any DBHelperProtocol) {
         self.client = client
+        self.dbHelper = dbHelper
     }
     
     
@@ -71,7 +73,9 @@ struct PathologyRepository : PathologyRepositoryProcotol{
                         
                     switch result{
                         case .success(let reservation):
+                        if reservation != nil {
                             dbHelper.delete(reservation!)
+                        }
                         case .failure(_):
                             print("failure")
                         }
@@ -91,12 +95,12 @@ struct PathologyRepository : PathologyRepositoryProcotol{
         }
         
         if force_reload == false {
-            let result: Result<[Pathology], Error> = dbHelper.fetch(Pathology.self, predicate: nil)
+            let result = dbHelper.fetch(Pathology.self, predicate: nil, limit: nil)
             
             switch result {
             case .success(let pathologies):
                 if pathologies.isEmpty == false{
-                    completionHandler(pathologies, nil)
+                    completionHandler(pathologies as! [Pathology], nil)
                 }else{
                     client
                         .get(.getPathologies(token: token!)){ (result: Result<API.Types.Response.GetPathologies, API.Types.Error>) in
@@ -137,8 +141,8 @@ struct PathologyRepository : PathologyRepositoryProcotol{
         var local = [Pathology]()
         
         for result in results.pathologies{
-            
-            let pathology = Pathology(entity: Pathology().entity, insertInto: dbHelper.context)//(id: result.id, name: result.name)
+            let entity = NSEntityDescription.entity(forEntityName: "Pathology", in: dbHelper.getContext())!
+            let pathology = Pathology(entity: entity, insertInto: dbHelper.getContext())//(id: result.id, name: result.name)
             pathology.id = Int16(result.id)
             pathology.name = result.name
             dbHelper.create(pathology)

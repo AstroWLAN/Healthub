@@ -60,21 +60,21 @@ class Reservation: NSManagedObject, Identifiable, NSSecureCoding {
             return nil
         }
        
-        let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: CoreDataHelper.shared.context)!
-        let doctor = Doctor(entity: entity, insertInto: CoreDataHelper.shared.context)
+        let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: CoreDataHelper.context)!
+        let doctor = Doctor(entity: entity, insertInto: CoreDataHelper.context)
         doctor.name = doctor_name
         doctor.address = doctor_address
         doctor.id = Int16(doctor_id)
         
-        let entityReservation = NSEntityDescription.entity(forEntityName: "Reservation", in: CoreDataHelper.shared.context)!
-        self.init(entity: entityReservation, insertInto: CoreDataHelper.shared.context)
+        let entityReservation = NSEntityDescription.entity(forEntityName: "Reservation", in: CoreDataHelper.context)!
+        self.init(entity: entityReservation, insertInto: CoreDataHelper.context)
         self.id = id
         self.date = date
         self.time = time
         self.doctor = doctor
         
-        let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: CoreDataHelper.shared.context)!
-        self.examinationType = ExaminationType(entity: entityExamination, insertInto: CoreDataHelper.shared.context)//(id: examinationType_id, name: examinationType_name, duration_in_minutes: examinationType_duration)
+        let entityExamination = NSEntityDescription.entity(forEntityName: "ExaminationType", in: CoreDataHelper.context)!
+        self.examinationType = ExaminationType(entity: entityExamination, insertInto: CoreDataHelper.context)//(id: examinationType_id, name: examinationType_name, duration_in_minutes: examinationType_duration)
         self.examinationType.id = Int16(examinationType_id)
         self.examinationType.name = examinationType_name
         self.examinationType.duration_in_minutes = Int16(examinationType_duration)

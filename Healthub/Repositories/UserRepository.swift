@@ -13,10 +13,11 @@ class UserRepository: UserRepositoryProtocol{
     
     
     private var client: any ClientProtocol
-    private var dbHelper = CoreDataHelper.shared
+    private var dbHelper: any DBHelperProtocol
     
-    init(client: any ClientProtocol) {
+    init(client: any ClientProtocol, dbHelper: any DBHelperProtocol) {
         self.client = client
+        self.dbHelper = dbHelper
     }
     
     
@@ -49,12 +50,12 @@ class UserRepository: UserRepositoryProtocol{
         let token = KeychainWrapper.standard.string(forKey: "access_token")
         
         if force_reload == false {
-            let result: Result<[Patient], Error> = dbHelper.fetch(Patient.self, predicate: nil)
+            let result =  dbHelper.fetch(Patient.self, predicate: nil, limit: nil)
             
             switch result {
             case .success(let patient):
                 if patient.isEmpty == false{
-                    completionHandler(patient[0], nil)
+                    completionHandler((patient as! [Patient])[0], nil)
                 }else{
                     client
                         .get(.getPatient(token: token!)){ (result: Result<API.Types.Response.GetPatient, API.Types.Error>) in
@@ -62,7 +63,7 @@ class UserRepository: UserRepositoryProtocol{
                                 switch result{
                                 case .success(let success):
                                     let sex = Gender(rawValue: API.GenderTranslation.gender[success.sex]! )
-                                    let patient = Patient(entity: NSEntityDescription.entity(forEntityName: "Patient", in: self.dbHelper.context)!, insertInto: self.dbHelper.context)
+                                    let patient = Patient(entity: NSEntityDescription.entity(forEntityName: "Patient", in: self.dbHelper.getContext())!, insertInto: self.dbHelper.getContext())
                                     patient.email = success.email
                                     patient.name = success.name
                                     patient.sex = Int16(Gender.index(of: sex!))
@@ -90,7 +91,7 @@ class UserRepository: UserRepositoryProtocol{
                         switch result{
                         case .success(let success):
                             let sex = Gender(rawValue: API.GenderTranslation.gender[success.sex]! )
-                            let patient = Patient(entity:NSEntityDescription.entity(forEntityName: "Patient", in: self.dbHelper.context)!, insertInto: self.dbHelper.context)
+                            let patient = Patient(entity:NSEntityDescription.entity(forEntityName: "Patient", in: self.dbHelper.getContext())!, insertInto: self.dbHelper.getContext())
                             patient.email = success.email
                             patient.name = success.name
                             patient.sex = Int16(Gender.index(of: sex!))

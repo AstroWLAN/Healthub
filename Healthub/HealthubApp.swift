@@ -26,13 +26,13 @@ extension CaseIterable where Self: Equatable {
 
 @main
 struct HealthubApp: App {
-    @StateObject var loginViewModel = LoginViewModel(userRepository: UserRepository(client: API.Client()))
-    @StateObject var signUpViewModel = SignUpViewModel(userRepository: UserRepository(client: API.Client()))
-    @StateObject var pathologiesViewModel = PathologyViewModel(pathologiesRepository: PathologyRepository(client: API.Client()))
-    @StateObject var settingsViewModel = ProfileViewModel(userService: UserRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
-    @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
-    @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
-    @StateObject var contactViewModel = ContactViewModel(contactRepository: ContactRepository(client: API.Client()), connectivityProvider: ConnectionProvider())
+    @StateObject var loginViewModel = LoginViewModel(userRepository: UserRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()))
+    @StateObject var signUpViewModel = SignUpViewModel(userRepository: UserRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()))
+    @StateObject var pathologiesViewModel = PathologyViewModel(pathologiesRepository: PathologyRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()))
+    @StateObject var settingsViewModel = ProfileViewModel(userService: UserRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider: ConnectionProvider(dbHelper:  CoreDataHelper()))
+    @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider: ConnectionProvider(dbHelper:  CoreDataHelper()))
+    @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider: ConnectionProvider(dbHelper:  CoreDataHelper()))
+    @StateObject var contactViewModel = ContactViewModel(contactRepository: ContactRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider: ConnectionProvider(dbHelper:  CoreDataHelper()))
     
     var body: some Scene {
         WindowGroup {

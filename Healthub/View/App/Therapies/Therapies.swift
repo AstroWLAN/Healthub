@@ -9,7 +9,7 @@ struct TherapiesView: View {
     @State private var displayTherapySheet : Bool = false
     @State private var displayCreation: Bool = false
     
-    @State private var detectedInteractions : Bool = false
+    @State private var notInteractions : Bool = true
     @State private var selectedTherapy : Therapy?
     
     var body: some View {
@@ -18,7 +18,7 @@ struct TherapiesView: View {
             Group {
                 if therapyViewModel.isLoadingTherapies == false {
                     List {
-                        if detectedInteractions {
+                        if notInteractions == false {
                             Section(header: Text(String())){
                                 Label("Interactions Detected", systemImage: "exclamationmark.shield.fill")
                                     .labelStyle(Cubic(glyphBackgroundColor: .white, glyphColor: Color("AstroRed"), textColor: .white))
@@ -55,12 +55,15 @@ struct TherapiesView: View {
                                             }
                                         }
                                     )
-                                    .onAppear(perform: { if !therapy.interactions.isEmpty { detectedInteractions = true }})
+                                    .onAppear(perform: {
+                                        notInteractions = notInteractions && therapy.interactions.isEmpty
+                                        })
                                     .swipeActions {
                                         Button(
                                             role: .destructive,
                                             action: {
                                                 therapyViewModel.deleteTherapy(therapy_id: Int(therapy.id))
+                                                notInteractions = true
                                             },
                                             label: { Image(systemName: "trash.fill") })
                                     }

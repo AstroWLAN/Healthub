@@ -17,7 +17,7 @@ final class ReservationsRepositoryTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockClient = MockClientReservations()
-        reservationsRepository = Healthub.ReservationsRepository(client: mockClient as! Healthub.ClientProtocol)
+        reservationsRepository = Healthub.ReservationsRepository(client: mockClient as! Healthub.ClientProtocol, dbHelper: MockDBHelper())
         let saveSuccessful: Bool = KeychainWrapper.standard.set("1234", forKey: "access_token")
         guard saveSuccessful == true else{
             preconditionFailure("Unable to save access_token to keychain")
@@ -36,7 +36,7 @@ final class ReservationsRepositoryTests: XCTestCase {
         let exp = expectation(description: "Test getAll reservations")
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        reservationsRepository.getAll(){(reservations, error) in
+        reservationsRepository.getAll(force_reload : true){(reservations, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(reservations)
             XCTAssertEqual(reservations!.count, 1)

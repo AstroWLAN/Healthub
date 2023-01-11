@@ -6,20 +6,21 @@
 //
 
 import Foundation
+import CoreData
 
 public protocol DBHelperProtocol {
-    associatedtype ObjectType
-    associatedtype PredicateType
     
-    func create(_ object: ObjectType)
-    func fetchFirst(_ objectType: ObjectType.Type, predicate: PredicateType?) -> Result<ObjectType?, Error>
-    func fetch(_ objectType: ObjectType.Type, predicate: PredicateType?, limit: Int?) -> Result<[ObjectType], Error>
-    func update(_ object: ObjectType)
-    func delete(_ object: ObjectType)
+    func create(_ object: NSManagedObject)
+    func fetchFirst(_ objectType: NSManagedObject.Type, predicate: NSPredicate?) -> Result<NSManagedObject?, Error>
+    func fetch(_ objectType: NSManagedObject.Type, predicate: NSPredicate?, limit: Int?) -> Result<[NSManagedObject], Error>
+    func update(_ object: NSManagedObject)
+    func delete(_ object: NSManagedObject)
+    func deleteAllEntries(entity: String)
+    func getContext() -> NSManagedObjectContext
 }
 
-public extension DBHelperProtocol {
-    func fetch(_ objectType: ObjectType.Type, predicate: PredicateType? = nil, limit: Int? = nil) -> Result<[ObjectType], Error> {
+/*public extension DBHelperProtocol {
+    func fetch(_ objectType: NSManagedObject.Type, predicate: NSPredicate? = nil, limit: Int? = nil) -> Result<[NSManagedObject], Error> {
         return fetch(objectType, predicate: predicate, limit: limit)
     }
-}
+}*/

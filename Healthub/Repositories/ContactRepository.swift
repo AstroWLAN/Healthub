@@ -12,10 +12,11 @@ import SwiftKeychainWrapper
 class ContactRepository: ContactRepositoryProtocol{
     
     private var client: any ClientProtocol
-    private var dbHelper = CoreDataHelper.shared
+    private var dbHelper : any DBHelperProtocol
     
-    init(client: any ClientProtocol) {
+    init(client: any ClientProtocol, dbHelper: any DBHelperProtocol) {
         self.client = client
+        self.dbHelper = dbHelper
     }
     
     func addContact(doctor_id: Int, completionHandler: @escaping (Bool?, Error?) -> Void) {
@@ -53,12 +54,12 @@ class ContactRepository: ContactRepositoryProtocol{
         
         if force_reload == false {
             
-            let result: Result<[Contact], Error> = dbHelper.fetch(Contact.self, predicate: nil)
+            let result = dbHelper.fetch(Contact.self, predicate: nil, limit: nil)
             
             switch result {
             case .success(let contacts):
                 if contacts.isEmpty == false{
-                    completionHandler(contacts, nil)
+                    completionHandler(contacts as! [Contact], nil)
                 }else{
                     client
                         .get(.getContacts(token: token!)){(result: Result<API.Types.Response.GetDoctorList, API.Types.Error>) in
@@ -150,8 +151,8 @@ class ContactRepository: ContactRepositoryProtocol{
         var local : [Contact] = []
         
         for result in results.doctors{
-            let entity = NSEntityDescription.entity(forEntityName: "Contact", in: CoreDataHelper.shared.context)!
-            let doctor = Contact(entity: entity, insertInto: dbHelper.context)
+            let entity = NSEntityDescription.entity(forEntityName: "Contact", in: dbHelper.getContext())!
+            let doctor = Contact(entity: entity, insertInto: dbHelper.getContext())
             doctor.id = Int16(result.id)
             doctor.name = result.name
             doctor.address = result.address

@@ -12,10 +12,11 @@ import CoreData
 class TherapyRepository: TherapyRepositoryProtocol{
     
     private var client: any ClientProtocol
-    var dbHelper: CoreDataHelper = CoreDataHelper.shared
+    var dbHelper: any DBHelperProtocol
     
-    init(client: any ClientProtocol) {
+    init(client: any ClientProtocol, dbHelper: any DBHelperProtocol) {
         self.client = client
+        self.dbHelper = dbHelper
     }
     
     func getDrugList(query: String, completionHandler: @escaping ([Drug]?, Error?) -> Void) {
@@ -42,12 +43,12 @@ class TherapyRepository: TherapyRepositoryProtocol{
         }
         
         if force_reload == false {
-            let result: Result<[Therapy], Error> = dbHelper.fetch(Therapy.self, predicate: nil)
+            let result = dbHelper.fetch(Therapy.self, predicate: nil, limit: nil)
             
             switch result {
             case .success(let therapies):
                 if therapies.isEmpty == false{
-                    completionHandler(therapies, nil)
+                    completionHandler(therapies as! [Therapy], nil)
                 }else{
                     client
                         .get(.getTherapies(token: token!)){ (result: Result<API.Types.Response.GetTherapies, API.Types.Error>) in
@@ -119,7 +120,7 @@ class TherapyRepository: TherapyRepositoryProtocol{
                 DispatchQueue.main.async {
                     switch result{
                     case .success(let success):
-                        completionHandler(success.status == "OK",nil)
+                        
                         
                         let predicate = NSPredicate(
                             format: "id = %@",
@@ -133,7 +134,7 @@ class TherapyRepository: TherapyRepositoryProtocol{
                         case .failure(_):
                             print("failure")
                         }
-                        
+                        completionHandler(success.status == "OK",nil)
                     case .failure(let failure):
                         completionHandler(nil,failure)
                     }
@@ -145,7 +146,8 @@ class TherapyRepository: TherapyRepositoryProtocol{
         var local = [Drug]()
         
         for result in results.medications{
-            let drug = Drug(entity: Drug().entity, insertInto: dbHelper.context)//(id: result.id, group_description: result.group_description, ma_holder: result.ma_holder, equivalence_group_code: result.equivalence_group_code, denomination_and_packaging: result.denomination_and_packaging, active_principle: result.active_principle, ma_code: result.ma_code)
+            let entity = NSEntityDescription.entity(forEntityName: "Drug", in: dbHelper.getContext())!
+            let drug = Drug(entity: entity, insertInto: dbHelper.getContext())//(id: result.id, group_description: result.group_description, ma_holder: result.ma_holder, equivalence_group_code: result.equivalence_group_code, denomination_and_packaging: result.denomination_and_packaging, active_principle: result.active_principle, ma_code: result.ma_code)
             drug.id = Int16(result.id)
             drug.group_description = result.group_description
             drug.ma_holder = result.ma_holder
@@ -170,9 +172,9 @@ class TherapyRepository: TherapyRepositoryProtocol{
             
             for d in result.drugs{
                 
-                //let entity = NSEntityDescription.entity(forEntityName: "Drug", in: dbHelper.context)!
+                let entity = NSEntityDescription.entity(forEntityName: "Drug", in: dbHelper.getContext())!
                 
-                let drug = Drug(entity: Drug().entity, insertInto: dbHelper.context)
+                let drug = Drug(entity: entity, insertInto: dbHelper.getContext())
                 drug.id = Int16(d.id)
                 drug.group_description = d.group_description
                 drug.ma_holder = d.ma_holder
@@ -189,8 +191,8 @@ class TherapyRepository: TherapyRepositoryProtocol{
             
             
             if result.doctor != nil{
-                let entity = Doctor().entity
-                doctor = Doctor(entity: entity, insertInto: dbHelper.context ) //(id: result.doctor!.id, name: result.doctor!.name, address: result.doctor!.address)
+                let entityDoctor = NSEntityDescription.entity(forEntityName: "Doctor", in: dbHelper.getContext())!
+                doctor = Doctor(entity: entityDoctor, insertInto: dbHelper.getContext() ) //(id: result.doctor!.id, name: result.doctor!.name, address: result.doctor!.address)
                 doctor!.id = Int16(result.doctor!.id)
                 doctor!.name = result.doctor!.name
                 doctor!.address = result.doctor!.address
@@ -200,8 +202,8 @@ class TherapyRepository: TherapyRepositoryProtocol{
                 dbHelper.create(doctor!)
             }
             
-    
-            let therapy = Therapy(entity: Therapy().entity, insertInto: dbHelper.context)//(id: result.therapy_id, name: result.name, doctor: doctor, duration: result.duration, drugs: drugs, notes: result.comment, interactions: result.interactions)
+            let entityTherapy = NSEntityDescription.entity(forEntityName: "Therapy", in: dbHelper.getContext())!
+            let therapy = Therapy(entity: entityTherapy, insertInto: dbHelper.getContext())//(id: result.therapy_id, name: result.name, doctor: doctor, duration: result.duration, drugs: drugs, notes: result.comment, interactions: result.interactions)
             therapy.id = Int16(result.therapy_id)
             therapy.name = result.name
             therapy.doctor = doctor

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import CoreData
 @testable import Healthub
 struct MockUserRepository: Healthub.UserRepositoryProtocol{
     
@@ -14,7 +15,8 @@ struct MockUserRepository: Healthub.UserRepositoryProtocol{
     private var user: Healthub.Patient
     
     init(){
-        user = Healthub.Patient(entity: Healthub.Patient().entity, insertInto: nil)
+        let entity = NSEntityDescription.entity(forEntityName: "Patient", in: Healthub.CoreDataHelper.context)!
+        user = Healthub.Patient(entity: entity, insertInto: nil)
         user.email = "spiderman@mail.com"
         user.name = "Peter Parker"
         user.sex = 0

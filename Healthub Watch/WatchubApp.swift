@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct Watchub_Watch_AppApp: App {
-    @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client()), connectivityProvider: ConnectionProvider.shared)
-    @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client()), connectivityProvider: ConnectionProvider.shared)
-    @StateObject var profileViewModel = ProfileViewModel(userService: UserRepository(client: API.Client()), connectivityProvider: ConnectionProvider.shared)
-    @StateObject var contactViewModel = ContactViewModel(contactRepository: ContactRepository(client: API.Client()), connectivityProvider: ConnectionProvider.shared)
+    @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider: ConnectionProvider.shared)
+    @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider:  ConnectionProvider.shared)
+    @StateObject var profileViewModel = ProfileViewModel(userService: UserRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider:  ConnectionProvider.shared)
+    @StateObject var contactViewModel = ContactViewModel(contactRepository: ContactRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider:  ConnectionProvider.shared)
     var body: some Scene {
         WindowGroup {
             WatchMain()

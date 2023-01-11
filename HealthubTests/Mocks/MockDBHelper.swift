@@ -1,16 +1,15 @@
 //
-//  CoreDataHelper.swift
-//  Healthub
+//  MockDbHelper.swift
+//  HealthubTests
 //
-//  Created by Giovanni Dispoto on 29/12/22.
+//  Created by Giovanni Dispoto on 08/01/23.
 //
 
 import Foundation
 import CoreData
-
-class CoreDataHelper: DBHelperProtocol{
-    
-    static let context = CoreDataHelper().getContext()
+@testable import Healthub
+class MockDBHelper: Healthub.DBHelperProtocol {
+    var context: NSManagedObjectContext {persistentContainer.viewContext}
     
     init(){}
     
@@ -48,7 +47,7 @@ class CoreDataHelper: DBHelperProtocol{
     
     func fetchFirst(_ objectType: NSManagedObject.Type, predicate: NSPredicate?) -> Result<NSManagedObject?, Error> {
         
-        let request = objectType.fetchRequest()
+        let request = NSFetchRequest<NSManagedObject>(entityName: "\(objectType)")
         request.predicate = predicate
         request.fetchLimit = 1
         do {
@@ -91,13 +90,16 @@ class CoreDataHelper: DBHelperProtocol{
     }
     
     lazy var persistentContainer: NSPersistentContainer = {
-            let container = NSPersistentContainer(name: "persistenceData")
-            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-                if let error = error as NSError? {
-                    fatalError("Unresolved error \(error), \(error.userInfo)")
+        let description = NSPersistentStoreDescription()
+                description.url = URL(fileURLWithPath: "/dev/null")
+                let container = NSPersistentContainer(name: "persistenceData")
+                container.persistentStoreDescriptions = [description]
+                container.loadPersistentStores { _, error in
+                    if let error = error as NSError? {
+                        fatalError("Unresolved error \(error), \(error.userInfo)")
+                    }
                 }
-            })
-            return container
+                return container
         }()
 
     func saveContext () {

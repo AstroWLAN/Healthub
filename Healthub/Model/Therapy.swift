@@ -64,9 +64,9 @@ class Therapy : NSManagedObject, Identifiable, NSSecureCoding {
                 return nil
             }
             
-            let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: CoreDataHelper.shared.context)!
+            let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: CoreDataHelper.context)!
             
-            doctor = Doctor(entity: entity, insertInto: CoreDataHelper.shared.context)
+            doctor = Doctor(entity: entity, insertInto: CoreDataHelper.context)
             doctor!.name = doctor_name
             doctor!.address = doctor_address
             doctor!.id = Int16(doctor_id)
@@ -76,8 +76,8 @@ class Therapy : NSManagedObject, Identifiable, NSSecureCoding {
         var drugs_parsed = drugs_string.components(separatedBy: "|")
         drugs_parsed.removeLast()
         for d in drugs_parsed{
-                let entityDrug = NSEntityDescription.entity(forEntityName: "Drug", in: CoreDataHelper.shared.context)!
-                let drug = Drug(entity: entityDrug, insertInto: CoreDataHelper.shared.context)
+                let entityDrug = NSEntityDescription.entity(forEntityName: "Drug", in: CoreDataHelper.context)!
+                let drug = Drug(entity: entityDrug, insertInto: CoreDataHelper.context)
                 drug.id = Int16(Int(d.components(separatedBy: ";")[0].trimmingCharacters(in: .whitespacesAndNewlines))!)
                 drug.group_description = d.components(separatedBy: ";")[1]
                 drug.ma_holder = d.components(separatedBy: ";")[2]
@@ -97,8 +97,8 @@ class Therapy : NSManagedObject, Identifiable, NSSecureCoding {
         }
         
         
-        let entityTherapy = NSEntityDescription.entity(forEntityName: "Therapy", in: CoreDataHelper.shared.context)!
-        self.init(entity: entityTherapy, insertInto: CoreDataHelper.shared.context)
+        let entityTherapy = NSEntityDescription.entity(forEntityName: "Therapy", in: CoreDataHelper.context)!
+        self.init(entity: entityTherapy, insertInto: CoreDataHelper.context)
         self.id = id
         self.name = name
         self.doctor = doctor

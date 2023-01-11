@@ -19,7 +19,7 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
     var sendContacts: [Contact] = []
     var sendProfile: [Patient] = []
     var sendPathologies: [Pathology] = []
-    static let shared = ConnectionProvider()
+    static let shared = ConnectionProvider(dbHelper: CoreDataHelper())
     
     @Published var received: [Reservation] = []{
         willSet {
@@ -39,13 +39,16 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
     @Published var receivedProfile: Patient?
     @Published var receivedPathologies: [Pathology] = []
     var lastMessage: CFAbsoluteTime = 0
+    private var dbHelper: DBHelperProtocol
     
-    init(session: WCSession = .default){
+    init(session: WCSession = .default, dbHelper: any DBHelperProtocol){
         self.session = session
+        self.dbHelper = dbHelper
         super.init()
         self.session.delegate = self
         
         self.session.activate()
+        
     }
     
     func connect(){
@@ -245,8 +248,9 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
                          let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Doctor.self] , from: loadedData as! Data) as? [Doctor]
                          self.receivedContacts.removeAll()
                          for d in data!{
-                             let entity = NSEntityDescription.entity(forEntityName: "Contact", in: CoreDataHelper.shared.context)!
-                             let contact = Contact(entity: entity, insertInto: CoreDataHelper.shared.context)
+                             let entity = NSEntityDescription.entity(forEntityName: "Contact", in: CoreDataHelper
+                                .context)!
+                             let contact = Contact(entity: entity, insertInto: CoreDataHelper.context)
                              contact.id = d.id
                              contact.name = d.name
                              contact.email = d.email

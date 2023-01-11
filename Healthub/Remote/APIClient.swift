@@ -14,6 +14,11 @@ extension API {
         
         private let encoder = JSONEncoder()
         private let decoder = JSONDecoder()
+        private var dbHelper: any DBHelperProtocol
+        
+        init(dbHelper: any DBHelperProtocol) {
+            self.dbHelper = dbHelper
+        }
         
         
         
@@ -49,12 +54,12 @@ extension API {
                         if let httpResponse = response as? HTTPURLResponse {
                             if httpResponse.statusCode == 401{
                                 callback?(.failure(.unauthorized(reason: "\(httpResponse.statusCode)")))
-                                CoreDataHelper.shared.deleteAllEntries(entity: "Patient")
-                                CoreDataHelper.shared.deleteAllEntries(entity: "Pathology")
-                                CoreDataHelper.shared.deleteAllEntries(entity: "Reservation")
-                                CoreDataHelper.shared.deleteAllEntries(entity: "Therapy")
-                                CoreDataHelper.shared.deleteAllEntries(entity: "Doctor")
-                                CoreDataHelper.shared.deleteAllEntries(entity: "Drug")
+                                self.dbHelper.deleteAllEntries(entity: "Patient")
+                                self.dbHelper.deleteAllEntries(entity: "Pathology")
+                                self.dbHelper.deleteAllEntries(entity: "Reservation")
+                                self.dbHelper.deleteAllEntries(entity: "Therapy")
+                                self.dbHelper.deleteAllEntries(entity: "Doctor")
+                                self.dbHelper.deleteAllEntries(entity: "Drug")
                                 UserDefaults.standard.set(false, forKey: "isLogged")
                             }else{
                                 if let data = data {

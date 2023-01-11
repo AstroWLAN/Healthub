@@ -17,6 +17,7 @@
 		240C31E5296AC9B80064E8CB /* ContactRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663A29479D9700035824 /* ContactRepository.swift */; };
 		240C31E6296AC9BD0064E8CB /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663C29479DF200035824 /* ContactViewModel.swift */; };
 		240C31E7296ACA6C0064E8CB /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C20CC2966E0E3005A7D80 /* Contact.swift */; };
+		240C3210296B162C0064E8CB /* MockDBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C320F296B162C0064E8CB /* MockDBHelper.swift */; };
 		24141EE12959C45200A20EFF /* Healthub.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8596F4FD295358F400E2410C /* Healthub.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2417594D2927A5000051BE0B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417594C2927A5000051BE0B /* LoginViewModel.swift */; };
 		241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2417594F2927A5290051BE0B /* SwiftKeychainWrapper */; };
@@ -163,6 +164,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		240C320F296B162C0064E8CB /* MockDBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDBHelper.swift; sourceTree = "<group>"; };
 		2417594C2927A5000051BE0B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		241759512927A5420051BE0B /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserLogin.swift; path = Healthub/Model/UserLogin.swift; sourceTree = SOURCE_ROOT; };
 		241759582927A5FA0051BE0B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				246AC23229351B05004FAE20 /* MockClient.swift */,
 				2454E1DA2938B19000AF0CE0 /* MockClientReservations.swift */,
 				2495CB87293A091600DD4535 /* MockUserRepository.swift */,
+				240C320F296B162C0064E8CB /* MockDBHelper.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				8536F55729690A2D008CFBD0 /* RestoreUITest.swift in Sources */,
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
 				246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */,
+				240C3210296B162C0064E8CB /* MockDBHelper.swift in Sources */,
 				852F1A342946AFB400B57B18 /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

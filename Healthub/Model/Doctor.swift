@@ -51,8 +51,8 @@ class Doctor: NSManagedObject, NSSecureCoding{
             return nil
         }
        // self.init(id: id, name: name, address: address)
-        let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: CoreDataHelper.shared.context)!
-        self.init(entity: entity, insertInto: CoreDataHelper.shared.context)
+        let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: CoreDataHelper.context)!
+        self.init(entity: entity, insertInto: CoreDataHelper.context)
         self.id = Int16(id)
         self.name = name
         self.address = address

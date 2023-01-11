@@ -117,12 +117,20 @@ class TherapyViewModel: ObservableObject{
     }
     
     func deleteTherapy(therapy_id : Int){
+        let interactions = self.therapies.first(where: {$0.id == therapy_id})?.interactions
+        
         self.therapies = self.therapies.filter{$0.id != therapy_id}
         therapyRepository.removeTherapy(therapy_id: therapy_id){(success, error) in
                 if let error = error{
                     print(error.localizedDescription)
                 }
+            if success == true {
+                if interactions?.isEmpty == false {
+                        self.fetchTherapies(force_reload: true)
+                    }
+                }
             }
+       
     }
     
 }
