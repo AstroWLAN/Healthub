@@ -120,8 +120,7 @@ class TherapyRepository: TherapyRepositoryProtocol{
                 DispatchQueue.main.async {
                     switch result{
                     case .success(let success):
-                        
-                        
+                        completionHandler(success.status == "OK",nil)
                         let predicate = NSPredicate(
                             format: "id = %@",
                             NSNumber.init(value: therapy_id) as CVarArg)
@@ -130,11 +129,12 @@ class TherapyRepository: TherapyRepositoryProtocol{
                         
                     switch result{
                         case .success(let therapy):
+                        if therapy != nil{
                             self.dbHelper.delete(therapy!)
+                        }
                         case .failure(_):
                             print("failure")
                         }
-                        completionHandler(success.status == "OK",nil)
                     case .failure(let failure):
                         completionHandler(nil,failure)
                     }
