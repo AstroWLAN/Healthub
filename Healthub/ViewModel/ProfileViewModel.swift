@@ -10,7 +10,7 @@ import Foundation
 class ProfileViewModel: ObservableObject {
     
     @Published private var hasError: Bool = false
-    private(set) var connectivityProvider: ConnectionProvider
+    private(set) var connectivityProvider: any ConnectionProviderProtocol
   
     @Published var patient: Patient?
     private var userService: any UserRepositoryProtocol
@@ -23,7 +23,7 @@ class ProfileViewModel: ObservableObject {
     @Published var fiscalCode : String = ""
     @Published var phone : String = ""
     
-    init(userService: any UserRepositoryProtocol, connectivityProvider: ConnectionProvider){
+    init(userService: any UserRepositoryProtocol, connectivityProvider: any ConnectionProviderProtocol){
         self.userService = userService
         self.connectivityProvider = connectivityProvider
         self.connectivityProvider.connect()

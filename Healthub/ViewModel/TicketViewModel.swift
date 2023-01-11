@@ -11,7 +11,7 @@ import Combine
 class TicketViewModel : ObservableObject{
     
     private let reservationsRepository: any ReservationRepositoryProtocol
-    private(set) var connectivityProvider: ConnectionProvider
+    private(set) var connectivityProvider: any ConnectionProviderProtocol
     @Published private(set) var reservations: [Reservation] = []{
         willSet {
             objectWillChange.send()
@@ -47,7 +47,7 @@ class TicketViewModel : ObservableObject{
     }
     
     
-    init(reservationsRepository: any ReservationRepositoryProtocol, connectivityProvider: ConnectionProvider) {
+    init(reservationsRepository: any ReservationRepositoryProtocol, connectivityProvider: any ConnectionProviderProtocol) {
         self.reservationsRepository = reservationsRepository
         self.connectivityProvider = connectivityProvider
         self.connectivityProvider.connect()

@@ -10,16 +10,17 @@ import WatchConnectivity
 import Combine
 import CoreData
 
-class ConnectionProvider: NSObject, WCSessionDelegate {
+class ConnectionProvider: NSObject, ConnectionProviderProtocol {
     
-    private let session: WCSession
+    static let shared: ConnectionProviderProtocol = ConnectionProvider(dbHelper: CoreDataHelper())
+
+    internal let session: WCSession
     var objectWillChange = PassthroughSubject<Void, Never>()
     var send: [Reservation] = []
     var sendTherapies: [Therapy] = []
     var sendContacts: [Contact] = []
     var sendProfile: [Patient] = []
     var sendPathologies: [Pathology] = []
-    static let shared = ConnectionProvider(dbHelper: CoreDataHelper())
     
     @Published var received: [Reservation] = []{
         willSet {
@@ -39,7 +40,7 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
     @Published var receivedProfile: Patient?
     @Published var receivedPathologies: [Pathology] = []
     var lastMessage: CFAbsoluteTime = 0
-    private var dbHelper: DBHelperProtocol
+    internal var dbHelper: DBHelperProtocol
     
     init(session: WCSession = .default, dbHelper: any DBHelperProtocol){
         self.session = session
@@ -50,6 +51,7 @@ class ConnectionProvider: NSObject, WCSessionDelegate {
         self.session.activate()
         
     }
+
     
     func connect(){
         guard WCSession.isSupported() else{

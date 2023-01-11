@@ -10,7 +10,7 @@ import Combine
 
 class ContactViewModel: ObservableObject{
     private let contactRepository: any ContactRepositoryProtocol
-    private(set) var connectivityProvider: ConnectionProvider
+    private(set) var connectivityProvider: any ConnectionProviderProtocol
     @Published var doctors: [Doctor] = []
     @Published var contacts: [Contact] = []{
         willSet {
@@ -19,7 +19,7 @@ class ContactViewModel: ObservableObject{
     }
     var objectWillChange = PassthroughSubject<Void, Never>()
     
-    init(contactRepository: any ContactRepositoryProtocol, connectivityProvider: ConnectionProvider ) {
+    init(contactRepository: any ContactRepositoryProtocol, connectivityProvider: any ConnectionProviderProtocol ) {
         self.contactRepository = contactRepository
         self.connectivityProvider = connectivityProvider
         self.connectivityProvider.connect()

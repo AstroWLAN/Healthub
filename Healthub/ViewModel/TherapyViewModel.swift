@@ -10,7 +10,7 @@ import Combine
 
 class TherapyViewModel: ObservableObject{
     private let therapyRepository: any TherapyRepositoryProtocol
-    private(set) var connectivityProvider: ConnectionProvider
+    private(set) var connectivityProvider: any ConnectionProviderProtocol
     @Published private(set) var drugs: [Drug] = [] {
         willSet {
             objectWillChange.send()
@@ -36,7 +36,7 @@ class TherapyViewModel: ObservableObject{
     }
 
     
-    init(therapyRepository: any TherapyRepositoryProtocol,  connectivityProvider: ConnectionProvider) {
+    init(therapyRepository: any TherapyRepositoryProtocol,  connectivityProvider: any ConnectionProviderProtocol) {
         self.therapyRepository = therapyRepository
         self.connectivityProvider = connectivityProvider
         connectivityProvider.connect()
