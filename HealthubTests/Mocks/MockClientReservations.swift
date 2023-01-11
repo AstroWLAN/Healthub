@@ -11,10 +11,15 @@ import Foundation
 class MockClientReservations: Healthub.ClientProtocol{
     
     private (set) var numberGetReservations = 0
+    private (set) var numberGetContacts = 0
     private (set) var numberAddReservations = 0
     private (set) var numberDeleteReservations = 0
+    private (set) var numberAddContacts = 0
+    private (set) var numberDeleteContacts = 0
+    private (set) var numberGetDoctorList = 0
     private (set) var reservations: [Healthub.API.Types.Response.GetReservations.ReservationElement] = []
-    
+    private (set) var contacts : [Healthub.API.Types.Response.GetDoctorList.DoctorElement] = []
+    private (set) var doctors : [Healthub.API.Types.Response.GetDoctorList.DoctorElement] = []
     func fetch<Request, Response>(_ endpoint: Healthub.API.Types.Endpoint, method: Healthub.API.Types.Method, body: Request?, then callback: ((Result<Response, Healthub.API.Types.Error>) -> Void)?) where Request : Encodable, Response : Decodable {
         switch(endpoint){
             case .login(email: let email, password: let password):
@@ -60,6 +65,35 @@ class MockClientReservations: Healthub.ClientProtocol{
                 }
                 
             }
+        case .getContacts(token: let token):
+            self.numberGetContacts = self.numberGetContacts + 1
+            var contacts_: Healthub.API.Types.Response.GetDoctorList = Healthub.API.Types.Response.GetDoctorList(doctors: [])
+            let c = Healthub.API
+                .Types.Response.GetDoctorList.DoctorElement(id: 1, name: "Gregory House", address: "221B Baker Street", phone: "1234", email:"dr.house@mail.com")
+            contacts_.doctors.append(c)
+            self.contacts = contacts_.doctors
+            callback?(.success(contacts_ as! Response))
+        case .addContact(token: let token, doctor_id: let doctor_id):
+            self.numberAddContacts = self.numberAddContacts + 1
+            
+            self.contacts.append(Healthub.API.Types.Response.GetDoctorList.DoctorElement(id: doctor_id, name: "name", address: "addr", phone: "phone", email: "email"))
+            
+            callback?(.success(Healthub.API.Types.Response.GenericResponse(status: "OK") as! Response))
+        
+        case .deleteContact(token: let token, doctor_id: let doctor_id):
+            self.numberDeleteContacts = self.numberDeleteContacts + 1
+            
+            if(self.contacts.count == 0){
+                callback?(.failure(Healthub.API.Types.Error.inter(reason: "No reservations")))
+            }else{
+                if let element = self.contacts.enumerated().first(where: {$0.element.id == doctor_id }){
+                    self.contacts.remove(at: element.offset)
+                    callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
+                }else{
+                    callback?(.failure(Healthub.API.Types.Error.inter(reason: "No element found")))
+                }
+            }
+            
         default:
             print("else")
         }
@@ -92,6 +126,36 @@ class MockClientReservations: Healthub.ClientProtocol{
             print("addReservation")
         case .deleteReservation(token: let token, reservation_id: let reservation_id):
             callback?(.success(Healthub.API.Types.Response.GenericResponse(status: "OK") as! Response))
+        case .getContacts(token: let token):
+            self.numberGetContacts = self.numberGetContacts + 1
+            var contacts_: Healthub.API.Types.Response.GetDoctorList = Healthub.API.Types.Response.GetDoctorList(doctors: [])
+            let c = Healthub.API
+                .Types.Response.GetDoctorList.DoctorElement(id: 1, name: "Gregory House", address: "221B Baker Street", phone: "1234", email:"dr.house@mail.com")
+            contacts_.doctors.append(c)
+            self.contacts = contacts_.doctors
+            callback?(.success(contacts_ as! Response))
+        case .deleteContact(token: let token, doctor_id: let doctor_id):
+            self.numberDeleteContacts = self.numberDeleteContacts + 1
+            
+            if(self.contacts.count == 0){
+                callback?(.failure(Healthub.API.Types.Error.inter(reason: "No reservations")))
+            }else{
+                if let element = self.contacts.enumerated().first(where: {$0.element.id == doctor_id }){
+                    self.contacts.remove(at: element.offset)
+                    callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response))
+                }else{
+                    callback?(.failure(Healthub.API.Types.Error.inter(reason: "No element found")))
+                }
+            }
+        case .getDoctorList(token: let token):
+            self.numberGetDoctorList = self.numberGetDoctorList + 1
+            var doctors = Healthub.API.Types.Response.GetDoctorList(doctors: [])
+            let c = Healthub.API
+                .Types.Response.GetDoctorList.DoctorElement(id: 1, name: "Gregory House", address: "221B Baker Street", phone: "1234", email:"dr.house@mail.com")
+            doctors.doctors.append(c)
+            
+            self.doctors = doctors.doctors
+            callback?(.success(doctors as! Response))
         default:
             print("else")
         }

@@ -115,7 +115,9 @@ class ContactRepository: ContactRepositoryProtocol{
                         
                     switch result{
                         case .success(let contact):
+                        if contact != nil {
                             self.dbHelper.delete(contact!)
+                        }
                         case .failure(_):
                             print("failure")
                         }
