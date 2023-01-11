@@ -254,8 +254,8 @@ final class PathologiesRepositoryTests: XCTestCase {
         }
         
         let exp1 = expectation(description: "Test GetAll: add a pathology ")
-        
-        let pathology = Pathology(entity: Pathology().entity, insertInto: nil)
+        let entity4 = NSEntityDescription.entity(forEntityName: "Pathology", in: Healthub.CoreDataHelper.context)!
+        let pathology = Pathology(entity: entity4, insertInto: nil)
         pathology.id = 1
         pathology.name = "Pathology"
         pathologiesRepository.add(pathologyName: pathology.name){ (success, error) in
