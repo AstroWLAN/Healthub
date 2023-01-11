@@ -93,7 +93,49 @@ class MockClientReservations: Healthub.ClientProtocol{
                     callback?(.failure(Healthub.API.Types.Error.inter(reason: "No element found")))
                 }
             }
+        case .getAvailableDates(token: let token, doctor_id: let doctor_id):
+            var availabilities_1: [Healthub.API.Types.Response.GetAvailableDates.DateElement] = []
+            availabilities_1.append(Healthub.API.Types.Response.GetAvailableDates.DateElement(date: "2022-01-01"))
+            availabilities_1.append(Healthub.API.Types.Response.GetAvailableDates.DateElement(date: "2022-01-02"))
+            let dates_1: Healthub.API.Types.Response.GetAvailableDates = Healthub.API.Types.Response.GetAvailableDates(availabilities: availabilities_1)
             
+            var availabilities_2: [Healthub.API.Types.Response.GetAvailableDates.DateElement] = []
+            availabilities_2.append(Healthub.API.Types.Response.GetAvailableDates.DateElement(date: "2022-02-01"))
+            availabilities_2.append(Healthub.API.Types.Response.GetAvailableDates.DateElement(date: "2022-03-02"))
+            let dates_2: Healthub.API.Types.Response.GetAvailableDates = Healthub.API.Types.Response.GetAvailableDates(availabilities: availabilities_2)
+            
+            if(doctor_id == 1){
+                callback?(.success( dates_1 as! Response ))
+            }else if(doctor_id == 2){
+                callback?(.success( dates_2 as! Response ))
+            }
+        
+        case .getAvailableSlots(token: let token, doctor_id: let doctor_id, examinationType: let examination_type, date: let date):
+            
+            
+            var morning_slots: [String] = []
+            morning_slots.append("10:00")
+            morning_slots.append("10:15")
+            
+            var afternoon_slots : [String] = []
+            afternoon_slots.append("15:00")
+            afternoon_slots.append("15:15")
+            
+            let slots: Healthub.API.Types.Response.GetAvailableSlots = Healthub.API.Types.Response.GetAvailableSlots(morning_slots: morning_slots , afternoon_slots: afternoon_slots)
+            
+            callback?(.success( slots as! Response ))
+            
+        case .getDoctorsByExamName(token: let token, exam_name: let exam_name):
+            if exam_name == "vaccination"{
+                var doctors:[Healthub.API.Types.Response.GetDoctorsByExamName.DoctorElement] = []
+                doctors.append(Healthub.API.Types.Response.GetDoctorsByExamName.DoctorElement(id: 1, name: "A", address: "A", email: "A", phone: "A"))
+                doctors.append(Healthub.API.Types.Response.GetDoctorsByExamName.DoctorElement(id: 2, name: "B", address: "B", email: "B", phone: "B"))
+                let response = Healthub.API.Types.Response.GetDoctorsByExamName(doctors: doctors )
+                callback?(.success( response as! Response ))
+            }else{
+                let response = Healthub.API.Types.Response.GetDoctorsByExamName(doctors: [] )
+                callback?(.success( response as! Response ))
+            }
         default:
             print("else")
         }
@@ -156,6 +198,47 @@ class MockClientReservations: Healthub.ClientProtocol{
             
             self.doctors = doctors.doctors
             callback?(.success(doctors as! Response))
+        case .getAvailableDates(token: let token, doctor_id: let doctor_id):
+            var availabilities_1: [Healthub.API.Types.Response.GetAvailableDates.DateElement] = []
+            availabilities_1.append(Healthub.API.Types.Response.GetAvailableDates.DateElement(date: "2022-01-01"))
+            availabilities_1.append(Healthub.API.Types.Response.GetAvailableDates.DateElement(date: "2022-01-02"))
+            let dates_1: Healthub.API.Types.Response.GetAvailableDates = Healthub.API.Types.Response.GetAvailableDates(availabilities: availabilities_1)
+            
+            var availabilities_2: [Healthub.API.Types.Response.GetAvailableDates.DateElement] = []
+            availabilities_2.append(Healthub.API.Types.Response.GetAvailableDates.DateElement(date: "2022-02-01"))
+            availabilities_2.append(Healthub.API.Types.Response.GetAvailableDates.DateElement(date: "2022-03-02"))
+            let dates_2: Healthub.API.Types.Response.GetAvailableDates = Healthub.API.Types.Response.GetAvailableDates(availabilities: availabilities_2)
+            
+            if(doctor_id == 1){
+                callback?(.success( dates_1 as! Response ))
+            }else if(doctor_id == 2){
+                callback?(.success( dates_2 as! Response ))
+            }
+        case .getAvailableSlots(token: let token, doctor_id: let doctor_id, examinationType: let examination_type, date: let date):
+            
+            
+            var morning_slots: [String] = []
+            morning_slots.append("10:00")
+            morning_slots.append("10:15")
+            
+            var afternoon_slots : [String] = []
+            afternoon_slots.append("15:00")
+            afternoon_slots.append("15:15")
+            
+            let slots: Healthub.API.Types.Response.GetAvailableSlots = Healthub.API.Types.Response.GetAvailableSlots(morning_slots: morning_slots , afternoon_slots: afternoon_slots)
+            
+            callback?(.success( slots as! Response ))
+        case .getDoctorsByExamName(token: let token, exam_name: let exam_name):
+            if exam_name == "vaccination"{
+                var doctors:[Healthub.API.Types.Response.GetDoctorsByExamName.DoctorElement] = []
+                doctors.append(Healthub.API.Types.Response.GetDoctorsByExamName.DoctorElement(id: 1, name: "A", address: "A", email: "A", phone: "A"))
+                doctors.append(Healthub.API.Types.Response.GetDoctorsByExamName.DoctorElement(id: 2, name: "B", address: "B", email: "B", phone: "B"))
+                let response = Healthub.API.Types.Response.GetDoctorsByExamName(doctors: doctors )
+                callback?(.success( response as! Response ))
+            }else{
+                let response = Healthub.API.Types.Response.GetDoctorsByExamName(doctors: [] )
+                callback?(.success( response as! Response ))
+            }
         default:
             print("else")
         }

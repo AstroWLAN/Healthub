@@ -219,6 +219,86 @@ final class ReservationsRepositoryTests: XCTestCase {
         }
     }
     
-    func testGetAvailableDates(){}
-
+    func testGetAvailableDates(){
+        let exp = expectation(description: "Test getAvailableDates")
+        let doctor_id = 1
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        reservationsRepository.getAvailableDates(doctor_id: doctor_id){(dates, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(dates)
+            XCTAssertEqual(dates?.count, 2)
+            XCTAssertEqual(dates?[0], formatter.date(from: "2022-01-01"))
+            XCTAssertEqual(dates?[1], formatter.date(from: "2022-01-02"))
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 3) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }
+        }
+    }
+    
+    func testGetAvailableSlots(){
+        
+        let exp = expectation(description: "test getAvailableSlots")
+        let doctor_id = 1
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        reservationsRepository.getAvailableSlots(date: formatter.date(from: "2022-01-01")!, doctor_id: doctor_id, examinationType_id: 1){(slots, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(slots)
+            XCTAssertEqual(slots?.count, 4)
+            XCTAssertEqual(slots?[0], "10:00")
+            XCTAssertEqual(slots?[3], "15:15")
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }
+        }
+    }
+    
+    func testGetDoctorByExamName(){
+        let exam_name = "vaccination"
+        let exp = expectation(description: "test getDoctorByExamName")
+        reservationsRepository.getDoctorsByExamName(exam_name: exam_name){(doctors, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(doctors)
+            XCTAssertEqual(doctors?.count, 2)
+            XCTAssertEqual(doctors?[0].id, 1)
+            XCTAssertEqual(doctors?[0].name, "A")
+            XCTAssertEqual(doctors?[1].id, 2)
+            XCTAssertEqual(doctors?[1].name, "B")
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }
+        }
+        
+    }
+    
+    func testGetDoctorByExamNameEmpty(){
+        let exam_name = "specialist"
+        let exp = expectation(description: "test getDoctorByExamName empty")
+        reservationsRepository.getDoctorsByExamName(exam_name: exam_name){(doctors, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(doctors)
+            XCTAssertEqual(doctors?.count, 0)
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }
+        }
+        
+    }
 }

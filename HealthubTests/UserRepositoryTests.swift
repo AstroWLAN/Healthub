@@ -183,8 +183,49 @@ final class UserRepositoryTests: XCTestCase {
         
     }
     
-    func testRegisterUser(){}
+    func testRegisterUser(){
+        let email = "test@test.it"
+        let password = "test"
+        let exp = expectation(description: "register user test")
+        userRepository.registerUser(email: email, password: password){(success, error) in
+            XCTAssertNil(error, "Error is not null")
+            XCTAssertTrue(success!, "Success it not true")
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberRegister, 1)
+                XCTAssertEqual(self.mockClient.testEmail, email)
+                XCTAssertEqual(self.mockClient.testPassword, password)
+            }
+        }
+    }
     
-    func testRecover(){}
+    func testRecover(){
+        
+        let exp = expectation(description: "recover user password")
+        let email = "test2@test.it"
+        
+        userRepository.recover(email: email){(success, error) in
+            XCTAssertNil(error, "Error is not null")
+            XCTAssertTrue(success!, "Success it not true")
+            exp.fulfill()
+        }
+        
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberRecover, 1)
+                XCTAssertEqual(self.mockClient.testEmail, email)
+            }
+        }
+        
+        
+    }
 
 }

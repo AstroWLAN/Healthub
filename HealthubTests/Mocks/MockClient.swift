@@ -13,7 +13,11 @@ class MockClient: Healthub.ClientProtocol{
     private(set) var numberLogin = 0
     private(set) var numberLogout = 0
     private(set) var numberGetUser = 0
+    private(set) var numberRecover = 0
     private(set) var numberDeletePathology = 0
+    private(set) var numberRegister = 0
+    private(set) var testEmail: String!
+    private(set) var testPassword: String!
     private(set) var updatePatient: Healthub.API.Types.Request.UpdatePatient!
     private(set) var numberAddPathology = 0
     private(set) var addPathology : Healthub.API.Types.Request.AddPathology!
@@ -62,6 +66,20 @@ class MockClient: Healthub.ClientProtocol{
         case .updatePatient(_):
             self.updatePatient = body as!  Healthub.API.Types.Request.UpdatePatient
             callback?(.success( Healthub.API.Types.Response.GenericResponse(status: "OK") as! Response))
+        
+        case .createPatient:
+            self.numberRegister = self.numberRegister + 1
+            let patient = body as! Healthub.API.Types.Request.CreatePatient
+            self.testEmail = patient.email
+            self.testPassword = patient.password
+            callback?(.success( Healthub.API.Types.Response.GenericResponse(status: "OK") as! Response ))
+        
+        case .resetPassword(email: let email):
+            
+            self.numberRecover = self.numberRecover + 1
+            self.testEmail = email
+            callback?(.success( Healthub.API.Types.Response.GenericResponse(status: "OK") as! Response ))
+            
         default:
             print("else")
         }
@@ -100,6 +118,14 @@ class MockClient: Healthub.ClientProtocol{
             print("addReservation")
         case .deleteReservation(token: let token, reservation_id: let reservation_id):
             print("deleteReservation")
+        case .createPatient:
+            self.numberRegister = self.numberRegister + 1
+        case .resetPassword(email: let email):
+            
+            self.numberRecover = self.numberRecover + 1
+            self.testEmail = email
+            callback?(.success( Healthub.API.Types.Response.GenericResponse(status: "OK") as! Response ))
+       
         default:
             print("else")
         }
