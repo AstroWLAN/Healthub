@@ -182,5 +182,9 @@ final class UserRepositoryTests: XCTestCase {
         
         
     }
+    
+    func testRegisterUser(){}
+    
+    func testRecover(){}
 
 }

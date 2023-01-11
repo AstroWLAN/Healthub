@@ -89,6 +89,13 @@
 		249FF536292A79B0007C802F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF535292A79B0007C802F /* ProfileViewModel.swift */; };
 		24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
 		24AF4971296ECC2F002DFFA7 /* ContactRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF4970296ECC2F002DFFA7 /* ContactRepositoryTests.swift */; };
+		24AF4973296EF308002DFFA7 /* TherapyRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF4972296EF308002DFFA7 /* TherapyRepositoryTests.swift */; };
+		24AF4975296EF3A3002DFFA7 /* TherapyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF4974296EF3A3002DFFA7 /* TherapyViewModelTests.swift */; };
+		24AF4977296EF415002DFFA7 /* PathologyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF4976296EF415002DFFA7 /* PathologyViewModelTests.swift */; };
+		24AF4979296EF47A002DFFA7 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF4978296EF47A002DFFA7 /* ProfileViewModelTests.swift */; };
+		24AF497B296EF4CF002DFFA7 /* TicketViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF497A296EF4CF002DFFA7 /* TicketViewModelTests.swift */; };
+		24AF497D296EF558002DFFA7 /* SignUpViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF497C296EF558002DFFA7 /* SignUpViewModelTests.swift */; };
+		24AF497F296EF58D002DFFA7 /* ContactViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF497E296EF58D002DFFA7 /* ContactViewModelTests.swift */; };
 		24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */; };
 		24C1CCFE2928F93C0089F9A0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFD2928F93C0089F9A0 /* API.swift */; };
 		24C1CD002928FA010089F9A0 /* APITypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CCFF2928FA010089F9A0 /* APITypes.swift */; };
@@ -206,6 +213,13 @@
 		249FF531292A7801007C802F /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		249FF535292A79B0007C802F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		24AF4970296ECC2F002DFFA7 /* ContactRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepositoryTests.swift; sourceTree = "<group>"; };
+		24AF4972296EF308002DFFA7 /* TherapyRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepositoryTests.swift; sourceTree = "<group>"; };
+		24AF4974296EF3A3002DFFA7 /* TherapyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyViewModelTests.swift; sourceTree = "<group>"; };
+		24AF4976296EF415002DFFA7 /* PathologyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologyViewModelTests.swift; sourceTree = "<group>"; };
+		24AF4978296EF47A002DFFA7 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		24AF497A296EF4CF002DFFA7 /* TicketViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModelTests.swift; sourceTree = "<group>"; };
+		24AF497C296EF558002DFFA7 /* SignUpViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModelTests.swift; sourceTree = "<group>"; };
+		24AF497E296EF58D002DFFA7 /* ContactViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModelTests.swift; sourceTree = "<group>"; };
 		24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologiesRepositoryTests.swift; sourceTree = "<group>"; };
 		24C1CCFD2928F93C0089F9A0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		24C1CCFF2928FA010089F9A0 /* APITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITypes.swift; sourceTree = "<group>"; };
@@ -315,7 +329,14 @@
 				24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */,
 				2454E1D82938B17700AF0CE0 /* ReservationRepositoryTests.swift */,
 				24AF4970296ECC2F002DFFA7 /* ContactRepositoryTests.swift */,
+				24AF4972296EF308002DFFA7 /* TherapyRepositoryTests.swift */,
+				24AF4974296EF3A3002DFFA7 /* TherapyViewModelTests.swift */,
 				2495CB89293A093400DD4535 /* LoginViewModelTests.swift */,
+				24AF4976296EF415002DFFA7 /* PathologyViewModelTests.swift */,
+				24AF4978296EF47A002DFFA7 /* ProfileViewModelTests.swift */,
+				24AF497A296EF4CF002DFFA7 /* TicketViewModelTests.swift */,
+				24AF497C296EF558002DFFA7 /* SignUpViewModelTests.swift */,
+				24AF497E296EF58D002DFFA7 /* ContactViewModelTests.swift */,
 			);
 			path = HealthubTests;
 			sourceTree = "<group>";
@@ -857,8 +878,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2495CB88293A091600DD4535 /* MockUserRepository.swift in Sources */,
+				24AF4973296EF308002DFFA7 /* TherapyRepositoryTests.swift in Sources */,
+				24AF4975296EF3A3002DFFA7 /* TherapyViewModelTests.swift in Sources */,
 				2495CB8A293A093400DD4535 /* LoginViewModelTests.swift in Sources */,
+				24AF4979296EF47A002DFFA7 /* ProfileViewModelTests.swift in Sources */,
 				2454E1DB2938B19000AF0CE0 /* MockClientReservations.swift in Sources */,
+				24AF497B296EF4CF002DFFA7 /* TicketViewModelTests.swift in Sources */,
 				8536F55329690379008CFBD0 /* LoginUITests.swift in Sources */,
 				8536F55529690944008CFBD0 /* SignupUITests.swift in Sources */,
 				24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */,
@@ -866,9 +891,12 @@
 				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
 				8536F55729690A2D008CFBD0 /* RestoreUITest.swift in Sources */,
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
+				24AF4977296EF415002DFFA7 /* PathologyViewModelTests.swift in Sources */,
+				24AF497F296EF58D002DFFA7 /* ContactViewModelTests.swift in Sources */,
 				24AF4971296ECC2F002DFFA7 /* ContactRepositoryTests.swift in Sources */,
 				246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */,
 				240C3210296B162C0064E8CB /* MockDBHelper.swift in Sources */,
+				24AF497D296EF558002DFFA7 /* SignUpViewModelTests.swift in Sources */,
 				852F1A342946AFB400B57B18 /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

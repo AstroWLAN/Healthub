@@ -218,5 +218,7 @@ final class ReservationsRepositoryTests: XCTestCase {
             }
         }
     }
+    
+    func testGetAvailableDates(){}
 
 }
