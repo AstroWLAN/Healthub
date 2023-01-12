@@ -9,10 +9,13 @@ import Foundation
 import SwiftKeychainWrapper
 import CoreData
 @testable import Healthub
-struct MockUserRepository: Healthub.UserRepositoryProtocol{
+class MockUserRepository: Healthub.UserRepositoryProtocol{
     
     
     private(set) var user: Healthub.Patient
+    private(set) var testRegisterEmail: String = ""
+    private(set) var testRegisterPassword: String = ""
+    private(set) var testRecoverEmail: String = ""
     
     init(){
         let entity = NSEntityDescription.entity(forEntityName: "Patient", in: Healthub.CoreDataHelper.context)!
@@ -43,11 +46,20 @@ struct MockUserRepository: Healthub.UserRepositoryProtocol{
     }
     
     func registerUser(email: String, password: String, completionHandler: @escaping (Bool?, Healthub.API.Types.Error?) -> Void) {
-        //code
+        self.testRegisterEmail = email
+        self.testRegisterPassword = password
+        
+        completionHandler(true, nil)
+        
+        
+        
     }
     
     func recover(email: String, completionHandler: @escaping (Bool?, Error?) -> Void) {
         //recover
+        self.testRecoverEmail = email
+        
+        completionHandler(true, nil)
     }
     
     func doLogin(email: String, password: String, completionHandler: @escaping (Bool?, Healthub.API.Types.Error?) -> Void) {
