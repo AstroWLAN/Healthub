@@ -54,6 +54,46 @@ final class TherapyRepositoryTests: XCTestCase {
         }
     }
     
+    func testGetAllWithCache(){
+        let exp = expectation(description: "test getAll")
+        therapyRepository.getAll(force_reload: false) { therapies, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(therapies)
+            XCTAssertEqual(therapies!.count, 1)
+            XCTAssertEqual(therapies![0].drugs.count,1)
+            XCTAssertEqual(Array(therapies![0].drugs)[0].active_principle, "paracetamol")
+            
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetAll,1)
+            }
+        }
+        
+        let exp2 = expectation(description: "test getAll")
+        therapyRepository.getAll(force_reload: false) { therapies, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(therapies)
+            XCTAssertEqual(therapies!.count, 1)
+            XCTAssertEqual(therapies![0].drugs.count,1)
+            XCTAssertEqual(Array(therapies![0].drugs)[0].active_principle, "paracetamol")
+            
+            exp2.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetAll,1)
+            }
+        }
+    }
+    
     func testCreateTherapy(){
         let exp = expectation(description: "creation of a therapy")
         let name = "therapy test"

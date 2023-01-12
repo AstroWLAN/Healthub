@@ -21,6 +21,7 @@ final class LoginViewModelTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "access_token")
+        UserDefaults.standard.set(false, forKey: "isLogged")
     }
     
     func testLogin(){
@@ -29,6 +30,13 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssertNotNil(KeychainWrapper.standard.string(forKey: "access_token"))
         XCTAssertEqual(KeychainWrapper.standard.string(forKey: "access_token")!, "1234")
         XCTAssertEqual(UserDefaults.standard.bool(forKey: "isLogged"), true)
+    }
+    
+    func testLoginWithError(){
+        loginViewModel.doLogin(email: "email2", password: "password")
+        
+        XCTAssertEqual(UserDefaults.standard.bool(forKey: "isLogged"), false)
+        XCTAssertEqual(loginViewModel.hasError, true)
     }
     
     func testLogout(){

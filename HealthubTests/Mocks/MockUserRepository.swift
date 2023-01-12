@@ -63,8 +63,12 @@ class MockUserRepository: Healthub.UserRepositoryProtocol{
     }
     
     func doLogin(email: String, password: String, completionHandler: @escaping (Bool?, Healthub.API.Types.Error?) -> Void) {
-        let saveSuccessful: Bool = KeychainWrapper.standard.set("1234", forKey: "access_token")
-        completionHandler(true, nil)
+        if(email == "email2"){
+            completionHandler(false, Healthub.API.Types.Error.loginError(reason: "wrong credentials"))
+        }else{
+            let saveSuccessful: Bool = KeychainWrapper.standard.set("1234", forKey: "access_token")
+            completionHandler(true, nil)
+        }
     }
     
     func doLogout(completionHandler: @escaping (Bool?, Error?) -> Void) {

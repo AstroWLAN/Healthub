@@ -65,6 +65,25 @@ final class ContactViewModelTests: XCTestCase {
         
     }
     
+    func testFetchContactTwice(){
+        contactViewModel.fetchContacts(force_reload: false)
+        
+        XCTAssertEqual(contactViewModel.contacts.count, 2)
+        XCTAssertEqual(contactViewModel.contacts[0].id, 1)
+        XCTAssertEqual(contactViewModel.contacts[0].name, "nameA")
+        XCTAssertEqual(contactViewModel.contacts[1].id, 2)
+        XCTAssertEqual(contactViewModel.contacts[1].name, "nameB")
+        
+        contactViewModel.fetchContacts(force_reload: false)
+        
+        XCTAssertEqual(contactViewModel.contacts.count, 2)
+        XCTAssertEqual(contactViewModel.contacts[0].id, 1)
+        XCTAssertEqual(contactViewModel.contacts[0].name, "nameA")
+        XCTAssertEqual(contactViewModel.contacts[1].id, 2)
+        XCTAssertEqual(contactViewModel.contacts[1].name, "nameB")
+        
+    }
+    
     func testDeleteContact(){
         let doctor_id = 1
         contactViewModel.deleteContact(doctor_id: doctor_id)

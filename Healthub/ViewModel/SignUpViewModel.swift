@@ -40,15 +40,11 @@ class SignUpViewModel : ObservableObject {
         userRepository.registerUser(email: email, password: password){(success, error) in
             if let error = error{
                 switch error{
-                case .generic(reason: _):
-                    print(error)
-                case .server(reason: _):
-                    print(error)
                 case .unauthorized(reason: let reason):
                     self.errorType = reason
                 case .inter(reason: let reason):
                     self.errorType = reason
-                case .loginError(reason: _):
+                default:
                     print(error)
                 }
                 self.errorSignUp = true

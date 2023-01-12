@@ -52,6 +52,46 @@ final class ContactRepositoryTests: XCTestCase {
         
     }
     
+    func testGetAllWithCache(){
+        let exp = expectation(description: "Test getAll contacts")
+        contactRepository.getAll(force_reload : false){(contacts, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(contacts)
+            XCTAssertEqual(contacts!.count, 1)
+            XCTAssertEqual(contacts![0].id, 1)
+            XCTAssertEqual(contacts![0].name, "Gregory House")
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetContacts,1)
+            }
+        }
+        
+        let exp2 = expectation(description: "Test getAll contacts with cache")
+        contactRepository.getAll(force_reload : false){(contacts, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(contacts)
+            XCTAssertEqual(contacts!.count, 1)
+            XCTAssertEqual(contacts![0].id, 1)
+            XCTAssertEqual(contacts![0].name, "Gregory House")
+            exp2.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetContacts,1)
+            }
+        }
+        
+    }
+    
+    
     func testAddContact(){
         //add reservation
         let exp = expectation(description: "Test add contact")

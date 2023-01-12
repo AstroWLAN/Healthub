@@ -290,10 +290,78 @@ final class PathologiesRepositoryTests: XCTestCase {
             }
         }
 }
+    func testGetAllWithCache(){
+        //test
+        let exp = expectation(description: "Test GetAll")
+        pathologiesRepository.getAll(){ (pathologies, error) in
+            XCTAssertNil(error, "Error not nil.\(String(describing: error?.localizedDescription))")
+            XCTAssertEqual(pathologies!.count, 0)
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetPathologies, 1)
+            }
+        }
+        
+        let exp1 = expectation(description: "Test GetAll: add a pathology ")
+        let entity4 = NSEntityDescription.entity(forEntityName: "Pathology", in: Healthub.CoreDataHelper.context)!
+        let pathology = Pathology(entity: entity4, insertInto: nil)
+        pathology.id = 1
+        pathology.name = "Pathology"
+        pathologiesRepository.add(pathologyName: pathology.name){ (success, error) in
+            XCTAssertTrue(success!, "it was not possible to add pathology")
+            XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
+            exp1.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberAddPathology, 1)
+                XCTAssertEqual(self.mockClient.addPathology.name, "Pathology")
+            }
+        }
+        
+        let exp2 = expectation(description: "Test GetAll: Get Again")
+        pathologiesRepository.getAll(force_reload:false){ (pathologies, error) in
+            XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
+            XCTAssertEqual(pathologies!.count, 1)
+            XCTAssertEqual(pathologies![0].name, "Pathology")
+            exp2.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetPathologies, 2)
+            }
+            
+        }
+        
+        let exp3 = expectation(description: "Test GetAll: Get Again with cache")
+        pathologiesRepository.getAll(force_reload:false){ (pathologies, error) in
+            XCTAssertNil(error, "Error not nil. \(String(describing: error?.localizedDescription))")
+            XCTAssertEqual(pathologies!.count, 1)
+            XCTAssertEqual(pathologies![0].name, "Pathology")
+            exp3.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetPathologies, 2)
+            }
+            
+        }
         
         
-        
-        
-    
+}
 
 }

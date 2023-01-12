@@ -56,6 +56,49 @@ final class ReservationsRepositoryTests: XCTestCase {
         
     }
     
+    func testGetAllWithCache(){
+        let exp = expectation(description: "Test getAll reservations")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        reservationsRepository.getAll(force_reload : false){(reservations, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(reservations)
+            XCTAssertEqual(reservations!.count, 1)
+            XCTAssertEqual(reservations![0].examinationType.name, "visit")
+            XCTAssertEqual(reservations![0].doctor.name, "Gregory House")
+            XCTAssertEqual(reservations![0].date, formatter.date(from: "2022-11-29"))
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetReservations,1)
+            }
+        }
+        
+        let exp2 = expectation(description: "Test getAll reservations")
+        reservationsRepository.getAll(force_reload : false){(reservations, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(reservations)
+            XCTAssertEqual(reservations!.count, 1)
+            XCTAssertEqual(reservations![0].examinationType.name, "visit")
+            XCTAssertEqual(reservations![0].doctor.name, "Gregory House")
+            XCTAssertEqual(reservations![0].date, formatter.date(from: "2022-11-29"))
+            exp2.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+            if let error = error {
+                XCTFail("waitForExpectation errored: \(error)")
+            }else{
+                XCTAssertEqual(self.mockClient.numberGetReservations,1)
+            }
+        }
+        
+    }
+    
     func testAddReservation(){
         //add reservation
         let exp = expectation(description: "Test add reservation")
