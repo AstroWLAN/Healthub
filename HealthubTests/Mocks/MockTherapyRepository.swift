@@ -9,9 +9,15 @@ import Foundation
 import SwiftKeychainWrapper
 import CoreData
 @testable import Healthub
-struct MockTherapyRepository: Healthub.TherapyRepositoryProtocol{
+class MockTherapyRepository: Healthub.TherapyRepositoryProtocol{
     
-    private var therapies: [Healthub.Therapy] = []
+    
+    private(set) var therapies: [Healthub.Therapy] = []
+    private(set) var therapyName : String = ""
+    private(set) var therapyDuration : String = ""
+    private(set) var therapyComment: String = ""
+    private(set) var therapyDrugsIds : [Int16] = []
+    private(set) var therapyRemoveId: Int = 0
     
     init(){
         let entityDrug = NSEntityDescription.entity(forEntityName: "Drug", in: Healthub.CoreDataHelper.context)!
@@ -54,10 +60,17 @@ struct MockTherapyRepository: Healthub.TherapyRepositoryProtocol{
     
     func createTherapy(drug_ids: [Int16], duration: String, name: String, comment: String, completionHandler: @escaping (Bool?, Error?) -> Void) {
         
+        self.therapyName = name
+        self.therapyDuration = duration
+        self.therapyDrugsIds = drug_ids
+        self.therapyComment = comment
+        completionHandler(true, nil)
     }
     
     func removeTherapy(therapy_id: Int, completionHandler: @escaping (Bool?, Error?) -> Void) {
         
+        self.therapyRemoveId = therapy_id
+        completionHandler(true, nil)
     }
     
     

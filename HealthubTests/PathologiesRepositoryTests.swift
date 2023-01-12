@@ -139,7 +139,8 @@ final class PathologiesRepositoryTests: XCTestCase {
         }
         
         let exp1 = expectation(description: "Test delete")
-        let pathologyToDelete = Pathology(entity: Pathology().entity, insertInto: nil)
+        let entity2 = NSEntityDescription.entity(forEntityName: "Pathology", in: Healthub.CoreDataHelper.context)!
+        let pathologyToDelete = Pathology(entity: entity2, insertInto: nil)
         pathologyToDelete.id = 1
         pathologyToDelete.name = "Pathology"
 
