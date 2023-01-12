@@ -12,7 +12,7 @@ import CoreData
 struct MockUserRepository: Healthub.UserRepositoryProtocol{
     
     
-    private var user: Healthub.Patient
+    private(set) var user: Healthub.Patient
     
     init(){
         let entity = NSEntityDescription.entity(forEntityName: "Patient", in: Healthub.CoreDataHelper.context)!
@@ -28,7 +28,14 @@ struct MockUserRepository: Healthub.UserRepositoryProtocol{
     }
     
     func updateInformation(user: Healthub.Patient, completionHandler: @escaping (Bool?, Error?) -> Void) {
-        //code
+        self.user.email = user.email
+        self.user.name = user.name
+        self.user.sex = user.sex
+        self.user.dateOfBirth = user.dateOfBirth
+        self.user.fiscalCode = user.fiscalCode
+        self.user.height = user.height
+        self.user.weight = user.weight
+        self.user.phone = user.phone
     }
     
     func getUser(force_reload: Bool = false, completionHandler: @escaping (Healthub.Patient?, Error?) -> Void) {
