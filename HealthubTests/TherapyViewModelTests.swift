@@ -28,7 +28,16 @@ final class TherapyViewModelTests: XCTestCase {
     }
 
 
-    func testFetchDrugList(){}
+    func testFetchDrugList(){
+        let query = "query"
+        therapyViewModel.fetchDrugList(query: query)
+        XCTAssertEqual(therapyRepository.testQuery, query)
+        XCTAssertEqual(therapyViewModel.drugs.count, 2)
+        XCTAssertEqual(therapyViewModel.drugs[0].id, 1)
+        XCTAssertEqual(therapyViewModel.drugs[0].active_principle, "A")
+        XCTAssertEqual(therapyViewModel.drugs[1].id, 2)
+        XCTAssertEqual(therapyViewModel.drugs[1].active_principle, "B")
+    }
     
     func testFetchTherapies(){
         therapyViewModel.fetchTherapies()

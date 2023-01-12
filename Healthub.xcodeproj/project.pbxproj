@@ -112,6 +112,7 @@
 		24D09CBA295067FF00E88DBC /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D09CB9295067FF00E88DBC /* Gender.swift */; };
 		24D420DF2938BC090090A42D /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420DE2938BC090090A42D /* Doctor.swift */; };
 		24D420E12938BC170090A42D /* ExaminationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D420E02938BC170090A42D /* ExaminationType.swift */; };
+		24D9F8842970110400F8340B /* MockPathologyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9F8832970110400F8340B /* MockPathologyRepository.swift */; };
 		24DC3B0C2957646900EE7FBC /* ConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC3B0B2957646900EE7FBC /* ConnectionProvider.swift */; };
 		24DC3B0F2957649400EE7FBC /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */; };
 		24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
@@ -238,6 +239,7 @@
 		24D09CB9295067FF00E88DBC /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		24D420DE2938BC090090A42D /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
 		24D420E02938BC170090A42D /* ExaminationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationType.swift; sourceTree = "<group>"; };
+		24D9F8832970110400F8340B /* MockPathologyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPathologyRepository.swift; sourceTree = "<group>"; };
 		24DC3B0B2957646900EE7FBC /* ConnectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionProvider.swift; sourceTree = "<group>"; };
 		24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address2Coordinates.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				2495CB87293A091600DD4535 /* MockUserRepository.swift */,
 				24AF4980296F0A25002DFFA7 /* MockClientTherapy.swift */,
 				24AF4982296F1BB8002DFFA7 /* MockTherapyRepository.swift */,
+				24D9F8832970110400F8340B /* MockPathologyRepository.swift */,
 				240C320F296B162C0064E8CB /* MockDBHelper.swift */,
 				24AF4984296F1EDE002DFFA7 /* MockConnectivity.swift */,
 			);
@@ -905,6 +908,7 @@
 				8536F55529690944008CFBD0 /* SignupUITests.swift in Sources */,
 				24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */,
 				2454E1D92938B17700AF0CE0 /* ReservationRepositoryTests.swift in Sources */,
+				24D9F8842970110400F8340B /* MockPathologyRepository.swift in Sources */,
 				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
 				8536F55729690A2D008CFBD0 /* RestoreUITest.swift in Sources */,
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,

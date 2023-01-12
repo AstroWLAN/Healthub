@@ -6,11 +6,19 @@
 //
 
 import XCTest
+import CoreData
+import SwiftKeychainWrapper
+@testable import Healthub
 
 final class PathologyViewModelTests: XCTestCase {
+    
+    private var pathologyViewModel: Healthub.PathologyViewModel!
+    private var pathologyRepository: MockPathologyRepository!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        pathologyRepository = MockPathologyRepository()
+        pathologyViewModel = Healthub.PathologyViewModel(pathologiesRepository: pathologyRepository ,connectivityProvider: MockConnectivity(dbHelper: MockDBHelper()))
     }
 
     override func tearDownWithError() throws {
@@ -25,11 +33,32 @@ final class PathologyViewModelTests: XCTestCase {
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
 
-    func testFetchPathologies(){}
+    func testFetchPathologies(){
+        pathologyViewModel.fetchPathologies(force_reload: true)
+        
+        XCTAssertEqual(pathologyViewModel.pathologies.count, 2)
+        XCTAssertEqual(pathologyViewModel.pathologies[0].id, 1)
+        XCTAssertEqual(pathologyViewModel.pathologies[0].name, "pathologyA")
+        XCTAssertEqual(pathologyViewModel.pathologies[1].id, 2)
+        XCTAssertEqual(pathologyViewModel.pathologies[1].name, "pathologyB")
+        
+    }
     
-    func testAddPathology(){}
+    func testAddPathology(){
+        let pathology = "pathologyTest"
+        pathologyViewModel.addPathology(pathology: pathology)
+        
+        XCTAssertEqual(pathologyRepository.testAddPathology, pathology)
+        
+    }
     
-    func testRemovePathology(){}
+    func testRemovePathology(){
+        let position = 0
+        pathologyViewModel.fetchPathologies(force_reload: true)
+        
+        pathologyViewModel.removePathology(at: position)
+        XCTAssertEqual(pathologyRepository.testRemoveId, 1)
+    }
     
 
 }

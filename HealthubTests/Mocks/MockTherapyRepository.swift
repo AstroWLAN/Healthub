@@ -18,6 +18,8 @@ class MockTherapyRepository: Healthub.TherapyRepositoryProtocol{
     private(set) var therapyComment: String = ""
     private(set) var therapyDrugsIds : [Int16] = []
     private(set) var therapyRemoveId: Int = 0
+    private(set) var testQuery: String = ""
+    
     
     init(){
         let entityDrug = NSEntityDescription.entity(forEntityName: "Drug", in: Healthub.CoreDataHelper.context)!
@@ -51,7 +53,34 @@ class MockTherapyRepository: Healthub.TherapyRepositoryProtocol{
     }
     
     func getDrugList(query: String, completionHandler: @escaping ([Healthub.Drug]?, Error?) -> Void) {
+        var drugs: [Healthub.Drug] = []
+        let entityDrug = NSEntityDescription.entity(forEntityName: "Drug", in: Healthub.CoreDataHelper.context)!
+        let drug = Healthub.Drug(entity: entityDrug, insertInto: nil)
+        drug.id = 1
+        drug.ma_code = "A"
+        drug.active_principle = "A"
+        drug.denomination_and_packaging = "A"
+        drug.equivalence_group_code = "A"
+        drug.group_description = "A"
+        drug.ma_holder = "A"
         
+        drugs.append(drug)
+        
+        let entityDrug2 = NSEntityDescription.entity(forEntityName: "Drug", in: Healthub.CoreDataHelper.context)!
+        let drug2 = Healthub.Drug(entity: entityDrug2, insertInto: nil)
+        drug2.id = 2
+        drug2.ma_code = "B"
+        drug2.active_principle = "B"
+        drug2.denomination_and_packaging = "B"
+        drug2.equivalence_group_code = "B"
+        drug2.group_description = "B"
+        drug2.ma_holder = "B"
+        
+        drugs.append(drug2)
+        
+        self.testQuery = query
+        
+        completionHandler(drugs, nil)
     }
     
     func getAll(force_reload: Bool, completionHandler: @escaping ([Healthub.Therapy]?, Error?) -> Void) {

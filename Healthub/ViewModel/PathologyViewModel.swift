@@ -15,11 +15,14 @@ class PathologyViewModel : ObservableObject {
     private var hasError: Bool = false
     @Published var isLoadingPathologies = false
     private let pathologiesRepository: any PathologyRepositoryProcotol
+    private(set) var connectivityProvider: any ConnectionProviderProtocol
     
     var onError: ((String) -> Void)?
     
-    init(pathologiesRepository: any PathologyRepositoryProcotol){
+    init(pathologiesRepository: any PathologyRepositoryProcotol, connectivityProvider: any ConnectionProviderProtocol){
         self.pathologiesRepository = pathologiesRepository
+        self.connectivityProvider = connectivityProvider
+        connectivityProvider.connect()
     }
     
     

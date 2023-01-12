@@ -12,7 +12,6 @@ import CoreData
 struct PathologyRepository : PathologyRepositoryProcotol{
     
     
-    typealias T = Pathology
     private var client: any ClientProtocol
     private var dbHelper: any DBHelperProtocol
     
