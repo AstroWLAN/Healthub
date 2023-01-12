@@ -18,7 +18,7 @@ final class ProfileViewModelTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         userRepository = MockUserRepository()
-        profileViewModel = Healthub.ProfileViewModel(userService: userRepository, connectivityProvider: MockConnectivity(dbHelper: MockDBHelper()))
+        profileViewModel = Healthub.ProfileViewModel(userRepository: userRepository, connectivityProvider: MockConnectivity(dbHelper: MockDBHelper()))
     }
 
     override func tearDownWithError() throws {

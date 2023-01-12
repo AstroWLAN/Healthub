@@ -115,6 +115,9 @@
 		24D9F8842970110400F8340B /* MockPathologyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9F8832970110400F8340B /* MockPathologyRepository.swift */; };
 		24D9F8862970170100F8340B /* MockContactRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9F8852970170100F8340B /* MockContactRepository.swift */; };
 		24D9F88829701B5B00F8340B /* MockReservationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9F88729701B5B00F8340B /* MockReservationRepository.swift */; };
+		24D9F88929705ECF00F8340B /* PathologyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C54EDB293279520021C783 /* PathologyRepositoryProtocol.swift */; };
+		24D9F88A29705ED300F8340B /* PathologyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FF522292A2873007C802F /* PathologyRepository.swift */; };
+		24D9F88B29705ED800F8340B /* PathologyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759602927DC330051BE0B /* PathologyViewModel.swift */; };
 		24DC3B0C2957646900EE7FBC /* ConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC3B0B2957646900EE7FBC /* ConnectionProvider.swift */; };
 		24DC3B0F2957649400EE7FBC /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */; };
 		24EDDCA4293A0DBA007CA69E /* Address2Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDCA3293A0DBA007CA69E /* Address2Coordinates.swift */; };
@@ -852,6 +855,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D9F88B29705ED800F8340B /* PathologyViewModel.swift in Sources */,
+				24D9F88A29705ED300F8340B /* PathologyRepository.swift in Sources */,
+				24D9F88929705ECF00F8340B /* PathologyRepositoryProtocol.swift in Sources */,
 				24AF4988296F216B002DFFA7 /* ConnectionProviderProtocol.swift in Sources */,
 				240C31E7296ACA6C0064E8CB /* Contact.swift in Sources */,
 				240C31E6296AC9BD0064E8CB /* ContactViewModel.swift in Sources */,

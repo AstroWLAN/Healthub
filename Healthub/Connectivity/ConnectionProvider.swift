@@ -157,7 +157,36 @@ class ConnectionProvider: NSObject, ConnectionProviderProtocol {
             }
         }
     }
-    func sendWatchMessagePathologies(_ msgData: [Pathology]) {}
+    func sendWatchMessagePathologies(_ msgData: [Pathology]) {
+        let currentTime = CFAbsoluteTimeGetCurrent()
+        
+        if lastMessage + 0.5 > currentTime{
+            print("Abort data")
+            return
+            
+        }
+        
+        if(session.isReachable == true){
+            NSKeyedArchiver.setClassName("Pathology Object", for: Pathology.self)
+            sendPathologies.removeAll()
+            for res in msgData{
+                sendPathologies.append(res)
+            }
+            var programData:Data = Data.init()
+            do{
+                programData = try NSKeyedArchiver.archivedData(withRootObject: sendPathologies, requiringSecureCoding: false)
+            }catch{
+                print(error)
+            }
+                
+            print("Sending message: \(Pathology.self) Object")
+            
+            let message: [String: Any] = ["Type": "Pathologies","Data": programData]
+            self.session.sendMessage(message, replyHandler: nil){ (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     func sendWatchMessage(_ msgData: [Reservation]){
         let currentTime = CFAbsoluteTimeGetCurrent()
@@ -273,6 +302,16 @@ class ConnectionProvider: NSObject, ConnectionProviderProtocol {
                     do{
                         let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Patient.self] , from: loadedData as! Data) as? [Patient]
                         self.receivedProfile = data![0]
+                    }catch{
+                        print(error)
+                    }
+                case "Pathologies":
+                    
+                   NSKeyedUnarchiver.setClass(Pathology.self, forClassName: "Pathology Object")
+                    
+                    do{
+                        let data = try NSKeyedUnarchiver.unarchivedArrayOfObjects(ofClasses: [Pathology.self] , from: loadedData as! Data) as? [Pathology]
+                        self.receivedPathologies = data!
                     }catch{
                         print(error)
                     }

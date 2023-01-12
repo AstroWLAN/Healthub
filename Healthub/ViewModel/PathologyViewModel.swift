@@ -14,13 +14,13 @@ class PathologyViewModel : ObservableObject {
     private(set) var pathologies: [Pathology] = []
     private var hasError: Bool = false
     @Published var isLoadingPathologies = false
-    private let pathologiesRepository: any PathologyRepositoryProcotol
+    private let pathologyRepository: any PathologyRepositoryProcotol
     private(set) var connectivityProvider: any ConnectionProviderProtocol
     
     var onError: ((String) -> Void)?
     
-    init(pathologiesRepository: any PathologyRepositoryProcotol, connectivityProvider: any ConnectionProviderProtocol){
-        self.pathologiesRepository = pathologiesRepository
+    init(pathologyRepository: any PathologyRepositoryProcotol, connectivityProvider: any ConnectionProviderProtocol){
+        self.pathologyRepository = pathologyRepository
         self.connectivityProvider = connectivityProvider
         connectivityProvider.connect()
     }
@@ -29,7 +29,7 @@ class PathologyViewModel : ObservableObject {
     func fetchPathologies(force_reload: Bool = false){
         //Retrieve token in order to prepare the request
         self.isLoadingPathologies = true
-        pathologiesRepository.getAll(force_reload: force_reload){ (pathologies, error) in
+        pathologyRepository.getAll(force_reload: force_reload){ (pathologies, error) in
             if let error = error{
                 print(error.localizedDescription)
             }
@@ -37,6 +37,8 @@ class PathologyViewModel : ObservableObject {
             if let pathologies = pathologies{
                 self.pathologies = pathologies
                 self.isLoadingPathologies = false
+                self.connectivityProvider.connect()
+                self.connectivityProvider.sendWatchMessagePathologies(pathologies)
             }
             
         }
@@ -46,7 +48,7 @@ class PathologyViewModel : ObservableObject {
     
     func addPathology(pathology: String){
         
-        pathologiesRepository.add(pathologyName: pathology){ (success, error) in
+        pathologyRepository.add(pathologyName: pathology){ (success, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -66,7 +68,7 @@ class PathologyViewModel : ObservableObject {
     func removePathology(at offset: Int){
         let pathology = pathologies[offset]
         
-        pathologiesRepository.delete(pathologyId: Int(pathology.id)){ (success, error) in
+        pathologyRepository.delete(pathologyId: Int(pathology.id)){ (success, error) in
             if let error = error {
                 print(error.localizedDescription)
             }

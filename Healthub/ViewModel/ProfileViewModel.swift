@@ -13,7 +13,7 @@ class ProfileViewModel: ObservableObject {
     private(set) var connectivityProvider: any ConnectionProviderProtocol
   
     @Published var patient: Patient?
-    private var userService: any UserRepositoryProtocol
+    private var userRepository: any UserRepositoryProtocol
     @Published var isLoading = false
     @Published var name : String = ""
     @Published var gender : Gender = .male
@@ -23,8 +23,8 @@ class ProfileViewModel: ObservableObject {
     @Published var fiscalCode : String = ""
     @Published var phone : String = ""
     
-    init(userService: any UserRepositoryProtocol, connectivityProvider: any ConnectionProviderProtocol){
-        self.userService = userService
+    init(userRepository: any UserRepositoryProtocol, connectivityProvider: any ConnectionProviderProtocol){
+        self.userRepository = userRepository
         self.connectivityProvider = connectivityProvider
         self.connectivityProvider.connect()
         
@@ -32,7 +32,7 @@ class ProfileViewModel: ObservableObject {
     
     func getPatient(force_reload: Bool = false){
         self.isLoading = true
-        userService.getUser(force_reload: force_reload){(patient, error) in
+        userRepository.getUser(force_reload: force_reload){(patient, error) in
                 if let error = error{
                     print(error)
                     self.hasError = true
@@ -63,7 +63,7 @@ class ProfileViewModel: ObservableObject {
         self.patient?.fiscalCode = self.fiscalCode
         self.patient?.phone = self.phone
         
-        userService.updateInformation(user: self.patient!){ (success, error) in
+        userRepository.updateInformation(user: self.patient!){ (success, error) in
             if let error = error{
                 print(error.localizedDescription)
             }else{

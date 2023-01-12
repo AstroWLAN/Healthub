@@ -11,8 +11,9 @@ import SwiftUI
 struct Watchub_Watch_AppApp: App {
     @StateObject var ticketViewModel = TicketViewModel(reservationsRepository: ReservationsRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider: ConnectionProvider.shared)
     @StateObject var therapyViewModel = TherapyViewModel(therapyRepository: TherapyRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider:  ConnectionProvider.shared)
-    @StateObject var profileViewModel = ProfileViewModel(userService: UserRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider:  ConnectionProvider.shared)
+    @StateObject var profileViewModel = ProfileViewModel(userRepository: UserRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider:  ConnectionProvider.shared)
     @StateObject var contactViewModel = ContactViewModel(contactRepository: ContactRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider:  ConnectionProvider.shared)
+    @StateObject var pathologyViewModel = PathologyViewModel(pathologyRepository: PathologyRepository(client: API.Client(dbHelper: CoreDataHelper()), dbHelper: CoreDataHelper()), connectivityProvider:  ConnectionProvider.shared)
     var body: some Scene {
         WindowGroup {
             WatchMain()
@@ -20,6 +21,7 @@ struct Watchub_Watch_AppApp: App {
               .environmentObject(therapyViewModel)
               .environmentObject(profileViewModel)
               .environmentObject(contactViewModel)
+              .environmentObject(pathologyViewModel)
         }
     }
     
