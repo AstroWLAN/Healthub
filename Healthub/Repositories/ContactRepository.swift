@@ -66,7 +66,7 @@ class ContactRepository: ContactRepositoryProtocol{
                             DispatchQueue.main.async {
                                 switch result{
                                 case .success(let success):
-                                    completionHandler(self.processDoctorList(success), nil)
+                                    completionHandler(self.processContactList(success), nil)
                                 case .failure(let failure):
                                     completionHandler(nil,failure)
                                 }
@@ -84,7 +84,7 @@ class ContactRepository: ContactRepositoryProtocol{
                     DispatchQueue.main.async {
                         switch result{
                         case .success(let success):
-                            completionHandler(self.processDoctorList(success), nil)
+                            completionHandler(self.processContactList(success), nil)
                         case .failure(let failure):
                             completionHandler(nil,failure)
                         }
@@ -149,7 +149,7 @@ class ContactRepository: ContactRepositoryProtocol{
             }
     }
     
-    private func processDoctorList(_ results: API.Types.Response.GetDoctorList)->[Contact]{
+    private func processContactList(_ results: API.Types.Response.GetDoctorList)->[Contact]{
         var local : [Contact] = []
         
         for result in results.doctors{
@@ -160,6 +160,25 @@ class ContactRepository: ContactRepositoryProtocol{
             doctor.address = result.address
             doctor.email = result.email
             doctor.phone = result.phone
+            dbHelper.create(doctor)
+            local.append(doctor)
+        }
+        
+        return local
+    }
+    
+    private func processDoctorList(_ results: API.Types.Response.GetDoctorList)->[Doctor]{
+        var local : [Doctor] = []
+        
+        for result in results.doctors{
+            let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: dbHelper.getContext())!
+            let doctor = Contact(entity: entity, insertInto: dbHelper.getContext())
+            doctor.id = Int16(result.id)
+            doctor.name = result.name
+            doctor.address = result.address
+            doctor.email = result.email
+            doctor.phone = result.phone
+            dbHelper.create(doctor)
             local.append(doctor)
         }
         

@@ -14,26 +14,29 @@ class MockContactRepository: Healthub.ContactRepositoryProtocol{
     private(set) var contacts: [Healthub.Contact] = []
     private(set) var testAddContact = 0
     private(set) var testRemoveContact = 0
+    private(set) var dbHelper: any DBHelperProtocol
     
-    init(){
-        let entityContact = NSEntityDescription.entity(forEntityName: "Contact", in: Healthub.CoreDataHelper.context)!
+    init(dbHelper: any DBHelperProtocol){
+        self.dbHelper = dbHelper
+        let entityContact = NSEntityDescription.entity(forEntityName: "Contact", in: MockDBHelper().getContext())!
         
-        let contact1 = Healthub.Contact(entity: entityContact, insertInto: nil)
+        let contact1 = Healthub.Contact(entity: entityContact, insertInto: MockDBHelper().getContext())
         contact1.id = 1
         contact1.name = "nameA"
         contact1.address = "addressA"
         contact1.phone = "phoneA"
         contact1.email = "emailA"
         
+        dbHelper.create(contact1)
         contacts.append(contact1)
         
-        let contact2 = Healthub.Contact(entity: entityContact, insertInto: nil)
+        let contact2 = Healthub.Contact(entity: entityContact, insertInto: MockDBHelper().getContext())
         contact2.id = 2
         contact2.name = "nameB"
         contact2.address = "addressB"
         contact2.phone = "phoneB"
         contact2.email = "emailB"
-        
+        dbHelper.create(contact2)
         contacts.append(contact2)
 }
     

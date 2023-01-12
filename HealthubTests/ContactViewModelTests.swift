@@ -17,7 +17,7 @@ final class ContactViewModelTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        contactRepository = MockContactRepository()
+        contactRepository = MockContactRepository(dbHelper: MockDBHelper())
         contactViewModel = Healthub.ContactViewModel(contactRepository: contactRepository ,connectivityProvider: MockConnectivity(dbHelper: MockDBHelper()))
     }
 
@@ -37,6 +37,25 @@ final class ContactViewModelTests: XCTestCase {
     
     func testFetchContacts(){
         contactViewModel.fetchContacts(force_reload: true)
+        
+        XCTAssertEqual(contactViewModel.contacts.count, 2)
+        XCTAssertEqual(contactViewModel.contacts[0].id, 1)
+        XCTAssertEqual(contactViewModel.contacts[0].name, "nameA")
+        XCTAssertEqual(contactViewModel.contacts[1].id, 2)
+        XCTAssertEqual(contactViewModel.contacts[1].name, "nameB")
+        
+    }
+    
+    func testFetchContactsWithoutReload(){
+        contactViewModel.fetchContacts(force_reload: true)
+        
+        XCTAssertEqual(contactViewModel.contacts.count, 2)
+        XCTAssertEqual(contactViewModel.contacts[0].id, 1)
+        XCTAssertEqual(contactViewModel.contacts[0].name, "nameA")
+        XCTAssertEqual(contactViewModel.contacts[1].id, 2)
+        XCTAssertEqual(contactViewModel.contacts[1].name, "nameB")
+        
+        contactViewModel.fetchContacts(force_reload: false)
         
         XCTAssertEqual(contactViewModel.contacts.count, 2)
         XCTAssertEqual(contactViewModel.contacts[0].id, 1)

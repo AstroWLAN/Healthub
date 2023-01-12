@@ -38,7 +38,7 @@ class ContactViewModel: ObservableObject{
     }
     
     func fetchContacts(force_reload: Bool){
-        contactRepository.getAll(force_reload: true){(contacts, error) in
+        contactRepository.getAll(force_reload: force_reload){(contacts, error) in
             if let error = error {
                 print(error)
             }else{
