@@ -66,9 +66,6 @@ class ProfileViewModel: ObservableObject {
         userRepository.updateInformation(user: self.patient!){ (success, error) in
             if let error = error{
                 print(error.localizedDescription)
-            }else{
-                self.getPatient(force_reload: true
-                )
             }
         }
     }

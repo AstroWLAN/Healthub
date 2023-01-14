@@ -61,7 +61,7 @@ class ConnectionProvider: NSObject, ConnectionProviderProtocol {
         
         self.session.activate()
     }
-    
+
     func sendMessage(message: [String: Any]) -> Void{
         session.sendMessage(message, replyHandler: nil){ (error) in
             print(error.localizedDescription)
@@ -218,8 +218,6 @@ class ConnectionProvider: NSObject, ConnectionProviderProtocol {
             }
         }
     }
-    
-    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         //code
         if let error = error {
@@ -229,7 +227,7 @@ class ConnectionProvider: NSObject, ConnectionProviderProtocol {
         }
     }
     
-    #if os(iOS)
+#if os(iOS)
     func sessionDidBecomeInactive(_ session: WCSession) {
         //on temporary lose connection
         print("inactive")

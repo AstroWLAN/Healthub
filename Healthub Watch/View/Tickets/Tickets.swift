@@ -34,9 +34,7 @@ struct Tickets: View {
     
     var body : some View {
         // Display user tickets
-        if ticketViewModel.connectivityProvider.received.isEmpty {
-            Text("\(ticketViewModel.connectivityProvider.received.count)")
-            Image("TicketsPlaceholder")
+        if ticketViewModel.connectivityProvider.received.isEmpty {            Image("TicketsPlaceholder")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 140)

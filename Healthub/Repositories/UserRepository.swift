@@ -36,6 +36,7 @@ class UserRepository: UserRepositoryProtocol{
                     switch result{
                     case .success(let success):
                         completionHandler(success.status == "OK", nil)
+                        self.dbHelper.update(user)
                     case .failure(let failure):
                         completionHandler(nil,failure)
                     }
@@ -72,7 +73,7 @@ class UserRepository: UserRepositoryProtocol{
                                     patient.height = Int16(success.height)
                                     patient.weight = success.weight
                                     patient.phone = success.phone
-                                    
+                                    self.dbHelper.create(patient)
                                     completionHandler(patient, nil)
                                 case .failure(let failure):
                                     completionHandler(nil,failure)
@@ -194,6 +195,7 @@ class UserRepository: UserRepositoryProtocol{
                                 self.dbHelper.deleteAllEntries(entity: "Reservation")
                                 self.dbHelper.deleteAllEntries(entity: "Therapy")
                                 self.dbHelper.deleteAllEntries(entity: "Doctor")
+                                self.dbHelper.deleteAllEntries(entity: "Contact")
                                 self.dbHelper.deleteAllEntries(entity: "Drug")
                                 UserDefaults.standard.set(false, forKey: "isLogged")
                                 UserDefaults.standard.synchronize()

@@ -21,6 +21,7 @@ class CoreDataHelper: DBHelperProtocol{
     func create(_ object: NSManagedObject) {
         
         do{
+            getContext().insert(object)
             try getContext().save()
         } catch {
             fatalError("error saving a context while creating an object")
