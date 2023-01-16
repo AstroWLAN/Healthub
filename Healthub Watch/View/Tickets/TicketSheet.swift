@@ -54,7 +54,7 @@ struct TicketSheet: View {
             if ticketMarkers.isEmpty == false{
                 MapView(ticketRegion: $ticketRegion, ticketMarkers: $ticketMarkers, ticketAddress: $ticketAddress)
             }else{
-                Text("nothing")
+                Text("nothing to show")
             }
         
         }.onAppear(perform:{
