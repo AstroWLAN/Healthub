@@ -63,9 +63,10 @@ final class LoginUITests: XCTestCase {
         app.launch()
         
         // UI Objects
-        let signupHyperlink = app.staticTexts["SignupHyperlink"]
         
-        // Assertions
+        let signupHyperlink = app.buttons["SignupHyperlink"]
+        //print(XCUIApplication().debugDescription)
+        
         XCTAssertTrue(signupHyperlink.waitForExistence(timeout: timer))
         XCTAssertTrue(signupHyperlink.isHittable)
     }

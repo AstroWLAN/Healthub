@@ -41,6 +41,7 @@ struct WelcomeView: View {
                             .foregroundColor(Color.accentColor)
                             .font(.system(size: 15, weight: .bold))
                     }
+                    
                 }
                 .padding(.bottom,20)
             }
