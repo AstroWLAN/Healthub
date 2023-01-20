@@ -37,10 +37,12 @@ struct LoginView: View {
                                 .textContentType(.emailAddress)
                                 .keyboardType(.emailAddress)
                                 .padding(.bottom, 10)
+                                .accessibility(identifier: "UsernameField")
                             SecureField("Password", text: $password)
                                 .focused($objectFocused, equals: .codeword)
                                 .textContentType(.password)
                                 .keyboardType(.default)
+                                .accessibility(identifier: "PasswordField")
                         }
                         .autocorrectionDisabled(true)
                         .textInputAutocapitalization(.never)
@@ -63,6 +65,7 @@ struct LoginView: View {
                         .buttonStyle(.borderedProminent)
                         .padding(.bottom, 20)
                         .disabled(email.isEmpty || password.isEmpty)
+                        .accessibility(identifier: "LoginButton")
                     }
                     .background {
                         RoundedRectangle(cornerRadius: 18)
@@ -74,8 +77,9 @@ struct LoginView: View {
                         Text("Forgotten Password? ")
                             .foregroundColor(Color(.systemGray2))
                             .font(.system(size: 15, weight: .medium))
-                        NavigationLink(destination: RecoverView()){
+                        NavigationLink(destination: RecoverView()) {
                             Text("Restore")
+                                .accessibility(identifier: "RestoreHyperlink")
                                 .foregroundColor(Color.accentColor)
                                 .font(.system(size: 15, weight: .bold))
                         }

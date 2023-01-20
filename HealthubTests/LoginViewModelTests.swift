@@ -26,7 +26,6 @@ final class LoginViewModelTests: XCTestCase {
     
     func testLogin(){
         loginViewModel.doLogin(email: "email", password: "password")
-        
         XCTAssertNotNil(KeychainWrapper.standard.string(forKey: "access_token"))
         XCTAssertEqual(KeychainWrapper.standard.string(forKey: "access_token")!, "1234")
         XCTAssertEqual(UserDefaults.standard.bool(forKey: "isLogged"), true)

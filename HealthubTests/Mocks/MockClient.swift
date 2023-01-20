@@ -130,8 +130,4 @@ class MockClient: Healthub.ClientProtocol{
             print("else")
         }
     }
-    
-    
-    
-    
 }

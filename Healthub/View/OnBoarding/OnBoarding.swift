@@ -60,6 +60,7 @@ struct OnBoardingView: View {
             .tabViewStyle(.page)
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode:.always))
             .frame(height: 400)
+            .accessibility(identifier: "FeaturesTabView")
             Spacer()
             Button(
                 action: {

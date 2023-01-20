@@ -8,6 +8,7 @@ struct MainView: View {
     @AppStorage("isLogged") var isLogged : Bool = false
     
     var body: some View {
+        
         if(isLogged == false){ WelcomeView() }
         else{
             VStack{

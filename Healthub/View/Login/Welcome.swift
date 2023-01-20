@@ -23,6 +23,7 @@ struct WelcomeView: View {
                     HStack(spacing: 0) {
                         Image(systemName: "envelope")
                         Text(" Continue with Email")
+                            .accessibility(identifier: "ContinueWithEmailButton")
                     }
                     .font(.system(size: 15,weight: .medium))
                     .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
@@ -36,6 +37,7 @@ struct WelcomeView: View {
                         .font(.system(size: 15, weight: .medium))
                     NavigationLink(destination: SignupView()){
                         Text("Signup")
+                            .accessibility(identifier: "SignupHyperlink")
                             .foregroundColor(Color.accentColor)
                             .font(.system(size: 15, weight: .bold))
                     }
