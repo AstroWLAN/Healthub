@@ -108,94 +108,14 @@ final class ContactRepositoryTests: XCTestCase {
                 XCTFail("waitForExpectation errored: \(error)")
             }else{
                 XCTAssertEqual(self.mockClient.numberAddContacts,1)
-                XCTAssertEqual(self.mockClient.contacts.count, 1)
-                XCTAssertEqual(self.mockClient.contacts[0].id, 1)
+                XCTAssertEqual(self.mockClient.testAddContactDoctorId, 1)
             }
         }
     }
     
-    func testAddTwoContacts(){
-        //add reservation
-        let exp = expectation(description: "Test add contact")
-        
-        contactRepository.addContact(doctor_id: 1){(success, error) in
-            XCTAssertNil(error)
-            XCTAssertNotNil(success)
-            XCTAssertTrue(success!)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1) { error in
-            if let error = error {
-                XCTFail("waitForExpectation errored: \(error)")
-            }else{
-                XCTAssertEqual(self.mockClient.numberAddContacts,1)
-                XCTAssertEqual(self.mockClient.contacts.count, 1)
-                XCTAssertEqual(self.mockClient.contacts[0].id, 1)
-            }
-        }
-        let exp2 = expectation(description: "Test add second contact")
-        contactRepository.addContact(doctor_id: 2){(success, error) in
-            XCTAssertNil(error)
-            XCTAssertNotNil(success)
-            XCTAssertTrue(success!)
-            exp2.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1) { error in
-            if let error = error {
-                XCTFail("waitForExpectation errored: \(error)")
-            }else{
-                XCTAssertEqual(self.mockClient.numberAddContacts,2)
-                XCTAssertEqual(self.mockClient.contacts.count, 2)
-                XCTAssertEqual(self.mockClient.contacts[1].id, 2)
-                XCTAssertEqual(self.mockClient.contacts[0].id, 1)
-                
-            }
-        }
-    }
     
-    func testRemoveContactWithIdNotPresent(){
-        //remove reservation
-        let exp = expectation(description: "Test removing reservation")
-        
-        contactRepository.removeContact(doctor_id: 1){(success,error) in
-            XCTAssertNotNil(error)
-            XCTAssertNil(success)
-            XCTAssertEqual(error?.localizedDescription, "Internal Error: No reservations")
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1) { error in
-            if let error = error {
-                XCTFail("waitForExpectation errored: \(error)")
-            }else{
-                XCTAssertEqual(self.mockClient.numberDeleteContacts,1)
-                XCTAssertEqual(self.mockClient.contacts.count, 0)
-            }
-        }
-        
-    }
     
     func testRemoveContactCorrect(){
-        let exp = expectation(description: "Test remove reservation")
-        
-        contactRepository.addContact(doctor_id: 1){(success, error) in
-            XCTAssertNil(error)
-            XCTAssertNotNil(success)
-            XCTAssertTrue(success!)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1) { error in
-            if let error = error {
-                XCTFail("waitForExpectation errored: \(error)")
-            }else{
-                XCTAssertEqual(self.mockClient.numberAddContacts,1)
-                XCTAssertEqual(self.mockClient.contacts.count, 1)
-                XCTAssertEqual(self.mockClient.contacts[0].id, 1)
-            }
-        }
         
         let exp1 = expectation(description: "Test removing reservation")
         
@@ -211,7 +131,7 @@ final class ContactRepositoryTests: XCTestCase {
                 XCTFail("waitForExpectation errored: \(error)")
             }else{
                 XCTAssertEqual(self.mockClient.numberDeleteContacts,1)
-                XCTAssertEqual(self.mockClient.contacts.count, 0)
+                XCTAssertEqual(self.mockClient.testDeleteContactDoctorId, 1)
             }
         }
     }

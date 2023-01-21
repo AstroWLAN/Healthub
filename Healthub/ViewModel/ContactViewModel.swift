@@ -11,7 +11,11 @@ import Combine
 class ContactViewModel: ObservableObject{
     private let contactRepository: any ContactRepositoryProtocol
     private(set) var connectivityProvider: any ConnectionProviderProtocol
-    @Published var doctors: [Doctor] = []
+    @Published var doctors: [Doctor] = []{
+        willSet {
+            objectWillChange.send()
+        }
+    }
     @Published var contacts: [Contact] = []{
         willSet {
             objectWillChange.send()

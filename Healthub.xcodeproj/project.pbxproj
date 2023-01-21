@@ -74,6 +74,14 @@
 		246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */; };
 		246AC23329351B05004FAE20 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AC23229351B05004FAE20 /* MockClient.swift */; };
 		2480CD642934CA08004701F6 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */; };
+		2485FEAA297BE92000B61125 /* ContactViewModelIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FEA9297BE92000B61125 /* ContactViewModelIntegrationTests.swift */; };
+		2485FEAC297BE98C00B61125 /* MockClientContactIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FEAB297BE98C00B61125 /* MockClientContactIntegration.swift */; };
+		2485FEAE297BFFCB00B61125 /* LoginViewModelIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FEAD297BFFCB00B61125 /* LoginViewModelIntegrationTests.swift */; };
+		2485FEB0297BFFE600B61125 /* PathologyViewModelIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FEAF297BFFE600B61125 /* PathologyViewModelIntegrationTests.swift */; };
+		2485FEB2297C000200B61125 /* TicketViewModelIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FEB1297C000200B61125 /* TicketViewModelIntegrationTests.swift */; };
+		2485FEB4297C002300B61125 /* SignUpViewModelIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FEB3297C002300B61125 /* SignUpViewModelIntegrationTests.swift */; };
+		2485FEB6297C003F00B61125 /* ProfileViewModelintegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FEB5297C003F00B61125 /* ProfileViewModelintegrationTests.swift */; };
+		2485FEB8297C005B00B61125 /* TherapyViewModelIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FEB7297C005B00B61125 /* TherapyViewModelIntegrationTests.swift */; };
 		24889471295D8923002215A7 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24889470295D8923002215A7 /* CoreDataHelper.swift */; };
 		24889473295D8971002215A7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24889472295D8971002215A7 /* CoreData.framework */; };
 		24889474295D89B1002215A7 /* Pathology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241759622927DE220051BE0B /* Pathology.swift */; };
@@ -217,6 +225,14 @@
 		246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
 		246AC23229351B05004FAE20 /* MockClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
 		2480CD632934CA08004701F6 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
+		2485FEA9297BE92000B61125 /* ContactViewModelIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModelIntegrationTests.swift; sourceTree = "<group>"; };
+		2485FEAB297BE98C00B61125 /* MockClientContactIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClientContactIntegration.swift; sourceTree = "<group>"; };
+		2485FEAD297BFFCB00B61125 /* LoginViewModelIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelIntegrationTests.swift; sourceTree = "<group>"; };
+		2485FEAF297BFFE600B61125 /* PathologyViewModelIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathologyViewModelIntegrationTests.swift; sourceTree = "<group>"; };
+		2485FEB1297C000200B61125 /* TicketViewModelIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModelIntegrationTests.swift; sourceTree = "<group>"; };
+		2485FEB3297C002300B61125 /* SignUpViewModelIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModelIntegrationTests.swift; sourceTree = "<group>"; };
+		2485FEB5297C003F00B61125 /* ProfileViewModelintegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelintegrationTests.swift; sourceTree = "<group>"; };
+		2485FEB7297C005B00B61125 /* TherapyViewModelIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyViewModelIntegrationTests.swift; sourceTree = "<group>"; };
 		24889470295D8923002215A7 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		24889472295D8971002215A7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		24889476295D89E5002215A7 /* Persistence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Persistence.xcdatamodel; sourceTree = "<group>"; };
@@ -352,6 +368,7 @@
 		246AC22729351951004FAE20 /* HealthubTests */ = {
 			isa = PBXGroup;
 			children = (
+				2485FEA8297BE80600B61125 /* IntegrationTests */,
 				246AC23129351AEE004FAE20 /* Mocks */,
 				246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */,
 				24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */,
@@ -382,8 +399,23 @@
 				240C320F296B162C0064E8CB /* MockDBHelper.swift */,
 				24D9F88729701B5B00F8340B /* MockReservationRepository.swift */,
 				24AF4984296F1EDE002DFFA7 /* MockConnectivity.swift */,
+				2485FEAB297BE98C00B61125 /* MockClientContactIntegration.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		2485FEA8297BE80600B61125 /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				2485FEA9297BE92000B61125 /* ContactViewModelIntegrationTests.swift */,
+				2485FEB5297C003F00B61125 /* ProfileViewModelintegrationTests.swift */,
+				2485FEAD297BFFCB00B61125 /* LoginViewModelIntegrationTests.swift */,
+				2485FEB3297C002300B61125 /* SignUpViewModelIntegrationTests.swift */,
+				2485FEB1297C000200B61125 /* TicketViewModelIntegrationTests.swift */,
+				2485FEAF297BFFE600B61125 /* PathologyViewModelIntegrationTests.swift */,
+				2485FEB7297C005B00B61125 /* TherapyViewModelIntegrationTests.swift */,
+			);
+			path = IntegrationTests;
 			sourceTree = "<group>";
 		};
 		2488946F295D8902002215A7 /* Persistence */ = {
@@ -947,19 +979,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				2495CB88293A091600DD4535 /* MockUserRepository.swift in Sources */,
+				2485FEB8297C005B00B61125 /* TherapyViewModelIntegrationTests.swift in Sources */,
 				24AF4973296EF308002DFFA7 /* TherapyRepositoryTests.swift in Sources */,
+				2485FEB6297C003F00B61125 /* ProfileViewModelintegrationTests.swift in Sources */,
 				24AF4985296F1EDE002DFFA7 /* MockConnectivity.swift in Sources */,
 				24AF4975296EF3A3002DFFA7 /* TherapyViewModelTests.swift in Sources */,
 				24D9F8862970170100F8340B /* MockContactRepository.swift in Sources */,
+				2485FEB0297BFFE600B61125 /* PathologyViewModelIntegrationTests.swift in Sources */,
 				2495CB8A293A093400DD4535 /* LoginViewModelTests.swift in Sources */,
 				24AF4981296F0A25002DFFA7 /* MockClientTherapy.swift in Sources */,
 				24D9F88829701B5B00F8340B /* MockReservationRepository.swift in Sources */,
+				2485FEAE297BFFCB00B61125 /* LoginViewModelIntegrationTests.swift in Sources */,
 				24AF4979296EF47A002DFFA7 /* ProfileViewModelTests.swift in Sources */,
 				24AF4983296F1BB9002DFFA7 /* MockTherapyRepository.swift in Sources */,
 				2454E1DB2938B19000AF0CE0 /* MockClientReservations.swift in Sources */,
+				2485FEB2297C000200B61125 /* TicketViewModelIntegrationTests.swift in Sources */,
 				24AF497B296EF4CF002DFFA7 /* TicketViewModelTests.swift in Sources */,
 				24AA106E293A424C00CF374E /* Address2Coordinates.swift in Sources */,
 				2454E1D92938B17700AF0CE0 /* ReservationRepositoryTests.swift in Sources */,
+				2485FEAA297BE92000B61125 /* ContactViewModelIntegrationTests.swift in Sources */,
 				24D9F8842970110400F8340B /* MockPathologyRepository.swift in Sources */,
 				24B4216829352E3A0045489E /* PathologiesRepositoryTests.swift in Sources */,
 				246AC23329351B05004FAE20 /* MockClient.swift in Sources */,
@@ -969,7 +1007,9 @@
 				246AC230293519D6004FAE20 /* UserRepositoryTests.swift in Sources */,
 				240C3210296B162C0064E8CB /* MockDBHelper.swift in Sources */,
 				24AF497D296EF558002DFFA7 /* SignUpViewModelTests.swift in Sources */,
+				2485FEB4297C002300B61125 /* SignUpViewModelIntegrationTests.swift in Sources */,
 				852F1A342946AFB400B57B18 /* Notes.swift in Sources */,
+				2485FEAC297BE98C00B61125 /* MockClientContactIntegration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

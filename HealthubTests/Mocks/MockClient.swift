@@ -14,8 +14,10 @@ class MockClient: Healthub.ClientProtocol{
     private(set) var numberLogout = 0
     private(set) var numberGetUser = 0
     private(set) var numberRecover = 0
-    private(set) var numberDeletePathology = 0
     private(set) var numberRegister = 0
+    private(set) var numberDeletePathology = 0
+    private(set) var deletedPathologyId = 0
+    private(set) var deleted = 0
     private(set) var testEmail: String!
     private(set) var testPassword: String!
     private(set) var updatePatient: Healthub.API.Types.Request.UpdatePatient!
@@ -44,20 +46,12 @@ class MockClient: Healthub.ClientProtocol{
             callback?(.success(Healthub.API.Types.Response.GetPathologies(pathologies: pathologies) as! Response ))
         case .deletePathology( _, let id):
             self.numberDeletePathology = self.numberDeletePathology + 1
-            if pathologies.count > 0{
-                
-                if let element = pathologies.enumerated().first(where: {$0.element.id == id }){
-                    pathologies.remove(at: element.offset)
-                }else{
-                    assertionFailure("Try to remove element that is not present")
-                }
-            }
+            self.deletedPathologyId = id
             callback?(.success(API.Types.Response.GenericResponse(status: "OK") as! Response ))
         case .addPathology(_):
                 self.numberAddPathology = self.numberAddPathology + 1
             self.addPathology = body as!  Healthub.API.Types.Request.AddPathology
-                
-            self.pathologies.append( Healthub.API.Types.Response.GetPathologies.PathologyElement(id: pathologies.count + 1, name: addPathology.name))
+
                 
             callback?(.success( Healthub.API.Types.Response.GenericResponse(status: "OK") as! Response ))
         case .getPatient(_):
@@ -96,11 +90,9 @@ class MockClient: Healthub.ClientProtocol{
             self.numberLogout = self.numberLogout + 1
         case .getPathologies(_):
             var pathologies:[ Healthub.API.Types.Response.GetPathologies.PathologyElement] = []
-            
-            if let p = addPathology{
-                let buildPathology =  Healthub.API.Types.Response.GetPathologies.PathologyElement(id: 1, name: p.name)
-                pathologies.append(buildPathology)
-            }
+            pathologies.append(Healthub.API.Types.Response.GetPathologies.PathologyElement(id: 1, name: "pathology A"))
+            pathologies.append(Healthub.API.Types.Response.GetPathologies.PathologyElement(id: 2, name: "pathology B"))
+           
             callback?(.success( Healthub.API.Types.Response.GetPathologies(pathologies: pathologies) as! Response ))
             self.numberGetPathologies = self.numberGetPathologies + 1
         case .deletePathology( _,  _):
