@@ -32,7 +32,7 @@ struct TicketsView: View {
                         else {
                             
                             List {
-                                Section(header: Text(String())) {
+                                Section {
                                     ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element) { index,ticket in
                                         
                                         // Display details for the selected ticket

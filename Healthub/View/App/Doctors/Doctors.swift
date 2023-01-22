@@ -18,28 +18,39 @@ struct DoctorsView: View {
                 }
                 else {
                     List{
-                        ForEach(Array(contactViewModel.contacts.enumerated()), id: \.element) { index,doctor in
-                            HStack(alignment: .firstTextBaseline) {
-                                Label(String(), systemImage: "person.fill")
-                                VStack(alignment: .leading) {
-                                    Text(doctor.name!.capitalized)
-                                    Text(doctor.address!.capitalized)
-                                        .foregroundColor(Color(.systemGray2))
-                                        .font(.system(size: 15))
-                                    Text(doctor.phone!)
-                                        .foregroundColor(Color(.systemGray2))
-                                        .font(.system(size: 15))
-                                    Text(doctor.email!)
-                                        .foregroundColor(Color(.systemGray2))
-                                        .font(.system(size: 15))
+                        Section {
+                            ForEach(Array(contactViewModel.contacts.enumerated()), id: \.element) { index,doctor in
+                                HStack(alignment: .firstTextBaseline) {
+                                    Label(String(), systemImage: "person.fill")
+                                    VStack(alignment: .leading) {
+                                        Text(doctor.name!.capitalized)
+                                            .font(.system(size: 17,weight: .semibold))
+                                            .padding(.bottom, 2)
+                                        Text(doctor.address!.capitalized)
+                                            .foregroundColor(Color(.systemGray2))
+                                            .font(.system(size: 15))
+                                        Text(doctor.phone!)
+                                            .foregroundColor(Color(.systemGray2))
+                                            .font(.system(size: 15))
+                                        Text(doctor.email!)
+                                            .padding(.top, 2)
+                                            .foregroundColor(Color(.systemBlue))
+                                            .font(.system(size: 15, weight: .medium))
+                                            .onTapGesture {
+                                                // open email app
+                                            }
+                                    }
                                 }
-                            }.swipeActions{
-                                Button(
-                                    role: .destructive,
-                                    action: {
-                                        contactViewModel.deleteContact(doctor_id: Int(doctor.id))
-                                    },
-                                    label: { Image(systemName: "trash.fill") })
+                                .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                                .listRowSeparator(.hidden)
+                                .swipeActions{
+                                    Button(
+                                        role: .destructive,
+                                        action: {
+                                            contactViewModel.deleteContact(doctor_id: Int(doctor.id))
+                                        },
+                                        label: { Image(systemName: "trash.fill") })
+                                }
                             }
                         }
                     }
