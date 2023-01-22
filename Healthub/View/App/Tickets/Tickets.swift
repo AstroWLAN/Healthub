@@ -63,6 +63,10 @@ struct TicketsView: View {
                                 .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                                 .listRowSeparator(.hidden)
                             }
+                            .refreshable{
+                                // Refresh tickets list
+                                ticketViewModel.fetchTickets(force_reload: true)
+                            }
                             .labelStyle(Cubic())
                             .scrollIndicators(.hidden)
                             .scrollContentBackground(.hidden)

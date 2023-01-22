@@ -43,6 +43,11 @@ struct DoctorsView: View {
                             }
                         }
                     }
+                    .labelStyle(Cubic())
+                    .refreshable {
+                        // Refresh contact list
+                        contactViewModel.fetchContacts(force_reload: true)
+                    }
                 }
             }
             .sheet(isPresented: $displayDoctorsDatabase, onDismiss: {
