@@ -78,8 +78,8 @@ struct LoginView: View {
                             .foregroundColor(Color(.systemGray2))
                             .font(.system(size: 15, weight: .medium))
                         NavigationLink(destination: RecoverView()) {
-                            Text("Restore")
-                                .accessibility(identifier: "RestoreHyperlink")
+                            Text("Recover")
+                                .accessibility(identifier: "RecoverHyperlink")
                                 .foregroundColor(Color.accentColor)
                                 .font(.system(size: 15, weight: .bold))
                         }

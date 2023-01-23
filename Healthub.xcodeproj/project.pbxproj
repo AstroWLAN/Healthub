@@ -139,6 +139,9 @@
 		852F1A342946AFB400B57B18 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A322946AFB400B57B18 /* Notes.swift */; };
 		852F1A372946B09200B57B18 /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = 852F1A362946B09200B57B18 /* TextView */; };
 		852F1A392947E17000B57B18 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F1A382947E17000B57B18 /* Objects.swift */; };
+		852FA814297EFE91008655D5 /* TherapiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FA813297EFE91008655D5 /* TherapiesUITests.swift */; };
+		852FA816297EFEAC008655D5 /* ProfileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FA815297EFEAC008655D5 /* ProfileUITests.swift */; };
+		852FA818297EFED5008655D5 /* DoctorsUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FA817297EFED5008655D5 /* DoctorsUITest.swift */; };
 		8536F5512968F53D008CFBD0 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 8536F5502968F53D008CFBD0 /* SPIndicator */; };
 		857282FF293EC4A700AF993E /* DoctorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857282FE293EC4A700AF993E /* DoctorsDatabase.swift */; };
 		857A54F12922D34300413841 /* HealthubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A54F02922D34300413841 /* HealthubApp.swift */; };
@@ -282,6 +285,9 @@
 		852F1A2F2946241600B57B18 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		852F1A322946AFB400B57B18 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		852F1A382947E17000B57B18 /* Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
+		852FA813297EFE91008655D5 /* TherapiesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapiesUITests.swift; sourceTree = "<group>"; };
+		852FA815297EFEAC008655D5 /* ProfileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUITests.swift; sourceTree = "<group>"; };
+		852FA817297EFED5008655D5 /* DoctorsUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsUITest.swift; sourceTree = "<group>"; };
 		857282FE293EC4A700AF993E /* DoctorsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsDatabase.swift; sourceTree = "<group>"; };
 		857A54ED2922D34300413841 /* Healthub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A54F02922D34300413841 /* HealthubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthubApp.swift; sourceTree = "<group>"; };
@@ -514,6 +520,9 @@
 			children = (
 				8504DEC1297A9C4800C4E4DB /* LoginUITests.swift */,
 				8504DEC9297AF68F00C4E4DB /* TicketsUITests.swift */,
+				852FA813297EFE91008655D5 /* TherapiesUITests.swift */,
+				852FA817297EFED5008655D5 /* DoctorsUITest.swift */,
+				852FA815297EFEAC008655D5 /* ProfileUITests.swift */,
 			);
 			path = HealthubUITests;
 			sourceTree = "<group>";
@@ -1018,7 +1027,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8504DEC2297A9C4800C4E4DB /* LoginUITests.swift in Sources */,
+				852FA818297EFED5008655D5 /* DoctorsUITest.swift in Sources */,
+				852FA816297EFEAC008655D5 /* ProfileUITests.swift in Sources */,
 				8504DECA297AF68F00C4E4DB /* TicketsUITests.swift in Sources */,
+				852FA814297EFE91008655D5 /* TherapiesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1260,6 +1272,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphoneos*]" = TESTING;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};

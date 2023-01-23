@@ -30,7 +30,6 @@ struct TicketsView: View {
                         
                         // Tickets list
                         else {
-                            
                             List {
                                 Section {
                                     ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element) { index,ticket in
@@ -63,6 +62,7 @@ struct TicketsView: View {
                                 .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                                 .listRowSeparator(.hidden)
                             }
+                            .accessibility(identifier: "TicketsList")
                             .refreshable{
                                 // Refresh tickets list
                                 ticketViewModel.fetchTickets(force_reload: true)
@@ -87,6 +87,7 @@ struct TicketsView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text(currentDate.formatted(.dateTime.day().month(.wide)).capitalized + " " + currentDate.formatted(.dateTime.year()))
+                    .accessibility(identifier: "CurrentDate")
                     .font(.system(size: 17, weight: .medium))
                     .foregroundColor(Color(.systemGray))
                 }

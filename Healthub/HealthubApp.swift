@@ -44,6 +44,12 @@ struct HealthubApp: App {
                 .environmentObject(ticketViewModel)
                 .environmentObject(therapyViewModel)
                 .environmentObject(contactViewModel)
+                .onAppear{
+                    if ProcessInfo.processInfo.arguments.contains("testing") {
+                        UserDefaults.standard.set(false, forKey: "firstAppLaunch")
+                        UserDefaults.standard.set(false, forKey: "isLogged")
+                    }
+                }
         }
     }
 }

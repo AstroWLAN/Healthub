@@ -65,22 +65,18 @@ struct OnBoardingView: View {
             Button(
                 action: {
                     
-                    /* Request notifications permissions */
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-                        if (error != nil) { print(error!.localizedDescription) }
-                    }
-                        
                     // Disable OnBoarding TabView and dismisses it
                     UserDefaults.standard.set(false, forKey: "firstAppLaunch")
                     
                 },
                 label: {
-                    Text("Configure")
+                    Text("Continue")
                         .padding([.leading,.trailing],30)
                         .padding([.top,.bottom],5)
                         .font(.system(.headline))
                 }
             )
+            .accessibility(identifier: "ContinueButton")
             .buttonStyle(.borderedProminent)
             .tint(Color("AstroGray"))
             .padding(.bottom,20)
