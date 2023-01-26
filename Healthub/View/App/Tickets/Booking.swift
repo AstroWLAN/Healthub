@@ -88,6 +88,7 @@ struct BookingView: View {
                     .sheet(isPresented: $displayDateSheet) {
                         DayPicker(examinationDate: $selectedDate)
                             .presentationDetents([.height(200)])
+                        
                     }
                     HStack {
                         Button(

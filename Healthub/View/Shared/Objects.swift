@@ -83,7 +83,7 @@ struct DayPicker : View {
     @Binding var examinationDate : Date
     //.addingTimeInterval(86400)...
     var body : some View {
-        DatePicker(String(), selection: $examinationDate, in: ...Date(), displayedComponents: .date)
+        DatePicker(String(), selection: $examinationDate, in: Date.now..., displayedComponents: .date)
             .datePickerStyle(WheelDatePickerStyle())
             .labelsHidden()
     }
