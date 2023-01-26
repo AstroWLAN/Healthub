@@ -376,18 +376,7 @@
 			children = (
 				2485FEA8297BE80600B61125 /* IntegrationTests */,
 				246AC23129351AEE004FAE20 /* Mocks */,
-				246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */,
-				24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */,
-				2454E1D82938B17700AF0CE0 /* ReservationRepositoryTests.swift */,
-				24AF4970296ECC2F002DFFA7 /* ContactRepositoryTests.swift */,
-				24AF4972296EF308002DFFA7 /* TherapyRepositoryTests.swift */,
-				24AF4974296EF3A3002DFFA7 /* TherapyViewModelTests.swift */,
-				2495CB89293A093400DD4535 /* LoginViewModelTests.swift */,
-				24AF4976296EF415002DFFA7 /* PathologyViewModelTests.swift */,
-				24AF4978296EF47A002DFFA7 /* ProfileViewModelTests.swift */,
-				24AF497A296EF4CF002DFFA7 /* TicketViewModelTests.swift */,
-				24AF497C296EF558002DFFA7 /* SignUpViewModelTests.swift */,
-				24AF497E296EF58D002DFFA7 /* ContactViewModelTests.swift */,
+				24E29FAA2982773000D3FFC2 /* UnitTests */,
 			);
 			path = HealthubTests;
 			sourceTree = "<group>";
@@ -505,6 +494,25 @@
 				24DC3B0E2957649400EE7FBC /* WatchConnectivity.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24E29FAA2982773000D3FFC2 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				2495CB89293A093400DD4535 /* LoginViewModelTests.swift */,
+				24AF4976296EF415002DFFA7 /* PathologyViewModelTests.swift */,
+				24AF4978296EF47A002DFFA7 /* ProfileViewModelTests.swift */,
+				24AF497A296EF4CF002DFFA7 /* TicketViewModelTests.swift */,
+				24AF497C296EF558002DFFA7 /* SignUpViewModelTests.swift */,
+				24AF497E296EF58D002DFFA7 /* ContactViewModelTests.swift */,
+				246AC22F293519D6004FAE20 /* UserRepositoryTests.swift */,
+				24B4216729352E3A0045489E /* PathologiesRepositoryTests.swift */,
+				2454E1D82938B17700AF0CE0 /* ReservationRepositoryTests.swift */,
+				24AF4970296ECC2F002DFFA7 /* ContactRepositoryTests.swift */,
+				24AF4972296EF308002DFFA7 /* TherapyRepositoryTests.swift */,
+				24AF4974296EF3A3002DFFA7 /* TherapyViewModelTests.swift */,
+			);
+			path = UnitTests;
 			sourceTree = "<group>";
 		};
 		24EDDCA2293A0D9D007CA69E /* Utilities */ = {
