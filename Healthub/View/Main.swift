@@ -32,11 +32,11 @@ struct MainView: View {
                 .tint(Color("AstroGray"))
             }
             .onAppear(perform: {
-                ticketViewModel.fetchTickets(force_reload: true)
-                therapyViewModel.fetchTherapies(force_reload: true)
-                contactViewModel.fetchContacts(force_reload: true)
-                profileViewModel.getPatient(force_reload: true)
-                pathologiesViewModel.fetchPathologies(force_reload: true)
+                ticketViewModel.fetchTickets(force_reload: false)
+                therapyViewModel.fetchTherapies(force_reload: false)
+                contactViewModel.fetchContacts(force_reload: false)
+                profileViewModel.getPatient(force_reload: false)
+                pathologiesViewModel.fetchPathologies(force_reload: false)
                 
             })
             .sheet(isPresented: $firstAppLaunch) { OnBoardingView() }
