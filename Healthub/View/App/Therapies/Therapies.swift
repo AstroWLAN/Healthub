@@ -34,7 +34,7 @@ struct TherapiesView: View {
                                 .padding(.bottom, 80)
                         }
                         else {
-                            Section {
+                            Section(header: Text("Therapies")) {
                                 ForEach(Array(therapyViewModel.therapies.enumerated()), id: \.element) { index,therapy in
                                     Button(
                                         action: {

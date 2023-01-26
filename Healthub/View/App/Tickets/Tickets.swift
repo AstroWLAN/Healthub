@@ -31,7 +31,7 @@ struct TicketsView: View {
                         // Tickets list
                         else {
                             List {
-                                Section {
+                                Section(header: Text("Tickets")) {
                                     ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element) { index,ticket in
                                         
                                         // Display details for the selected ticket

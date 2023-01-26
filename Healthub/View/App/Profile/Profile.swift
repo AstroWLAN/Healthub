@@ -23,13 +23,13 @@ struct ProfileView: View {
             }
             else{
                 List {
-                    
                     // GENERALITIES section
                     Section(header: Text("Generalities")) {
                         // User Name
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "face.smiling.inverse")
                             TextField("Name", text: $profile.name)
+                                .accessibility(identifier: "NameField")
                                 .focused($objectFocused, equals: .name)
                                 .textContentType(.name)
                                 .keyboardType(.asciiCapable)
@@ -55,6 +55,7 @@ struct ProfileView: View {
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "barcode")
                             TextField("Fiscal Code", text: $profile.fiscalCode)
+                                .accessibility(identifier: "CodeField")
                                 .focused($objectFocused, equals: .code)
                                 .keyboardType(.asciiCapable)
                                 .onSubmit {
@@ -78,6 +79,7 @@ struct ProfileView: View {
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "phone.fill")
                             TextField("Phone", text: $profile.phone)
+                                .accessibility(identifier: "PhoneField")
                                 .focused($objectFocused, equals: .phone)
                                 .textContentType(.telephoneNumber)
                                 .keyboardType(.phonePad)
@@ -136,7 +138,10 @@ struct ProfileView: View {
                         }
                         
                         // User Pathologies
-                        NavigationLink(destination : PathologiesView()) { Label("Pathologies", systemImage: "allergens.fill") }
+                        NavigationLink(destination : PathologiesView()) {
+                            Label("Pathologies", systemImage: "allergens.fill")
+                            .accessibility(identifier: "Pathologies")
+                        }
                     }
                     .labelStyle(Cubic())
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
@@ -148,6 +153,7 @@ struct ProfileView: View {
                         // App Information
                         NavigationLink(destination: AppInformationView()) {
                             Label("Information", systemImage: "questionmark.app.fill")
+                                .accessibility(identifier: "Informations")
                                 .labelStyle(Cubic())
                         }
                         
@@ -159,12 +165,14 @@ struct ProfileView: View {
                                     .labelStyle(Cubic(glyphBackgroundColor: Color(.systemPink), textColor: Color(.systemPink)))
                             }
                         )
+                        .accessibility(identifier: "SignOut")
                         .buttonStyle(.plain)
                     }
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     .listRowSeparator(.hidden)
                     
                 }
+                .accessibility(identifier: "ProfileList")
                 .scrollIndicators(.hidden)
                 .navigationTitle("Profile")
                 .toolbar {

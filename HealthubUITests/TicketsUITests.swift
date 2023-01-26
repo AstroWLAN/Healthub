@@ -8,6 +8,10 @@
 import XCTest
 
 final class TicketsUITests: XCTestCase {
+    
+    let app = XCUIApplication()
+    let timer = 2.0
+    let longTimer = 10.0
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,20 +26,38 @@ final class TicketsUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+    func testTicketCreation() throws {
+        
+        app.launchArguments = ["testing"]
         app.launch()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        // User Inputs
+        let username = "testing@mail.com"
+        let password = "test"
+        
+        // UI Objects
+        let continueWithEmail = app.buttons["ContinueWithEmailButton"]
+        let loginButton = app.buttons["LoginButton"]
+        let usernameField = app.textFields["UsernameField"]
+        let passwordField = app.secureTextFields["PasswordField"]
+        let currentDate = app.staticTexts["CurrentDate"]
+        let ticketsList = app.collectionViews["TicketsList"]
+        let ticket = ticketsList.cells.element(boundBy: 0)
+        
+        // Login
+        continueWithEmail.tap()
+        XCTAssertTrue(loginButton.waitForExistence(timeout: timer))
+        XCTAssertTrue(usernameField.waitForExistence(timeout: timer))
+        XCTAssertTrue(passwordField.waitForExistence(timeout: timer))
+        usernameField.tap()
+        usernameField.typeText(username)
+        passwordField.tap()
+        passwordField.typeText(password)
+        loginButton.tap()
+        
+        // Navigates to the Profile Tab
+        XCTAssertTrue(currentDate.waitForExistence(timeout: longTimer))
+        XCTAssertTrue(ticketsList.waitForExistence(timeout: timer))
+        XCTAssertTrue(ticket.waitForExistence(timeout: timer))
     }
 }

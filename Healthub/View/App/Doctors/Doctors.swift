@@ -18,14 +18,14 @@ struct DoctorsView: View {
                 }
                 else {
                     List{
-                        Section {
+                        Section(header: Text("Doctors")) {
                             ForEach(Array(contactViewModel.contacts.enumerated()), id: \.element) { index,doctor in
                                 HStack(alignment: .firstTextBaseline) {
                                     Label(String(), systemImage: "person.fill")
-                                    VStack(alignment: .leading) {
+                                    VStack(alignment: .leading, spacing: 0) {
                                         Text(doctor.name!.capitalized)
                                             .font(.system(size: 17,weight: .semibold))
-                                            .padding(.bottom, 2)
+                                            .padding(.bottom, 8)
                                         Text(doctor.address!.capitalized)
                                             .foregroundColor(Color(.systemGray2))
                                             .font(.system(size: 15))
@@ -33,16 +33,14 @@ struct DoctorsView: View {
                                             .foregroundColor(Color(.systemGray2))
                                             .font(.system(size: 15))
                                         Text(doctor.email!)
-                                            .padding(.top, 2)
+                                            .padding(.top, 8)
                                             .foregroundColor(Color(.systemBlue))
-                                            .font(.system(size: 15, weight: .medium))
+                                            .font(.system(size: 15))
                                             .onTapGesture {
                                                 // open email app
                                             }
                                     }
                                 }
-                                .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                                .listRowSeparator(.hidden)
                                 .swipeActions{
                                     Button(
                                         role: .destructive,
@@ -53,6 +51,8 @@ struct DoctorsView: View {
                                 }
                             }
                         }
+                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                        .listRowSeparator(.hidden)
                     }
                     .labelStyle(Cubic())
                     .refreshable {

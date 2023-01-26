@@ -5,85 +5,95 @@ struct WatchMain: View {
         NavigationStack {
             List {
                 NavigationLink(destination: Tickets()) {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 0) {
                         ZStack {
-                            Circle().frame(width: 48)
-                                .foregroundColor(Color.pink)
+                            Circle().frame(width: 42)
+                                .foregroundColor(Color("AstroRed"))
                             Image(systemName: "ticket.fill")
-                                .font(.system(size: 24,weight: .bold))
+                                .font(.system(size: 21,weight: .bold))
                         }
+                        .padding(.bottom, 8)
                         Text("Tickets")
-                            .font(.system(size: 20,weight: .bold))
+                            .font(.system(size: 21,weight: .bold))
                         Text("Booked Examinations")
-                            .font(.system(size: 15,weight: .regular))
+                            .font(.system(size: 13,weight: .regular))
                             .foregroundColor(Color.gray)
                     }
-                    .padding(.vertical, 10)
+                    .padding(EdgeInsets(top: 12, leading: 6, bottom: 12, trailing: 0))
                 }
-                NavigationLink(destination: Therapies()) {
-                    VStack(alignment: .leading) {
-                        ZStack {
-                            Circle().frame(width: 48)
-                                .foregroundColor(Color.pink)
-                            Image(systemName: "pills.fill")
-                                .font(.system(size: 24,weight: .bold))
-                        }
-                        Text("Therapies")
-                            .font(.system(size: 20,weight: .bold))
-                        Text("Personal Prescriptions")
-                            .font(.system(size: 15,weight: .regular))
-                            .foregroundColor(Color.gray)
-                    }
-                    .padding(.vertical, 10)
+                .listItemTint(Color("AstroGray"))
+               NavigationLink(destination: Therapies()) {
+                   VStack(alignment: .leading, spacing: 0) {
+                       ZStack {
+                           Circle().frame(width: 42)
+                               .foregroundColor(Color("AstroRed"))
+                           Image(systemName: "pills.fill")
+                               .font(.system(size: 21,weight: .bold))
+                       }
+                       .padding(.bottom, 8)
+                       Text("Therapies")
+                           .font(.system(size: 21,weight: .bold))
+                       Text("Personal Prescriptions")
+                           .font(.system(size: 13,weight: .regular))
+                           .foregroundColor(Color.gray)
+                   }
+                   .padding(EdgeInsets(top: 12, leading: 6, bottom: 12, trailing: 0))
                 }
+                .listItemTint(Color("AstroGray"))
                 NavigationLink(destination: Pathologies()) {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 0) {
                         ZStack {
-                            Circle().frame(width: 48)
-                                .foregroundColor(Color.pink)
+                            Circle().frame(width: 42)
+                                .foregroundColor(Color("AstroRed"))
                             Image(systemName: "allergens.fill")
-                                .font(.system(size: 22,weight: .bold))
+                                .font(.system(size: 21,weight: .bold))
                         }
+                        .padding(.bottom, 8)
                         Text("Pathologies")
-                            .font(.system(size: 20,weight: .bold))
-                        Text("User Illnesses")
-                            .font(.system(size: 15,weight: .regular))
+                            .font(.system(size: 21,weight: .bold))
+                        Text("Personal Diseases")
+                            .font(.system(size: 13,weight: .regular))
                             .foregroundColor(Color.gray)
                     }
-                    .padding(.vertical, 10)
+                    .padding(EdgeInsets(top: 12, leading: 6, bottom: 12, trailing: 0))
                 }
+                .listItemTint(Color("AstroGray"))
                 NavigationLink(destination: Doctors()) {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 0) {
                         ZStack {
-                            Circle().frame(width: 48)
-                                .foregroundColor(Color.pink)
-                            Image(systemName: "stethoscope")
-                                .font(.system(size: 22,weight: .bold))
+                            Circle().frame(width: 42)
+                                .foregroundColor(Color("AstroRed"))
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 21,weight: .bold))
                         }
-                        Text("Doctors")
-                            .font(.system(size: 20,weight: .bold))
+                        .padding(.bottom, 8)
+                        Text("Contacts")
+                            .font(.system(size: 21,weight: .bold))
                         Text("Doctors Information")
-                            .font(.system(size: 15,weight: .regular))
+                            .font(.system(size: 13,weight: .regular))
                             .foregroundColor(Color.gray)
                     }
-                    .padding(.vertical, 10)
+                    .padding(EdgeInsets(top: 12, leading: 6, bottom: 12, trailing: 0))
                 }
+                .listItemTint(Color("AstroGray"))
                 NavigationLink(destination: Profile()) {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 0) {
                         ZStack {
-                            Circle().frame(width: 48)
-                                .foregroundColor(Color.pink)
+                            Circle().frame(width: 42)
+                                .foregroundColor(Color("AstroRed"))
                             Image(systemName: "figure.arms.open")
-                                .font(.system(size: 24,weight: .bold))
+                                .font(.system(size: 21,weight: .bold))
                         }
+                        .padding(.bottom, 8)
                         Text("Profile")
-                            .font(.system(size: 20,weight: .bold))
+                            .font(.system(size: 21,weight: .bold))
                         Text("Medical Records")
-                            .font(.system(size: 15,weight: .regular))
+                            .font(.system(size: 13,weight: .regular))
                             .foregroundColor(Color.gray)
                     }
-                    .padding(.vertical, 10)
+                    .padding(EdgeInsets(top: 12, leading: 6, bottom: 12, trailing: 0))
                 }
+                .listItemTint(Color("AstroGray"))
             }
             .listStyle(.carousel)
         }

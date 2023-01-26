@@ -1,44 +1,59 @@
 import SwiftUI
 
-/*struct Doctor: Hashable {
-    let name: String
-    let address: String
-}*/
-
-
 struct Doctors: View {
     
     @EnvironmentObject private var contactViewModel: ContactViewModel
-
     
     var body: some View {
-        
+        Group {
+            // Empty list placeholder
             if contactViewModel.connectivityProvider.receivedContacts.isEmpty {
-                // Doctors Placeholder
-                Text("Nothing to show here")
+                VStack(spacing: 0) {
+                    Image("DoctorsPlaceholder")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 220)
+                        .opacity(0.5)
+                        .padding(.vertical, 20)
+                    Capsule()
+                        .frame(width: 80, height: 30)
+                        .foregroundColor(Color("AstroGray"))
+                        .overlay(
+                            Text("Empty")
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundColor(Color(.lightGray))
+                        )
+                }
             }
             else {
                 List {
-                ForEach(contactViewModel.connectivityProvider.receivedContacts, id: \.self) { doctor in
-                    VStack(alignment: .leading) {
-                        Text(doctor.name!)
-                            .font(.system(size: 17, weight: .semibold))
-                        Text(doctor.address!)
-                            .font(.system(size: 15))
-                            .foregroundColor(.gray)
+                    // Header
+                    HStack {
+                        Text("Contacts")
+                            .foregroundColor(Color(.white))
+                            .font(.system(size: 24, weight: .heavy))
+                        Spacer()
+                        Image(systemName: "stethoscope")
+                            .font(.system(size: 21, weight: .bold))
+                    }
+                    .listItemTint(.clear)
+                    // Doctors
+                    ForEach(contactViewModel.connectivityProvider.receivedContacts, id: \.self) { doctor in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(doctor.name!)
+                                .font(.system(size: 17, weight: .regular))
+                            Text(doctor.address!.capitalized)
+                                .font(.system(size: 15))
+                                .foregroundColor(.gray)
+                            Text(doctor.email!)
+                                .font(.system(size: 15))
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
-                }
                 .listStyle(.elliptical)
-                .lineLimit(1)
-                .minimumScaleFactor(0.2)
             }
-        
-    }
-}
-
-struct Doctors_Previews: PreviewProvider {
-    static var previews: some View {
-        Doctors()
+        }
+        .navigationTitle("Hub")
     }
 }

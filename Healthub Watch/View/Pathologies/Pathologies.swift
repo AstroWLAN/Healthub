@@ -4,25 +4,48 @@ struct Pathologies: View {
     @EnvironmentObject private var pathologyViewModel: PathologyViewModel
     
     var body: some View {
-        
-        // Tutto è commentato perché si basa sulla ricezione delle patologie come nei ticket
-        // Nel foreach semplicemente stampare il nome della pathology 
-        
-    
-        if pathologyViewModel.connectivityProvider.receivedPathologies.isEmpty {
-            // Pathologies Placeholder
-            Text("Nothing to show")
-        }
-        else {
-            List {
-                ForEach(pathologyViewModel.connectivityProvider.receivedPathologies, id: \.self) { pathology in
-                    Text(pathology.name)
+       
+        Group {
+            // Empty list placeholder
+            if pathologyViewModel.connectivityProvider.receivedPathologies.isEmpty {
+                VStack(spacing: 0) {
+                    Image("PathologiesPlaceholder")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 180)
+                        .opacity(0.5)
+                        .padding(.vertical, 20)
+                    Capsule()
+                        .frame(width: 80, height: 30)
+                        .foregroundColor(Color("AstroGray"))
+                        .overlay(
+                            Text("Empty")
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundColor(Color(.lightGray))
+                        )
                 }
             }
-            .listStyle(.elliptical)
-            .onAppear(perform: {
-               // Connectivity
-            })
+            else {
+                List {
+                    // Header
+                    HStack {
+                        Text("Pathologies")
+                            .foregroundColor(Color(.white))
+                            .font(.system(size: 24, weight: .heavy))
+                        Spacer()
+                        Image(systemName: "microbe.fill")
+                            .font(.system(size: 22, weight: .bold))
+                    }
+                    .listItemTint(.clear)
+                    
+                    // Pathologies
+                    ForEach(pathologyViewModel.connectivityProvider.receivedPathologies, id: \.self) { pathology in
+                        Text(pathology.name.capitalized)
+                    }
+                }
+                .listStyle(.elliptical)
+            }
         }
+        .navigationTitle("Hub")
     }
 }

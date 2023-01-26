@@ -22,7 +22,50 @@ struct PathologiesView: View {
                     }
                 }
                 else {
-                    
+                    List {
+                        Section {
+                            HStack(spacing: 0) {
+                                Label(String(), systemImage: "microbe.fill")
+                                TextField("Pathology Name", text: $newPathology)
+                                    .onSubmit { insertPathology() }
+                                Spacer()
+                                ZStack {
+                                    Circle()
+                                        .frame(height: 20)
+                                        .opacity(0.2)
+                                    Image(systemName: "exclamationmark")
+                                        .font(.system(size: 10, weight: .bold))
+                                    
+                                }
+                                .foregroundColor(Color(.systemRed))
+                                .opacity(badPathologyName ? 1 : 0)
+                            }
+                        }
+                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                        .labelStyle(Cubic(glyphBackgroundColor: Color("AstroRed")))
+                        
+                        Section(header: Text("Pathologies")) {
+                            if pathologiesViewModel.pathologies.isEmpty {
+                                Label("The User is Perfectly Healthy", systemImage: "heart.fill")
+                                    .labelStyle(Cubic(glyphBackgroundColor: Color(.systemGreen)))
+                            }
+                            else {
+                                ForEach(Array(pathologiesViewModel.pathologies.enumerated()), id:\.element) { index,pathology in
+                                    Label(pathology.name.capitalized, systemImage: "microbe.fill")
+                                        .labelStyle(Cubic())
+                                        .swipeActions {
+                                            Button(
+                                                role: .destructive,
+                                                action: { pathologiesViewModel.removePathology(at: index) },
+                                                label: { Image(systemName: "trash.fill") }
+                                            )
+                                        }
+                                }
+                            }
+                        }
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                    }
                 }
             }
             .navigationBarTitle("Pathologies")

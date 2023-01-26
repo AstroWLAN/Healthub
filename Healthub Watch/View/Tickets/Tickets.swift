@@ -1,18 +1,6 @@
 import SwiftUI
 import MapKit
 
-// FakeTicket data structure
-/*struct Ticket : Hashable {
-    let title : String
-    let doctor : String
-    let date : Date
-    let time : Date
-    let latitude : Double
-    let longitude : Double
-}*/
-
-//test
-
 struct Marker: Identifiable {
     let id = UUID()
     var location: MapMarker
@@ -20,6 +8,7 @@ struct Marker: Identifiable {
 
 struct Tickets: View {
     
+    @EnvironmentObject private var ticketViewModel: TicketViewModel
     @State private var displayTicketDetails : Bool = false
     @State private var selectedTicket : Reservation?
     @State private var selectedTicketRegion : MKCoordinateRegion = MKCoordinateRegion()
@@ -27,72 +16,84 @@ struct Tickets: View {
     @State private var selectedTicketMarkers : [Marker] = []
     @State var ticketLatitude: CLLocationDegrees = CLLocationDegrees()
     @State var ticketLongitude: CLLocationDegrees = CLLocationDegrees()
-    @EnvironmentObject private var ticketViewModel: TicketViewModel
     let mapSpan : CLLocationDegrees = 0.01
     
-    // List of user tickets
-    
+    // USER TICKETS
     var body : some View {
-        // Display user tickets
-        if ticketViewModel.connectivityProvider.received.isEmpty {            Image("TicketsPlaceholder")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 140)
-                .opacity(0.7)
-        }
-        else {
-            // Tickets list
-            List {
-                
-                ForEach(ticketViewModel.connectivityProvider.received, id: \.self) { ticket in
-                    Button(
-                        action: {
-                            displayTicketDetails = true
-                            selectedTicket = ticket
-                            /*
-                             Function to generate the ticket textual address
-                             */
-                            selectedTicketAddress = ticket.doctor.address
-                        },
-                        label:  {
-                            HStack {
-                                Text(ticket.examinationType.name)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .font(.system(size: 13,weight: .medium))
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                    )
+        Group {
+            // Empty list placeholder
+            if ticketViewModel.connectivityProvider.received.isEmpty {
+                VStack(spacing: 0) {
+                    Image("TicketsPlaceholder")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 180)
+                        .opacity(0.5)
+                        .padding(.vertical, 20)
+                    Capsule()
+                        .frame(width: 80, height: 30)
+                        .foregroundColor(Color("AstroGray"))
+                        .overlay(
+                            Text("Empty")
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundColor(Color(.lightGray))
+                        )
                 }
             }
-            .listStyle(.elliptical)
-            .onAppear(perform: {
-                ticketViewModel.connectivityProvider.connect()
-            })
-            .sheet(isPresented: $displayTicketDetails) {
-                TicketSheet(ticket: $selectedTicket, ticketAddress: $selectedTicketAddress
-                                )
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
+            else {
+                List {
+                    // Header
+                    HStack {
+                        Text("Tickets")
+                            .foregroundColor(Color(.white))
+                        Spacer()
+                        HStack(spacing: 0) {
+                            Image(systemName: "barcode")
+                                .padding(.trailing, -10)
+                            Image(systemName: "barcode")
+                        }
+                    }
+                    .font(.system(size: 24, weight: .heavy))
+                    .listItemTint(.clear)
+                    // Tickets
+                    ForEach(ticketViewModel.connectivityProvider.received, id: \.self) { ticket in
                         Button(
                             action: {
-                                displayTicketDetails = false
+                                displayTicketDetails = true
+                                selectedTicket = ticket
+                                selectedTicketAddress = ticket.doctor.address
                             },
                             label:  {
-                                Text("Close")
-                                    .foregroundColor(.pink)
+                                HStack {
+                                    Text(ticket.examinationType.name.capitalized)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 13,weight: .medium))
+                                        .foregroundColor(.gray)
+                                }
                             }
                         )
                     }
                 }
+                .listStyle(.elliptical)
+                .onAppear(perform: { ticketViewModel.connectivityProvider.connect() })
+                .sheet(isPresented: $displayTicketDetails) {
+                    TicketSheet(ticket: $selectedTicket, ticketAddress: $selectedTicketAddress)
+                    .toolbar {
+                        // Customised CLOSE button
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button(
+                                action: { displayTicketDetails = false },
+                                label:  {
+                                    Text("Close")
+                                        .foregroundColor(Color("AstroRed"))
+                                }
+                            )
+                        }
+                    }
+                }
             }
         }
-    }
-}
-
-struct Tickets_Previews: PreviewProvider {
-    static var previews: some View {
-        Tickets()
+        .navigationTitle("Hub")
     }
 }

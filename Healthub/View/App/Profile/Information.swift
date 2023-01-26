@@ -41,6 +41,7 @@ struct AppInformationView: View {
                 .scaledToFit()
                 .frame(width: 150)
                 .opacity(0.3)
+                .accessibility(identifier: "RobotDraw")
             Text("Healthub")
                 .foregroundColor(Color(.systemGray))
                 .font(.system(.title2, weight: .bold))
