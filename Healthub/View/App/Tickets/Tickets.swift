@@ -109,7 +109,7 @@ struct TicketsView: View {
             perform: {
                 if(UserDefaults.standard.bool(forKey: "isLogged")) {
                     ticketViewModel.connectivityProvider.connect()
-                    ticketViewModel.fetchTickets()
+                    //ticketViewModel.fetchTickets()
                 }
             }
         )

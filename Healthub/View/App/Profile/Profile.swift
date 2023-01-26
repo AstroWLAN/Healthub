@@ -199,7 +199,10 @@ struct ProfileView: View {
             }
         }
         .tint(Color(.systemPink))
-        .onAppear(perform: { profile.getPatient() })
+        .onAppear(perform: {
+            //profile.getPatient()
+            
+        })
     }
     
     private func inputValidation(type : FocusableObject, input : String) {

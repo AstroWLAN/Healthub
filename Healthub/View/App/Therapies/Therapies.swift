@@ -108,7 +108,10 @@ struct TherapiesView: View {
             }
         }
         .tint(Color("AstroRed"))
-        .onAppear(perform:{therapyViewModel.fetchTherapies(force_reload: false)})
+        .onAppear(perform:{
+            //therapyViewModel.fetchTherapies(force_reload: false)
+            
+        })
     }
 }
 

@@ -65,7 +65,7 @@ struct DoctorsView: View {
                 displayDoctorsDatabase = false
                 if selectedDoctor != nil {
                     contactViewModel.addContact(doctor_id: Int(selectedDoctor!.id))
-                    contactViewModel.fetchContacts(force_reload: true)
+                    //contactViewModel.fetchContacts(force_reload: true)
                 }
                 
             }){
@@ -92,7 +92,7 @@ struct DoctorsView: View {
         }
         .tint(Color("AstroRed"))
         .onAppear(perform: {
-            contactViewModel.fetchContacts(force_reload: false)
+           // contactViewModel.fetchContacts(force_reload: false)
             contactViewModel.getDoctorList()
         })
     }
