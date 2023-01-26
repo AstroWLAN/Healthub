@@ -69,10 +69,7 @@ struct TherapiesView: View {
                                     }
                                 }
                             }
-                            .refreshable{
-                                // Refresh therapies list
-                                therapyViewModel.fetchTherapies(force_reload: true)
-                            }
+                            
                             .labelStyle(Cubic())
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 16))
@@ -83,6 +80,10 @@ struct TherapiesView: View {
                         }
                     }
                     .scrollIndicators(.hidden)
+                    .refreshable{
+                        // Refresh therapies list
+                        therapyViewModel.fetchTherapies(force_reload: true)
+                    }
                 }
                 else {
                     VStack {
