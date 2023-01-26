@@ -9,6 +9,11 @@ struct ProfileView: View {
     
     @EnvironmentObject private var profile : ProfileViewModel
     @EnvironmentObject private var login : LoginViewModel
+    @EnvironmentObject private var ticketViewModel: TicketViewModel
+    @EnvironmentObject private var therapyViewModel: TherapyViewModel
+    @EnvironmentObject private var contactViewModel : ContactViewModel
+    @EnvironmentObject private var pathologiesViewModel : PathologyViewModel
+    
     @FocusState private var objectFocused: FocusableObject?
     @State private var badInput : BadObject = .none
     @State private var displayGenderPicker : Bool = false
@@ -156,6 +161,23 @@ struct ProfileView: View {
                                 .accessibility(identifier: "Informations")
                                 .labelStyle(Cubic())
                         }
+                        
+                        //Sync with Apple Watch
+                        Button(
+                            action: {
+                                ticketViewModel.fetchTickets(force_reload: false)
+                                therapyViewModel.fetchTherapies(force_reload: false)
+                                contactViewModel.fetchContacts(force_reload: false)
+                                profile.getPatient(force_reload: false)
+                                pathologiesViewModel.fetchPathologies(force_reload: false)
+                            },
+                            label:  {
+                                Label("Sync with watchApp", systemImage: "applewatch.radiowaves.left.and.right")
+                                    .labelStyle(Cubic())
+                            }
+                        )
+                        .accessibility(identifier: "SignOut")
+                        .buttonStyle(.plain)
                         
                         // Sign Out
                         Button(
