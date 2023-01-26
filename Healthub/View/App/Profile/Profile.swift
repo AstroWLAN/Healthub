@@ -176,7 +176,6 @@ struct ProfileView: View {
                                     .labelStyle(Cubic())
                             }
                         )
-                        .accessibility(identifier: "SignOut")
                         .buttonStyle(.plain)
                         
                         // Sign Out

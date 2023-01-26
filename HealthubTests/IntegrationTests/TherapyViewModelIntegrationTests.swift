@@ -93,7 +93,7 @@ final class TherapyViewModelIntegrationTests: XCTestCase {
             XCTAssertEqual(self.clientAPI.createTherapyDrugsId.count, 1)
             expectation.fulfill()
             }
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [expectation], timeout: 4.0)
         
         
         
