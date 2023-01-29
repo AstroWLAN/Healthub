@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Examination : String, CaseIterable {
+enum Examination : String, Equatable, CaseIterable {
     case routine, vaccination, sport, specialist, certificate, other
     
 }

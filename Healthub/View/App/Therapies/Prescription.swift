@@ -10,7 +10,6 @@ struct Prescription: View {
     @State private var displayNotes : Bool = false
     @State private var prescriptionDrugs : [Drug] = []
     @State private var prescriptionName : String = String()
-    //@State private var prescriptionDoctor : String = String()
     @State private var prescriptionDuration : String = String()
     @State private var prescriptionNotes : String = String()
     @EnvironmentObject private var therapyViewModel: TherapyViewModel
@@ -26,16 +25,13 @@ struct Prescription: View {
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "cross.vial.fill")
                             TextField("Name", text: $prescriptionName)
+                                .accessibilityIdentifier("TherapyNameTextfield")
                                 .focused($objectFocused, equals: .name)
                         }
-                        /*HStack(spacing: 0) {
-                            Label(String(), systemImage: "stethoscope")
-                            TextField("Doctor", text: $prescriptionDoctor)
-                                .focused($objectFocused, equals: .doctor)
-                        }*/
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "timer")
                             TextField("Duration", text: $prescriptionDuration)
+                                .accessibilityIdentifier("TherapyDurationTextfield")
                                 .focused($objectFocused, equals: .doctor)
                         }
                     }
@@ -77,7 +73,9 @@ struct Prescription: View {
                                         .font(.system(size: 15,weight: .medium))
                                         .foregroundColor(Color(.systemGray3))
                                 }
-                            })
+                            }
+                        )
+                        .accessibilityIdentifier("DrugsDatabase")
                     }
                     .buttonStyle(.borderless)
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
@@ -125,14 +123,15 @@ struct Prescription: View {
                                 }
                             }
                         )
+                        .accessibilityIdentifier("PrescriptionCreationButton")
                         .disabled(
                             prescriptionDrugs.isEmpty     ||
                             prescriptionName.isEmpty      ||
-                            //prescriptionDoctor.isEmpty    ||
                             prescriptionDuration.isEmpty
                         )
                     }else{
                         ProgressView().progressViewStyle(.circular)
+                            .tint(Color(.systemGray))
                             .onDisappear(perform: {
                                 self.mode.wrappedValue.dismiss()
                             })

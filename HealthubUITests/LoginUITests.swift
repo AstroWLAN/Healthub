@@ -5,6 +5,7 @@ final class LoginUITests: XCTestCase {
     // Testing app target
     let app = XCUIApplication()
     let timer = 2.0
+    
     // User Inputs
     let username = "testing@mail.com"
     let password = "test"

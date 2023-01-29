@@ -21,6 +21,7 @@ struct TherapySheetView: View {
                 HStack {
                     Text("Therapy")
                         .font(.largeTitle.bold())
+                        .accessibilityIdentifier("TherapySheetTitle")
                     Spacer()
                     Image(systemName: "signature")
                         .font(.system(size: 34, weight: .bold))

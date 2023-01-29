@@ -51,6 +51,7 @@ struct DrugsDatabase: View {
                         .fill(Color(.systemGray5))
                         .frame(height: 37)
                     TextField("\(Image(systemName: "magnifyingglass")) Search", text: $searchQuery)
+                        .accessibilityIdentifier("SearchDrugTextfield")
                     .autocorrectionDisabled(true)
                     .focused($searchFocused)
                     .padding(.horizontal, 7)
@@ -131,6 +132,7 @@ struct DrugsDatabase: View {
                             .listRowSeparator(.hidden)
                         }
                     }
+                    .accessibilityIdentifier("QueryDrugsList")
                     .scrollContentBackground(.hidden)
                 }
             }

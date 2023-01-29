@@ -1,6 +1,5 @@
 import SwiftUI
 import MapKit
-import AlertToast
 
 struct TicketSheetView: View {
     
@@ -10,13 +9,13 @@ struct TicketSheetView: View {
     
     var body: some View {
         ZStack {
-            
             // Background color
             Color(.systemGray6)
                 .ignoresSafeArea()
             
+            // TICKET DETAILS
             VStack(spacing: 0) {
-                // Drag indicator
+                // Sheet drag indicator
                 HStack {
                     Spacer()
                     Capsule()
@@ -28,6 +27,7 @@ struct TicketSheetView: View {
                 // Header
                 HStack(alignment: .lastTextBaseline, spacing: 0) {
                     Text("Ticket")
+                        .accessibilityIdentifier("SheetTitle")
                         .font(.largeTitle.bold())
                         .minimumScaleFactor(0.2)
                     Spacer()
@@ -45,9 +45,8 @@ struct TicketSheetView: View {
                 }
                 .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
                 
-                // Details
+                // Details list
                 List {
-                    
                     // Generalities
                     Section(header: Text("Generalities"))  {
                         Label(ticket!.examinationType.name.capitalized, systemImage: ExamGlyph().generateGlyph(name: ticket!.examinationType.name))
@@ -72,15 +71,26 @@ struct TicketSheetView: View {
                     Section(header: Text("Address")) {
                         if (ticketLatitude != nil && ticketLongitude != nil) {
                             AddressView(location: CLLocationCoordinate2D(latitude: ticketLatitude!, longitude: ticketLongitude!))
+                                .listRowInsets(EdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4))
                         }
                         else {
                             // Map placeholder
+                            HStack {
+                                Spacer()
+                                Image("MapPlaceholder")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 140)
+                                    .opacity(0.8)
+                            }
+                            .listRowBackground(Color(.systemGray5))
                         }
                     }
-                    .labelStyle(Cubic())
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
+                .accessibilityIdentifier("DetailsList")
                 .scrollContentBackground(.hidden)
+                .scrollIndicators(.hidden)
             }
             // Translates a string address into logitude and latitude coordinates
             .task(
@@ -104,6 +114,7 @@ struct TicketSheetView: View {
     
 }
 
+// Renders the map associated to the given address
 struct AddressView: View {
     
     let location: CLLocationCoordinate2D
@@ -118,7 +129,7 @@ struct AddressView: View {
                 Image(uiImage: mapImage)
                     .resizable()
                     .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 7))
+                    .clipShape(RoundedRectangle(cornerRadius: 7.8))
                     // Gets directions in the map app for the specified address
                     .onTapGesture {
                         let url = URL(string: "maps://?saddr=&daddr=\(location.latitude),\(location.longitude)")

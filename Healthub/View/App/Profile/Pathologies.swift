@@ -1,94 +1,104 @@
 import SwiftUI
+import SPIndicator
 
 private enum FocusableObject { case insertion }
+private enum Status { case success, failure, unknown }
 struct PathologiesView: View {
     
     @EnvironmentObject private var pathologiesViewModel : PathologyViewModel
     @FocusState private var objectFocused: FocusableObject?
     @State private var newPathology : String = String()
-    @State private var badPathologyName : Bool = false
+    @State private var creationStatus : Status = .unknown
+    
     
     var body: some View {
         NavigationStack {
             ZStack {
-                if pathologiesViewModel.isLoadingPathologies {
-                    VStack(spacing: 10) {
-                        ProgressView()
-                            .progressViewStyle(.circular)
-                            .tint(Color(.systemGray))
-                        Text("Loading Pathologies")
-                            .font(.system(size: 15,weight: .medium))
-                            .foregroundColor(Color(.systemGray2))
-                    }
-                }
-                else {
-                    List {
-                        Section {
-                            HStack(spacing: 0) {
-                                Label(String(), systemImage: "microbe.fill")
-                                TextField("Pathology Name", text: $newPathology)
-                                    .onSubmit { insertPathology() }
-                                Spacer()
-                                ZStack {
-                                    Circle()
-                                        .frame(height: 20)
-                                        .opacity(0.2)
-                                    Image(systemName: "exclamationmark")
-                                        .font(.system(size: 10, weight: .bold))
-                                    
+                // Background color
+                Color(.systemGray6)
+                    .ignoresSafeArea()
+                List {
+                    // Insertion field
+                    Section {
+                        HStack(spacing: 0) {
+                            Label(String(), systemImage: "microbe.fill")
+                            TextField("Pathology Name", text: $newPathology)
+                                .accessibilityIdentifier("PathologyField")
+                                .onSubmit {
+                                    insertPathology()
+                                    creationStatus = .unknown
                                 }
-                                .foregroundColor(Color(.systemRed))
-                                .opacity(badPathologyName ? 1 : 0)
-                            }
                         }
-                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                        .labelStyle(Cubic(glyphBackgroundColor: Color("AstroRed")))
-                        
-                        Section(header: Text("Pathologies")) {
-                            if pathologiesViewModel.pathologies.isEmpty {
-                                Label("The User is Perfectly Healthy", systemImage: "heart.fill")
-                                    .labelStyle(Cubic(glyphBackgroundColor: Color(.systemGreen)))
-                            }
-                            else {
-                                ForEach(Array(pathologiesViewModel.pathologies.enumerated()), id:\.element) { index,pathology in
-                                    Label(pathology.name.capitalized, systemImage: "microbe.fill")
-                                        .labelStyle(Cubic())
-                                        .swipeActions {
-                                            Button(
-                                                role: .destructive,
-                                                action: { pathologiesViewModel.removePathology(at: index) },
-                                                label: { Image(systemName: "trash.fill") }
-                                            )
-                                        }
-                                }
-                            }
-                        }
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     }
+                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                    .labelStyle(Cubic(glyphBackgroundColor: Color("AstroRed")))
+                    // Pathologies list
+                    Section {
+                        ForEach(Array(pathologiesViewModel.pathologies.enumerated()), id:\.element) { index,pathology in
+                            Label(pathology.name.capitalized, systemImage: "microbe.fill")
+                                .labelStyle(Cubic())
+                                .swipeActions {
+                                    Button(
+                                        role: .destructive,
+                                        action: { pathologiesViewModel.removePathology(at: index) },
+                                        label: { Image(systemName: "trash.fill") }
+                                    )
+                                    .accessibilityIdentifier("DeleteButton")
+                                }
+                        }
+                    }
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
+                .accessibility(identifier: "PathologiesList")
+                .scrollContentBackground(.hidden)
+                .scrollIndicators(.hidden)
             }
-            .navigationBarTitle("Pathologies")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        // NavigationStack configuration
+        .navigationBarTitle("Pathologies")
+        .navigationBarTitleDisplayMode(.inline)
         // Fetches the pathologies list
         .onAppear(perform: { pathologiesViewModel.fetchPathologies() })
         // Avoids list glitch when the keyboard appears
         .ignoresSafeArea(.keyboard)
+        // Display a specific alert regarding the pathology creation process
+        .SPIndicator(
+            isPresent: Binding.constant(creationStatus == .success),
+            title: "Success",
+            message: "Pathology Created",
+            duration: 3.5,
+            presentSide: .top,
+            dismissByDrag: false,
+            preset: .custom(UIImage.init(systemName: "checkmark.circle.fill")!.withTintColor(UIColor(Color(.systemGreen)), renderingMode: .alwaysOriginal)),
+            haptic: .warning,
+            layout: .init(iconSize: CGSize(width: 26, height: 26), margins: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
+        )
+        .SPIndicator(
+            isPresent: Binding.constant(creationStatus == .failure),
+            title: "Error",
+            message: "Bad Pathology",
+            duration: 3.5,
+            presentSide: .top,
+            dismissByDrag: false,
+            preset: .custom(UIImage.init(systemName: "xmark.circle.fill")!.withTintColor(UIColor(Color("AstroRed")), renderingMode: .alwaysOriginal)),
+            haptic: .warning,
+            layout: .init(iconSize: CGSize(width: 26, height: 26), margins: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
+        )
     }
     
-    // Inserts a new pathology in the list
+    // Creates a new pathology in the list
     private func insertPathology() {
         // Checks if the user has been typed at least on letter and if the inserted pathology already exists
         guard newPathology.count > 0,
               !pathologiesViewModel.pathologies.contains(where: { $0.name == newPathology })
         else {
             // Displays a warning mark if something went wrong
-            withAnimation{ badPathologyName = true }
+            withAnimation{ creationStatus = .failure }
             return
         }
         withAnimation{ pathologiesViewModel.addPathology(pathology: newPathology) }
         newPathology = String()
-        withAnimation { badPathologyName = false }
+        withAnimation { creationStatus = .success }
     }
 }

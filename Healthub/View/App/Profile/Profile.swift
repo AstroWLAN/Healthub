@@ -20,6 +20,7 @@ struct ProfileView: View {
     @State private var displayHeightPicker : Bool = false
     @State private var displayWeightPicker : Bool = false
     @State private var displayBirthdatePicker : Bool = false
+    @State private var displayInformationSheet : Bool = false
     
     var body: some View {
         NavigationStack {
@@ -34,7 +35,6 @@ struct ProfileView: View {
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "face.smiling.inverse")
                             TextField("Name", text: $profile.name)
-                                .accessibility(identifier: "NameField")
                                 .focused($objectFocused, equals: .name)
                                 .textContentType(.name)
                                 .keyboardType(.asciiCapable)
@@ -60,7 +60,6 @@ struct ProfileView: View {
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "barcode")
                             TextField("Fiscal Code", text: $profile.fiscalCode)
-                                .accessibility(identifier: "CodeField")
                                 .focused($objectFocused, equals: .code)
                                 .keyboardType(.asciiCapable)
                                 .onSubmit {
@@ -84,10 +83,9 @@ struct ProfileView: View {
                         HStack(spacing: 0) {
                             Label(String(), systemImage: "phone.fill")
                             TextField("Phone", text: $profile.phone)
-                                .accessibility(identifier: "PhoneField")
                                 .focused($objectFocused, equals: .phone)
                                 .textContentType(.telephoneNumber)
-                                .keyboardType(.phonePad)
+                                .keyboardType(.asciiCapable)
                             ZStack {
                                 Circle()
                                     .frame(height: 20)
@@ -114,7 +112,7 @@ struct ProfileView: View {
                         .sheet(isPresented: $displayGenderPicker, onDismiss: { profile.updatePatient() }) {
                             GenderSheet(userGender: $profile.gender).presentationDetents([.height(200)])
                         }
-                        
+                        .accessibilityIdentifier("Profile_GenderButton")
                         // User Height
                         Button(
                             action: { displayHeightPicker = true },
@@ -123,7 +121,7 @@ struct ProfileView: View {
                         .sheet(isPresented: $displayHeightPicker, onDismiss: { profile.updatePatient() }) {
                             HeightSheet(userHeight: $profile.height).presentationDetents([.height(200)])
                         }
-                        
+                        .accessibilityIdentifier("Profile_HeightButton")
                         // User Weight
                         Button(
                             action: { displayWeightPicker = true },
@@ -132,21 +130,21 @@ struct ProfileView: View {
                         .sheet(isPresented: $displayWeightPicker, onDismiss: { profile.updatePatient() }) {
                             WeightSheet(userWeight: $profile.weight).presentationDetents([.height(200)])
                         }
-                        
+                        .accessibilityIdentifier("Profile_WeightButton")
                         // User Birthdate
                         Button(
                             action: { displayBirthdatePicker = true },
-                            label:  { Label(profile.birthday.formatted(.dateTime.day().month(.wide).year()), systemImage: "calendar") }
+                            label:  { Label(profile.birthday.formatted(.dateTime.day().month(.wide).year()).capitalized, systemImage: "calendar") }
                         )
                         .sheet(isPresented: $displayBirthdatePicker, onDismiss: { profile.updatePatient() }) {
                             BirthdateSheet(birthdate: $profile.birthday).presentationDetents([.height(200)])
                         }
-                        
+                        .accessibilityIdentifier("Profile_BirthdayButton")
                         // User Pathologies
                         NavigationLink(destination : PathologiesView()) {
                             Label("Pathologies", systemImage: "allergens.fill")
-                            .accessibility(identifier: "Pathologies")
                         }
+                        .accessibilityIdentifier("Profile_PathologiesButton")
                     }
                     .labelStyle(Cubic())
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
@@ -155,28 +153,16 @@ struct ProfileView: View {
                     // OTHER section
                     Section(header: Text("Other")) {
                         
-                        // App Information
-                        NavigationLink(destination: AppInformationView()) {
-                            Label("Information", systemImage: "questionmark.app.fill")
-                                .accessibility(identifier: "Informations")
-                                .labelStyle(Cubic())
-                        }
-                        
                         //Sync with Apple Watch
                         Button(
                             action: {
-                                ticketViewModel.fetchTickets(force_reload: false)
-                                therapyViewModel.fetchTherapies(force_reload: false)
-                                contactViewModel.fetchContacts(force_reload: false)
-                                profile.getPatient(force_reload: false)
-                                pathologiesViewModel.fetchPathologies(force_reload: false)
+                                
                             },
                             label:  {
-                                Label("Sync with watchApp", systemImage: "applewatch.radiowaves.left.and.right")
+                                Label("Synchronize", systemImage: "applewatch")
                                     .labelStyle(Cubic())
                             }
                         )
-                        .buttonStyle(.plain)
                         
                         // Sign Out
                         Button(
@@ -199,23 +185,21 @@ struct ProfileView: View {
                 .toolbar {
                     Button(
                         action: {
-                            withAnimation { inputValidation(type: .phone, input: profile.phone) }
-                            if badInput == .none {
-                                profile.updatePatient()
-                            }
-                            objectFocused = nil
+                            displayInformationSheet = true
                         },
                         label:  {
                             ZStack {
                                 Circle()
                                     .frame(height: 28)
                                     .opacity(0.2)
-                                Image(systemName: "checkmark")
+                                Image(systemName: "info")
                                     .font(.system(size: 13, weight: .medium))
                             }
                         }
                     )
-                    .opacity(objectFocused == .phone ? 1 : 0)
+                }
+                .sheet(isPresented: $displayInformationSheet) {
+                    AppInformationView()
                 }
             }
         }

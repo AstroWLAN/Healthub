@@ -1,5 +1,6 @@
 import SwiftUI
-import AlertToast
+import SPIndicator
+
 struct TicketsView: View {
     
     @EnvironmentObject private var ticketViewModel: TicketViewModel
@@ -11,30 +12,38 @@ struct TicketsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                
                 // Background color
                 Color(.systemGray6)
                     .ignoresSafeArea()
-                
+                // TICKETS
                 VStack(spacing: 0) {
                     if ticketViewModel.isLoadingTickets == false {
-                
-                        // Placeholder for the empty tickets list
+                        // Empty list placeholder
                         if ticketViewModel.reservations.isEmpty {
-                            Image("TicketsPlaceholder")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 160, height: 160)
-                                .padding(.bottom, 80)
+                            VStack(spacing: 0) {
+                                Image("TicketsPlaceholder")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 160, height: 160)
+                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 40))
+                                    .accessibilityIdentifier("TicketsPlaceholder")
+                                Capsule()
+                                    .frame(width: 80, height: 30)
+                                    .foregroundColor(Color(.systemGray5))
+                                    .overlay(
+                                        Text("Empty")
+                                            .font(.system(size: 13, weight: .semibold))
+                                            .foregroundColor(Color(.systemGray))
+                                    )
+                            }
+                            .padding(.bottom, 40)
                         }
-                        
                         // Tickets list
                         else {
                             List {
-                                Section(header: Text("Tickets")) {
+                                Section(header: Text("Reservations")) {
                                     ForEach(Array(ticketViewModel.reservations.enumerated()), id: \.element) { index,ticket in
-                                        
-                                        // Display details for the selected ticket
+                                        // Shows details of the selected ticket
                                         Button(
                                             action: {
                                                 selectedTicket = ticket
@@ -50,6 +59,7 @@ struct TicketsView: View {
                                                 }
                                             }
                                         )
+                                        .accessibilityIdentifier("DeleteButton")
                                         .swipeActions {
                                             // Delete action
                                             Button(
@@ -62,7 +72,7 @@ struct TicketsView: View {
                                 .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                                 .listRowSeparator(.hidden)
                             }
-                            .accessibility(identifier: "TicketsList")
+                            .accessibilityIdentifier("TicketsList")
                             .refreshable{
                                 // Refresh tickets list
                                 ticketViewModel.fetchTickets(force_reload: true)
@@ -76,21 +86,33 @@ struct TicketsView: View {
                             }
                         }
                     }
-                    // Loading placeholder
+                    // Loading data placeholder
                     else {
-                        ProgressView()
-                            .tint(Color(.systemGray))
+                        VStack(spacing:0){
+                            Spacer()
+                            VStack(spacing:0) {
+                                ProgressView().progressViewStyle(.circular)
+                                    .padding(.bottom, 10)
+                                    .tint(Color(.systemGray))
+                                Text("Loading Tickets")
+                                    .foregroundColor(Color(.systemGray))
+                                    .font(.system(size: 17, weight: .medium))
+                            }
+                            Spacer()
+                        }
                     }
                 }
             }
             .navigationTitle("Tickets")
             .toolbar{
+                // Current date
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text(currentDate.formatted(.dateTime.day().month(.wide)).capitalized + " " + currentDate.formatted(.dateTime.year()))
-                    .accessibility(identifier: "CurrentDate")
-                    .font(.system(size: 17, weight: .medium))
-                    .foregroundColor(Color(.systemGray))
+                        .accessibilityIdentifier("CurrentDate")
+                        .font(.system(size: 17, weight: .medium))
+                        .foregroundColor(Color(.systemGray))
                 }
+                // Booking ticket button
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: BookingView()) {
                         ZStack {
@@ -101,17 +123,11 @@ struct TicketsView: View {
                                 .font(.system(size: 15, weight: .medium))
                         }
                     }
+                    .accessibilityIdentifier("BookingButton")
                 }
             }
         }
         .tint(Color("AstroRed"))
-        .onAppear(
-            perform: {
-                if(UserDefaults.standard.bool(forKey: "isLogged")) {
-                    ticketViewModel.connectivityProvider.connect()
-                    //ticketViewModel.fetchTickets()
-                }
-            }
-        )
+        .onAppear( perform: { if(UserDefaults.standard.bool(forKey: "isLogged")) { ticketViewModel.connectivityProvider.connect() }})
     }
 }

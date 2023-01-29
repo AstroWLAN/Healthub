@@ -11,16 +11,16 @@ struct DoctorsDatabaseView: View {
     @State private var searchQuery : String = String()
     @State private var isTyping : Bool = false
     
-    // Fill this array with doctors among whom to search for
-    /*let docbase : [Doctor] = [
-        Doctor(id: 0, name: "Shaun Murphy", address: String()),
-        Doctor(id: 1, name: "Marcus Andrews", address: String()),
-        Doctor(id: 2, name: "Audrie Lim", address: String()),
-        Doctor(id: 3, name: "Meredith Gray", address: String())
-    ]*/
-    
     var body: some View {
         VStack(spacing: 0){
+            HStack {
+                Spacer()
+                Capsule()
+                    .frame(width: 30, height: 6)
+                    .foregroundColor(Color(.systemGray5))
+                    .padding(.top,20)
+                Spacer()
+            }
             ZStack{
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color(.systemGray6))
@@ -72,8 +72,9 @@ struct DoctorsDatabaseView: View {
                                label:  { Label(doctor.name!, systemImage: "person.fill").labelStyle(Cubic()) })
                     }
                     .listRowSeparator(.hidden)
-                }.scrollContentBackground(.hidden)
-                 .listStyle(.plain)
+                }
+                .scrollContentBackground(.hidden)
+                .listStyle(.plain)
             }else{
                 List{
                     ForEach(contactViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
@@ -87,6 +88,7 @@ struct DoctorsDatabaseView: View {
                     }
                     .listRowSeparator(.hidden)
                 }
+                .accessibilityIdentifier("DoctorsList")
                 .scrollContentBackground(.hidden)
                 .listStyle(.plain)
             }

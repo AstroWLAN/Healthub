@@ -1,4 +1,5 @@
 import SwiftUI
+import ConfettiSwiftUI
 
 // JSON data structure for AppInformation.json
 struct AppInformationJSON : Decodable, Identifiable {
@@ -20,6 +21,7 @@ struct AppInformationJSON : Decodable, Identifiable {
 struct AppInformationView: View {
     
     @State private var appInformation : [AppInformationJSON] = []
+    @State private var confettiCounter : Int = 0
     
     // Decodes the AppInformation.json and creates an array of swift objects
     private func readAppInformation(){
@@ -35,16 +37,30 @@ struct AppInformationView: View {
     }
     
     var body: some View {
-        VStack(spacing: 20){
-            Image("RobotDraw")
+        VStack {
+            // Sheet drag icon
+            HStack {
+                Spacer()
+                Capsule()
+                    .frame(width: 30, height: 6)
+                    .foregroundColor(Color(.systemGray5))
+                    .padding(.top,20)
+                Spacer()
+            }
+            Spacer()
+            Image("RobotImage")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 150)
-                .opacity(0.3)
-                .accessibility(identifier: "RobotDraw")
+                .frame(width: 129)
+                .opacity(0.5)
+                .padding(.vertical, 20)
+                .accessibility(identifier: "RobotImage")
+                .onTapGesture { confettiCounter += 1 }
+                .confettiCannon(counter: $confettiCounter,num: 50, confettis: [ConfettiType.text("🤖"), ConfettiType.text("🪐"), ConfettiType.text("🍏")], confettiSize: 20, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
             Text("Healthub")
                 .foregroundColor(Color(.systemGray))
-                .font(.system(.title2, weight: .bold))
+                .font(.system(.title, weight: .bold))
+                .padding(.bottom, 10)
             
             // App information descriptions
             VStack(spacing: 10){
@@ -56,13 +72,8 @@ struct AppInformationView: View {
                 .multilineTextAlignment(.center)
             }
             .navigationBarTitle("Information", displayMode: .inline)
+            Spacer()
         }
         .onAppear(perform: readAppInformation)
-    }
-}
-
-struct AppInformationView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppInformationView()
     }
 }

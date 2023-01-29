@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 struct ExaminationsSheet : View {
     
     @Environment(\.dismiss) var dismissView
@@ -8,6 +7,7 @@ struct ExaminationsSheet : View {
     @Binding var selectedExaminationGlyph : String?
     
     var body: some View {
+        // Examinations list
         List {
             ForEach(Examination.allCases, id:\.self) { examination in
                 Button(
@@ -32,10 +32,12 @@ struct ExaminationsSheet : View {
             .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
             .listRowSeparator(.hidden)
         }
+        .accessibilityIdentifier("ExaminationsList")
         .scrollContentBackground(.hidden)
         .scrollDisabled(true)
     }
     
+    // Detects if an examination has been already selected
     private func selectionDetection(currentExamination : Examination) -> Bool {
         if selectedExamination != nil {
             if selectedExamination! == currentExamination { return true }
@@ -44,3 +46,5 @@ struct ExaminationsSheet : View {
         return false
     }
 }
+
+

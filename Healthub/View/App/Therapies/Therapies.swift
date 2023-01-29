@@ -14,27 +14,42 @@ struct TherapiesView: View {
     
     var body: some View {
         NavigationStack {
-            
-            Group {
+            ZStack {
+                // Background color
+                Color(.systemGray6)
+                    .ignoresSafeArea()
                 if therapyViewModel.isLoadingTherapies == false {
-                    List {
-                        if notInteractions == false {
-                            Section(header: Text(String())){
-                                Label("Interactions Detected", systemImage: "exclamationmark.shield.fill")
-                                    .labelStyle(Cubic(glyphBackgroundColor: .white, glyphColor: Color("AstroRed"), textColor: .white))
-                            }
-                            .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                            .listRowBackground(Color("AstroRed"))
-                        }
-                        if therapyViewModel.therapies.isEmpty {
+                    if therapyViewModel.therapies.isEmpty {
+                        VStack(spacing: 0) {
                             Image("TherapiesPlaceholder")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 160, height: 160)
-                                .padding(.bottom, 80)
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                            Capsule()
+                                .frame(width: 80, height: 30)
+                                .foregroundColor(Color(.systemGray5))
+                                .overlay(
+                                    Text("Empty")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(Color(.systemGray))
+                                )
                         }
-                        else {
-                            Section(header: Text("Therapies")) {
+                        .padding(.bottom, 40)
+                    }
+                    else {
+                        List {
+                            // Interactions alert
+                            if notInteractions == false {
+                                Section(header: Text(String())){
+                                    Label("Interactions Detected", systemImage: "exclamationmark.shield.fill")
+                                        .labelStyle(Cubic(glyphBackgroundColor: .white, glyphColor: Color("AstroRed"), textColor: .white))
+                                }
+                                .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                                .listRowBackground(Color("AstroRed"))
+                            }
+                            // Therapies list
+                            Section(header: Text("Prescriptions")) {
                                 ForEach(Array(therapyViewModel.therapies.enumerated()), id: \.element) { index,therapy in
                                     Button(
                                         action: {
@@ -57,7 +72,7 @@ struct TherapiesView: View {
                                     )
                                     .onAppear(perform: {
                                         notInteractions = notInteractions && therapy.interactions.isEmpty
-                                        })
+                                    })
                                     .swipeActions {
                                         Button(
                                             role: .destructive,
@@ -65,11 +80,12 @@ struct TherapiesView: View {
                                                 therapyViewModel.deleteTherapy(therapy_id: Int(therapy.id))
                                                 notInteractions = true
                                             },
-                                            label: { Image(systemName: "trash.fill") })
+                                            label: { Image(systemName: "trash.fill") }
+                                        )
+                                        .accessibilityIdentifier("DeleteTherapyButton")
                                     }
                                 }
                             }
-                            
                             .labelStyle(Cubic())
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 16))
@@ -78,19 +94,28 @@ struct TherapiesView: View {
                                     .presentationDetents([.large])
                             }
                         }
-                    }
-                    .scrollIndicators(.hidden)
-                    .refreshable{
-                        // Refresh therapies list
-                        therapyViewModel.fetchTherapies(force_reload: true)
+                        .accessibilityIdentifier("TherapiesList")
+                        .scrollContentBackground(.hidden)
+                        .scrollIndicators(.hidden)
+                        .refreshable{
+                            // Refresh therapies list
+                            therapyViewModel.fetchTherapies(force_reload: true)
+                        }
                     }
                 }
+                // Loading therapies placeholder
                 else {
-                    VStack {
-                        ProgressView().progressViewStyle(CircularProgressViewStyle())
-                            .tint(Color(.systemGray))
-                        Text("Loading Therapies")
-                            .font(.system(size: 15,weight: .medium))
+                    VStack(spacing:0){
+                        Spacer()
+                        VStack(spacing:0) {
+                            ProgressView().progressViewStyle(.circular)
+                                .padding(.bottom, 10)
+                                .tint(Color(.systemGray))
+                            Text("Loading Therapies")
+                                .foregroundColor(Color(.systemGray))
+                                .font(.system(size: 17, weight: .medium))
+                        }
+                        Spacer()
                     }
                 }
             }
@@ -105,18 +130,12 @@ struct TherapiesView: View {
                             .font(.system(size: 15, weight: .medium))
                     }
                 }
+                .accessibilityIdentifier("PrescriptionButton")
             }
         }
         .tint(Color("AstroRed"))
         .onAppear(perform:{
             //therapyViewModel.fetchTherapies(force_reload: false)
-            
         })
-    }
-}
-
-struct TherapiesView_Previews: PreviewProvider {
-    static var previews: some View {
-        TherapiesView()
     }
 }
