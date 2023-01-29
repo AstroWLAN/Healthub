@@ -42,6 +42,7 @@ struct DrugsDatabase: View {
                             }
                         }
                     )
+                    .accessibilityIdentifier("DrugsConfirmButton")
                     .padding(.trailing, 20)
                 }
                 .padding(.top, 30)
@@ -132,7 +133,7 @@ struct DrugsDatabase: View {
                             .listRowSeparator(.hidden)
                         }
                     }
-                    .accessibilityIdentifier("QueryDrugsList")
+                    .accessibilityIdentifier("ResultDrugsList")
                     .scrollContentBackground(.hidden)
                 }
             }

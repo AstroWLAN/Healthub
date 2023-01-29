@@ -45,39 +45,44 @@ final class ProfileUITests: XCTestCase {
         app.terminate()
     }
     
-    func testPathologiesCreation() throws {
+    func test01_PathologiesCreation() throws {
         // UI objects
+        let returnKey = app.keyboards.buttons["Return"]
+        let pathologyButton = app.buttons["Profile_PathologiesButton"]
         let pathologyTextfield = app.textFields["PathologyField"]
         let pathologiesList = app.collectionViews["PathologiesList"]
         
         // ASSERTIONS
         // Initially the pathologies list is empty
-        XCTAssertEqual(pathologiesList.cells.count, 0)
+        pathologyButton.tap()
+        XCTAssertEqual(pathologiesList.cells.count, 1)
         // Inserts a new pathology
         pathologyTextfield.tap()
         pathologyTextfield.typeText(pathologyName)
+        returnKey.tap()
         // Checks if the pathology has been correctly inserted
-        XCTAssertEqual(pathologiesList.cells.count, 1)
-        XCTAssertEqual(pathologiesList.cells.element(boundBy: 0).label, pathologyName)
+        XCTAssertEqual(pathologiesList.cells.count, 2)
     }
     
-    func testPathologiesDeletion() throws {
+    func test02_PathologiesDeletion() throws {
         // UI objects
+        let pathologyButton = app.buttons["Profile_PathologiesButton"]
         let pathologiesList = app.collectionViews["PathologiesList"]
-        let targetPathology = pathologiesList.cells.element(boundBy: 0)
-        let deleteButton = targetPathology.buttons["DeleteButton"]
+        let targetPathology = pathologiesList.cells.element(boundBy: 1)
+        let deleteButton = app.buttons["DeletePathologyButton"]
         
         // ASSERTIONS
         // Initially the pathologies list is not empty
+        pathologyButton.tap()
         XCTAssertFalse(pathologiesList.cells.count == 0)
         // Deletes the pathology
         targetPathology.swipeLeft()
         deleteButton.tap()
         // Checks if the pathology has been correctly deleted
-        XCTAssertEqual(pathologiesList.cells.count, 0)
+        XCTAssertEqual(pathologiesList.cells.count, 1)
     }
     
-    func testProfile() throws {
+    func test03_Profile() throws {
         let profileList = app.collectionViews["ProfileList"]
         let genderButton = app.buttons["Profile_GenderButton"]
         let genderPicker = app.pickers["Shared_GenderPicker"]

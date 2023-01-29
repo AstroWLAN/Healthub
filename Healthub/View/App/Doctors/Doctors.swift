@@ -60,7 +60,7 @@ struct DoctorsView: View {
                                             action: { contactViewModel.deleteContact(doctor_id: Int(doctor.id)) },
                                             label: { Image(systemName: "trash.fill") }
                                         )
-                                        .accessibilityIdentifier("DeleteButton")
+                                        .accessibilityIdentifier("DeleteDoctorButton")
                                     }
                                 }
                             }
@@ -97,7 +97,7 @@ struct DoctorsView: View {
                             }
                         }
                     )
-                    .accessibilityIdentifier("AddButton")
+                    .accessibilityIdentifier("AddDoctorButton")
                 }
             }
         }

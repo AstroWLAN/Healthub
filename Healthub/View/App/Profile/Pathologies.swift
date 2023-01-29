@@ -43,7 +43,7 @@ struct PathologiesView: View {
                                         action: { pathologiesViewModel.removePathology(at: index) },
                                         label: { Image(systemName: "trash.fill") }
                                     )
-                                    .accessibilityIdentifier("DeleteButton")
+                                    .accessibilityIdentifier("DeletePathologyButton")
                                 }
                         }
                     }

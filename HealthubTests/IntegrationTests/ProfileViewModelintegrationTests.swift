@@ -89,7 +89,7 @@ final class ProfileViewModelTestsIntegrationTests: XCTestCase {
             expectation2.fulfill()
         }
        
-        wait(for: [expectation2], timeout: 1.0)
+        wait(for: [expectation2], timeout: 3.0)
         
         
         

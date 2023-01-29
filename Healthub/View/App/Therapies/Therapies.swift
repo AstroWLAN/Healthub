@@ -130,7 +130,7 @@ struct TherapiesView: View {
                             .font(.system(size: 15, weight: .medium))
                     }
                 }
-                .accessibilityIdentifier("PrescriptionButton")
+                .accessibilityIdentifier("AddPrescriptionButton")
             }
         }
         .tint(Color("AstroRed"))

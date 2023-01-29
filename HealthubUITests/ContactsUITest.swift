@@ -39,28 +39,44 @@ final class ContactsUITest: XCTestCase {
         app.tabBars.buttons.element(boundBy: 2).tap()
     }
     
-    func testDoctorCreation() throws {
+    override func tearDownWithError() throws {
+        // Teardown code
+        app.terminate()
+    }
+    
+    func test01_DoctorCreation() throws {
         // UI objects
         let contactsList = app.collectionViews["ContactsList"]
-        let addButton = app.buttons["AddButton"]
-        let doctorsList = app.collectionViews["DoctorsList"]
+        let addButton = app.buttons["AddDoctorButton"]
+        let doctorsList = app.collectionViews["DoctorsContactsList"]
         
         // ASSERTIONS
+        // Cleans possibile previous doctor
+        if contactsList.cells.count > 0 {
+            let doctor = contactsList.cells.element(boundBy: 1)
+            let deleteButton = app.buttons["DeleteDoctorButton"]
+            XCTAssertEqual(contactsList.cells.count, 2)
+            doctor.swipeLeft()
+            deleteButton.tap()
+            // Checks that the doctor has been removed
+            XCTAssertEqual(contactsList.cells.count, 0)
+        }
         // The contacts list is initially empty
         XCTAssertEqual(contactsList.cells.count, 0)
         // Adds a new doctor to the contacts [ Gregory House ]
         addButton.tap()
-        let doctor = doctorsList.cells.element(boundBy: 0)
+        sleep(10)
+        let doctor = doctorsList.cells.element(boundBy: 1)
         doctor.tap()
         // Checks that the doctor has been inserted in the list
-        XCTAssertEqual(contactsList.cells.count, 1)
+        XCTAssertEqual(contactsList.cells.count, 2)
     }
     
-    func testDoctorDeletion() throws {
+    func test02_DoctorDeletion() throws {
         // UI objects
         let contactsList = app.collectionViews["ContactsList"]
-        let doctor = contactsList.cells.element(boundBy: 0)
-        let deleteButton = doctor.buttons["DeleteButton"]
+        let doctor = contactsList.cells.element(boundBy: 1)
+        let deleteButton = app.buttons["DeleteDoctorButton"]
         // ASSERTIONS
         // The contacts list is initially not empty
         XCTAssertFalse(contactsList.cells.count == 0)

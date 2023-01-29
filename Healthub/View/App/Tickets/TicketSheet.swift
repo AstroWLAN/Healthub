@@ -27,7 +27,7 @@ struct TicketSheetView: View {
                 // Header
                 HStack(alignment: .lastTextBaseline, spacing: 0) {
                     Text("Ticket")
-                        .accessibilityIdentifier("SheetTitle")
+                        .accessibilityIdentifier("TicketDetailsSheet")
                         .font(.largeTitle.bold())
                         .minimumScaleFactor(0.2)
                     Spacer()

@@ -42,7 +42,7 @@ final class TicketsUITests: XCTestCase {
         app.terminate()
     }
     
-    func testTicketCreation() throws {
+    func test01_TicketCreation() throws {
         
         // UI objects
         let ticketsList = app.collectionViews["TicketsList"]
@@ -51,7 +51,7 @@ final class TicketsUITests: XCTestCase {
         let examinationsButton = app.buttons["ExaminationsButton"]
         let examinationsList = app.collectionViews["ExaminationsList"]
         let doctorsButton = app.buttons["DoctorsButton"]
-        let doctorsList = app.collectionViews["DoctorsList"]
+        let doctorsList = app.collectionViews["DoctorsTicketList"]
         let dateButton = app.buttons["DateButton"]
         let datePicker = app.datePickers["DayPicker"]
         let timeButton = app.buttons["TimeButton"]
@@ -71,6 +71,7 @@ final class TicketsUITests: XCTestCase {
         XCTAssertEqual(examinationsButton.label, "Routine")
         // Chooses the doctor [ Allison Cameron ]
         doctorsButton.tap()
+        sleep(5)
         let selectedDoctor = doctorsList.cells.element(boundBy: 0)
         selectedDoctor.tap()
         XCTAssertEqual(doctorsButton.label, "Allison Cameron")
@@ -78,38 +79,38 @@ final class TicketsUITests: XCTestCase {
         dateButton.tap()
         datePicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "2023")
         datePicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "Febbraio")
-        datePicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "17")
+        datePicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "16")
+        sleep(5)
         datePicker.tap()
-        XCTAssertEqual(dateButton.label, "17 Febbraio 2023")
+        XCTAssertEqual(dateButton.label, "16 Febbraio 2023")
         // Select the time slot [ 14:00 ]
+        sleep(10)
         timeButton.tap()
-        timePicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "14:00")
+        timePicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "10:00")
         timePicker.tap()
-        XCTAssertEqual(timeButton.label, "14:00")
+        XCTAssertEqual(timeButton.label, "10:00")
         // Finalizes the creation of a new ticket
         confirmButton.tap()
         sleep(20)
         // Checks if the ticket has been correctly generated
-        //XCTAssertEqual(ticketsList.cells.count, 1)
-        let createdTicket = ticketsList.cells.element(boundBy: 0)
-        XCTAssertEqual(createdTicket.label, "Routine")
+        XCTAssertEqual(ticketsList.cells.count, 2)
     }
     
-    func testTicketDetails() throws {
+    func test02_TicketDetails() throws {
         // UI objects
         let ticketsList = app.collectionViews["TicketsList"]
-        let selectedTicket = ticketsList.cells.element(boundBy: 0)
-        let sheetTitle = app.staticTexts["SheetTitle"]
+        let selectedTicket = ticketsList.cells.element(boundBy: 1)
+        let sheetTitle = app.staticTexts["TicketDetailsSheet"]
         // ASSERTIONS
         selectedTicket.tap()
         XCTAssert(sheetTitle.waitForExistence(timeout: timer))
     }
     
-    func testTicketDeletion() throws {
+    func test03_TicketDeletion() throws {
         // UI objects
         let ticketsList = app.collectionViews["TicketsList"]
-        let targetTicket = ticketsList.cells.element(boundBy: 0)
-        let deleteButton = targetTicket.buttons["DeleteButton"]
+        let targetTicket = ticketsList.cells.element(boundBy: 1)
+        let deleteButton = app.buttons["TicketDeleteButton"]
         // ASSERTIONS
         XCTAssertFalse(ticketsList.cells.count == 0)
         targetTicket.swipeLeft()

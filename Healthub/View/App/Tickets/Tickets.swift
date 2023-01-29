@@ -59,13 +59,14 @@ struct TicketsView: View {
                                                 }
                                             }
                                         )
-                                        .accessibilityIdentifier("DeleteButton")
                                         .swipeActions {
                                             // Delete action
                                             Button(
                                                 role: .destructive,
                                                 action: { ticketViewModel.deleteReservation(reservation_id: Int(ticket.id)) },
-                                                label: { Image(systemName: "trash.fill") })
+                                                label: { Image(systemName: "trash.fill") }
+                                            )
+                                            .accessibilityIdentifier("TicketDeleteButton")
                                         }
                                     }
                                 }

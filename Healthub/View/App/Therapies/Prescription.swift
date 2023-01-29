@@ -53,7 +53,9 @@ struct Prescription: View {
                                         .font(.system(size: 15,weight: .medium))
                                         .foregroundColor(Color(.systemGray3))
                                 }
-                            })
+                            }
+                        )
+                        .accessibilityIdentifier("NotesButton")
                     }
                     .buttonStyle(.borderless)
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))

@@ -50,6 +50,7 @@ struct Notes: View {
                         }
                     }
                 )
+                .accessibilityIdentifier("NotesConfirm")
             }
             .padding(EdgeInsets(top: 30, leading: 20, bottom: 10, trailing: 20))
             TextView(text: $doctorNotes, isEditing: $isWriting, placeholder: "Prescription")

@@ -73,6 +73,7 @@ struct DoctorsDatabaseView: View {
                     }
                     .listRowSeparator(.hidden)
                 }
+                .accessibilityIdentifier("DoctorsTicketList")
                 .scrollContentBackground(.hidden)
                 .listStyle(.plain)
             }else{
@@ -88,7 +89,7 @@ struct DoctorsDatabaseView: View {
                     }
                     .listRowSeparator(.hidden)
                 }
-                .accessibilityIdentifier("DoctorsList")
+                .accessibilityIdentifier("DoctorsContactsList")
                 .scrollContentBackground(.hidden)
                 .listStyle(.plain)
             }

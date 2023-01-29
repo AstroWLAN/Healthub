@@ -6,9 +6,11 @@ final class TherapiesUITests: XCTestCase {
     let app = XCUIApplication()
     let timer = 2.0
     let longTimer = 10.0
-    let title = "TerapiaTest"
-    let duration = "Lifetime"
-    let drugname = "Acido"
+    
+    // User inputs
+    let prescriptionTitle = "Test"
+    let prescriptionDuration = "Lifetime"
+    let prescriptionDrug = "Acido"
     
     // User
     let username = "testing@mail.com"
@@ -47,15 +49,19 @@ final class TherapiesUITests: XCTestCase {
         app.terminate()
     }
     
-    func testTherapyCreation() throws {
+    func test01_TherapyCreation() throws {
         // UI objects
+        let returnKey = app.keyboards.buttons["Return"]
         let therapiesList = app.collectionViews["TherapiesList"]
-        let prescriptionButton = app.buttons["PrescriptionButton"]
+        let prescriptionButton = app.buttons["AddPrescriptionButton"]
         let nameTextfield = app.textFields["TherapyNameTextfield"]
         let durationTextfield = app.textFields["TherapyDurationTextfield"]
+        let notesButton = app.buttons["NotesButton"]
+        let notesConfirm = app.buttons["NotesConfirm"]
         let drugsDatabase = app.buttons["DrugsDatabase"]
         let searchDrugTextfield = app.textFields["SearchDrugTextfield"]
-        let drugsList = app.collectionViews["QueryDrugsList"]
+        let drugsList = app.collectionViews["ResultDrugsList"]
+        let drugsConfirmButton = app.buttons["DrugsConfirmButton"]
         let confirmButton = app.buttons["PrescriptionCreationButton"]
         // ASSERTIONS
         // Initially the therapies list is empty
@@ -63,39 +69,42 @@ final class TherapiesUITests: XCTestCase {
         // Creates a new therapy
         prescriptionButton.tap()
         nameTextfield.tap()
-        nameTextfield.typeText(title)
+        nameTextfield.typeText(prescriptionDrug)
         durationTextfield.tap()
-        durationTextfield.typeText(duration)
+        durationTextfield.typeText(prescriptionDuration)
+        notesButton.tap()
+        notesConfirm.tap()
         drugsDatabase.tap()
         searchDrugTextfield.tap()
-        searchDrugTextfield.typeText(drugname)
-        let selectedDrug = drugsList.cells.element(boundBy: 0)
+        searchDrugTextfield.typeText(prescriptionDrug)
+        returnKey.tap()
+        sleep(10)
+        let selectedDrug = drugsList.cells.element(boundBy: 1)
         selectedDrug.tap()
-        XCTAssert(prescriptionButton.isEnabled)
-        prescriptionButton.tap()
+        drugsConfirmButton.tap()
+        XCTAssert(confirmButton.isEnabled)
+        confirmButton.tap()
         sleep(20)
         // Checks if the therapy has been successfully created
-        XCTAssertEqual(therapiesList.cells.count, 1)
-        XCTAssertEqual(therapiesList.cells.element(boundBy: 0).label, title)
+        XCTAssertEqual(therapiesList.cells.count, 2)
     }
     
-    func testTherapyDetails() throws {
+    func test02_TherapyDetails() throws {
         // UI objects
         let therapiesList = app.collectionViews["TherapiesList"]
-        let selectedTherapy = therapiesList.cells.element(boundBy: 0)
+        let selectedTherapy = therapiesList.cells.element(boundBy: 1)
         let sheetTitle = app.staticTexts["TherapySheetTitle"]
         // ASSERTIONS
         // Expands the details of the selected therapy
         selectedTherapy.tap()
         XCTAssert(sheetTitle.waitForExistence(timeout: timer))
-        
     }
     
-    func testTherapyDeletion() throws {
+    func test03_TherapyDeletion() throws {
         // UI objects
         let therapiesList = app.collectionViews["TherapiesList"]
-        let targetTherapy = therapiesList.cells.element(boundBy: 0)
-        let deleteButton = targetTherapy.buttons["DeleteTherapyButton"]
+        let targetTherapy = therapiesList.cells.element(boundBy: 1)
+        let deleteButton = app.buttons["DeleteTherapyButton"]
         // ASSERTIONS
         XCTAssertFalse(therapiesList.cells.count == 0)
         targetTherapy.swipeLeft()
