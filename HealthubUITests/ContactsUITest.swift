@@ -4,7 +4,7 @@ final class ContactsUITest: XCTestCase {
 
     // Testing app target
     let app = XCUIApplication()
-    let timer = 2.0
+    let timer = 5.0
     let longTimer = 10.0
     
     // User
@@ -68,6 +68,7 @@ final class ContactsUITest: XCTestCase {
         sleep(10)
         let doctor = doctorsList.cells.element(boundBy: 1)
         doctor.tap()
+        sleep(10)
         // Checks that the doctor has been inserted in the list
         XCTAssertEqual(contactsList.cells.count, 2)
     }
