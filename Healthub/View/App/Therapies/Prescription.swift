@@ -144,8 +144,9 @@ struct Prescription: View {
                 }
             }
         }
+        .onAppear(perform: { therapyViewModel.completedCreation = false } )
         .onChange(of: therapyViewModel.completedCreation, perform: { _ in
-            if therapyViewModel.hasError == false {
+            if therapyViewModel.completedCreation == true {
                 prescriptionSuccess = true
                 dismissView()
             }
