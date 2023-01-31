@@ -89,7 +89,7 @@ struct DrugsDatabase: View {
                                             if !isPresent(chosenDrugs: drugs, currentDrug: drug) {
                                                 drugs.insert(drug, at: 0)
                                             }else{
-                                                drugs.remove(at: drugs.firstIndex(of: drug)!)
+                                                drugs.remove(at: drugs.firstIndex(where: {$0.id == drug.id})!)
                                             }
                                         },
                                         label:  {
@@ -145,7 +145,7 @@ struct DrugsDatabase: View {
     
     // Checks if the searched drugs has been already selected for the prescription
     func isPresent( chosenDrugs : [Drug], currentDrug : Drug ) -> Bool {
-        if chosenDrugs.contains(currentDrug) { return true }
+        if chosenDrugs.contains(where: { $0.id == currentDrug.id }) { return true }
         return false
     }
 }
