@@ -24,6 +24,8 @@ struct PathologiesView: View {
                             Label(String(), systemImage: "microbe.fill")
                             TextField("Pathology Name", text: $newPathology)
                                 .accessibilityIdentifier("PathologyField")
+                                .keyboardType(.asciiCapable)
+                                .autocorrectionDisabled(true)
                                 .onSubmit {
                                     insertPathology()
                                     creationStatus = .unknown

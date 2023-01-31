@@ -63,7 +63,7 @@ struct DoctorsDatabaseView: View {
             if ticketsView == true {
                 List{
                     ForEach(ticketViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
-                        return doctor.name!.hasPrefix(searchQuery) || searchQuery == ""
+                        return doctor.name!.hasPrefix(searchQuery.capitalized) || searchQuery == ""
                     }), id: \.self) { doctor in
                         Button(action: {
                             selectedDoctor = doctor
@@ -79,7 +79,7 @@ struct DoctorsDatabaseView: View {
             }else{
                 List{
                     ForEach(contactViewModel.doctors.filter({ (doctor: Doctor) -> Bool in
-                        return doctor.name!.hasPrefix(searchQuery) || searchQuery == ""
+                        return doctor.name!.hasPrefix(searchQuery.capitalized) || searchQuery == ""
                     }), id: \.self) { doctor in
                         Button(action: {
                             selectedDoctor = doctor
