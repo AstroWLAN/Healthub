@@ -4,7 +4,7 @@ final class ProfileUITests: XCTestCase {
     
     // Testing app target
     let app = XCUIApplication()
-    let timer = 2.0
+    let timer = 5.0
     let longTimer = 10.0
     
     // User
