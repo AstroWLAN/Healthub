@@ -69,7 +69,7 @@ struct DoctorsView: View {
                         }
                         .accessibilityIdentifier("ContactsList")
                         .labelStyle(Cubic())
-                        .refreshable { contactViewModel.fetchContacts(force_reload: true) }
+                        .refreshable(action: { contactViewModel.fetchContacts(force_reload: false) })
                     }
                 }
                 .sheet(
@@ -102,9 +102,6 @@ struct DoctorsView: View {
             }
         }
         .tint(Color("AstroRed"))
-        .onAppear(perform: {
-           // contactViewModel.fetchContacts(force_reload: false)
-            contactViewModel.getDoctorList()
-        })
+        .onAppear(perform: { contactViewModel.getDoctorList() })
     }
 }

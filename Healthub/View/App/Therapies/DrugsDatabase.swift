@@ -69,11 +69,13 @@ struct DrugsDatabase: View {
                         if !searchQuery.isEmpty && therapyViewModel.drugs.isEmpty {
                             HStack {
                                 Spacer()
-                                withAnimation{
-                                    Image("EmptySearchPlaceholder")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 100,height: 100)
+                                VStack(spacing: 8) {
+                                    Image(systemName: "pill.circle.fill")
+                                        .foregroundColor(Color(.systemGray))
+                                        .font(.system(size: 21, weight: .medium))
+                                    Text("No Drugs Found")
+                                        .foregroundColor(Color(.systemGray))
+                                        .font(.system(size: 17, weight: .medium))
                                 }
                                 Spacer()
                             }
@@ -135,6 +137,7 @@ struct DrugsDatabase: View {
                     }
                     .accessibilityIdentifier("ResultDrugsList")
                     .scrollContentBackground(.hidden)
+                    .scrollIndicators(.hidden)
                 }
             }
         }

@@ -1,5 +1,5 @@
 import SwiftUI
-import SPIndicator
+import SPAlert
 
 struct BookingView: View {
     
@@ -16,6 +16,8 @@ struct BookingView: View {
     @State private var selectedDoctor : Doctor?
     @State private var selectedDate : Date = Date()
     @State private var selectedTimeSlot : String = String()
+    
+    @Binding var bookingSuccess : Bool
     
     var body: some View {
         NavigationStack{
@@ -169,7 +171,10 @@ struct BookingView: View {
                         ProgressView().progressViewStyle(.circular)
                             .tint(Color(.systemGray))
                             .isVisible(ticketViewModel.completed == false && ticketViewModel.hasError == false)
-                            .onDisappear(perform: { dismissView() })
+                            .onDisappear(perform: {
+                                bookingSuccess = true
+                                dismissView()
+                            })
                     }
                 }
             }

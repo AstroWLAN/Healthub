@@ -67,7 +67,7 @@ class PathologyViewModel : ObservableObject {
     
     func removePathology(at offset: Int){
         let pathology = pathologies[offset]
-        
+        pathologies.remove(at: offset)
         pathologyRepository.delete(pathologyId: Int(pathology.id)){ (success, error) in
             if let error = error {
                 print(error.localizedDescription)

@@ -33,22 +33,24 @@ struct PathologiesView: View {
                     .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     .labelStyle(Cubic(glyphBackgroundColor: Color("AstroRed")))
                     // Pathologies list
-                    Section {
-                        ForEach(Array(pathologiesViewModel.pathologies.enumerated()), id:\.element) { index,pathology in
-                            Label(pathology.name.capitalized, systemImage: "microbe.fill")
-                                .labelStyle(Cubic())
-                                .swipeActions {
-                                    Button(
-                                        role: .destructive,
-                                        action: { pathologiesViewModel.removePathology(at: index) },
-                                        label: { Image(systemName: "trash.fill") }
-                                    )
-                                    .accessibilityIdentifier("DeletePathologyButton")
-                                }
+                    if !pathologiesViewModel.pathologies.isEmpty {
+                        Section {
+                            ForEach(Array(pathologiesViewModel.pathologies.enumerated()), id:\.element) { index,pathology in
+                                Label(pathology.name.capitalized, systemImage: "microbe.fill")
+                                    .labelStyle(Cubic())
+                                    .swipeActions {
+                                        Button(
+                                            role: .destructive,
+                                            action: { pathologiesViewModel.removePathology(at: index) },
+                                            label: { Image(systemName: "trash.fill") }
+                                        )
+                                        .accessibilityIdentifier("DeletePathologyButton")
+                                    }
+                            }
                         }
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     }
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
                 .accessibility(identifier: "PathologiesList")
                 .scrollContentBackground(.hidden)
@@ -67,7 +69,7 @@ struct PathologiesView: View {
             isPresent: Binding.constant(creationStatus == .success),
             title: "Success",
             message: "Pathology Created",
-            duration: 3.5,
+            duration: 1.5,
             presentSide: .top,
             dismissByDrag: false,
             preset: .custom(UIImage.init(systemName: "checkmark.circle.fill")!.withTintColor(UIColor(Color(.systemGreen)), renderingMode: .alwaysOriginal)),
@@ -78,7 +80,7 @@ struct PathologiesView: View {
             isPresent: Binding.constant(creationStatus == .failure),
             title: "Error",
             message: "Bad Pathology",
-            duration: 3.5,
+            duration: 1.5,
             presentSide: .top,
             dismissByDrag: false,
             preset: .custom(UIImage.init(systemName: "xmark.circle.fill")!.withTintColor(UIColor(Color("AstroRed")), renderingMode: .alwaysOriginal)),
@@ -91,10 +93,13 @@ struct PathologiesView: View {
     private func insertPathology() {
         // Checks if the user has been typed at least on letter and if the inserted pathology already exists
         guard newPathology.count > 0,
-              !pathologiesViewModel.pathologies.contains(where: { $0.name == newPathology })
+              !pathologiesViewModel.pathologies.contains(where: { $0.name.lowercased() == newPathology.lowercased() })
         else {
             // Displays a warning mark if something went wrong
-            withAnimation{ creationStatus = .failure }
+            withAnimation {
+                creationStatus = .failure
+                newPathology = String()
+            }
             return
         }
         withAnimation{ pathologiesViewModel.addPathology(pathology: newPathology) }

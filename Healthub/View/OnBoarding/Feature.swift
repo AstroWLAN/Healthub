@@ -15,6 +15,7 @@ struct FeatureView: View {
                 .scaledToFit()
                 .frame(width: 180)
                 .padding(.bottom,20)
+                .accessibilityIdentifier("\(image)")
             Text(title)
                 .font(.system(size: 30,weight: .bold))
             Text(subtitle)

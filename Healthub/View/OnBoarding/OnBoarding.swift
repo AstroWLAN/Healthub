@@ -57,10 +57,10 @@ struct OnBoardingView: View {
                         .tag(pageNumber)
                 }
             }
+            .accessibilityIdentifier("OnBoardingTabView")
             .tabViewStyle(.page)
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode:.always))
             .frame(height: 400)
-            .accessibility(identifier: "FeaturesTabView")
             Spacer()
             Button(
                 action: {
@@ -76,12 +76,12 @@ struct OnBoardingView: View {
                         .font(.system(.headline))
                 }
             )
-            .accessibility(identifier: "ContinueButton")
+            .accessibility(identifier: "OnBoardingButton")
             .buttonStyle(.borderedProminent)
             .tint(Color("AstroGray"))
             .padding(.bottom,20)
             // Displays the "Configure" botton IFF the current page is the one about notifications
-            .opacity(currentPage != 3 ? 0 : 1)
+            .opacity(currentPage != 2 ? 0 : 1)
         }
         // Avoids that the user dismisses the modal with a swipe
         .interactiveDismissDisabled()

@@ -9,13 +9,13 @@ struct MainView: View {
     @EnvironmentObject private var profileViewModel : ProfileViewModel
     @EnvironmentObject private var pathologiesViewModel : PathologyViewModel
     
-    @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = false
+    @AppStorage("firstAppLaunch") var firstAppLaunch : Bool = true
     @AppStorage("isLogged") var isLogged : Bool = false
     
     var body: some View {
         
         if(isLogged == false){ WelcomeView() }
-        else{
+        else {
             VStack{
                 // Defines the application tab bar
                 TabView{
@@ -40,7 +40,6 @@ struct MainView: View {
                 
             })
             .sheet(isPresented: $firstAppLaunch) { OnBoardingView() }
-            
         }
     }
 }

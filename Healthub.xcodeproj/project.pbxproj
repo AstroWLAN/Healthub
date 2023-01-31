@@ -56,7 +56,6 @@
 		2431A5502959AC84001F9E64 /* Therapy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663629477E5000035824 /* Therapy.swift */; };
 		2431A5532959AD96001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
 		2431A5542959ADB5001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
-		243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 243A9C9A292B8C5600731E3D /* AlertToast */; };
 		243C20CD2966E0E3005A7D80 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C20CC2966E0E3005A7D80 /* Contact.swift */; };
 		2441662F294764D400035824 /* TherapyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441662E294764D400035824 /* TherapyViewModel.swift */; };
 		2441663129476E6200035824 /* TherapyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663029476E6200035824 /* TherapyRepository.swift */; };
@@ -162,7 +161,6 @@
 		85BB5AAC2935FE160039618B /* TicketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AAB2935FE160039618B /* TicketSheet.swift */; };
 		85BB5ABA293802CE0039618B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5AB9293802CE0039618B /* Booking.swift */; };
 		85BB5ABD293808380039618B /* Examinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB5ABC293808380039618B /* Examinations.swift */; };
-		85D590722984208A00E28BF3 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 85D590712984208A00E28BF3 /* SPAlert */; };
 		85D5907529843E6900E28BF3 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 85D5907429843E6900E28BF3 /* ConfettiSwiftUI */; };
 		85EE03FD295F9565000106BC /* TherapySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE03FC295F9565000106BC /* TherapySheet.swift */; };
 		85F713502964925D00C6E77D /* Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7134F2964925D00C6E77D /* Recover.swift */; };
@@ -341,14 +339,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85D590722984208A00E28BF3 /* SPAlert in Frameworks */,
 				241759502927A5290051BE0B /* SwiftKeychainWrapper in Frameworks */,
 				8536F5512968F53D008CFBD0 /* SPIndicator in Frameworks */,
 				24DC3B0F2957649400EE7FBC /* WatchConnectivity.framework in Frameworks */,
 				24889473295D8971002215A7 /* CoreData.framework in Frameworks */,
 				852F1A372946B09200B57B18 /* TextView in Frameworks */,
 				85D5907529843E6900E28BF3 /* ConfettiSwiftUI in Frameworks */,
-				243A9C9B292B8C5600731E3D /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,10 +820,8 @@
 			name = Healthub;
 			packageProductDependencies = (
 				2417594F2927A5290051BE0B /* SwiftKeychainWrapper */,
-				243A9C9A292B8C5600731E3D /* AlertToast */,
 				852F1A362946B09200B57B18 /* TextView */,
 				8536F5502968F53D008CFBD0 /* SPIndicator */,
-				85D590712984208A00E28BF3 /* SPAlert */,
 				85D5907429843E6900E28BF3 /* ConfettiSwiftUI */,
 			);
 			productName = Healthub;
@@ -892,10 +886,8 @@
 			mainGroup = 857A54E42922D34300413841;
 			packageReferences = (
 				2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
-				243A9C99292B8C5600731E3D /* XCRemoteSwiftPackageReference "AlertToast" */,
 				852F1A352946B09200B57B18 /* XCRemoteSwiftPackageReference "TextView" */,
 				8536F54F2968F53D008CFBD0 /* XCRemoteSwiftPackageReference "SPIndicator" */,
-				85D590702984208A00E28BF3 /* XCRemoteSwiftPackageReference "SPAlert" */,
 				85D5907329843E6900E28BF3 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = 857A54EE2922D34300413841 /* Products */;
@@ -1538,14 +1530,6 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		243A9C99292B8C5600731E3D /* XCRemoteSwiftPackageReference "AlertToast" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/elai950/AlertToast";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		852F1A352946B09200B57B18 /* XCRemoteSwiftPackageReference "TextView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kenmueller/TextView";
@@ -1560,14 +1544,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		85D590702984208A00E28BF3 /* XCRemoteSwiftPackageReference "SPAlert" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ivanvorobei/SPAlert";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
 			};
 		};
 		85D5907329843E6900E28BF3 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
@@ -1591,11 +1567,6 @@
 			package = 2417594E2927A5290051BE0B /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
 		};
-		243A9C9A292B8C5600731E3D /* AlertToast */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 243A9C99292B8C5600731E3D /* XCRemoteSwiftPackageReference "AlertToast" */;
-			productName = AlertToast;
-		};
 		852F1A362946B09200B57B18 /* TextView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 852F1A352946B09200B57B18 /* XCRemoteSwiftPackageReference "TextView" */;
@@ -1605,11 +1576,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8536F54F2968F53D008CFBD0 /* XCRemoteSwiftPackageReference "SPIndicator" */;
 			productName = SPIndicator;
-		};
-		85D590712984208A00E28BF3 /* SPAlert */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85D590702984208A00E28BF3 /* XCRemoteSwiftPackageReference "SPAlert" */;
-			productName = SPAlert;
 		};
 		85D5907429843E6900E28BF3 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

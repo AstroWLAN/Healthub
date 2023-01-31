@@ -9,6 +9,8 @@ struct TicketsView: View {
     @State private var selectedTicket : Reservation?
     @State private var displayTicketDetails : Bool = false
     
+    @State private var confirmedBooking : Bool = false
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -74,10 +76,7 @@ struct TicketsView: View {
                                 .listRowSeparator(.hidden)
                             }
                             .accessibilityIdentifier("TicketsList")
-                            .refreshable{
-                                // Refresh tickets list
-                                ticketViewModel.fetchTickets(force_reload: true)
-                            }
+                            .refreshable(action: { ticketViewModel.fetchTickets(force_reload: false) })
                             .labelStyle(Cubic())
                             .scrollIndicators(.hidden)
                             .scrollContentBackground(.hidden)
@@ -115,7 +114,7 @@ struct TicketsView: View {
                 }
                 // Booking ticket button
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: BookingView()) {
+                    NavigationLink(destination: BookingView(bookingSuccess: $confirmedBooking)) {
                         ZStack {
                             Circle()
                                 .frame(height: 28)
@@ -130,5 +129,18 @@ struct TicketsView: View {
         }
         .tint(Color("AstroRed"))
         .onAppear( perform: { if(UserDefaults.standard.bool(forKey: "isLogged")) { ticketViewModel.connectivityProvider.connect() }})
+        .onChange(of: confirmedBooking, perform: {_ in
+            confirmedBooking = false
+        })
+        .SPIndicator(
+            isPresent: $confirmedBooking,
+            title: "Success",
+            message: "Ticket Created",
+            duration: 1.5,
+            presentSide: .top,
+            dismissByDrag: false,
+            preset: .custom(UIImage(systemName: "checkmark.circle.fill")!.withTintColor(UIColor(Color(.systemGreen)), renderingMode: .alwaysOriginal)),
+            haptic: .success,
+            layout: .init(iconSize: CGSize(width: 26, height: 26), margins: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)))
     }
 }

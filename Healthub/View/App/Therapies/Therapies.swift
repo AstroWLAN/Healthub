@@ -1,6 +1,5 @@
 import SwiftUI
-import TextView
-import AlertToast
+import SPIndicator
 
 struct TherapiesView: View {
     
@@ -11,6 +10,8 @@ struct TherapiesView: View {
     
     @State private var notInteractions : Bool = true
     @State private var selectedTherapy : Therapy?
+    
+    @State private var prescriptionCreated : Bool = false
     
     var body: some View {
         NavigationStack {
@@ -97,10 +98,7 @@ struct TherapiesView: View {
                         .accessibilityIdentifier("TherapiesList")
                         .scrollContentBackground(.hidden)
                         .scrollIndicators(.hidden)
-                        .refreshable{
-                            // Refresh therapies list
-                            therapyViewModel.fetchTherapies(force_reload: true)
-                        }
+                        .refreshable(action: { therapyViewModel.fetchTherapies(force_reload: false) })
                     }
                 }
                 // Loading therapies placeholder
@@ -121,7 +119,7 @@ struct TherapiesView: View {
             }
             .navigationTitle("Therapies")
             .toolbar{
-                NavigationLink(destination: Prescription()) {
+                NavigationLink(destination: Prescription(prescriptionSuccess: $prescriptionCreated)) {
                     ZStack {
                         Circle()
                             .frame(height: 28)
@@ -134,8 +132,18 @@ struct TherapiesView: View {
             }
         }
         .tint(Color("AstroRed"))
-        .onAppear(perform:{
-            //therapyViewModel.fetchTherapies(force_reload: false)
+        .onChange(of: prescriptionCreated, perform: {_ in
+            prescriptionCreated = false
         })
+        .SPIndicator(
+            isPresent: $prescriptionCreated,
+            title: "Success",
+            message: "Prescription Created",
+            duration: 1.5,
+            presentSide: .top,
+            dismissByDrag: false,
+            preset: .custom(UIImage(systemName: "checkmark.circle.fill")!.withTintColor(UIColor(Color(.systemGreen)), renderingMode: .alwaysOriginal)),
+            haptic: .success,
+            layout: .init(iconSize: CGSize(width: 26, height: 26), margins: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)))
     }
 }

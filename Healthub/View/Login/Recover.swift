@@ -1,12 +1,15 @@
 import SwiftUI
+import SPIndicator
 
 private enum FocusableObject { case email }
 
 struct RecoverView: View {
     
+    @Environment(\.dismiss) var dismissView
     @EnvironmentObject private var signUpViewModel: SignUpViewModel
     @FocusState private var objectFocused: FocusableObject?
     @State private var email : String = String()
+    @State private var emailSent : Bool = false
     
     var body: some View {
         NavigationStack {
@@ -45,6 +48,8 @@ struct RecoverView: View {
                         Button(
                             action: {
                                 signUpViewModel.recover(email: self.email)
+                                emailSent = true
+                                dismissView()
                             },
                             label:  {
                                 Text("Recover")
@@ -66,5 +71,17 @@ struct RecoverView: View {
                 .padding(EdgeInsets(top: 15, leading: 0, bottom: 20, trailing: 0))
             }
         }
+        .onChange(of: emailSent, perform: { _ in emailSent = false })
+        .SPIndicator(
+            isPresent: $emailSent,
+            title: "Success",
+            message: "Email Sent",
+            duration: 1.5,
+            presentSide: .top,
+            dismissByDrag: false,
+            preset: .custom(UIImage.init(systemName: "envelope.circle.fill")!.withTintColor(UIColor(Color(.systemBlue)), renderingMode: .alwaysOriginal)),
+            haptic: .success,
+            layout: .init(iconSize: CGSize(width: 26, height: 26), margins: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
+        )
     }
 }

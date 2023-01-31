@@ -1,10 +1,14 @@
 import SwiftUI
 import TextView
-import AlertToast
+import SPIndicator
 
 private enum FocusableObject { case name, duration, doctor, notes }
 
 struct Prescription: View {
+    
+    @Environment(\.dismiss) var dismissView
+    @EnvironmentObject private var therapyViewModel: TherapyViewModel
+    
     @FocusState private var objectFocused: FocusableObject?
     @State private var displayDrugsDatabase : Bool = false
     @State private var displayNotes : Bool = false
@@ -12,8 +16,8 @@ struct Prescription: View {
     @State private var prescriptionName : String = String()
     @State private var prescriptionDuration : String = String()
     @State private var prescriptionNotes : String = String()
-    @EnvironmentObject private var therapyViewModel: TherapyViewModel
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
+    @Binding var prescriptionSuccess : Bool
     
     var body: some View {
         ZStack {
@@ -98,9 +102,6 @@ struct Prescription: View {
                                 }
                             }
                             .labelStyle(Cubic())
-                            .swipeActions {
-                                // Delete drug from the selected ones
-                            }
                         }
                         .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                         .listRowSeparator(.hidden)
@@ -131,27 +132,33 @@ struct Prescription: View {
                             prescriptionName.isEmpty      ||
                             prescriptionDuration.isEmpty
                         )
-                    }else{
-                        ProgressView().progressViewStyle(.circular)
-                            .tint(Color(.systemGray))
-                            .onDisappear(perform: {
-                                self.mode.wrappedValue.dismiss()
-                            })
+                    }
+                    // Creation in progress
+                    else {
+                        if(therapyViewModel.completedCreation == false && therapyViewModel.hasError == false){
+                            ProgressView().progressViewStyle(.circular)
+                                .tint(Color(.systemGray))
+                                .isVisible(therapyViewModel.completedCreation == false && therapyViewModel.hasError == false)
+                        }
                     }
                 }
             }
         }
-        .toast(isPresenting: $therapyViewModel.hasError, alert: {
-            AlertToast(type: .error(Color("HealthGray3")),title: "An error occured")
+        .onChange(of: therapyViewModel.completedCreation, perform: { _ in
+            if therapyViewModel.hasError == false {
+                prescriptionSuccess = true
+                dismissView()
+            }
         })
-        .toast(isPresenting: $therapyViewModel.completedCreation, alert: {
-             AlertToast(type: .complete(Color("HealthGray3")),title: "Therapy Created")
-        })
-    }
-}
-
-struct Prescription_Previews: PreviewProvider {
-    static var previews: some View {
-        Prescription()
+        .SPIndicator(
+            isPresent: $therapyViewModel.hasError,
+            title: "Error",
+            message: "Prescription Failure",
+            duration: 1.5,
+            presentSide: .top,
+            dismissByDrag: false,
+            preset: .custom(UIImage(systemName: "xmark.circle.fill")!.withTintColor(UIColor(Color("AstroRed")), renderingMode: .alwaysOriginal)),
+            haptic: .error,
+            layout: .init(iconSize: CGSize(width: 26, height: 26), margins: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)))
     }
 }

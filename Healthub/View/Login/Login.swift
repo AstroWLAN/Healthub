@@ -9,6 +9,7 @@ struct LoginView: View {
     @FocusState private var objectFocused: FocusableObject?
     @State private var email : String = String()
     @State private var password : String = String()
+    @State private var loginFailure : Bool = false
     
     var body: some View {
         NavigationStack {
@@ -50,6 +51,7 @@ struct LoginView: View {
                         .multilineTextAlignment(.center)
                         .frame(width: 300)
                         .padding(EdgeInsets(top: 20, leading: 30, bottom: 20, trailing: 30))
+                        .onTapGesture(perform: { loginFailure = false })
                         Spacer()
                         // Submit button
                         Button(
@@ -89,12 +91,13 @@ struct LoginView: View {
                 .padding(.top, 15)
             }
         }
+        .onChange(of: loginViewModel.hasError, perform: { _ in if loginViewModel.hasError { loginFailure = true }})
         // Displays an alert if the login procedure fails
         .SPIndicator(
-            isPresent: $loginViewModel.hasError,
+            isPresent: $loginFailure,
             title: "Error",
             message: "Login Failed",
-            duration: 3.5,
+            duration: 1.5,
             presentSide: .top,
             dismissByDrag: false,
             preset: .custom(UIImage.init(systemName: "xmark.circle.fill")!.withTintColor(UIColor(Color("AstroRed")), renderingMode: .alwaysOriginal)),

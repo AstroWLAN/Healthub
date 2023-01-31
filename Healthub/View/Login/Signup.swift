@@ -5,6 +5,7 @@ private enum FocusableObject { case email, codeword, repeatcodeword }
 
 struct SignupView: View {
     
+    @Environment(\.dismiss) var dismissView
     @EnvironmentObject private var signUpViewModel: SignUpViewModel
     @FocusState private var objectFocused: FocusableObject?
     @State private var email : String = String()
@@ -85,12 +86,15 @@ struct SignupView: View {
                 .padding(.top, 15)
             }
         }
+        .onChange(of: signUpViewModel.userCreated, perform: { _ in
+            if signUpViewModel.userCreated { dismissView() }
+        })
         // Displays an alert if the signup procedure fails
         .SPIndicator(
             isPresent: $signUpViewModel.errorSignUp,
             title: "Error",
             message: "User Creation Failed",
-            duration: 3.5,
+            duration: 1.5,
             presentSide: .top,
             dismissByDrag: false,
             preset: .custom(UIImage.init(systemName: "xmark.circle.fill")!.withTintColor(UIColor(Color("AstroRed")), renderingMode: .alwaysOriginal)),
@@ -102,7 +106,7 @@ struct SignupView: View {
             isPresent: $signUpViewModel.userCreated,
             title: "Success",
             message: "User Created",
-            duration: 3.5,
+            duration: 1.5,
             presentSide: .top,
             dismissByDrag: false,
             preset: .custom(UIImage.init(systemName: "checkmark.circle.fill")!.withTintColor(UIColor(Color(.systemGreen)), renderingMode: .alwaysOriginal)),
