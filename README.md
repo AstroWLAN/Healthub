@@ -55,8 +55,6 @@ Healthub is an application that allows the patient to register for the service. 
 </br>
 </br>
 </br>
-</br>
-</br>
 
 ## Main Technical Details
   
