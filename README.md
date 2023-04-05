@@ -47,7 +47,7 @@ Healthub is an application that allows the patient to register for the service. 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 </div>
 
-<div style="margin-top:30%">
+<div style="margin-top:50%">
 
 
 ### Main Technical Details
