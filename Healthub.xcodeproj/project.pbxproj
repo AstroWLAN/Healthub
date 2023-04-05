@@ -57,6 +57,8 @@
 		2431A5532959AD96001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
 		2431A5542959ADB5001F9E64 /* Examination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A5522959AD96001F9E64 /* Examination.swift */; };
 		243C20CD2966E0E3005A7D80 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C20CC2966E0E3005A7D80 /* Contact.swift */; };
+		243E375629DD7DC50093D30B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 243E375529DD7DC50093D30B /* README.md */; };
+		243E375829DD81660093D30B /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 243E375729DD81650093D30B /* Assets */; };
 		2441662F294764D400035824 /* TherapyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441662E294764D400035824 /* TherapyViewModel.swift */; };
 		2441663129476E6200035824 /* TherapyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663029476E6200035824 /* TherapyRepository.swift */; };
 		2441663329476E6D00035824 /* TherapyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */; };
@@ -211,6 +213,8 @@
 		242D9C72295DF08800A32FD3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS9.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		2431A5522959AD96001F9E64 /* Examination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examination.swift; sourceTree = "<group>"; };
 		243C20CC2966E0E3005A7D80 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		243E375529DD7DC50093D30B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		243E375729DD81650093D30B /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		2441662E294764D400035824 /* TherapyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyViewModel.swift; sourceTree = "<group>"; };
 		2441663029476E6200035824 /* TherapyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepository.swift; sourceTree = "<group>"; };
 		2441663229476E6D00035824 /* TherapyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -547,6 +551,8 @@
 		857A54E42922D34300413841 = {
 			isa = PBXGroup;
 			children = (
+				243E375729DD81650093D30B /* Assets */,
+				243E375529DD7DC50093D30B /* README.md */,
 				857A54EF2922D34300413841 /* Healthub */,
 				246AC22729351951004FAE20 /* HealthubTests */,
 				8504DEB6297A8EBB00C4E4DB /* HealthubUITests */,
@@ -922,7 +928,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				857A54F82922D34400413841 /* Preview Assets.xcassets in Resources */,
+				243E375829DD81660093D30B /* Assets in Resources */,
 				857A54F52922D34400413841 /* Assets.xcassets in Resources */,
+				243E375629DD7DC50093D30B /* README.md in Resources */,
 				852944D12925ABFA006FC0C5 /* AppInformation.json in Resources */,
 				857A551B2922DDDA00413841 /* OnBoarding.json in Resources */,
 			);
