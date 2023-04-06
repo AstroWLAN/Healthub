@@ -83,10 +83,12 @@ Healthub is an application that allows the patient to register for the service. 
 <div align="center">
 <img src="Assets/3.png" align="center" width="50%">
 </div>
+
 * The Patient can add a Doctor to his/her contact list. The Patient can remove the contact when he/she wants.
 <div align="center">
 <img src="Assets/4.png" align="center" width="50%">
 </div>
+
 * The Patient can insert or update personal information inside the profile tab. Moreover, it is also possible to add some pathologies of the Patient if any.
 <div align="center">
 <img src="Assets/5.png" align="center" width="30%">
