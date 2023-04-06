@@ -42,7 +42,7 @@
 <div align="left">
 <img src="Assets/screen.png" alt="Screen" align="left" width="30%">
 
-Healthub is an application that allows the patient to register for the service. It allows the Patient to book visits with a Doctor, handle ongoing therapies, and keep information about themselves and the contacts of the Doctors. The Drug-Drug interaction APIs provided by the National Institute of Health and Drug Bank can be used to create the therapy. The Patient can also add a Doctor to their contact list and remove or update personal information. The App also provides a Companion App to visualize all the data using the Apple Watch.
+Healthub is an application that allows the patient to register for the service. It allows the Patient to book visits with a Doctor, handle ongoing therapies, and keep information about themselves and the contacts of the Doctors. The Drug-Drug interaction APIs provided by the National Institute of Health and Drug Bank can be used to create the therapy. The App also provides a Companion App to visualize all the data using the Apple Watch.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 </div>
