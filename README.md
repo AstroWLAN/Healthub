@@ -1,24 +1,23 @@
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
-  <a href="https://github.com/AstroWLAN/Healthub">
-    <img src="Repo/HealthubLogo.png" alt="Logo" width="20%">
-  </a>
+  <img src="Repo/HealthubLogo.png" alt="Logo" width="20%">
 </div>
-
 <br>
 
-> Project for the Design and Implementation of Mobile Applications course A.Y. 2022/2023 @Polimi
+<div align="center">
 
-| Author 👨🏼‍💻 | GitHub 👾 | Email 📨 | Contribute 📐 | 
-| :--- | :--- | :--- | :--- |
-| Dario Crippa | [AstroWLAN](https://github.com/AstroWLAN) | dario2.crippa@mail.polimit.it | UI and UX |
-| Giovanni Dispoto | [giovannidispoto](https://github.com/giovannidispoto) | giovanni.dispoto@polimit.it | Backend |
+| Author 👨🏼‍💻 | GitHub 👾 | Email 📨 | Contribute 📐 | Language 🐤 |
+| :--- | :--- | :--- | :--- | :--- |
+| Dario Crippa | [AstroWLAN](https://github.com/AstroWLAN) | dario2.crippa@mail.polimit.it | UI and UX | Swift |
+| Giovanni Dispoto | [giovannidispoto](https://github.com/giovannidispoto) | giovanni.dispoto@polimi.it | Backend | Swift + Python |
+
+</div>
+<br>
 
 ## Abstract 💭
 Healthub is an iOS application that offers some useful health-related functions such as managing therapies or booking appointments for medical examinations.
 Its main feature is the ability to **detect drug interactions** contained in therapies
-> Healthub is a school project and has exlusively a demonstrative purpose
+> Healthub is a school project for the Design and Implementation of Mobile Applications course A.Y. 2022/2023 @Polimi <br>
+It should not be used seriously in real life!
 
 <br>
 
